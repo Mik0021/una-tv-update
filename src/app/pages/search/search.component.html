@@ -1,0 +1,38 @@
+<section class="bg-dark my-14">
+  <div
+    class="container px-3 sm:px-0"
+    *ngIf="articles.length > 0; else noSearch"
+  >
+    <div class="block border-b-blue border-b-4 mb-14 flex justify-between">
+      <h2
+        class="font-semibold inline-block text-black bg-blue px-12 py-1 uppercase items-center mb-0"
+      >
+        {{ searchTerm }}
+      </h2>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
+      <app-card-small-content-down
+        *ngFor="
+          let article of articles
+            | paginate: { itemsPerPage: 24, currentPage: p }
+        "
+        [articleData]="article"
+      ></app-card-small-content-down>
+    </div>
+    <div class="grid place-items-center mt-28">
+      <pagination-controls
+        class="pagination"
+        (pageChange)="getPage($event)"
+        previousLabel=""
+        nextLabel=""
+      ></pagination-controls>
+    </div>
+  </div>
+  <ng-template #noSearch>
+    <div class="grid place-items-center">
+      <h1 class="font-bold text-white text-3xl">
+        Za traženi termin nema rezultata.
+      </h1>
+    </div>
+  </ng-template>
+</section>

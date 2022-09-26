@@ -1,0 +1,12 @@
+<nav class="pb-14">
+  <ul
+    class="flex flex-col items-center sm:flex-row sm:justify-center text-base font-bold uppercase flex-wrap gap-4"
+  >
+    <li
+      *ngFor="let item of navList.data"
+      class="text-white hover:text-blue transition-colors"
+    >
+      <a routerLink="/{{ item.slug }}">{{ item.title }}</a>
+    </li>
+  </ul>
+</nav>

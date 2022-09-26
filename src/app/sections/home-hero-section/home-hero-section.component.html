@@ -1,0 +1,42 @@
+<section class="bg-dark my-14">
+  <div class="container px-3 sm:px-0">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+      <app-home-hero-card-large
+        [articleData]="articles[0]"
+        *ngIf="articles[0]"
+      ></app-home-hero-card-large>
+      <app-home-hero-card-small
+        [articleData]="articles[1]"
+        *ngIf="articles[1]"
+      ></app-home-hero-card-small>
+      <app-home-hero-card-small
+        [articleData]="articles[2]"
+        *ngIf="articles[2]"
+      ></app-home-hero-card-small>
+      <app-home-hero-card-small
+        [articleData]="articles[3]"
+        *ngIf="articles[3]"
+      ></app-home-hero-card-small>
+      <app-home-hero-card-small
+        [articleData]="articles[4]"
+        *ngIf="articles[4]"
+      ></app-home-hero-card-small>
+      <app-home-hero-card-small-content-down
+        [articleData]="articles[5]"
+        *ngIf="articles[5]"
+      ></app-home-hero-card-small-content-down>
+      <app-home-hero-card-small-content-down
+        [articleData]="articles[6]"
+        *ngIf="articles[6]"
+      ></app-home-hero-card-small-content-down>
+      <app-home-hero-card-small-content-down
+        [articleData]="articles[7]"
+        *ngIf="articles[7]"
+      ></app-home-hero-card-small-content-down>
+      <app-home-hero-card-small-content-down
+        [articleData]="articles[8]"
+        *ngIf="articles[8]"
+      ></app-home-hero-card-small-content-down>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+<section class="bg-dark my-14">
+  <div class="container">
+    <div class="grid grid-cols-12 pb-8">
+      <div
+        class="col-span-12 xl:col-span-8 xl:pr-4 px-3 sm:px-0 text-lg selection:bg-blue"
+        *ngIf="single_post.data"
+      >
+        <h1
+          class="text-white font-bold text-3xl sm:text-[42px] pb-4 leading-[48px]"
+        >
+          {{ single_post.data.title }}
+        </h1>
+
+        <p class="text-white text-2xl pb-4">
+          {{ single_post.data.short_description }}
+        </p>
+
+        <div class="flex text-white text-lg pb-4 gap-x-1">
+          <div *ngIf="single_post.data.authors.length !== 0">
+            <span *ngIf="single_post.data.authors.length > 1; else elseBlock"
+              >Autori:
+            </span>
+            <ng-template #elseBlock>Autor: </ng-template>
+            <a
+              routerLink="/autor/{{ author.slug }}"
+              class="after:content-[','] after:m-0 last:after:content-['']"
+              *ngFor="let author of single_post.data.authors"
+            >
+              {{ author.first_name }} {{ author.last_name }}</a
+            >
+            <span>
+              {{ single_post.data.published_at | date: 'dd.MM.yyyy.' }}
+            </span>
+          </div>
+        </div>
+        <app-single-social></app-single-social>
+        <div class="w-full relative" *ngIf="images[0]">
+          <img
+            class="w-full"
+            src="{{ images[0].url }}"
+            srcset="{{ srcSet }}"
+            sizes="(min-width: 1280px) 100vw, 70vw"
+            [alt]="
+              images[0].description ? images[0].description : images[0].name
+            "
+          />
+          <span
+            class="absolute bg-blue bottom-0 left-0 px-2 py-1 text-sm"
+            *ngIf="images[0].source"
+          >
+            Foto: <span class="font-bold">{{ images[0].source }}</span>
+          </span>
+        </div>
+        <div *ngIf="images[0].description">
+          <i class="text-white text-xs leading-none block pl-2 pt-1">
+            {{ images[0].description }}
+          </i>
+        </div>
+        <div
+          class="sp-content text-white text-xl mt-6"
+          [innerHTML]="content | safeHtml"
+          appRunScripts
+        ></div>
+        <div class="flex justify-end py-7">
+          <app-single-social></app-single-social>
+        </div>
+        <app-single-tags
+          *ngIf="tags_list.length > 0"
+          [tags]="tags_list"
+        ></app-single-tags>
+      </div>
+      <div class="col-span-12 xl:col-span-4 mt-8 xl:mt-0 xl:pl-4 px-3 sm:px-0">
+        <app-conected-news
+          *ngIf="conected_articles"
+          [articleList]="conected_articles"
+        ></app-conected-news>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,46 @@
+<div class="container px-3 sm:px-0">
+  <div class="grid place-items-center py-14 relative z-10">
+    <a
+      class="px-14 bg-dark after:w-full after:h-px after:bg-gray after:absolute after:left-0 after:top-1/2 after:-z-10"
+      routerLink=""
+      ><img src="./assets/images/logo.png" height="55" width="124" alt=""
+    /></a>
+  </div>
+  <app-footer-nav [navList]="navList"></app-footer-nav>
+  <app-footer-social></app-footer-social>
+  <div
+    class="grid items-center justify-center md:justify-between sm:grid-cols-3 border-t border-gray"
+  >
+    <div class="text-xs text-white">
+      <ul class="flex gap-4 lg:gap-20 py-5">
+        <li *ngFor="let item of pagesList.data">
+          <a class="opacity-50 whitespace-nowrap" routerLink="{{ item.slug }}">
+            {{ item.title }}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="text-xs text-white justify-self-center py-2 sm:py-5">
+      <h2 class="opacity-50 font-bold">
+        <a routerLink="">UNA TV &copy; 2022</a>
+      </h2>
+    </div>
+    <div
+      class="text-xs text-white font-bold justify-self-center sm:justify-self-end py-5"
+    >
+      <ul class="flex gap-x-4">
+        <li
+          class="relative after:h-full after:w-px last:after:hidden after:bg-white after:absolute after:-right-2 hover:text-blue transition-colors"
+          *ngFor="let site of sites.sites"
+        >
+          <a [href]="site.url" class="uppercase" *ngIf="!site.default">
+            {{ site.name }}</a
+          >
+          <a routerLink="" class="uppercase" *ngIf="site.default">
+            {{ site.name }}</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

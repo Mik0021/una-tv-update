@@ -1,0 +1,45 @@
+<div class="flex items-center ml-3 sm:ml-9 cursor-pointer relative z-50">
+  <div
+    class="flex cursor-pointer items-center hover:text-blue text-white transition-colors stroke-neutral-100 hover:stroke-blue"
+    (click)="toggleSitesMenu()"
+    *ngFor="let site of sites.sites"
+  >
+    <ng-container *ngIf="site.default === true">
+      <!-- <img class="pr-2.5" [src]="site.imgUrl" alt="" /> -->
+      <span class="font-semibold text-sm uppercase">{{ site.name }}</span>
+      <svg
+        width="12"
+        height="7"
+        viewBox="0 0 12 7"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="ml-1"
+      >
+        <path
+          d="M1 1.07935L5.8281 5.39365L10.6562 1.07935"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </ng-container>
+  </div>
+  <div
+    [ngClass]="toggleSelect"
+    class="absolute top-full bg-gray-dark p-4 left-1/2 -translate-x-1/2 shadown-none opacity-95"
+  >
+    <ul>
+      <li
+        class="text-white hover:text-blue transition-colors"
+        *ngFor="let site of sites.sites"
+      >
+        <a [href]="site.url" class="block" *ngIf="!site.default">
+          <!-- <img class="pr-2.5" [src]="site.imgUrl" alt="" /> -->
+          <span class="font-semibold text-sm uppercase">
+            {{ site.name }}
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

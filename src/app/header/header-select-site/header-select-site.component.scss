@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  -webkit-tap-highlight-color: transparent;
+}
+
+li {
+  a {
+    margin-bottom: 14px;
+  }
+  &:last-child {
+    a {
+      margin-bottom: 0;
+    }
+  }
+}

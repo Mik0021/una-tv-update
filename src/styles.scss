@@ -1,0 +1,273 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Unitext';
+  font-style: normal;
+  font-weight: 100;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-Hairline.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Unitext';
+  font-style: italic;
+  font-weight: 100;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-HairlineItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Unitext';
+  font-style: normal;
+  font-weight: 200;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-Extralight.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Unitext';
+  font-style: italic;
+  font-weight: 200;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-ExtralightItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Unitext';
+  font-style: normal;
+  font-weight: 300;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-Light.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Unitext';
+  font-style: italic;
+  font-weight: 300;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-LightItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Unitext';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Unitext';
+  font-style: italic;
+  font-weight: 400;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-Italic.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Unitext';
+  font-style: normal;
+  font-weight: 600;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-Semibold.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Unitext';
+  font-style: italic;
+  font-weight: 600;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-SemiboldItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Unitext';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Unitext';
+  font-style: italic;
+  font-weight: 700;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-BoldItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'Unitext';
+  font-style: normal;
+  font-weight: 900;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-Black.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Unitext';
+  font-style: italic;
+  font-weight: 900;
+  src: local(''),
+    url('./assets/font-unitext/Unitext-BlackItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+
+.sp-content {
+  * {
+    margin-bottom: 20px;
+  }
+  p {
+    margin-bottom: 15px;
+  }
+  h2 {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 22px;
+
+    font-weight: bold;
+  }
+  h4 {
+    font-size: 20px;
+
+    font-weight: bold;
+  }
+  h5 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  h6 {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+  }
+  a {
+    text-decoration: underline;
+  }
+  ul {
+    li {
+      list-style-type: disc;
+      margin-left: 28px;
+      margin-bottom: 12;
+    }
+  }
+  ol {
+    li {
+      list-style-type: decimal;
+      margin-left: 32px;
+      margin-bottom: 12px;
+    }
+  }
+  blockquote {
+    font-size: 1.4em;
+    margin: 50px auto;
+    font-family: Open Sans;
+    font-style: italic;
+    color: #fff;
+    padding: 1.2em 30px 1.2em 75px;
+    border-left: 8px solid #00beff;
+    line-height: 1.6;
+    position: relative;
+    background-color: #0f161a;
+
+    &::before {
+      font-family: Arial;
+      content: '\201C';
+      color: #00beff;
+      font-size: 4em;
+      position: absolute;
+      left: 10px;
+      top: -20px;
+    }
+  }
+
+  .raw-html-embed {
+    overflow: hidden;
+    margin: 0 auto 20px !important;
+    div.twitter-tweet {
+      margin: 0 auto;
+    }
+
+    iframe {
+      margin: 0 auto !important;
+      overflow: hidden;
+      max-width: 100%;
+    }
+    .instagram-media {
+      margin: 0 auto !important;
+    }
+    iframe[title='YouTube video player'] {
+      margin: 30px 0;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+    .brid {
+      width: 100% !important;
+      height: calc(100% + 20px) !important;
+      .brid-controls {
+        height: 5.3em;
+        .brid-volume-control {
+          margin-left: -4em !important;
+          margin-top: 1.3em !important;
+        }
+      }
+    }
+  }
+}
+
+.menu-item:hover .submenu {
+  display: block;
+}
+
+.pagination {
+  .ngx-pagination .pagination-previous a:before,
+  .ngx-pagination .pagination-previous.disabled:before {
+    content: '\3C';
+    margin-right: 2px;
+  }
+  .ngx-pagination .pagination-next a:after,
+  .ngx-pagination .pagination-next.disabled:after {
+    content: '\3E';
+    margin-left: 2px;
+  }
+  .ngx-pagination .pagination-previous.disabled,
+  .ngx-pagination .pagination-next.disabled {
+    background-color: white;
+    opacity: 50%;
+    &::before,
+    &::after {
+      color: black;
+    }
+  }
+
+  .current {
+    background-color: #00beff;
+  }
+  .ngx-pagination {
+    .pagination-previous a:before {
+    }
+    li {
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    a {
+      color: black;
+      background-color: white;
+    }
+  }
+}

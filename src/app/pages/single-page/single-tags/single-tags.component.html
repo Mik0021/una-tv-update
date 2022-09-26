@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="block border-b-blue border-b-4 mb-4 flex justify-between">
+    <h2
+      class="font-semibold text-lg inline-block text-black bg-blue px-12 py-1 uppercase items-center mb-0"
+    >
+      Tagovi
+    </h2>
+  </div>
+  <div class="flex gap-x-8 gap-y-4 flex-wrap">
+    <a
+      class="uppercase font-semibold underline decoration-blue decoration-2 underline-offset-4 text-sm text-white before:content-['#'] before:text-white hover:text-blue hover:before:text-blue transition-colors before:transition-colors"
+      routerLink="/tag/{{ tag.slug }}"
+      *ngFor="let tag of tags"
+      >{{ tag.name }}
+    </a>
+  </div>
+</div>

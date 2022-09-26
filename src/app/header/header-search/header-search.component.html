@@ -1,0 +1,40 @@
+<form class="flex" #searchForm="ngForm" (ngSubmit)="onSearch(searchForm)">
+  <div
+    class="absolute top-16 sm:top-1/2 sm:-translate-y-1/2 left-0 sm:left-44 right-0 sm:right-[210px] lg:right-36 scale-x-0 transition-transform origin-right ease-in-out delay-300 z-50"
+    [ngClass]="isShown"
+  >
+    <input
+      class="w-full border-0 py-2 px-3 text-gray text-2xl placeholder:text-gray placeholder:text-2xl focus-visible:outline-none"
+      placeholder="Pretraži..."
+      type="search"
+      name="search"
+      id="search"
+      required
+      ngModel
+      #searchField
+    />
+  </div>
+  <button
+    class="stroke-neutral-100 hover:stroke-blue transition-colors flex items-center"
+  >
+    <svg
+      width="28"
+      height="25"
+      viewBox="0 0 28 25"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M11.6363 1.39648C9.53265 1.39648 7.47623 1.92916 5.72709 2.92715C3.97796 3.92514 2.61468 5.34362 1.80965 7.00322C1.00461 8.66282 0.793974 10.489 1.20438 12.2508C1.61478 14.0126 2.62779 15.631 4.11531 16.9012C5.60282 18.1714 7.49803 19.0364 9.56127 19.3868C11.6245 19.7373 13.7631 19.5574 15.7066 18.87C17.6502 18.1826 19.3113 17.0185 20.4801 15.5249C21.6488 14.0313 22.2726 12.2753 22.2726 10.4789C22.2724 8.07016 21.1518 5.76009 19.1571 4.05684C17.1625 2.35358 14.4572 1.39664 11.6363 1.39648V1.39648Z"
+        stroke-width="2"
+        stroke-miterlimit="10"
+      />
+      <path
+        d="M19.5717 17.2549L27 23.598"
+        stroke-width="2"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+      />
+    </svg>
+  </button>
+</form>
