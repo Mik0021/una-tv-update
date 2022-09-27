@@ -30,6 +30,8 @@ export class HomeHeroCardLargeComponent implements OnInit {
 
   createSrcSet() {
     if (
+      this.articleData.images.length > 0 &&
+      this.articleData.images[0].thumbnails &&
       this.articleData.images[0].thumbnails[345] &&
       this.articleData.images[0].thumbnails[710]
     ) {

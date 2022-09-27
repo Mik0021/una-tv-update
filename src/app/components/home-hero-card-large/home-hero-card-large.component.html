@@ -3,12 +3,6 @@
   class="z-30 after:absolute after:inset-0 after:bg-gradient-to-b after:from-transparent after:to-black after:opacity-60 block relative w-full h-full aspect-video"
   *ngIf="articleData"
 >
-  <!-- <img
-    class="h-full w-full object-cover object-top aspect-video"
-    [src]="articleData.images[0].url"
-    [alt]="articleData.images[0].name"
-    *ngIf="articleData.images[0]"
-  /> -->
   <img
     class="h-full w-full object-cover object-top aspect-video"
     src="{{ articleData.images[0].url }}"

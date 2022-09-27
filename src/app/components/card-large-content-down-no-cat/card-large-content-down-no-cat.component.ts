@@ -15,13 +15,26 @@ export class CardLargeContentDownNoCatComponent implements OnInit {
   hasVideo: boolean = false;
   isTimeline: boolean = false;
   articleSlug: string = '';
+  srcSet: string = '';
   constructor() {}
 
   ngOnInit(): void {
     this.createArticleSlug();
+    this.createSrcSet();
     // this.hasImage = this.articleData.hasImages;
     // this.hasVideo = this.articleData.hasVideo;
     // this.isTimeline = this.articleData.isTimeline;
+  }
+
+  createSrcSet() {
+    if (
+      this.articleData.images.length > 0 &&
+      this.articleData.images[0].thumbnails &&
+      this.articleData.images[0].thumbnails[345] &&
+      this.articleData.images[0].thumbnails[710]
+    ) {
+      this.srcSet = `${this.articleData.images[0].thumbnails[345]} 175w, ${this.articleData.images[0].thumbnails[710]}`;
+    }
   }
 
   createArticleSlug() {

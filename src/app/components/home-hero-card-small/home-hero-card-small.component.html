@@ -5,8 +5,14 @@
   >
     <img
       class="w-full h-full object-cover object-top aspect-video"
-      [src]="articleData.images[0].url"
-      [alt]="articleData.images[0].name"
+      src="{{ articleData.images[0].url }}"
+      srcset="{{ srcSet }}"
+      sizes="(min-width: 340px) 50vw, 20vw"
+      [alt]="
+        articleData.images[0].description
+          ? articleData.images[0].description
+          : articleData.images[0].name
+      "
     />
   </div>
   <div class="sm:absolute bottom-2.5 inset-x-5 z-20 pt-1 sm:pt-7 sm:pt-0">

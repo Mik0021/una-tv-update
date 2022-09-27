@@ -16,14 +16,28 @@ export class HomeHeroCardSmallComponent implements OnInit {
   isTimeline: boolean = false;
   articleSlug: string = '';
   categorySlug: string = '';
+  srcSet: string = '';
   constructor() {}
 
   ngOnInit(): void {
     this.createArticleSlug();
     this.createCategorySlug();
+    this.createSrcSet();
+
     // this.hasImage = this.articleData.hasImages;
     // this.hasVideo = this.articleData.hasVideo;
     // this.isTimeline = this.articleData.isTimeline;
+  }
+
+  createSrcSet() {
+    if (
+      this.articleData.images.length > 0 &&
+      this.articleData.images[0].thumbnails &&
+      this.articleData.images[0].thumbnails[144] &&
+      this.articleData.images[0].thumbnails[345]
+    ) {
+      this.srcSet = `${this.articleData.images[0].thumbnails[144]} 175w, ${this.articleData.images[0].thumbnails[345]}`;
+    }
   }
 
   createArticleSlug() {

@@ -2,8 +2,14 @@
   <div class="relative aspect-video" *ngIf="articleData.images[0]">
     <img
       class="w-full h-full object-cover object-top aspect-video"
-      [src]="articleData.images[0].url"
-      [alt]="articleData.images[0].name"
+      src="{{ articleData.images[0].url }}"
+      srcset="{{srcSet}}"
+      sizes="(min-width: 1024px) 100vw, 50vw"
+      [alt]="
+        articleData.images[0].description
+          ? articleData.images[0].description
+          : articleData.images[0].name
+      "
     />
     <div class="absolute bottom-0 left-5">
       <app-notification-icons
