@@ -21,7 +21,7 @@ export const environment = {
   APP_TITLE: 'UnaTV developmnent',
   APP_FOLDER: '/',
   APP_FACEBOOK: 'https://www.facebook.com/Unaworld-BIH-110454274959233/',
-  APP_SHARE: 'Podijeli',
+  APP_SHARE: 'Podijeli emisiju',
   APP_LANG: 'sr',
   APP_HOME_META_TITLE: 'UNA TV Bosna i Hercegovina',
   APP_HOME_META_DESCRIPTION:

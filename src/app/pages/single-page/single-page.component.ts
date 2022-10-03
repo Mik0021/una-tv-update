@@ -67,8 +67,8 @@ export class SinglePageComponent implements OnInit {
         } else {
           this.postService
             .getPost(this.category, this.subCategory, this.postRoute)
-            .subscribe(
-              (post: Post) => {
+            .subscribe({
+              next: (post: Post) => {
                 this.single_post = post;
                 this.tags_list = post.data.tags;
                 this.conected_articles = post.data.related_articles;
@@ -78,10 +78,10 @@ export class SinglePageComponent implements OnInit {
                 this.addTags();
                 this.createSrcSet();
               },
-              (error: any) => {
+              error: (error: any) => {
                 this.router.navigate(['404']);
-              }
-            );
+              },
+            });
         }
       }
     });
