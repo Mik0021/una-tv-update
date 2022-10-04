@@ -1,12 +1,8 @@
-<section class="bg-dark my-14">
+<section class="bg-dark mb-14 mt-40">
   <div class="container px-3 sm:px-0" *ngIf="category.data">
-    <div
-      class="block border-b-blue border-b-4 mb-14 flex justify-between"
-      [ngStyle]="{ 'border-color': category.data.category.color }"
-    >
+    <div class="block mb-14 flex justify-between">
       <h2
-        class="font-semibold inline-block text-black bg-blue px-12 py-1 uppercase items-center mb-0"
-        [ngStyle]="{ 'background-color': category.data.category.color }"
+        class="font-semibold inline-block text-white py-1 items-center mb-0 text-4xl capitalize"
       >
         {{ category.data.category.name }}
       </h2>

@@ -1,0 +1,13 @@
+table {
+  width: 100%;
+  tr {
+    border-bottom: 1px solid rgba(#fff, 0.5);
+    padding: 26px;
+    td:first-child {
+      padding-left: 16px;
+    }
+    td {
+      padding: 8px 0;
+    }
+  }
+}

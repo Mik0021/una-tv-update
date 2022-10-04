@@ -16,6 +16,11 @@ const routes: Routes = [
       import('./pages/search/search.module').then((m) => m.SearchModule),
   },
   {
+    path: 'program',
+    loadChildren: () =>
+      import('./program/program.module').then((m) => m.ProgramModule),
+  },
+  {
     path: 'articles-live-preview/:id',
     loadChildren: () =>
       import('./pages/live-preview/live-preview.module').then(

@@ -1,3 +1,4 @@
+import { ComponentsModule } from 'src/app/components/components.module';
 import { DirectivesModule } from './../../directives/directives.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -25,6 +26,7 @@ import { SingleTagsComponent } from './single-tags/single-tags.component';
     ShareModule,
     PipesModule,
     DirectivesModule,
+    ComponentsModule,
   ],
 })
 export class SinglePageModule {}

@@ -15,33 +15,36 @@
       "
       *ngIf="articles[0].images[0]"
     />
-    <div
-      class="container relative lg:absolute lg:bottom-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-1/2 mt-4 lg:mt-0 px-3 sm:px-0"
-    >
-      <h1 class="text-2xl sm:text-5xl text-white mb-6" *ngIf="articles[0]">
-        {{ articles[0].title }}
-      </h1>
-      <p class="text-lg text-white mb-10 sm:mb-14" *ngIf="articles[0]">
-        {{ articles[0].short_description }}
-      </p>
-      <a
-        class="bg-light-blue rounded-lg p-5 font-semibold text-lg flex items-center w-40"
-        routerLink="{{ articleSlug }}"
-        >Saznaj više
-        <svg
-          class="ml-4"
-          width="13"
-          height="17"
-          viewBox="0 0 13 17"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+    <div class="container absolute inset-0 mt-4 lg:mt-0 px-3 sm:px-0">
+      <div class="absolute top-1/2 -translate-y-1/2 left-0 right-2/3">
+        <p class="text-3xl text-white font-bold mb-3" *ngIf="articles[0]">
+          {{ articles[0].short_description }}
+        </p>
+        <h1
+          class="text-2xl sm:text-5xl text-white font-bold sm:mb-14"
+          *ngIf="articles[0]"
         >
-          <path
-            d="M2.61333 16.0016C2.19462 15.9991 1.78116 15.9082 1.4 15.7349C0.987768 15.5532 0.636551 15.2567 0.388297 14.8807C0.140042 14.5048 0.00524407 14.0654 0 13.6149V2.38822C0.00524407 1.93775 0.140042 1.49831 0.388297 1.12238C0.636551 0.746455 0.987768 0.44993 1.4 0.268224C1.87432 0.0441802 2.40204 -0.0421119 2.92302 0.0191799C3.44401 0.0804718 3.93729 0.286883 4.34667 0.614891L11.1467 6.22822C11.4133 6.44051 11.6287 6.71021 11.7767 7.01723C11.9247 7.32426 12.0016 7.66071 12.0016 8.00156C12.0016 8.3424 11.9247 8.67885 11.7767 8.98588C11.6287 9.29291 11.4133 9.5626 11.1467 9.77489L4.34667 15.3882C3.85651 15.7857 3.24441 16.0023 2.61333 16.0016Z"
-            fill="#152127"
-          />
-        </svg>
-      </a>
+          {{ articles[0].title }}
+        </h1>
+        <a
+          class="bg-light-blue rounded-lg p-5 font-semibold text-lg flex items-center w-40"
+          routerLink="{{ articleSlug }}"
+          >Saznaj više
+          <svg
+            class="ml-4"
+            width="13"
+            height="17"
+            viewBox="0 0 13 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2.61333 16.0016C2.19462 15.9991 1.78116 15.9082 1.4 15.7349C0.987768 15.5532 0.636551 15.2567 0.388297 14.8807C0.140042 14.5048 0.00524407 14.0654 0 13.6149V2.38822C0.00524407 1.93775 0.140042 1.49831 0.388297 1.12238C0.636551 0.746455 0.987768 0.44993 1.4 0.268224C1.87432 0.0441802 2.40204 -0.0421119 2.92302 0.0191799C3.44401 0.0804718 3.93729 0.286883 4.34667 0.614891L11.1467 6.22822C11.4133 6.44051 11.6287 6.71021 11.7767 7.01723C11.9247 7.32426 12.0016 7.66071 12.0016 8.00156C12.0016 8.3424 11.9247 8.67885 11.7767 8.98588C11.6287 9.29291 11.4133 9.5626 11.1467 9.77489L4.34667 15.3882C3.85651 15.7857 3.24441 16.0023 2.61333 16.0016Z"
+              fill="#152127"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>

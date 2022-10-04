@@ -22,15 +22,14 @@
           Foto: <span class="font-bold">{{ images[0].source }}</span>
         </span> -->
           <div class="absolute left-10 top-1/2 z-10 -translate-y-1/2 right-2/3">
+            <p class="text-white text-2xl font-bold">
+              {{ single_post.data.short_description }}
+            </p>
             <h1
               class="text-white font-bold text-3xl sm:text-[42px] pb-4 leading-[48px]"
             >
               {{ single_post.data.title }}
             </h1>
-
-            <p class="text-white text-2xl">
-              {{ single_post.data.short_description }}
-            </p>
           </div>
         </div>
         <!-- <div *ngIf="images[0].description">
@@ -43,15 +42,14 @@
           <div
             class="col-span-12 lg:col-span-8 border-r-2 border-white lg:pr-9"
           >
+            <p class="text-white text-lg">
+              {{ single_post.data.short_description }}
+            </p>
             <h3
               class="text-white font-bold text-xl sm:text-[42px] pb-4 leading-[48px]"
             >
               {{ single_post.data.title }}
             </h3>
-
-            <p class="text-white text-lg">
-              {{ single_post.data.short_description }}
-            </p>
 
             <div
               class="sp-content text-white text-xl mt-6"
@@ -64,14 +62,14 @@
                   <span
                     class="block"
                     *ngIf="single_post.data.authors.length > 1; else elseBlock"
-                    >Autori:
+                    >TV Lica:
                   </span>
-                  <ng-template class="block" #elseBlock>Autor: </ng-template>
+                  <ng-template class="block" #elseBlock>TV Lice: </ng-template>
                 </div>
                 <div>
                   <a
                     routerLink="/autor/{{ author.slug }}"
-                    class="after:content-[','] after:m-0 last:after:content-['']"
+                    class="after:content-[','] after:m-0 last:after:content-[''] font-semibold text-xl"
                     *ngFor="let author of single_post.data.authors"
                   >
                     {{ author.first_name }} {{ author.last_name }}</a
@@ -81,11 +79,20 @@
             </div>
           </div>
           <div class="col-span-12 lg:col-span-4 lg:pl-9">
+            <h3 class="text-2xl font-bold text-white opacity-70 mb-7">
+              60 min
+            </h3>
             <app-single-social></app-single-social>
           </div>
         </div>
         <div>
-          <h2>Sve epizode:</h2>
+          <h2 class="text-2xl font-semibold text-white">Sve epizode:</h2>
+          <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
+            <app-card-small-content-down
+              *ngFor="let article of conected_articles"
+              [articleData]="article"
+            ></app-card-small-content-down>
+          </div>
         </div>
       </div>
     </div>
