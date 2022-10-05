@@ -14,6 +14,26 @@ export class CategorySectionSmallCardsContentDownComponent implements OnInit {
   articleList = [] as Article[];
   category = {} as Category;
   categorySlug: string = '';
+  swiperConfig: any = {
+    slidesPerView: 4.5,
+    breakpoints: {
+      0: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+
+      1024: {
+        slidesPerView: 4.5,
+        spaceBetween: 50,
+        watchSlidesProgress: true,
+      },
+    },
+  };
   constructor() {}
 
   ngOnInit(): void {

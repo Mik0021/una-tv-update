@@ -15,12 +15,7 @@
       </h2>
     </a>
   </div>
-  <swiper
-    [slidesPerView]="4.5"
-    [spaceBetween]="50"
-    [watchSlidesProgress]="true"
-    class="w-full"
-  >
+  <swiper [config]="swiperConfig" class="w-full">
     <ng-template swiperSlide *ngFor="let article of articleList">
       <app-card-small-content-down
         [articleData]="article"
