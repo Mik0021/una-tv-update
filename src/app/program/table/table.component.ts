@@ -1,5 +1,5 @@
-import { Pages } from './../../interfaces/pages.model';
 import { Component, Input, OnInit } from '@angular/core';
+import { Tabs } from 'src/app/interfaces/tabs.model';
 
 @Component({
   selector: 'app-table',
@@ -7,14 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  @Input() pagesList = {} as Pages;
+  @Input() tabs = [] as Tabs[];
 
   constructor() {}
 
   ngOnInit(): void {}
-  // changeTab(index: number) {
-  //   this.tabs = this.tabs.map((tab, i) =>
-  //     i === index ? { ...tab, active: true } : { ...tab, active: false }
-  //   );
-  // }
+  changeTab(index: number) {
+    this.tabs = this.tabs.map((tab, i) =>
+      i === index ? { ...tab, active: true } : { ...tab, active: false }
+    );
+  }
 }

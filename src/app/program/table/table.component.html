@@ -1,6 +1,6 @@
 <div class="overflow-x-auto">
-  <div class="block min-w-[480px]">
-    <!-- <div class="tabs">
+  <div class="block min-w-[600px]">
+    <div class="tabs">
       <ul class="tab-group">
         <li
           *ngFor="let tab of tabs; index as i"
@@ -8,7 +8,6 @@
           [class.active]="tab.active"
           (click)="changeTab(i)"
         >
-          <i class="icon" [ngClass]="tab.iconClass"></i>
           {{ tab.title }}
         </li>
       </ul>
@@ -21,8 +20,8 @@
           ></div>
         </ng-container>
       </div>
-    </div> -->
-    <table class="text-white text-xl w-full">
+    </div>
+    <!-- <table class="text-white text-xl w-full">
       <tr>
         <td>6:00</td>
         <td>Info</td>
@@ -119,6 +118,6 @@
         <td>Rambo</td>
         <td></td>
       </tr>
-    </table>
+    </table> -->
   </div>
 </div>
