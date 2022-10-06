@@ -1,11 +1,14 @@
-<section class="bg-dark mt-[104px] mb-14">
+<section class="bg-dark mt-[66px] sm:mt-[79px] lg:mt-[104px] mb-6 lg:mb-14">
   <div class="container">
     <div class="grid grid-cols-12 pb-8">
       <div
         class="col-span-12 xl:pr-4 px-3 sm:px-0 text-lg selection:bg-blue"
         *ngIf="single_post.data"
       >
-        <div class="w-full relative image-gradient mb-14" *ngIf="images[0]">
+        <div
+          class="w-full relative image-gradient mb-6 lg:mb-14"
+          *ngIf="images[0]"
+        >
           <img
             class="w-full"
             src="{{ images[0].url }}"
@@ -28,7 +31,7 @@
               {{ single_post.data.short_description }}
             </p>
             <h1
-              class="text-white font-bold text-3xl sm:text-[42px] pb-4 leading-[48px]"
+              class="text-white font-bold text-3xl sm:text-[42px] pb-4 lg:leading-[48px]"
             >
               {{ single_post.data.title }}
             </h1>
@@ -54,7 +57,7 @@
             </h3>
 
             <div
-              class="sp-content text-white text-xl mt-6"
+              class="sp-content text-white text-xl mt-0 lg:mt-6"
               [innerHTML]="content | safeHtml"
               appRunScripts
             ></div>
@@ -88,7 +91,7 @@
           </div>
         </div>
         <div>
-          <h2 class="text-2xl font-semibold text-white">Sve epizode:</h2>
+          <h2 class="text-2xl font-semibold text-white mb-3">Sve epizode:</h2>
           <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
             <app-card-small-content-down
               *ngFor="let article of conected_articles"

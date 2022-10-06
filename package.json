@@ -12,7 +12,7 @@
     "dev:ssr": "ng run unatvbih:serve-ssr",
     "serve:ssr": "node dist/server/main.js",
     "build:ssrbih": "ng build --configuration=unabih --base-href /ba/ --aot && ng run unatvbih:server:unabih",
-    "build:ssrsrb": "ng build --configuration=unasr --base-href /rs/ --aot && ng run unatvbih:server:unasr",
+    "build:ssrsrb": "ng build --configuration=unasr --aot && ng run unatvbih:server:unasr",
     "build:ssrhr": "ng build --configuration=unahr --base-href /hr/ --aot && ng run unatvbih:server:unahr",
     "build:ssren": "ng build --configuration=unaen --aot && ng run unatvbih:server:unaen",
     "build:ssrenprod": "ng build --configuration=unaenprod --aot && ng run unatvbih:server:unaenprod",

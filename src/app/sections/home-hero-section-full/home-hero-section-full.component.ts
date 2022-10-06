@@ -28,13 +28,15 @@ export class HomeHeroSectionFullComponent implements OnInit {
   }
 
   createSrcSet() {
-    if (
-      this.articles[0].images.length > 0 &&
-      this.articles[0].images[0].thumbnails &&
-      this.articles[0].images[0].thumbnails[345] &&
-      this.articles[0].images[0].thumbnails[710]
-    ) {
-      this.srcSet = `${this.articles[0].images[0].thumbnails[345]} 345w, ${this.articles[0].images[0].thumbnails[710]} 710w, ${this.articles[0].images[0].thumbnails[944]} 944w, ${this.articles[0].images[0].url}  `;
+    if (this.articles[0]) {
+      if (
+        this.articles[0].images.length > 0 &&
+        this.articles[0].images[0].thumbnails &&
+        this.articles[0].images[0].thumbnails[345] &&
+        this.articles[0].images[0].thumbnails[710]
+      ) {
+        this.srcSet = `${this.articles[0].images[0].thumbnails[345]} 345w, ${this.articles[0].images[0].thumbnails[710]} 710w, ${this.articles[0].images[0].thumbnails[944]} 944w, ${this.articles[0].images[0].url}  `;
+      }
     }
   }
 

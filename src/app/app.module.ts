@@ -1,4 +1,3 @@
-import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,6 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
+import { AdsenseModule } from 'ng2-adsense';
+import {
+  NgxGoogleAnalyticsModule,
+  NgxGoogleAnalyticsRouterModule,
+} from 'ngx-google-analytics';
 import { FooterNavComponent } from './footer/footer-nav/footer-nav.component';
 import { FooterSocialComponent } from './footer/footer-social/footer-social.component';
 import { FooterComponent } from './footer/footer.component';
@@ -15,12 +19,6 @@ import { HeaderSelectSiteComponent } from './header/header-select-site/header-se
 import { HeaderSubmenuComponent } from './header/header-submenu/header-submenu.component';
 import { HeaderComponent } from './header/header.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
-import { APP_BASE_HREF } from '@angular/common';
-import {
-  NgxGoogleAnalyticsModule,
-  NgxGoogleAnalyticsRouterModule,
-} from 'ngx-google-analytics';
-import { AdsenseModule } from 'ng2-adsense';
 
 @NgModule({
   declarations: [
@@ -43,7 +41,7 @@ import { AdsenseModule } from 'ng2-adsense';
     NgxGoogleAnalyticsRouterModule,
     AdsenseModule.forRoot(),
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: environment.APP_FOLDER }],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

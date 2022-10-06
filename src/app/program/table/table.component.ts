@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Pages } from './../../interfaces/pages.model';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
+  @Input() pagesList = {} as Pages;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
+  // changeTab(index: number) {
+  //   this.tabs = this.tabs.map((tab, i) =>
+  //     i === index ? { ...tab, active: true } : { ...tab, active: false }
+  //   );
+  // }
 }

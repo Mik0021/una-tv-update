@@ -1,4 +1,6 @@
-<section class="bg-dark pb-14 relative 2xl:max-w-[1920px] 2xl:mx-auto">
+<section
+  class="bg-dark pb-6 lg:pb-14 mt-[66px] sm:mt-[79px] lg:mt-0 relative 2xl:max-w-[1920px] 2xl:mx-auto"
+>
   <div
     *ngIf="articles[0]"
     class="container lg:max-w-full relative block aspect-video max-h-[750px]"
@@ -29,7 +31,7 @@
           {{ articles[0].title }}
         </h1>
         <a
-          class="bg-light-blue rounded-lg p-5 font-semibold text-lg flex items-center w-40"
+          class="bg-light-blue rounded-lg p-3 lg:p-5 font-semibold text-lg flex items-center w-40"
           routerLink="{{ articleSlug }}"
           >Saznaj više
           <svg

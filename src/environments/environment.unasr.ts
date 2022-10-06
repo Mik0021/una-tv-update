@@ -13,7 +13,7 @@ export const environment = {
   API_LIVE_PREVIEW: '/articles/preview',
   API_HOME_LIVE_PREVIEW: '/article-collections/preview',
   API_PAGES: '/pages',
-  APP_PORT: 3050,
+  APP_PORT: 3040,
   APP_TITLE: 'UNA TV Srbija',
   APP_FOLDER: '/rs/',
   APP_FACEBOOK: 'https://www.facebook.com/Unaworld-Srbija-104406612241949/',
