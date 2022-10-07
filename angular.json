@@ -106,7 +106,7 @@
               "outputHashing": "all"
             },
             "unasrprod": {
-              "outputPath": "rs",
+              "outputPath": "dist",
               "budgets": [
                 {
                   "type": "initial",
@@ -294,7 +294,7 @@
               ]
             },
             "unasrprod": {
-              "outputPath": "rs/server",
+              "outputPath": "dist/server",
               "outputHashing": "media",
               "fileReplacements": [
                 {
