@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Article } from 'src/app/interfaces/article.model';
 import { Category } from 'src/app/interfaces/category.model';
 import { Section } from 'src/app/interfaces/section.model';
-import SwiperCore from 'swiper';
+import SwiperCore, { Navigation } from 'swiper';
 
 @Component({
   selector: 'app-category-section-small-cards-content-down',
@@ -16,18 +16,24 @@ export class CategorySectionSmallCardsContentDownComponent implements OnInit {
   categorySlug: string = '';
   swiperConfig: any = {
     slidesPerView: 4.5,
+    navigation: true,
     breakpoints: {
       0: {
-        slidesPerView: 2,
+        slidesPerView: 1.5,
         spaceBetween: 20,
       },
 
       768: {
-        slidesPerView: 3,
+        slidesPerView: 2.5,
         spaceBetween: 30,
       },
 
       1024: {
+        slidesPerView: 3.5,
+        spaceBetween: 50,
+        watchSlidesProgress: true,
+      },
+      1280: {
         slidesPerView: 4.5,
         spaceBetween: 50,
         watchSlidesProgress: true,
@@ -40,6 +46,7 @@ export class CategorySectionSmallCardsContentDownComponent implements OnInit {
     this.articleList = this.sectionData.articles;
     this.category = this.sectionData.category;
     this.generateCategorySlug();
+    SwiperCore.use([Navigation]);
   }
   generateCategorySlug() {
     if (this.category) {
