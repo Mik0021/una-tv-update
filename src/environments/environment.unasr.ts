@@ -14,14 +14,14 @@ export const environment = {
   API_HOME_LIVE_PREVIEW: '/article-collections/preview',
   API_PAGES: '/pages',
   APP_PORT: 3040,
-  APP_TITLE: 'UNA TV Srbija',
+  APP_TITLE: 'UNA TV',
   APP_FOLDER: '/rs/',
   APP_FACEBOOK: 'https://www.facebook.com/unatelevizija',
   APP_SHARE: 'Podeli',
   APP_LANG: 'sr',
-  APP_HOME_META_TITLE: 'UNA TV Srbija',
+  APP_HOME_META_TITLE: 'UNA TV',
   APP_HOME_META_DESCRIPTION:
-    'Na portalu UNA TV možete pronaći najnovije informacije iz zemlje i sveta. Politika, društvo, ekonomija, zabava, sport - sve na jednom mestu!',
+    'Na stranicama UNA TV možete pronaći sve informacije o našem programu, emisijama i licima koja gledate na malim i većim ekranima.',
   APP_HOME_META_KEYWORDS:
     'Vesti, novosti, najnovije, informacije, sport, magazin, hronika, politika, scena, una',
   SITE_SELECT: [

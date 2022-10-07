@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  API_UNA: 'https://api-rs.unaworld.com/api/v1',
+  API_UNA: 'https://una-test-api.ha.rs/api/v1',
   API_PARENT_CATEGORY: '/categories/parent',
   API_TAG: '/articles/tag',
   API_POST: '/articles/slug',
@@ -13,15 +13,15 @@ export const environment = {
   API_LIVE_PREVIEW: '/articles/preview',
   API_HOME_LIVE_PREVIEW: '/article-collections/preview',
   API_PAGES: '/pages',
-  APP_PORT: 3050,
-  APP_TITLE: 'UNA TV Srbija',
+  APP_PORT: 3080,
+  APP_TITLE: 'UNA TV',
   APP_FOLDER: '/rs/',
   APP_FACEBOOK: 'https://www.facebook.com/unatelevizija',
   APP_SHARE: 'Podeli',
   APP_LANG: 'sr',
-  APP_HOME_META_TITLE: 'UNA TV Srbija',
+  APP_HOME_META_TITLE: 'UNA TV',
   APP_HOME_META_DESCRIPTION:
-    'Na portalu UNA TV možete pronaći najnovije informacije iz zemlje i sveta. Politika, društvo, ekonomija, zabava, sport - sve na jednom mestu!',
+    'Na stranicama UNA TV možete pronaći sve informacije o našem programu, emisijama i licima koja gledate na malim i većim ekranima.',
   APP_HOME_META_KEYWORDS:
     'Vesti, novosti, najnovije, informacije, sport, magazin, hronika, politika, scena, una',
   SITE_SELECT: [
