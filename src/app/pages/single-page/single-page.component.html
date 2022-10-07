@@ -1,6 +1,6 @@
 <section class="bg-dark mt-[66px] sm:mt-[79px] lg:mt-[104px] mb-6 lg:mb-14">
   <div class="container">
-    <div class="grid grid-cols-12 pb-8">
+    <div class="grid grid-cols-12 pb-8" *ngIf="!isTvLice">
       <div
         class="col-span-12 xl:pr-4 px-3 sm:px-0 text-lg selection:bg-blue"
         *ngIf="single_post.data"
@@ -100,6 +100,49 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="max-w-[900px] mx-auto px-2" *ngIf="isTvLice">
+      <div
+        class="flex items-center flex-wrap lg:flex-nowrap"
+        *ngIf="single_post.data"
+      >
+        <div class="relative" *ngIf="images[0]">
+          <img
+            class="aspect-video h-48"
+            src="{{ images[0].url }}"
+            srcset="{{ srcSet }}"
+            sizes="(min-width: 1280px) 100vw, 70vw"
+            [alt]="
+              images[0].description ? images[0].description : images[0].name
+            "
+          />
+        </div>
+        <div
+          class="flex items-center justify-between lg:ml-20 border-b-2 border-blue backgroud-title flex-grow"
+        >
+          <div class="lg:pl-5 py-6">
+            <h1 class="font-bold text-4xl text-white">
+              {{ single_post.data.title }}
+            </h1>
+            <h2 class="font-bold text-2xl text-white">
+              {{ single_post.data.short_description }}
+            </h2>
+          </div>
+          <div class="">
+            <img
+              height="100"
+              width="128"
+              src="./assets/images/logo-no-text.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="sp-content text-white text-xl mt-0 lg:mt-6"
+        [innerHTML]="content | safeHtml"
+        appRunScripts
+      ></div>
     </div>
   </div>
 </section>

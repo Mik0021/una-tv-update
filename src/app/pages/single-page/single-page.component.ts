@@ -27,6 +27,7 @@ export class SinglePageComponent implements OnInit {
   images: Image[] = [];
   appShare: string = '';
   srcSet: string = '';
+  isTvLice: boolean = false;
   constructor(
     private postService: PostService,
     private activatedRoute: ActivatedRoute,
@@ -47,11 +48,12 @@ export class SinglePageComponent implements OnInit {
         this.postRoute = paramMap.get('post');
         this.category = paramMap.get('category');
         this.subCategory = paramMap.get('subcategory');
+
         if (!this.subCategory) {
           this.postService
             .getParentCategoryPost(this.category, this.postRoute)
-            .subscribe(
-              (post: Post) => {
+            .subscribe({
+              next: (post: Post) => {
                 this.single_post = post;
                 this.tags_list = post.data.tags;
                 this.conected_articles = post.data.related_articles;
@@ -60,10 +62,10 @@ export class SinglePageComponent implements OnInit {
                 this.images = post.data.images;
                 this.addTags();
               },
-              (error: any) => {
+              error: (error: any) => {
                 this.router.navigate(['404']);
-              }
-            );
+              },
+            });
         } else {
           this.postService
             .getPost(this.category, this.subCategory, this.postRoute)
@@ -87,7 +89,11 @@ export class SinglePageComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.category === 'tv-lica') {
+      this.isTvLice = true;
+    }
+  }
 
   createSrcSet() {
     if (
