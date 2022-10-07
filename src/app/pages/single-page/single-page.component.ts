@@ -90,7 +90,7 @@ export class SinglePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.category === 'tv-lica') {
+    if (this.category === 'nasa-lica') {
       this.isTvLice = true;
     }
   }

@@ -16,7 +16,7 @@ export const environment = {
   APP_PORT: 3040,
   APP_TITLE: 'UNA TV Srbija',
   APP_FOLDER: '/rs/',
-  APP_FACEBOOK: 'https://www.facebook.com/Unaworld-Srbija-104406612241949/',
+  APP_FACEBOOK: 'https://www.facebook.com/unatelevizija',
   APP_SHARE: 'Podeli',
   APP_LANG: 'sr',
   APP_HOME_META_TITLE: 'UNA TV Srbija',
@@ -31,7 +31,7 @@ export const environment = {
       name: 'bih',
       longName: 'bih',
       imgUrl: 'assets/images/flag-bih.svg',
-      url: 'https://una-test-ba.ha.rs/',
+      url: 'https://www.unaworld.com/ba',
     },
     {
       id: 2,
@@ -39,7 +39,7 @@ export const environment = {
       name: 'srb',
       longName: 'srbija',
       imgUrl: 'assets/images/flag-sr.svg',
-      url: 'https://una-test-rs.ha.rs/',
+      url: 'https://www.unaworld.com/rs',
     },
     {
       id: 3,
@@ -47,7 +47,7 @@ export const environment = {
       name: 'hrv',
       longName: 'hrvatska',
       imgUrl: 'assets/images/flag-hr.svg',
-      url: 'https://una-test-hr.ha.rs/',
+      url: 'https://www.unaworld.com/hr',
     },
   ],
 };

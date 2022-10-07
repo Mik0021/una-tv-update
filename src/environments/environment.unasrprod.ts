@@ -16,7 +16,7 @@ export const environment = {
   APP_PORT: 3050,
   APP_TITLE: 'UNA TV Srbija',
   APP_FOLDER: '/rs/',
-  APP_FACEBOOK: 'https://www.facebook.com/Unaworld-Srbija-104406612241949/',
+  APP_FACEBOOK: 'https://www.facebook.com/unatelevizija',
   APP_SHARE: 'Podeli',
   APP_LANG: 'sr',
   APP_HOME_META_TITLE: 'UNA TV Srbija',
