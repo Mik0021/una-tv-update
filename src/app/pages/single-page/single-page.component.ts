@@ -9,6 +9,9 @@ import { Source } from 'src/app/interfaces/source.model';
 import { Tags } from 'src/app/interfaces/tags.model';
 import { Post } from './../../interfaces/post.model';
 import { PostService } from './../../services/post.service';
+import { Search } from 'src/app/interfaces/search.model';
+import { Observable } from 'rxjs';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-single-page',
@@ -28,6 +31,8 @@ export class SinglePageComponent implements OnInit {
   appShare: string = '';
   srcSet: string = '';
   isTvLice: boolean = false;
+
+  $search: Observable<Search> = this.searchService.searchRes$;
   constructor(
     private postService: PostService,
     private activatedRoute: ActivatedRoute,
@@ -35,7 +40,8 @@ export class SinglePageComponent implements OnInit {
     private titleService: Title,
     private router: Router,
     @Inject(DOCUMENT) private _document: Document,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private searchService: SearchService
   ) {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       if (
