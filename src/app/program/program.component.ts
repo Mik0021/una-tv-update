@@ -15,7 +15,6 @@ export class ProgramComponent implements OnInit {
   staticPage = {} as Static;
   pages$: Observable<Pages> = this.navService.footerPages$;
   pagesList = {} as Pages;
-  // tabs = [] as Tabs[];
   tabs: Tabs[] = [];
   constructor(
     private navService: NavService,
@@ -32,31 +31,25 @@ export class ProgramComponent implements OnInit {
             .subscribe({
               next: (res: Static) => {
                 this.staticPage = res;
-                if (i === 3) {
+                if (res) {
                   this.tabs.push({
                     title: this.pagesList.data[i].title,
-                    active: true,
+                    active: i === 3 ? true : false,
                     content: this.staticPage.data.description,
                   });
-                } else {
-                  this.tabs.push({
-                    title: this.pagesList.data[i].title,
-                    active: false,
-                    content: this.staticPage.data.description,
-                  });
-
                   this.tabs.sort((a, b) => {
                     return +a.title.slice(0, 2) - +b.title.slice(0, 2);
                   });
                 }
+
+                this.tabs.sort((a, b) => {
+                  return +a.title.slice(0, 2) - +b.title.slice(0, 2);
+                });
               },
               error: (error: any) => {},
             });
         }
       }
     });
-  }
-  sortNumber(a: number, b: number) {
-    return a - b;
   }
 }
