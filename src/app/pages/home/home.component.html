@@ -8,7 +8,10 @@
   [articles]="heroArticleList"
 ></app-home-hero-section>
 
-<section *ngFor="let section of heroSection.data" class="bg-dark">
+<section
+  *ngFor="let section of heroSection.data"
+  class="bg-dark container-slider"
+>
   <app-category-section-small-cards-content-down
     [sectionData]="section"
     *ngIf="

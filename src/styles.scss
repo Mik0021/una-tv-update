@@ -313,7 +313,7 @@
 .swiper-button-next,
 .swiper-button-prev {
   &::after {
-    font-size: 60px;
+    font-size: 30px;
     font-weight: 900;
     color: white;
   }
@@ -358,5 +358,12 @@
       font-weight: 900;
       color: white;
     }
+  }
+}
+
+@media (min-width: 1920px) {
+  .container-slider {
+    max-width: 1920px;
+    margin: 0 auto;
   }
 }
