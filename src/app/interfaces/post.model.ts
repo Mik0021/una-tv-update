@@ -23,6 +23,8 @@ export interface Post {
     published_at: string;
     seo_description: string;
     seo_title: string;
+    brid_video_id: string | null;
+    brid_default_player_id: string;
   };
   success: boolean;
 }
