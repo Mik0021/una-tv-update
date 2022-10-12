@@ -62,19 +62,19 @@ export class SinglePageComponent implements OnInit {
             .getParentCategoryPost(this.category, this.postRoute)
             .subscribe({
               next: (post: Post) => {
-                this.single_post = post;
-                this.tags_list = post.data.tags;
-                this.conected_articles = post.data.related_articles;
-                console.log(this.conected_articles);
-                this.articleSource = post.data.source;
-                this.content = this.single_post.data.description;
-                this.images = post.data.images;
-                this.addTags();
-                this.createSrcSet();
-                this.createVideoScript(
-                  this.single_post.data.brid_default_player_id,
-                  this.single_post.data.brid_video_id
-                );
+                // this.single_post = post;
+                // this.tags_list = post.data.tags;
+                // this.conected_articles = post.data.related_articles;
+                // console.log(this.conected_articles);
+                // this.articleSource = post.data.source;
+                // this.content = this.single_post.data.description;
+                // this.images = post.data.images;
+                // this.addTags();
+                // this.createSrcSet();
+                // this.createVideoScript(
+                //   this.single_post.data.brid_default_player_id,
+                //   this.single_post.data.brid_video_id
+                // );
               },
               error: (error: any) => {
                 this.router.navigate(['404']);
@@ -85,19 +85,19 @@ export class SinglePageComponent implements OnInit {
             .getPost(this.category, this.subCategory, this.postRoute)
             .subscribe({
               next: (post: Post) => {
-                this.single_post = post;
-                this.tags_list = post.data.tags;
-                this.conected_articles = post.data.related_articles;
-                console.log(this.conected_articles);
-                this.articleSource = post.data.source;
-                this.content = this.single_post.data.description;
-                this.images = post.data.images;
-                this.addTags();
-                this.createSrcSet();
-                this.createVideoScript(
-                  this.single_post.data.brid_default_player_id,
-                  this.single_post.data.brid_video_id
-                );
+                // this.single_post = post;
+                // this.tags_list = post.data.tags;
+                // this.conected_articles = post.data.related_articles;
+                // console.log(this.conected_articles);
+                // this.articleSource = post.data.source;
+                // this.content = this.single_post.data.description;
+                // this.images = post.data.images;
+                // this.addTags();
+                // this.createSrcSet();
+                // this.createVideoScript(
+                //   this.single_post.data.brid_default_player_id,
+                //   this.single_post.data.brid_video_id
+                // );
               },
               error: (error: any) => {
                 this.router.navigate(['404']);
@@ -135,38 +135,36 @@ export class SinglePageComponent implements OnInit {
   }
 
   addTags() {
-    this.titleService.setTitle(this.single_post.data.title);
-    this.metaService.updateTag({
-      name: 'og:title',
-      content: this.single_post.data.title,
-    });
-    this.metaService.updateTag({
-      name: 'og:description',
-      content: this.single_post.data.short_description,
-    });
-    this.metaService.updateTag({
-      name: 'og:url',
-      content: `${this._document.location.href}`,
-    });
-    this.metaService.updateTag({
-      name: 'og:type',
-      content: 'article',
-    });
-    this.metaService.updateTag({
-      name: 'og:image',
-      content: this.single_post.data.images[0]
-        ? this.single_post.data.images[0].url
-        : 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
-    });
-
-    this.metaService.updateTag({
-      name: 'description',
-      content: this.single_post.data.short_description,
-    });
-
-    this.metaService.updateTag({
-      name: 'keywords',
-      content: this.single_post.data.category.name,
-    });
+    // this.titleService.setTitle(this.single_post.data.title);
+    // this.metaService.updateTag({
+    //   name: 'og:title',
+    //   content: this.single_post.data.title,
+    // });
+    // this.metaService.updateTag({
+    //   name: 'og:description',
+    //   content: this.single_post.data.short_description,
+    // });
+    // this.metaService.updateTag({
+    //   name: 'og:url',
+    //   content: `${this._document.location.href}`,
+    // });
+    // this.metaService.updateTag({
+    //   name: 'og:type',
+    //   content: 'article',
+    // });
+    // this.metaService.updateTag({
+    //   name: 'og:image',
+    //   content: this.single_post.data.images[0]
+    //     ? this.single_post.data.images[0].url
+    //     : 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
+    // });
+    // this.metaService.updateTag({
+    //   name: 'description',
+    //   content: this.single_post.data.short_description,
+    // });
+    // this.metaService.updateTag({
+    //   name: 'keywords',
+    //   content: this.single_post.data.category.name,
+    // });
   }
 }
