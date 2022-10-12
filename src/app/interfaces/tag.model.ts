@@ -1,12 +1,12 @@
 import { Tags } from 'src/app/interfaces/tags.model';
 import { Paginator } from './paginator.model';
-import { Article } from './article.model';
+import { TvShow } from './tv-show.model';
 
 export interface Tag {
   sucess: boolean;
   data: {
     tag: Tags;
-    articles: Article[];
+    articles: TvShow[];
   };
   paginator: Paginator;
 }

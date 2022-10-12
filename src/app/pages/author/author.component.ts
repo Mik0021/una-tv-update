@@ -1,13 +1,13 @@
-import { Observable } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Article } from 'src/app/interfaces/article.model';
+import { Observable } from 'rxjs';
 import { Author } from 'src/app/interfaces/author.model';
 import { AuthorService } from 'src/app/services/author.service';
 import { Authors } from './../../interfaces/authors.model';
 import { Paginator } from './../../interfaces/paginator.model';
-import { Meta, Title } from '@angular/platform-browser';
-import { DOCUMENT, Location } from '@angular/common';
+import { TvShow } from './../../interfaces/tv-show.model';
 
 @Component({
   selector: 'app-author',
@@ -16,7 +16,7 @@ import { DOCUMENT, Location } from '@angular/common';
 })
 export class AuthorComponent implements OnInit {
   author = {} as Authors;
-  articles: Article[] = [];
+  articles: TvShow[] = [];
   authorRoute: string | null = '';
   p: number = 1;
   paginator = {} as Paginator;

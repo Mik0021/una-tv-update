@@ -1,13 +1,13 @@
-import { Observable } from 'rxjs';
-import { Paginator } from './../../interfaces/paginator.model';
-import { Tags } from 'src/app/interfaces/tags.model';
-import { Router, ActivatedRoute } from '@angular/router';
-import { TagService } from './../../services/tag.service';
+import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { Article } from 'src/app/interfaces/article.model';
-import { Tag } from 'src/app/interfaces/tag.model';
 import { Meta, Title } from '@angular/platform-browser';
-import { DOCUMENT, Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Tag } from 'src/app/interfaces/tag.model';
+import { Tags } from 'src/app/interfaces/tags.model';
+import { Paginator } from './../../interfaces/paginator.model';
+import { TvShow } from './../../interfaces/tv-show.model';
+import { TagService } from './../../services/tag.service';
 
 @Component({
   selector: 'app-tag',
@@ -16,7 +16,7 @@ import { DOCUMENT, Location } from '@angular/common';
 })
 export class TagComponent implements OnInit {
   tag = {} as Tags;
-  articles: Article[] = [];
+  articles: TvShow[] = [];
   tagRoute: string | null = '';
   p: number = 1;
   paginator = {} as Paginator;

@@ -11,6 +11,7 @@ import { NotificationIconsSmallComponent } from './notification-icons-small/noti
 import { RouterModule } from '@angular/router';
 import { CardSmallContentDownNoCatComponent } from './card-small-content-down-no-cat/card-small-content-down-no-cat.component';
 import { CardLargeContentDownNoCatComponent } from './card-large-content-down-no-cat/card-large-content-down-no-cat.component';
+import { PersonalityCardComponent } from './personality-card/personality-card.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CardLargeContentDownNoCatComponent } from './card-large-content-down-no
     NotificationIconsSmallComponent,
     CardSmallContentDownNoCatComponent,
     CardLargeContentDownNoCatComponent,
+    PersonalityCardComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -36,6 +38,7 @@ import { CardLargeContentDownNoCatComponent } from './card-large-content-down-no
     HomeHeroCardSmallContentDownComponent,
     CardSmallContentDownNoCatComponent,
     CardLargeContentDownNoCatComponent,
+    PersonalityCardComponent,
     CommonModule,
   ],
 })

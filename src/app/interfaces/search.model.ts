@@ -1,8 +1,8 @@
 import { Paginator } from 'src/app/interfaces/paginator.model';
-import { Article } from './article.model';
+import { TvShow } from './tv-show.model';
 
 export interface Search {
   success: boolean;
-  data: Article[];
+  data: TvShow[];
   paginator: Paginator;
 }

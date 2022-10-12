@@ -1,12 +1,12 @@
-import { Observable } from 'rxjs';
-import { Paginator } from './../../interfaces/paginator.model';
+import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Article } from 'src/app/interfaces/article.model';
-import { CategorysService } from 'src/app/services/categorys.service';
-import { ParentCategory } from './../../interfaces/parent-category.model';
 import { Meta, Title } from '@angular/platform-browser';
-import { DOCUMENT, Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { CategorysService } from 'src/app/services/categorys.service';
+import { Paginator } from './../../interfaces/paginator.model';
+import { ParentCategory } from './../../interfaces/parent-category.model';
+import { TvShow } from './../../interfaces/tv-show.model';
 
 @Component({
   selector: 'app-parent-category',
@@ -15,8 +15,8 @@ import { DOCUMENT, Location } from '@angular/common';
 })
 export class ParentCategoryComponent implements OnInit {
   category = {} as ParentCategory;
-  articles: Article[] = [];
-  promoArticles: Article[] = [];
+  articles: TvShow[] = [];
+
   categoryRoute: string | null = '';
   p: number = 1;
   paginator = {} as Paginator;
@@ -51,7 +51,6 @@ export class ParentCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.parentCategory$.subscribe((res) => {
       this.category = res;
-      this.promoArticles = res.data.promo_articles;
       this.articles = res.data.articles;
       this.paginator = res.paginator;
       this.addTags();

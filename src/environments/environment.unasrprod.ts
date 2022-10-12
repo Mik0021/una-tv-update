@@ -13,6 +13,8 @@ export const environment = {
   API_LIVE_PREVIEW: '/articles/preview',
   API_HOME_LIVE_PREVIEW: '/article-collections/preview',
   API_PAGES: '/pages',
+  API_PERSONALITIES: '/tv/personalities/paginate',
+  API_PERSNALITY: '/tv/personalities/slug',
   APP_PORT: 3080,
   APP_TITLE: 'UNA TV',
   APP_FOLDER: '/rs/',

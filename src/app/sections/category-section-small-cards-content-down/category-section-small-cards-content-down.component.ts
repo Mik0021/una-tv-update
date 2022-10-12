@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Article } from 'src/app/interfaces/article.model';
 import { Category } from 'src/app/interfaces/category.model';
 import { Section } from 'src/app/interfaces/section.model';
 import SwiperCore, { Navigation } from 'swiper';
+import { TvShow } from './../../interfaces/tv-show.model';
 
 @Component({
   selector: 'app-category-section-small-cards-content-down',
@@ -11,7 +11,7 @@ import SwiperCore, { Navigation } from 'swiper';
 })
 export class CategorySectionSmallCardsContentDownComponent implements OnInit {
   @Input() sectionData = {} as Section;
-  articleList = [] as Article[];
+  articleList = [] as TvShow[];
   category = {} as Category;
   categorySlug: string = '';
   swiperConfig: any = {
@@ -43,7 +43,7 @@ export class CategorySectionSmallCardsContentDownComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.articleList = this.sectionData.articles;
+    this.articleList = this.sectionData.tv_shows;
     this.category = this.sectionData.category;
     this.generateCategorySlug();
     SwiperCore.use([Navigation]);

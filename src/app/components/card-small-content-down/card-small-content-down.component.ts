@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Article } from 'src/app/interfaces/article.model';
+import { TvShow } from './../../interfaces/tv-show.model';
 
 @Component({
   selector: 'app-card-small-content-down',
@@ -10,7 +10,7 @@ import { Article } from 'src/app/interfaces/article.model';
   },
 })
 export class CardSmallContentDownComponent implements OnInit {
-  @Input() articleData = {} as Article;
+  @Input() articleData = {} as TvShow;
   hasImage: boolean = false;
   hasVideo: boolean = false;
   isTimeline: boolean = false;
@@ -20,8 +20,8 @@ export class CardSmallContentDownComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.createArticleSlug();
-    this.createCategorySlug();
+    // this.createArticleSlug();
+    // this.createCategorySlug();
     this.createSrcSet();
     // this.hasImage = this.articleData.hasImages;
     // this.hasVideo = this.articleData.hasVideo;
@@ -31,33 +31,33 @@ export class CardSmallContentDownComponent implements OnInit {
   createSrcSet() {
     if (this.articleData) {
       if (
-        this.articleData.images.length > 0 &&
-        this.articleData.images[0].thumbnails &&
-        this.articleData.images[0].thumbnails[144] &&
-        this.articleData.images[0].thumbnails[345]
+        this.articleData.image &&
+        this.articleData.image.thumbnails &&
+        this.articleData.image.thumbnails[144] &&
+        this.articleData.image.thumbnails[345]
       ) {
-        this.srcSet = `${this.articleData.images[0].thumbnails[144]} 175w, ${this.articleData.images[0].thumbnails[345]}`;
+        this.srcSet = `${this.articleData.image.thumbnails[144]} 175w, ${this.articleData.image.thumbnails[345]}`;
       }
     }
   }
 
-  createArticleSlug() {
-    if (this.articleData) {
-      if (this.articleData.category.parent_category) {
-        this.articleSlug = `/${this.articleData.category.parent_category.slug}/${this.articleData.category.slug}/${this.articleData.slug}`;
-      } else {
-        this.articleSlug = `/${this.articleData.category.slug}/${this.articleData.slug}`;
-      }
-    }
-  }
+  // createArticleSlug() {
+  //   if (this.articleData) {
+  //     if (this.articleData.category.parent_category) {
+  //       this.articleSlug = `/${this.articleData.category.parent_category.slug}/${this.articleData.category.slug}/${this.articleData.slug}`;
+  //     } else {
+  //       this.articleSlug = `/${this.articleData.category.slug}/${this.articleData.slug}`;
+  //     }
+  //   }
+  // }
 
-  createCategorySlug() {
-    if (this.articleData) {
-      if (this.articleData.category.parent_category) {
-        this.categorySlug = `/${this.articleData.category.parent_category.slug}/${this.articleData.category.slug}`;
-      } else {
-        this.categorySlug = `/${this.articleData.category.slug}`;
-      }
-    }
-  }
+  // createCategorySlug() {
+  //   if (this.articleData) {
+  //     if (this.articleData.category.parent_category) {
+  //       this.categorySlug = `/${this.articleData.category.parent_category.slug}/${this.articleData.category.slug}`;
+  //     } else {
+  //       this.categorySlug = `/${this.articleData.category.slug}`;
+  //     }
+  //   }
+  // }
 }

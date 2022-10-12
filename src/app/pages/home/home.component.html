@@ -1,12 +1,7 @@
 <app-home-hero-section-full
-  *ngIf="heroType === 2"
-  [articles]="heroArticleList"
-></app-home-hero-section-full>
-
-<app-home-hero-section
   *ngIf="heroType === 1"
   [articles]="heroArticleList"
-></app-home-hero-section>
+></app-home-hero-section-full>
 
 <section
   *ngFor="let section of heroSection.data"
@@ -14,11 +9,6 @@
 >
   <app-category-section-small-cards-content-down
     [sectionData]="section"
-    *ngIf="
-      section.article_template.id === 3 ||
-      section.article_template.id === 4 ||
-      section.article_template.id === 5 ||
-      section.article_template.id === 6
-    "
+    *ngIf="section.tv_show_template.id === 2"
   ></app-category-section-small-cards-content-down>
 </section>

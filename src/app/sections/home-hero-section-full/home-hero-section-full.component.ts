@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Article } from 'src/app/interfaces/article.model';
+import { TvShow } from './../../interfaces/tv-show.model';
 
 @Component({
   selector: 'app-home-hero-section-full',
@@ -10,7 +10,7 @@ import { Article } from 'src/app/interfaces/article.model';
   },
 })
 export class HomeHeroSectionFullComponent implements OnInit {
-  @Input() articles = [] as Article[];
+  @Input() articles = [] as TvShow[];
   articleSlug: string = '';
   categorySlug: string = '';
   srcSet: string = '';
@@ -18,8 +18,8 @@ export class HomeHeroSectionFullComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.createArticleSlug();
-    this.createCategorySlug();
+    // this.createArticleSlug();
+    // this.createCategorySlug();
     this.createSrcSet();
 
     // this.hasImage = this.articleData.hasImages;
@@ -30,33 +30,33 @@ export class HomeHeroSectionFullComponent implements OnInit {
   createSrcSet() {
     if (this.articles[0]) {
       if (
-        this.articles[0].images.length > 0 &&
-        this.articles[0].images[0].thumbnails &&
-        this.articles[0].images[0].thumbnails[345] &&
-        this.articles[0].images[0].thumbnails[710]
+        this.articles[0].image &&
+        this.articles[0].image.thumbnails &&
+        this.articles[0].image.thumbnails[345] &&
+        this.articles[0].image.thumbnails[710]
       ) {
-        this.srcSet = `${this.articles[0].images[0].thumbnails[345]} 345w, ${this.articles[0].images[0].thumbnails[710]} 710w, ${this.articles[0].images[0].thumbnails[944]} 944w, ${this.articles[0].images[0].url}  `;
+        this.srcSet = `${this.articles[0].image.thumbnails[345]} 345w, ${this.articles[0].image.thumbnails[710]} 710w, ${this.articles[0].image.thumbnails[944]} 944w, ${this.articles[0].image.url}  `;
       }
     }
   }
 
-  createArticleSlug() {
-    if (this.articles[0]) {
-      if (this.articles[0].category.parent_category) {
-        this.articleSlug = `/${this.articles[0].category.parent_category.slug}/${this.articles[0].category.slug}/${this.articles[0].slug}`;
-      } else {
-        this.articleSlug = `/${this.articles[0].category.slug}/${this.articles[0].slug}`;
-      }
-    }
-  }
+  // createArticleSlug() {
+  //   if (this.articles[0]) {
+  //     if (this.articles[0].category.parent_category) {
+  //       this.articleSlug = `/${this.articles[0].category.parent_category.slug}/${this.articles[0].category.slug}/${this.articles[0].slug}`;
+  //     } else {
+  //       this.articleSlug = `/${this.articles[0].category.slug}/${this.articles[0].slug}`;
+  //     }
+  //   }
+  // }
 
-  createCategorySlug() {
-    if (this.articles[0]) {
-      if (this.articles[0].category.parent_category) {
-        this.categorySlug = `/${this.articles[0].category.parent_category.slug}/${this.articles[0].category.slug}`;
-      } else {
-        this.categorySlug = `/${this.articles[0].category.slug}`;
-      }
-    }
-  }
+  // createCategorySlug() {
+  //   if (this.articles[0]) {
+  //     if (this.articles[0].category.parent_category) {
+  //       this.categorySlug = `/${this.articles[0].category.parent_category.slug}/${this.articles[0].category.slug}`;
+  //     } else {
+  //       this.categorySlug = `/${this.articles[0].category.slug}`;
+  //     }
+  //   }
+  // }
 }

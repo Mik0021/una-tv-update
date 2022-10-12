@@ -1,11 +1,10 @@
-import { ComponentsModule } from 'src/app/components/components.module';
-import { DirectivesModule } from './../../directives/directives.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { PipesModule } from './../../pipes/pipes.module';
-
 import { ShareModule } from 'ngx-sharebuttons';
+import { ComponentsModule } from 'src/app/components/components.module';
+import { DirectivesModule } from './../../directives/directives.module';
+import { PipesModule } from './../../pipes/pipes.module';
 import { ConectedNewsComponent } from './conected-news/conected-news.component';
 import { SinglePageRoutingModule } from './single-page-routing.module';
 import { SinglePageComponent } from './single-page.component';

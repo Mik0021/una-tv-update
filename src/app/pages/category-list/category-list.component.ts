@@ -1,12 +1,12 @@
-import { Observable } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Article } from 'src/app/interfaces/article.model';
+import { Observable } from 'rxjs';
 import { Paginator } from 'src/app/interfaces/paginator.model';
 import { CategoryList } from './../../interfaces/category-list.model';
+import { TvShow } from './../../interfaces/tv-show.model';
 import { CategorysService } from './../../services/categorys.service';
-import { Meta, Title } from '@angular/platform-browser';
-import { DOCUMENT, Location } from '@angular/common';
 
 @Component({
   selector: 'app-category-list',
@@ -15,7 +15,7 @@ import { DOCUMENT, Location } from '@angular/common';
 })
 export class CategoryListComponent implements OnInit {
   category = {} as CategoryList;
-  articles: Article[] = [];
+  articles: TvShow[] = [];
   categoryRoute: string | null = '';
   parentCategoryRoute: string | null = '';
   p: number = 1;

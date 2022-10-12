@@ -21,17 +21,17 @@ const routes: Routes = [
       import('./program/program.module').then((m) => m.ProgramModule),
   },
   {
-    path: 'articles-live-preview/:id',
+    path: 'personalities',
     loadChildren: () =>
-      import('./pages/live-preview/live-preview.module').then(
-        (m) => m.LivePreviewModule
+      import('./pages/personality-list/personality-list.module').then(
+        (m) => m.PersonalityListModule
       ),
   },
   {
-    path: 'home-page-live-preview/:id',
+    path: 'personalities/:personality',
     loadChildren: () =>
-      import('./pages/home-live-preview/home-live-preview.module').then(
-        (m) => m.HomeLivePreviewModule
+      import('./pages/personality-single/personality-single.module').then(
+        (m) => m.PersonalitySingleModule
       ),
   },
   {

@@ -7,19 +7,7 @@
         {{ category.data.category.name }}
       </h2>
     </div>
-    <div
-      class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5 mb-1.5"
-      *ngIf="p === 1"
-    >
-      <app-card-large-content-down
-        *ngIf="promoArticles[0] && p === 1"
-        [articleData]="promoArticles[0]"
-      ></app-card-large-content-down>
-      <app-card-small-content-down
-        *ngFor="let article of promoArticles | slice: 1"
-        [articleData]="article"
-      ></app-card-small-content-down>
-    </div>
+
     <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
       <app-card-small-content-down
         *ngFor="

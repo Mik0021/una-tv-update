@@ -1,12 +1,12 @@
-import { Paginator } from 'src/app/interfaces/paginator.model';
-import { Observable } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SearchService } from './../../services/search.service';
-import { Search } from './../../interfaces/search.model';
-import { Article } from 'src/app/interfaces/article.model';
-import { Component, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Paginator } from 'src/app/interfaces/paginator.model';
+import { Search } from './../../interfaces/search.model';
+import { TvShow } from './../../interfaces/tv-show.model';
+import { SearchService } from './../../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -14,7 +14,7 @@ import { Meta, Title } from '@angular/platform-browser';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-  articles: Article[] = [];
+  articles: TvShow[] = [];
   searchTerm: string = '';
   paginator = {} as Paginator;
   p: number = 1;

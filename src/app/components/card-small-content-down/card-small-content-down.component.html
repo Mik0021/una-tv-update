@@ -1,21 +1,21 @@
 <a *ngIf="articleData" routerLink="{{ articleSlug }}" class="card-hover">
-  <div class="relative aspect-video" *ngIf="articleData.images[0]">
+  <div class="relative aspect-video" *ngIf="articleData.image">
     <img
       class="w-full h-full object-cover object-top aspect-video"
-      src="{{ articleData.images[0].url }}"
+      src="{{ articleData.image.url }}"
       srcset="{{ srcSet }}"
       sizes="(min-width: 340px) 50vw, 20vw"
       [alt]="
-        articleData.images[0].description
-          ? articleData.images[0].description
-          : articleData.images[0].name
+        articleData.image.description
+          ? articleData.image.description
+          : articleData.image.name
       "
     />
     <div
       class="absolute inset-0 flex flex-col justify-end p-3.5 z-30 text-white bg-gray-dark opacity-0 card-image transition-opacity border-l-2 border-blue"
     >
-      <h5>{{ articleData.category.name }}</h5>
-      <p>{{ articleData.short_description }}</p>
+      <!-- <h5>{{ articleData.category.name }}</h5> -->
+      <p>{{ articleData.sub_title }}</p>
     </div>
   </div>
 

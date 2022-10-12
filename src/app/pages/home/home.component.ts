@@ -1,12 +1,12 @@
-import { environment } from 'src/environments/environment';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { Home } from 'src/app/interfaces/home.model';
+import { environment } from 'src/environments/environment';
 import { Article } from './../../interfaces/article.model';
+import { TvShow } from './../../interfaces/tv-show.model';
 import { HomeService } from './../../services/home.service';
-import { Component, Inject, OnInit } from '@angular/core';
-import { Section } from 'src/app/interfaces/section.model';
-import { Meta, Title } from '@angular/platform-browser';
-import { DOCUMENT, Location } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +16,8 @@ import { DOCUMENT, Location } from '@angular/common';
 export class HomeComponent implements OnInit {
   heroSection = {} as Home;
   heroType: number = 1;
-  heroArticleList: Article[] = [];
-  sectionArticleList: Article[] = [];
+  heroArticleList: TvShow[] = [];
+  sectionArticleList: TvShow[] = [];
 
   home$: Observable<Home> = this.homeService.home$;
 
@@ -31,9 +31,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.homeService.getHomePage();
     this.home$.subscribe((homeData: Home) => {
-      this.heroType = homeData.data[0].article_template.id;
+      this.heroType = homeData.data[0].tv_show_template.id;
       this.heroSection = homeData;
-      this.heroArticleList = homeData.data[0].articles;
+      this.heroArticleList = homeData.data[0].tv_shows;
       this.addTags();
     });
   }
