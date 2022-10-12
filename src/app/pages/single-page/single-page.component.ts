@@ -32,6 +32,8 @@ export class SinglePageComponent implements OnInit {
   srcSet: string = '';
   isTvLice: boolean = false;
 
+  singleVideo: string = '';
+
   $search: Observable<Search> = this.searchService.searchRes$;
   constructor(
     private postService: PostService,
@@ -63,10 +65,16 @@ export class SinglePageComponent implements OnInit {
                 this.single_post = post;
                 this.tags_list = post.data.tags;
                 this.conected_articles = post.data.related_articles;
+                console.log(this.conected_articles);
                 this.articleSource = post.data.source;
                 this.content = this.single_post.data.description;
                 this.images = post.data.images;
                 this.addTags();
+                this.createSrcSet();
+                this.createVideoScript(
+                  this.single_post.data.brid_default_player_id,
+                  this.single_post.data.brid_video_id
+                );
               },
               error: (error: any) => {
                 this.router.navigate(['404']);
@@ -80,11 +88,16 @@ export class SinglePageComponent implements OnInit {
                 this.single_post = post;
                 this.tags_list = post.data.tags;
                 this.conected_articles = post.data.related_articles;
+                console.log(this.conected_articles);
                 this.articleSource = post.data.source;
                 this.content = this.single_post.data.description;
                 this.images = post.data.images;
                 this.addTags();
                 this.createSrcSet();
+                this.createVideoScript(
+                  this.single_post.data.brid_default_player_id,
+                  this.single_post.data.brid_video_id
+                );
               },
               error: (error: any) => {
                 this.router.navigate(['404']);
@@ -98,6 +111,14 @@ export class SinglePageComponent implements OnInit {
   ngOnInit(): void {
     if (this.category === 'nasa-lica') {
       this.isTvLice = true;
+    }
+  }
+
+  createVideoScript(playerId: string, videoId: string | null) {
+    if (videoId === null) {
+      return;
+    } else {
+      this.singleVideo = `<div class="raw-html-embed"><script type="text/javascript" src="https://services.brid.tv/player/build/brid.min.js"></script> <div id="Brid_64470599" class="brid" style="width:480;height:270;" > </div> <script type="text/javascript"> $bp("Brid_64470599", {"id":"${playerId}","width":"480","height":"270","video":"${videoId}"}); </script></div>`;
     }
   }
 
@@ -133,7 +154,9 @@ export class SinglePageComponent implements OnInit {
     });
     this.metaService.updateTag({
       name: 'og:image',
-      content: this.single_post.data.images[0].url,
+      content: this.single_post.data.images[0]
+        ? this.single_post.data.images[0].url
+        : 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
     });
 
     this.metaService.updateTag({

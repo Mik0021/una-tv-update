@@ -227,6 +227,18 @@
   }
 }
 
+.brid {
+  width: 100% !important;
+  height: calc(100% + 20px) !important;
+  .brid-controls {
+    height: 5.3em;
+    .brid-volume-control {
+      margin-left: -4em !important;
+      margin-top: 1.3em !important;
+    }
+  }
+}
+
 .menu-item:hover .submenu {
   display: block;
 }

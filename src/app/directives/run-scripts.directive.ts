@@ -23,6 +23,7 @@ export class RunScriptsDirective implements OnInit, OnDestroy {
       setTimeout(() => {
         this.reinsertScripts();
         this.twitterScriptReupload();
+        this.reinsertScriptsLivestream();
       });
     }
   }
@@ -85,6 +86,48 @@ export class RunScriptsDirective implements OnInit, OnDestroy {
       scriptCopy.async = true;
       if (script.parentNode !== null) {
         script.parentNode.replaceChild(scriptCopy, script);
+      }
+    }
+  }
+
+  reinsertScriptsLivestream(): void {
+    const scripts = <HTMLScriptElement[]>(
+      this.elementRef.nativeElement.querySelectorAll(
+        ".raw-html-embed script[src='//services.brid.tv/player/build/brid.min.js']"
+      )
+    );
+
+    const scriptsInitialLength = scripts.length;
+    if (scriptsInitialLength > 0) {
+      for (let i = 0; i < scriptsInitialLength; i++) {
+        destroyPlayer();
+      }
+      const script: HTMLScriptElement = scripts[0];
+
+      if (script.parentNode !== null) {
+        setTimeout(() => {
+          const snipets = <HTMLScriptElement[]>(
+            this.elementRef.nativeElement.querySelectorAll(
+              ".raw-html-embed script[src='//services.brid.tv/player/build/brid.min.js']"
+            )
+          );
+          snipets.forEach((e) => {
+            const snippetCopy = <HTMLScriptElement>(
+              document.createElement('script')
+            );
+
+            snippetCopy.type = e.type ? e.type : 'text/javascript';
+            if (e.parentElement) {
+              snippetCopy.innerHTML = e.parentElement.children[2].innerHTML;
+            }
+
+            if (e.parentNode === null) {
+              return;
+            } else {
+              e.parentNode.replaceChild(snippetCopy, e.parentNode.children[2]);
+            }
+          });
+        });
       }
     }
   }
