@@ -31,16 +31,21 @@ export class ProgramComponent implements OnInit {
             let bDate = new Date(b.data.date);
             return +aDate - +bDate;
           });
+          for (let i = 0; i < this.schemaComplete.length; i++) {
+            i === 0
+              ? (this.schemaComplete[i].active = true)
+              : (this.schemaComplete[i].active = false);
+          }
         }
       },
     });
-    for (let i = 0; i < this.schemaComplete.length; i++) {
-      this.tabs.push({
-        title: this.schemaComplete[i].data.date,
-        active: i === 0 ? true : false,
-        content: this.schemaComplete[i].data.schema,
-      });
-    }
-    console.log(this.tabs);
+    // for (let i = 0; i < this.schemaComplete.length; i++) {
+    //   this.tabs.push({
+    //     title: this.schemaComplete[i].data.date,
+    //     active: i === 0 ? true : false,
+    //     content: this.schemaComplete[i].data.schema,
+    //   });
+    // }
+    // console.log(this.tabs);
   }
 }

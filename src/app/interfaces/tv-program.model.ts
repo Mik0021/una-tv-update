@@ -8,4 +8,5 @@ export interface TvProgram {
     schema: TvSchemaItem[];
   };
   success: boolean;
+  active?: boolean;
 }

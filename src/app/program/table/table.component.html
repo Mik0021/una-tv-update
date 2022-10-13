@@ -3,121 +3,47 @@
     <div class="tabs">
       <ul class="tab-group">
         <li
-          *ngFor="let tab of tabs; index as i"
+          *ngFor="let tab of schema; index as i"
           class="tab"
           [class.active]="tab.active"
           (click)="changeTab(i)"
         >
-          {{ tab.title }}
+          {{ tab.data.date }}
         </li>
       </ul>
       <div class="tab-content-group">
-        <ng-container *ngFor="let tab of tabs">
-          <div
-            class="tab-content"
-            *ngIf="tab.active"
-            [innerHTML]="tab.content"
-          ></div>
+        <ng-container *ngFor="let tab of schema; let j = index">
+          <div class="tab-content" *ngIf="tab.active">
+            <table class="text-white text-xl w-full">
+              <ng-container *ngFor="let item of tab.data.schema; let i = index">
+                <tr (click)="toggleAccordion($event, i, j)">
+                  <td class="py-2">{{ item.time }}</td>
+                  <td class="py-2">{{ item.type }}</td>
+                  <td class="py-2">{{ item.title }}</td>
+                  <td class="py-2">{{ item.replay }}</td>
+                  <td
+                    class="py-2 button font-extrabold text-2xl"
+                    [ngClass]="item.description === '' ? 'invisible' : ''"
+                  >
+                    +
+                  </td>
+                </tr>
+                <tr class="p-0">
+                  <td colspan="5" class="p-0">
+                    <div hide="!item.isActive" class="panel">
+                      <div
+                        [innerHTML]="item.description | safeHtml"
+                        class="tv-program-description"
+                        [ngClass]="item.description === '' ? '' : 'py-2'"
+                      ></div>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </table>
+          </div>
         </ng-container>
       </div>
     </div>
-    <!-- <table class="text-white text-xl w-full">
-      <tr>
-        <td>6:00</td>
-        <td>Info</td>
-        <td>Una Dan</td>
-        <td>(R)</td>
-      </tr>
-      <tr>
-        <td>6:15</td>
-        <td>emisija</td>
-        <td>Heroji današnjice</td>
-        <td>(R)</td>
-      </tr>
-      <tr>
-        <td>8:00</td>
-        <td>emisija</td>
-        <td>Una, due, tre</td>
-        <td>(R)</td>
-      </tr>
-      <tr>
-        <td>9:00</td>
-        <td>serija</td>
-        <td>Srce moje majke</td>
-        <td>(R)</td>
-      </tr>
-      <tr>
-        <td>10:00</td>
-        <td>film</td>
-        <td>Priča iz Los Anđelesa</td>
-        <td>(R)</td>
-      </tr>
-      <tr>
-        <td>12:00</td>
-        <td>serija</td>
-        <td>Srce moje majke</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>13:00</td>
-        <td>emisija</td>
-        <td>Una, due, tre</td>
-        <td>(R)</td>
-      </tr>
-      <tr>
-        <td>14:00</td>
-        <td>serija</td>
-        <td>Pogledaj u sutra</td>
-        <td>(R)</td>
-      </tr>
-      <tr>
-        <td>16:00</td>
-        <td>film</td>
-        <td>Dete Ozirisa</td>
-        <td>(R)</td>
-      </tr>
-      <tr>
-        <td>18:00</td>
-        <td>serija</td>
-        <td>Pogledaj u sutra</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>18:30</td>
-        <td>Info</td>
-        <td>Una Dan</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>18:45</td>
-        <td>emisija</td>
-        <td>Heroji današnjice</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>19:05</td>
-        <td>emisija</td>
-        <td>Una, due, tre</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>20:00</td>
-        <td>serija</td>
-        <td>Srce moje majke</td>
-        <td>(R)</td>
-      </tr>
-      <tr>
-        <td>21:00</td>
-        <td>emisija</td>
-        <td>Pogodi mi godine</td>
-        <td>(R)</td>
-      </tr>
-      <tr>
-        <td>22:00</td>
-        <td>film</td>
-        <td>Rambo</td>
-        <td></td>
-      </tr>
-    </table> -->
   </div>
 </div>

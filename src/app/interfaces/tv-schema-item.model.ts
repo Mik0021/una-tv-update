@@ -4,6 +4,7 @@ export interface TvSchemaItem {
   title: string;
   replay: Replay;
   description: string;
+  isActive?: boolean;
 }
 
 enum Replay {
