@@ -58,7 +58,6 @@ export class CardSmallContentDownComponent implements OnInit, OnChanges {
   }
 
   createArticleSlug() {
-    console.log(this.articleData);
     if (this.articleData) {
       if (this.articleData.tv_category.parent_category) {
         this.articleSlug = `/${this.articleData.tv_category.parent_category.slug}/${this.articleData.tv_category.slug}/${this.articleData.slug}`;

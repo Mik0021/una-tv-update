@@ -1,3 +1,4 @@
+import { Category } from './category.model';
 import { Image } from './image.model';
 import { Personality } from './personality.model';
 import { Tags } from './tags.model';
@@ -14,6 +15,7 @@ export interface Post {
     description: string;
     brid_video_id: string | null;
     brid_default_player_id: string;
+    tv_category: Category;
     tv_personalities: Personality[];
     tv_tags: Tags[];
     image: Image;

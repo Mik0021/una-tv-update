@@ -1,3 +1,4 @@
+import { Personality } from './../../interfaces/personality.model';
 import { environment } from 'src/environments/environment';
 import { DOCUMENT, Location, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
@@ -12,6 +13,7 @@ import { PostService } from './../../services/post.service';
 import { Search } from 'src/app/interfaces/search.model';
 import { Observable } from 'rxjs';
 import { SearchService } from 'src/app/services/search.service';
+import { TvShow } from 'src/app/interfaces/tv-show.model';
 
 @Component({
   selector: 'app-single-page',
@@ -21,16 +23,18 @@ import { SearchService } from 'src/app/services/search.service';
 export class SinglePageComponent implements OnInit {
   single_post = {} as Post;
   tags_list: Tags[] = [];
-  conected_articles: Article[] = [];
+  conected_articles: TvShow[] = [];
   postRoute: string | null = '';
   category: string | null = '';
   subCategory: string | null = '';
   articleSource = {} as Source;
   content: any;
-  images: Image[] = [];
+  image = {} as Image;
   appShare: string = '';
   srcSet: string = '';
   isTvLice: boolean = false;
+  duration: number = 0;
+  personalities: Personality[] = [];
 
   singleVideo: string = '';
 
@@ -62,19 +66,20 @@ export class SinglePageComponent implements OnInit {
             .getParentCategoryPost(this.category, this.postRoute)
             .subscribe({
               next: (post: Post) => {
-                // this.single_post = post;
-                // this.tags_list = post.data.tags;
+                this.single_post = post;
+                this.tags_list = post.data.tv_tags;
+                this.duration = post.data.settings.duration;
                 // this.conected_articles = post.data.related_articles;
-                // console.log(this.conected_articles);
                 // this.articleSource = post.data.source;
-                // this.content = this.single_post.data.description;
-                // this.images = post.data.images;
-                // this.addTags();
-                // this.createSrcSet();
-                // this.createVideoScript(
-                //   this.single_post.data.brid_default_player_id,
-                //   this.single_post.data.brid_video_id
-                // );
+                this.content = this.single_post.data.description;
+                this.image = post.data.image;
+                this.personalities = post.data.tv_personalities;
+                this.addTags();
+                this.createSrcSet();
+                this.createVideoScript(
+                  this.single_post.data.brid_default_player_id,
+                  this.single_post.data.brid_video_id
+                );
               },
               error: (error: any) => {
                 this.router.navigate(['404']);
@@ -85,19 +90,20 @@ export class SinglePageComponent implements OnInit {
             .getPost(this.category, this.subCategory, this.postRoute)
             .subscribe({
               next: (post: Post) => {
-                // this.single_post = post;
-                // this.tags_list = post.data.tags;
+                this.single_post = post;
+                this.tags_list = post.data.tv_tags;
+                this.duration = post.data.settings.duration;
                 // this.conected_articles = post.data.related_articles;
-                // console.log(this.conected_articles);
                 // this.articleSource = post.data.source;
-                // this.content = this.single_post.data.description;
-                // this.images = post.data.images;
-                // this.addTags();
-                // this.createSrcSet();
-                // this.createVideoScript(
-                //   this.single_post.data.brid_default_player_id,
-                //   this.single_post.data.brid_video_id
-                // );
+                this.content = this.single_post.data.description;
+                this.image = post.data.image;
+                this.personalities = post.data.tv_personalities;
+                this.addTags();
+                this.createSrcSet();
+                this.createVideoScript(
+                  this.single_post.data.brid_default_player_id,
+                  this.single_post.data.brid_video_id
+                );
               },
               error: (error: any) => {
                 this.router.navigate(['404']);
@@ -108,11 +114,7 @@ export class SinglePageComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    if (this.category === 'nasa-lica') {
-      this.isTvLice = true;
-    }
-  }
+  ngOnInit(): void {}
 
   createVideoScript(playerId: string, videoId: string | null) {
     if (videoId === null) {
@@ -124,47 +126,47 @@ export class SinglePageComponent implements OnInit {
 
   createSrcSet() {
     if (
-      this.images.length > 0 &&
-      this.images[0].thumbnails &&
-      this.images[0].thumbnails[345] &&
-      this.images[0].thumbnails[710] &&
-      this.images[0].thumbnails[944]
+      this.image &&
+      this.image.thumbnails &&
+      this.image.thumbnails[345] &&
+      this.image.thumbnails[710] &&
+      this.image.thumbnails[944]
     ) {
-      this.srcSet = `${this.images[0].thumbnails[345]} 245w, ${this.images[0].thumbnails[710]} 490w, ${this.images[0].thumbnails[944]}`;
+      this.srcSet = `${this.image.thumbnails[345]} 245w, ${this.image.thumbnails[710]} 490w, ${this.image.thumbnails[944]}`;
     }
   }
 
   addTags() {
-    // this.titleService.setTitle(this.single_post.data.title);
-    // this.metaService.updateTag({
-    //   name: 'og:title',
-    //   content: this.single_post.data.title,
-    // });
-    // this.metaService.updateTag({
-    //   name: 'og:description',
-    //   content: this.single_post.data.short_description,
-    // });
-    // this.metaService.updateTag({
-    //   name: 'og:url',
-    //   content: `${this._document.location.href}`,
-    // });
-    // this.metaService.updateTag({
-    //   name: 'og:type',
-    //   content: 'article',
-    // });
-    // this.metaService.updateTag({
-    //   name: 'og:image',
-    //   content: this.single_post.data.images[0]
-    //     ? this.single_post.data.images[0].url
-    //     : 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
-    // });
-    // this.metaService.updateTag({
-    //   name: 'description',
-    //   content: this.single_post.data.short_description,
-    // });
-    // this.metaService.updateTag({
-    //   name: 'keywords',
-    //   content: this.single_post.data.category.name,
-    // });
+    this.titleService.setTitle(this.single_post.data.title);
+    this.metaService.updateTag({
+      name: 'og:title',
+      content: this.single_post.data.title,
+    });
+    this.metaService.updateTag({
+      name: 'og:description',
+      content: this.single_post.data.seo_description,
+    });
+    this.metaService.updateTag({
+      name: 'og:url',
+      content: `${this._document.location.href}`,
+    });
+    this.metaService.updateTag({
+      name: 'og:type',
+      content: 'article',
+    });
+    this.metaService.updateTag({
+      name: 'og:image',
+      content: this.single_post.data.image
+        ? this.single_post.data.image.url
+        : 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
+    });
+    this.metaService.updateTag({
+      name: 'description',
+      content: this.single_post.data.seo_description,
+    });
+    this.metaService.updateTag({
+      name: 'keywords',
+      content: this.single_post.data.tv_category.name,
+    });
   }
 }

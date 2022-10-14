@@ -1,4 +1,4 @@
-<!-- <section class="bg-dark mt-[66px] sm:mt-[79px] lg:mt-[104px] mb-6 lg:mb-14">
+<section class="bg-dark mt-[66px] sm:mt-[79px] lg:mt-[104px] mb-6 lg:mb-14">
   <div class="container">
     <div class="grid grid-cols-12 pb-8">
       <div
@@ -13,23 +13,21 @@
         <div *ngIf="!single_post.data.brid_video_id">
           <div
             class="w-full relative image-gradient mb-6 lg:mb-14"
-            *ngIf="images[0] && !single_post.data.brid_video_id"
+            *ngIf="image && !single_post.data.brid_video_id"
           >
             <img
               class="w-full"
-              src="{{ images[0].url }}"
+              src="{{ image.url }}"
               srcset="{{ srcSet }}"
               sizes="(min-width: 1280px) 100vw, 70vw"
-              [alt]="
-                images[0].description ? images[0].description : images[0].name
-              "
+              [alt]="image.description ? image.description : image.name"
             />
 
             <div
               class="absolute left-10 top-1/2 z-10 -translate-y-1/2 Lg:right-2/3 hidden lg:block"
             >
               <p class="text-white text-2xl font-bold">
-                {{ single_post.data.short_description }}
+                {{ single_post.data.sub_title }}
               </p>
               <h1
                 class="text-white font-bold text-3xl sm:text-[42px] pb-4 lg:leading-[48px]"
@@ -45,7 +43,7 @@
             class="col-span-12 lg:col-span-8 lg:border-r-2 lg:border-white lg:pr-9"
           >
             <p class="text-white text-lg">
-              {{ single_post.data.short_description }}
+              {{ single_post.data.sub_title }}
             </p>
             <h3
               class="text-white font-bold text-xl sm:text-[42px] pb-4 leading-[48px]"
@@ -64,9 +62,9 @@
                   <span
                     class="block"
                     *ngIf="tags_list.length > 1; else elseBlock"
-                    >TV Lica:
+                    >Tagovi:
                   </span>
-                  <ng-template class="block" #elseBlock>TV Lice: </ng-template>
+                  <ng-template class="block" #elseBlock>Tag: </ng-template>
                 </div>
                 <div>
                   <a
@@ -82,12 +80,16 @@
           </div>
           <div class="col-span-12 lg:col-span-4 lg:pl-9">
             <h3 class="text-2xl font-bold text-white opacity-70 mb-7">
-              60 min
+              {{ duration }} min
             </h3>
             <app-single-social></app-single-social>
+            <app-single-tags
+              *ngIf="tags_list.length > 0"
+              [tags]="tags_list"
+            ></app-single-tags>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section> -->
+</section>
