@@ -1,3 +1,4 @@
+import { Category } from 'src/app/interfaces/category.model';
 import { Image } from './image.model';
 
 export interface TvShow {
@@ -8,4 +9,5 @@ export interface TvShow {
   slug: string;
   image: Image;
   settings: null | {};
+  tv_category: Category;
 }

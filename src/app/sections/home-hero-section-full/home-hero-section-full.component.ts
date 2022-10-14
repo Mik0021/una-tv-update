@@ -18,7 +18,7 @@ export class HomeHeroSectionFullComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // this.createArticleSlug();
+    this.createArticleSlug();
     // this.createCategorySlug();
     this.createSrcSet();
 
@@ -40,15 +40,18 @@ export class HomeHeroSectionFullComponent implements OnInit {
     }
   }
 
-  // createArticleSlug() {
-  //   if (this.articles[0]) {
-  //     if (this.articles[0].category.parent_category) {
-  //       this.articleSlug = `/${this.articles[0].category.parent_category.slug}/${this.articles[0].category.slug}/${this.articles[0].slug}`;
-  //     } else {
-  //       this.articleSlug = `/${this.articles[0].category.slug}/${this.articles[0].slug}`;
-  //     }
-  //   }
-  // }
+  createArticleSlug() {
+    console.log('aaaa', this.articles[0]);
+    if (this.articles) {
+      if (this.articles[0].tv_category.parent_category) {
+        this.articleSlug = `/${this.articles[0].tv_category.parent_category.slug}/${this.articles[0].tv_category.slug}/${this.articles[0].slug}`;
+        console.log('lalal', this.articleSlug);
+      } else {
+        this.articleSlug = `/${this.articles[0].tv_category.slug}/${this.articles[0].slug}`;
+        console.log('lalal', this.articleSlug);
+      }
+    }
+  }
 
   // createCategorySlug() {
   //   if (this.articles[0]) {
