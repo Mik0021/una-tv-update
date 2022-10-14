@@ -9,10 +9,8 @@ import { Home } from 'src/app/interfaces/home.model';
 })
 export class HomeService {
   private home = new Subject<Home>();
-  private homeLivePreview = new Subject<Home>();
 
   home$ = this.home.asObservable();
-  homeLivePreview$ = this.homeLivePreview.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -21,17 +19,6 @@ export class HomeService {
       .get<Home>(`${environment.API_UNA}${environment.API_HOME}`)
       .subscribe((homeData) => {
         this.home.next(homeData);
-      });
-  }
-
-  getHomePageLivePreview(postID: string | null) {
-    return this.http
-      .post<Home>(
-        `${environment.API_UNA}${environment.API_HOME_LIVE_PREVIEW}/${postID}`,
-        ''
-      )
-      .subscribe((homeData) => {
-        this.homeLivePreview.next(homeData);
       });
   }
 }

@@ -1,6 +1,7 @@
 export interface Category {
   resource_type: string;
   id: number;
+  parent_id: number;
   name: string;
   slug: string;
   color: string;
@@ -9,6 +10,7 @@ export interface Category {
   parent_category: {
     resource_type: string;
     id: number;
+    parent_id: null | number;
     name: string;
     slug: string;
     color: string;

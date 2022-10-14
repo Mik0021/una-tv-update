@@ -4,7 +4,7 @@ export interface Image {
   name: string;
   source: string;
   url: string;
-  description: string;
+  description: string | null;
   thumbnails: {
     '144': string;
     '345': string;

@@ -44,7 +44,7 @@ export class CategorySectionSmallCardsContentDownComponent implements OnInit {
 
   ngOnInit(): void {
     this.articleList = this.sectionData.tv_shows;
-    this.category = this.sectionData.category;
+    this.category = this.sectionData.tv_category;
     this.generateCategorySlug();
     SwiperCore.use([Navigation]);
   }

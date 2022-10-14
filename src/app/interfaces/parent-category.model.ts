@@ -5,8 +5,8 @@ import { TvShow } from './tv-show.model';
 export interface ParentCategory {
   success: boolean;
   data: {
-    category: Category;
-    articles: TvShow[];
+    tv_category: Category;
+    tv_shows: TvShow[];
     promo_articles: TvShow[];
   };
   paginator: Paginator;

@@ -4,7 +4,6 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { Home } from 'src/app/interfaces/home.model';
 import { environment } from 'src/environments/environment';
-import { Article } from './../../interfaces/article.model';
 import { TvShow } from './../../interfaces/tv-show.model';
 import { HomeService } from './../../services/home.service';
 
@@ -34,6 +33,7 @@ export class HomeComponent implements OnInit {
       this.heroType = homeData.data[0].tv_show_template.id;
       this.heroSection = homeData;
       this.heroArticleList = homeData.data[0].tv_shows;
+
       this.addTags();
     });
   }

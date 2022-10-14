@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { TvShow } from './../../interfaces/tv-show.model';
 
 @Component({
@@ -9,7 +15,7 @@ import { TvShow } from './../../interfaces/tv-show.model';
     class: 'text-base',
   },
 })
-export class CardSmallContentDownComponent implements OnInit {
+export class CardSmallContentDownComponent implements OnInit, OnChanges {
   @Input() articleData = {} as TvShow;
   hasImage: boolean = false;
   hasVideo: boolean = false;
@@ -20,12 +26,22 @@ export class CardSmallContentDownComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // this.createArticleSlug();
+    this.createArticleSlug();
     // this.createCategorySlug();
     this.createSrcSet();
     // this.hasImage = this.articleData.hasImages;
     // this.hasVideo = this.articleData.hasVideo;
     // this.isTimeline = this.articleData.isTimeline;
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    // if (changes['articleData']) {
+    //   let variableChange = changes['articleData'];
+    //   console.log(variableChange);
+    //   if (variableChange.currentValue && variableChange) {
+    //     this.createSrcSet();
+    //     this.createArticleSlug();
+    //   }
+    // }
   }
 
   createSrcSet() {
@@ -41,15 +57,16 @@ export class CardSmallContentDownComponent implements OnInit {
     }
   }
 
-  // createArticleSlug() {
-  //   if (this.articleData) {
-  //     if (this.articleData.category.parent_category) {
-  //       this.articleSlug = `/${this.articleData.category.parent_category.slug}/${this.articleData.category.slug}/${this.articleData.slug}`;
-  //     } else {
-  //       this.articleSlug = `/${this.articleData.category.slug}/${this.articleData.slug}`;
-  //     }
-  //   }
-  // }
+  createArticleSlug() {
+    console.log(this.articleData);
+    if (this.articleData) {
+      if (this.articleData.tv_category.parent_category) {
+        this.articleSlug = `/${this.articleData.tv_category.parent_category.slug}/${this.articleData.tv_category.slug}/${this.articleData.slug}`;
+      } else {
+        this.articleSlug = `/${this.articleData.tv_category.slug}/${this.articleData.slug}`;
+      }
+    }
+  }
 
   // createCategorySlug() {
   //   if (this.articleData) {

@@ -2,13 +2,13 @@
   <div class="container px-3 sm:px-0" *ngIf="category.data">
     <div
       class="block border-b-blue border-b-4 mb-14 flex justify-between"
-      [ngStyle]="{ 'border-color': category.data.category.color }"
+      [ngStyle]="{ 'border-color': category.data.tv_category.color }"
     >
       <h2
         class="font-semibold inline-block text-black bg-blue px-12 py-1 uppercase items-center mb-0"
-        [ngStyle]="{ 'background-color': category.data.category.color }"
+        [ngStyle]="{ 'background-color': category.data.tv_category.color }"
       >
-        {{ category.data.category.name }}
+        {{ category.data.tv_category.name }}
       </h2>
     </div>
     <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">

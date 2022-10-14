@@ -51,7 +51,7 @@ export class ParentCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.parentCategory$.subscribe((res) => {
       this.category = res;
-      this.articles = res.data.articles;
+      this.articles = res.data.tv_shows;
       this.paginator = res.paginator;
       this.addTags();
     });
@@ -78,14 +78,14 @@ export class ParentCategoryComponent implements OnInit {
   }
 
   addTags() {
-    this.titleService.setTitle(this.category.data.category.name);
+    this.titleService.setTitle(this.category.data.tv_category.name);
     this.metaService.updateTag({
       name: 'og:title',
-      content: this.category.data.category.seo_title,
+      content: this.category.data.tv_category.seo_title,
     });
     this.metaService.updateTag({
       name: 'og:description',
-      content: this.category.data.category.seo_description,
+      content: this.category.data.tv_category.seo_description,
     });
     this.metaService.updateTag({
       name: 'og:url',
@@ -101,11 +101,11 @@ export class ParentCategoryComponent implements OnInit {
     });
     this.metaService.updateTag({
       name: 'description',
-      content: this.category.data.category.seo_description,
+      content: this.category.data.tv_category.seo_description,
     });
     this.metaService.updateTag({
       name: 'keywords',
-      content: this.category.data.category.seo_title,
+      content: this.category.data.tv_category.seo_title,
     });
   }
 }
