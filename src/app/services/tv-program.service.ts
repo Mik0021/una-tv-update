@@ -9,8 +9,10 @@ import { Injectable } from '@angular/core';
 })
 export class TvProgramService {
   private tvProgram = new Subject<TvProgram>();
+  private tvProgramBih = new Subject<TvProgram>();
 
   tvProgram$ = this.tvProgram.asObservable();
+  tvProgramBih$ = this.tvProgramBih.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -23,6 +25,22 @@ export class TvProgramService {
       .subscribe({
         next: (res: TvProgram) => {
           this.tvProgram.next(res);
+        },
+        error: (err: Error) => {
+          console.log(err);
+        },
+      });
+  }
+
+  getTvProgramBih(queryDate: string = '') {
+    let params = new HttpParams().set('program_date', queryDate);
+    return this.http
+      .get<TvProgram>(`${environment.API_TV_PROGRAM_BIH}`, {
+        params: params,
+      })
+      .subscribe({
+        next: (res: TvProgram) => {
+          this.tvProgramBih.next(res);
         },
         error: (err: Error) => {
           console.log(err);

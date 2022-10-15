@@ -8,7 +8,7 @@ export const environment = {
   API_AUTHOR: '/articles/author',
   API_STATIC: '/pages/slug',
   API_NAV: '/menu',
-  API_CATEGORY: '/articles/category',
+  API_CATEGORY: '/tv/shows/category',
   API_HOME: '/article-collections',
   API_LIVE_PREVIEW: '/articles/preview',
   API_HOME_LIVE_PREVIEW: '/article-collections/preview',

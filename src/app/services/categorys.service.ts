@@ -24,16 +24,14 @@ export class CategorysService {
     currPage: number
   ) {
     let params = new HttpParams().set('per_page', 24).set('page', currPage);
-    return this.http.get<CategoryList>(
-      `${environment.API_UNA}${environment.API_CATEGORY}/${category}/${subcategory}`,
-      { params }
-    );
-    // .subscribe((category: CategoryList) => {
-    //   category.data.articles.forEach((e) => {
-    //     e['category'] = category.data.category;
-    //   });
-    //   this.category.next(category);
-    // });
+    return this.http
+      .get<CategoryList>(
+        `${environment.API_UNA}${environment.API_CATEGORY}/${category}/${subcategory}`,
+        { params }
+      )
+      .subscribe((category: CategoryList) => {
+        this.category.next(category);
+      });
   }
 
   getCategoryTest(category: string | null, subcategory: string | null) {

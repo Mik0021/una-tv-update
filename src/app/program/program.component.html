@@ -6,13 +6,15 @@
       </h1>
       <div class="flex justify-center text-white gap-5">
         <button
+          class="px-3 py-2 text-2xl font-semibold border-b-2"
           (click)="showTab = false"
-          [ngClass]="!showTab ? 'text-blue' : ''"
+          [ngClass]="!showTab ? 'text-blue  border-blue' : 'border-transparent'"
         >
           BiH</button
         ><button
+          class="px-3 py-2 text-2xl font-semibold border-b-2"
           (click)="showTab = true"
-          [ngClass]="showTab ? 'text-blue' : ''"
+          [ngClass]="showTab ? 'text-blue  border-blue' : 'border-transparent'"
         >
           RS
         </button>
@@ -21,7 +23,7 @@
         <app-table [schema]="schemaComplete"></app-table>
       </div>
       <div *ngIf="!showTab">
-        <h2 class="text-white">program za bih</h2>
+        <app-table [schema]="schemaCompleteBih"></app-table>
       </div>
     </div>
   </div>
