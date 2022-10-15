@@ -1,6 +1,5 @@
-import { TvProgram } from './../../interfaces/tv-program.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { Tabs } from 'src/app/interfaces/tabs.model';
+import { TvProgram } from './../../interfaces/tv-program.model';
 
 @Component({
   selector: 'app-table',
@@ -8,7 +7,6 @@ import { Tabs } from 'src/app/interfaces/tabs.model';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  // @Input() tabs = [] as Tabs[];
   @Input() schema = [] as TvProgram[];
   constructor() {}
 

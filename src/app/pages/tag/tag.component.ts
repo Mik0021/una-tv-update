@@ -49,8 +49,8 @@ export class TagComponent implements OnInit {
 
   ngOnInit(): void {
     this.tag$.subscribe((res: Tag) => {
-      this.tag = res.data.tag;
-      this.articles = res.data.articles;
+      this.tag = res.data.tv_tag;
+      this.articles = res.data.tv_shows;
       this.paginator = res.paginator;
       this.addTags();
     });

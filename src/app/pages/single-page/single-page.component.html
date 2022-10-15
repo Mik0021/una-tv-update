@@ -57,22 +57,24 @@
               appRunScripts
             ></div>
             <div class="flex text-white text-lg pb-4 gap-x-1">
-              <div *ngIf="tags_list.length !== 0">
+              <div *ngIf="personalities.length !== 0">
                 <div>
                   <span
                     class="block"
-                    *ngIf="tags_list.length > 1; else elseBlock"
-                    >Tagovi:
+                    *ngIf="personalities.length > 1; else elseBlock"
+                    >Naša lica:
                   </span>
-                  <ng-template class="block" #elseBlock>Tag: </ng-template>
+                  <ng-template class="block" #elseBlock
+                    >Naše lice:
+                  </ng-template>
                 </div>
                 <div>
                   <a
-                    routerLink="/nasa-lica/{{ author.slug }}"
+                    routerLink="/personalities/{{ personality.slug }}"
                     class="after:content-[','] after:m-0 last:after:content-[''] font-semibold text-xl hover:text-blue transition-colors"
-                    *ngFor="let author of tags_list"
+                    *ngFor="let personality of personalities"
                   >
-                    {{ author.name }}</a
+                    {{ personality.name }}</a
                   >
                 </div>
               </div>
@@ -83,11 +85,13 @@
               {{ duration }} min
             </h3>
             <app-single-social></app-single-social>
-            <app-single-tags
-              *ngIf="tags_list.length > 0"
-              [tags]="tags_list"
-            ></app-single-tags>
           </div>
+        </div>
+        <div class="w-full mt-7">
+          <app-single-tags
+            *ngIf="tags_list.length > 0"
+            [tags]="tags_list"
+          ></app-single-tags>
         </div>
       </div>
     </div>

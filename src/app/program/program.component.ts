@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Tabs } from '../interfaces/tabs.model';
 import { TvProgram } from './../interfaces/tv-program.model';
 import { TvProgramService } from './../services/tv-program.service';
 
@@ -10,7 +9,7 @@ import { TvProgramService } from './../services/tv-program.service';
   styleUrls: ['./program.component.scss'],
 })
 export class ProgramComponent implements OnInit {
-  tabs: Tabs[] = [];
+  showTab: boolean = true;
   schemaComplete = [] as TvProgram[];
   tvProgram$: Observable<TvProgram> = this.tvProgramService.tvProgram$;
   constructor(private tvProgramService: TvProgramService) {}
@@ -39,13 +38,5 @@ export class ProgramComponent implements OnInit {
         }
       },
     });
-    // for (let i = 0; i < this.schemaComplete.length; i++) {
-    //   this.tabs.push({
-    //     title: this.schemaComplete[i].data.date,
-    //     active: i === 0 ? true : false,
-    //     content: this.schemaComplete[i].data.schema,
-    //   });
-    // }
-    // console.log(this.tabs);
   }
 }

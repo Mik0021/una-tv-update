@@ -5,8 +5,8 @@ import { TvShow } from './tv-show.model';
 export interface Tag {
   sucess: boolean;
   data: {
-    tag: Tags;
-    articles: TvShow[];
+    tv_tag: Tags;
+    tv_shows: TvShow[];
   };
   paginator: Paginator;
 }

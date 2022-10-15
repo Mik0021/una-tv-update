@@ -47,12 +47,6 @@ const routes: Routes = [
       import('./pages/tag/tag.module').then((m) => m.TagModule),
   },
   {
-    path: 'autor/:author',
-    pathMatch: 'full',
-    loadChildren: () =>
-      import('./pages/author/author.module').then((m) => m.AuthorModule),
-  },
-  {
     path: ':category',
     pathMatch: 'full',
     loadChildren: () =>

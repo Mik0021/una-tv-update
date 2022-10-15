@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   API_UNA: 'https://una-test-api-rs.ha.rs/api/v1',
   API_PARENT_CATEGORY: '/tv/categories/parent',
-  API_TAG: '/tv/shows/tv-tag',
+  API_TAG: '/tv/shows/tag',
   API_POST: '/tv/shows/slug',
   API_SEARCH: '/tv/shows/search',
   API_AUTHOR: '/articles/author',
