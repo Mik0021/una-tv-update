@@ -1,3 +1,5 @@
+import { TvShow } from './../../interfaces/tv-show.model';
+import { PersonalityShow } from './../../interfaces/personality-show.model';
 import { Image } from 'src/app/interfaces/image.model';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -15,9 +17,14 @@ export class PersonalitySingleComponent implements OnInit {
   srcSet: string = '';
   content: any;
   personalitySlug: string | null = '';
+  personality = {} as PersonalitySingle;
+  personalityShows = [] as TvShow[];
+
   personalitySingle$: Observable<PersonalitySingle> =
     this.personalitiesService.personalitySingle$;
-  personality = {} as PersonalitySingle;
+
+  personalityShows$: Observable<PersonalityShow> =
+    this.personalitiesService.personalityShows$;
 
   constructor(
     private personalitiesService: PersonalitiesService,
@@ -29,6 +36,7 @@ export class PersonalitySingleComponent implements OnInit {
       } else {
         this.personalitySlug = paramMap.get('personality');
         this.personalitiesService.getPersonality(this.personalitySlug);
+        this.personalitiesService.getPersonalityShows(this.personalitySlug);
       }
     });
   }
@@ -42,6 +50,11 @@ export class PersonalitySingleComponent implements OnInit {
       },
       error: (err: Error) => {
         console.log(err);
+      },
+    });
+    this.personalityShows$.subscribe({
+      next: (res: PersonalityShow) => {
+        this.personalityShows = res.data.tv_shows;
       },
     });
   }

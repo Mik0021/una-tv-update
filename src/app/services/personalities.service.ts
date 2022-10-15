@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
+import { PersonalityShow } from '../interfaces/personality-show.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +12,11 @@ import { Subject } from 'rxjs';
 export class PersonalitiesService {
   private personalitiesList = new Subject<PersonalityListing>();
   private personalitySingle = new Subject<PersonalitySingle>();
+  private personalityShows = new Subject<PersonalityShow>();
 
   personalitiesList$ = this.personalitiesList.asObservable();
   personalitySingle$ = this.personalitySingle.asObservable();
+  personalityShows$ = this.personalityShows.asObservable();
   constructor(private http: HttpClient) {}
 
   getPersonalities() {
@@ -39,6 +42,21 @@ export class PersonalitiesService {
       .subscribe({
         next: (personalitySingle: PersonalitySingle) => {
           this.personalitySingle.next(personalitySingle);
+        },
+        error: (err: Error) => {
+          console.log(err);
+        },
+      });
+  }
+
+  getPersonalityShows(personalitySlug: string | null) {
+    return this.http
+      .get<PersonalityShow>(
+        `${environment.API_UNA}${environment.API_PERSONALITY_SHOWS}/${personalitySlug}`
+      )
+      .subscribe({
+        next: (personalityShows: PersonalityShow) => {
+          this.personalityShows.next(personalityShows);
         },
         error: (err: Error) => {
           console.log(err);
