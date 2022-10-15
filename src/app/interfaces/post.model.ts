@@ -2,6 +2,7 @@ import { Category } from './category.model';
 import { Image } from './image.model';
 import { Personality } from './personality.model';
 import { Tags } from './tags.model';
+import { TvShow } from './tv-show.model';
 
 export interface Post {
   data: {
@@ -19,6 +20,7 @@ export interface Post {
     tv_personalities: Personality[];
     tv_tags: Tags[];
     image: Image;
+    related_tv_shows: TvShow[];
     settings: {
       duration: number;
     };

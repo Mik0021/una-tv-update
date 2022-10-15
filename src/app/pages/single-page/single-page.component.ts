@@ -1,19 +1,17 @@
-import { Personality } from './../../interfaces/personality.model';
-import { environment } from 'src/environments/environment';
-import { DOCUMENT, Location, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Article } from 'src/app/interfaces/article.model';
+import { Observable } from 'rxjs';
 import { Image } from 'src/app/interfaces/image.model';
+import { Search } from 'src/app/interfaces/search.model';
 import { Source } from 'src/app/interfaces/source.model';
 import { Tags } from 'src/app/interfaces/tags.model';
+import { TvShow } from 'src/app/interfaces/tv-show.model';
+import { SearchService } from 'src/app/services/search.service';
+import { Personality } from './../../interfaces/personality.model';
 import { Post } from './../../interfaces/post.model';
 import { PostService } from './../../services/post.service';
-import { Search } from 'src/app/interfaces/search.model';
-import { Observable } from 'rxjs';
-import { SearchService } from 'src/app/services/search.service';
-import { TvShow } from 'src/app/interfaces/tv-show.model';
 
 @Component({
   selector: 'app-single-page',
@@ -23,7 +21,7 @@ import { TvShow } from 'src/app/interfaces/tv-show.model';
 export class SinglePageComponent implements OnInit {
   single_post = {} as Post;
   tags_list: Tags[] = [];
-  conected_articles: TvShow[] = [];
+  episodes: TvShow[] = [];
   postRoute: string | null = '';
   category: string | null = '';
   subCategory: string | null = '';
@@ -69,7 +67,7 @@ export class SinglePageComponent implements OnInit {
                 this.single_post = post;
                 this.tags_list = post.data.tv_tags;
                 this.duration = post.data.settings.duration;
-                // this.conected_articles = post.data.related_articles;
+                this.episodes = post.data.related_tv_shows;
                 // this.articleSource = post.data.source;
                 this.content = this.single_post.data.description;
                 this.image = post.data.image;
@@ -93,7 +91,7 @@ export class SinglePageComponent implements OnInit {
                 this.single_post = post;
                 this.tags_list = post.data.tv_tags;
                 this.duration = post.data.settings.duration;
-                // this.conected_articles = post.data.related_articles;
+                this.episodes = post.data.related_tv_shows;
                 // this.articleSource = post.data.source;
                 this.content = this.single_post.data.description;
                 this.image = post.data.image;

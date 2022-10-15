@@ -95,5 +95,14 @@
         </div>
       </div>
     </div>
+    <ng-container *ngIf="episodes.length > 0" class="mt-7">
+      <h2 class="text-3xl text-white font-semibold mb-3">Epizode:</h2>
+      <div class="grid gap-5 grid-cols-2 lg:grid-cols-4">
+        <app-card-small-content-down
+          *ngFor="let episode of episodes"
+          [articleData]="episode"
+        ></app-card-small-content-down>
+      </div>
+    </ng-container>
   </div>
 </section>
