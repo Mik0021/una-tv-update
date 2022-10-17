@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  API_UNA: 'https://una-test-api-rs.ha.rs/api/v1',
+  API_UNA: 'https://api-rs.unaworld.com/api/v1',
   API_PARENT_CATEGORY: '/tv/categories/parent',
   API_TAG: '/tv/shows/tag',
   API_POST: '/tv/shows/slug',
@@ -17,7 +17,7 @@ export const environment = {
   API_PERSNALITY: '/tv/personalities/slug',
   API_PERSONALITY_SHOWS: '/tv/shows/tv-personality',
   API_TV_PROGRAM: '/tv/program-schemas',
-  API_TV_PROGRAM_BIH: 'https://una-test-api-ba.ha.rs/api/v1/tv/program-schemas',
+  API_TV_PROGRAM_BIH: 'https://api-ba.unaworld.com/api/v1/tv/program-schemas',
   APP_PORT: 3040,
   APP_TITLE: 'UNA TV',
   APP_FOLDER: '/rs/',
