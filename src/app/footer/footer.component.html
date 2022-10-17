@@ -13,12 +13,8 @@
   >
     <div class="text-xs text-white">
       <ul class="flex gap-4 lg:gap-20 py-5">
-        <li *ngFor="let item of pagesList.data; index as i">
-          <a
-            class="opacity-50 whitespace-nowrap"
-            routerLink="{{ item.slug }}"
-            *ngIf="i < 3"
-          >
+        <li *ngFor="let item of pagesList.data">
+          <a class="opacity-50 whitespace-nowrap" routerLink="{{ item.slug }}">
             {{ item.title }}
           </a>
         </li>
