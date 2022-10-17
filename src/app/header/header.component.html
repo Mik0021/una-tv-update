@@ -1,4 +1,4 @@
-<div class="container px-3 sm:px-0">
+<div class="container px-3">
   <div class="flex justify-between relative">
     <div class="flex">
       <a routerLink="" class="self-center py-3 no-tap-color">
@@ -63,6 +63,7 @@
             <a
               routerLink="/program"
               routerLinkActive="active"
+              (click)="onMenuClose()"
               class="hover:text-blue transition-colors"
             >
               TV PROGRAM</a

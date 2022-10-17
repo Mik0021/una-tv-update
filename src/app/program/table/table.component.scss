@@ -11,7 +11,7 @@ table {
 }
 
 .active-acc {
-  .button {
+  & > .button {
     transform: rotate(45deg);
   }
 }

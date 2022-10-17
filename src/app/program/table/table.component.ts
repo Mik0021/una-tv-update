@@ -28,6 +28,7 @@ export class TableComponent implements OnInit {
     }
     const panel =
       element.parentElement.nextElementSibling.querySelector('.panel');
+
     if (panel.style.maxHeight) {
       panel.style.maxHeight = null;
     } else {
