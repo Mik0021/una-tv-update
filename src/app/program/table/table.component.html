@@ -8,7 +8,7 @@
           [class.active]="tab.active"
           (click)="changeTab(i)"
         >
-          {{ tab.data.date }}
+          {{ tab.data.date | date: 'dd-MM-yyyy' }}
         </li>
       </ul>
       <div class="tab-content-group">
