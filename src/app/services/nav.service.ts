@@ -25,12 +25,24 @@ export class NavService {
             e.slug = 'p/' + e.slug;
           } else if (e.type === 'tag') {
             e.slug = 'tag/' + e.slug;
+          } else if (e.type === 'personalities') {
+            e.slug = 'nasa-lica';
+          } else if (e.type === 'personality') {
+            e.slug = 'nasa-lica/' + e.slug;
+          } else if (e.type === 'program-schemas') {
+            e.slug = 'program';
           }
           e.children.forEach((el) => {
             if (el.type === 'page') {
               el.slug = 'p/' + el.slug;
             } else if (el.type === 'tag') {
               el.slug = 'tag/' + el.slug;
+            } else if (el.type === 'personalities') {
+              el.slug = 'nasa-lica';
+            } else if (el.type === 'personality') {
+              el.slug = 'nasa-lica/' + el.slug;
+            } else if (el.type === 'program-schemas') {
+              el.slug = 'program';
             }
           });
         });

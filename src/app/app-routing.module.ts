@@ -21,14 +21,14 @@ const routes: Routes = [
       import('./program/program.module').then((m) => m.ProgramModule),
   },
   {
-    path: 'personalities',
+    path: 'nasa-lica',
     loadChildren: () =>
       import('./pages/personality-list/personality-list.module').then(
         (m) => m.PersonalityListModule
       ),
   },
   {
-    path: 'personalities/:personality',
+    path: 'nasa-lica/:personality',
     loadChildren: () =>
       import('./pages/personality-single/personality-single.module').then(
         (m) => m.PersonalitySingleModule
