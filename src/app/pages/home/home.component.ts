@@ -30,10 +30,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.homeService.getHomePage();
     this.home$.subscribe((homeData: Home) => {
-      this.heroType = homeData.data[0].tv_show_template.id;
+      this.heroType = homeData.data[0].tv_show_template.type_id;
       this.heroSection = homeData;
       this.heroArticleList = homeData.data[0].tv_shows;
-
       this.addTags();
     });
   }
