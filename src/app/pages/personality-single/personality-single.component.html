@@ -45,7 +45,7 @@
         appRunScripts
       ></div>
     </div>
-    <ng-container *ngIf="personalityShows" class="mt-7">
+    <ng-container *ngIf="personalityShows.length > 0" class="mt-7">
       <h2 class="text-3xl text-white font-semibold mb-3">Emisije:</h2>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
         <app-card-small-content-down
