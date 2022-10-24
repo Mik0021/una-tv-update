@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +19,10 @@ import { HeaderSelectSiteComponent } from './header/header-select-site/header-se
 import { HeaderSubmenuComponent } from './header/header-submenu/header-submenu.component';
 import { HeaderComponent } from './header/header.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
+import { registerLocaleData } from '@angular/common';
+import localeBa from '@angular/common/locales/sr-Latn-BA';
 
+registerLocaleData(localeBa);
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,11 +40,11 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxGoogleAnalyticsModule.forRoot('UA-215555790-1'),
+    NgxGoogleAnalyticsModule.forRoot('G-8C8G6F45QE'),
     NgxGoogleAnalyticsRouterModule,
     AdsenseModule.forRoot(),
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'sr-Latn-BA' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

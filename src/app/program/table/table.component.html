@@ -4,11 +4,11 @@
       <ul class="tab-group">
         <li
           *ngFor="let tab of schema; index as i"
-          class="tab"
+          class="tab capitalize"
           [class.active]="tab.active"
           (click)="changeTab(i)"
         >
-          {{ tab.data.date | date: 'dd-MM-yyyy' }}
+          {{ tab.data.date | date: 'EEE, dd.MM.' }}
         </li>
       </ul>
       <div class="tab-content-group">
