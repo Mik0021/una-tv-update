@@ -33,12 +33,7 @@
           class="relative after:h-full after:w-px last:after:hidden after:bg-white after:absolute after:-right-2 hover:text-blue transition-colors"
           *ngFor="let site of sites.sites"
         >
-          <a [href]="site.url" class="uppercase" *ngIf="!site.default">
-            {{ site.name }}</a
-          >
-          <a routerLink="" class="uppercase" *ngIf="site.default">
-            {{ site.name }}</a
-          >
+          <a [href]="site.url" class="uppercase"> {{ site.name }}</a>
         </li>
       </ul>
     </div>
