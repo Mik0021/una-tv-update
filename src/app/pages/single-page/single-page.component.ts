@@ -68,6 +68,11 @@ export class SinglePageComponent implements OnInit {
                 this.tags_list = post.data.tv_tags;
                 this.duration = post.data.settings.duration;
                 this.episodes = post.data.related_tv_shows;
+                this.episodes.sort((a, b) => {
+                  let aDate = new Date();
+                  let bDate = new Date();
+                  return a.id - b.id;
+                });
                 // this.articleSource = post.data.source;
                 this.content = this.single_post.data.description;
                 this.image = post.data.image;
@@ -92,6 +97,11 @@ export class SinglePageComponent implements OnInit {
                 this.tags_list = post.data.tv_tags;
                 this.duration = post.data.settings.duration;
                 this.episodes = post.data.related_tv_shows;
+                this.episodes.sort((a, b) => {
+                  let aDate = new Date();
+                  let bDate = new Date();
+                  return a.id - b.id;
+                });
                 // this.articleSource = post.data.source;
                 this.content = this.single_post.data.description;
                 this.image = post.data.image;
