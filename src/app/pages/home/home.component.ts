@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
       this.heroSection = homeData;
       this.heroArticleList = homeData.data[0].tv_shows;
       this.addTags();
+      console.log(this.heroSection);
     });
   }
 

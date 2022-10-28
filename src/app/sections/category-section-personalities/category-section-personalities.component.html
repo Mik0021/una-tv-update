@@ -1,0 +1,25 @@
+<div
+  class="container lg:max-w-full lg:pl-[calc(50%-512px)] xl:pl-[calc(50%-640px)] 2xl:pl-[calc(50%-720px)] px-3 sm:px-0 pb-6 lg:pb-14"
+>
+  <div
+    class="block mb-1.5 flex justify-between"
+    [ngStyle]="{ 'border-color': category.color }"
+    *ngIf="category"
+  >
+    <a routerLink="{{ categorySlug }}">
+      <h2
+        class="font-semibold text-white text-[28px] capitalize"
+        [ngStyle]="{ 'background-color': category.color }"
+      >
+        {{ category.name }}
+      </h2>
+    </a>
+  </div>
+  <swiper [config]="swiperConfig" class="w-full">
+    <ng-template swiperSlide *ngFor="let article of articleList">
+      <app-personality-home-card
+        [articleData]="article"
+      ></app-personality-home-card>
+    </ng-template>
+  </swiper>
+</div>

@@ -5,16 +5,19 @@ import { SwiperModule } from 'swiper/angular';
 import { ComponentsModule } from './../components/components.module';
 import { CategorySectionSmallCardsContentDownComponent } from './category-section-small-cards-content-down/category-section-small-cards-content-down.component';
 import { HomeHeroSectionFullComponent } from './home-hero-section-full/home-hero-section-full.component';
+import { CategorySectionPersonalitiesComponent } from './category-section-personalities/category-section-personalities.component';
 
 @NgModule({
   declarations: [
     CategorySectionSmallCardsContentDownComponent,
     HomeHeroSectionFullComponent,
+    CategorySectionPersonalitiesComponent,
   ],
   imports: [CommonModule, ComponentsModule, RouterModule, SwiperModule],
   exports: [
     CategorySectionSmallCardsContentDownComponent,
     HomeHeroSectionFullComponent,
+    CategorySectionPersonalitiesComponent,
     CommonModule,
   ],
 })

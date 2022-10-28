@@ -9,6 +9,16 @@
 >
   <app-category-section-small-cards-content-down
     [sectionData]="section"
-    *ngIf="section.tv_show_template.type_id === 2"
+    *ngIf="
+      section.tv_show_template.type_id === 2 && section.tv_shows.length > 0
+    "
   ></app-category-section-small-cards-content-down>
+  <app-category-section-personalities
+    [sectionData]="section"
+    *ngIf="
+      section.tv_show_template.type_id === 2 &&
+      section.tv_personalities.length > 0
+    "
+  >
+  </app-category-section-personalities>
 </section>
