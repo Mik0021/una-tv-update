@@ -63,11 +63,10 @@ export class PersonalitySingleComponent implements OnInit {
     if (
       this.image &&
       this.image.thumbnails &&
-      this.image.thumbnails[345] &&
       this.image.thumbnails[710] &&
       this.image.thumbnails[944]
     ) {
-      this.srcSet = `${this.image.thumbnails[345]} 245w, ${this.image.thumbnails[710]} 490w, ${this.image.thumbnails[944]}`;
+      this.srcSet = `${this.image.thumbnails[710]} 490w, ${this.image.thumbnails[944]}`;
     }
   }
 }

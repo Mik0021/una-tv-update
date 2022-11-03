@@ -29,10 +29,10 @@ export class PersonalityCardComponent implements OnInit {
       if (
         this.articleData.image &&
         this.articleData.image.thumbnails &&
-        this.articleData.image.thumbnails[144] &&
-        this.articleData.image.thumbnails[345]
+        this.articleData.image.thumbnails[710] &&
+        this.articleData.image.thumbnails[944]
       ) {
-        this.srcSet = `${this.articleData.image.thumbnails[144]} 175w, ${this.articleData.image.thumbnails[345]}`;
+        this.srcSet = `${this.articleData.image.thumbnails[710]} 175w, ${this.articleData.image.thumbnails[944]}`;
       }
     }
   }

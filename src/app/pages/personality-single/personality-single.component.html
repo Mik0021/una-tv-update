@@ -5,9 +5,9 @@
         class="flex items-center flex-wrap lg:flex-nowrap"
         *ngIf="personality.data"
       >
-        <div class="relative" *ngIf="personality.data.image">
+        <div class="relative aspect-video h-48" *ngIf="personality.data.image">
           <img
-            class="aspect-video h-48"
+            class="w-full h-full object-cover object-top aspect-video"
             src="{{ personality.data.image.url }}"
             srcset="{{ srcSet }}"
             sizes="(min-width: 1280px) 100vw, 70vw"
