@@ -22,19 +22,6 @@
               sizes="(min-width: 1280px) 100vw, 70vw"
               [alt]="image.description ? image.description : image.name"
             />
-
-            <div
-              class="absolute left-10 bottom-10 z-10 Lg:right-2/3 hidden lg:block"
-            >
-              <p class="text-white text-2xl font-bold">
-                {{ single_post.data.sub_title }}
-              </p>
-              <h1
-                class="text-white font-bold text-3xl sm:text-[42px] lg:leading-[48px]"
-              >
-                {{ single_post.data.title }}
-              </h1>
-            </div>
           </div>
         </div>
 
@@ -45,11 +32,11 @@
             <p class="text-white text-lg">
               {{ single_post.data.sub_title }}
             </p>
-            <h3
+            <h1
               class="text-white font-bold text-xl sm:text-[42px] pb-4 leading-[48px]"
             >
               {{ single_post.data.title }}
-            </h3>
+            </h1>
 
             <div
               class="sp-content text-white text-xl mt-0 lg:mt-6"
