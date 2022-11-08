@@ -223,6 +223,36 @@
         }
       }
     }
+    .kako-gledati {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 3rem;
+
+      .kako-gledati-rs,
+      .kako-gledati-bih,
+      .kako-gledati-cg {
+        min-width: 250px;
+        text-align: center;
+        flex: 1;
+        ul {
+          margin: 0;
+        }
+        ul,
+        ul li {
+          list-style-type: none;
+        }
+        li {
+          margin-left: 0;
+          background-color: #00beff;
+          color: black;
+          padding: 0.5rem 1rem;
+          font-weight: 600;
+          font-size: 18px;
+          border-radius: 10px;
+        }
+      }
+    }
   }
 }
 
