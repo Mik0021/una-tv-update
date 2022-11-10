@@ -16,7 +16,7 @@ export class TvProgramService {
 
   constructor(private http: HttpClient) {}
 
-  getTvProgram(queryDate: string = '') {
+  getTvProgram() {
     return this.http
       .get<TvProgram>(`${environment.API_UNA}${environment.API_TV_PROGRAM}`)
       .subscribe({
@@ -29,7 +29,7 @@ export class TvProgramService {
       });
   }
 
-  getTvProgramBih(queryDate: string = '') {
+  getTvProgramBih() {
     return this.http
       .get<TvProgram>(`${environment.API_TV_PROGRAM_BIH}`)
       .subscribe({
