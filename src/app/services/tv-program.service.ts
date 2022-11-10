@@ -17,11 +17,8 @@ export class TvProgramService {
   constructor(private http: HttpClient) {}
 
   getTvProgram(queryDate: string = '') {
-    let params = new HttpParams().set('program_date', queryDate);
     return this.http
-      .get<TvProgram>(`${environment.API_UNA}${environment.API_TV_PROGRAM}`, {
-        params: params,
-      })
+      .get<TvProgram>(`${environment.API_UNA}${environment.API_TV_PROGRAM}`)
       .subscribe({
         next: (res: TvProgram) => {
           this.tvProgram.next(res);
@@ -33,11 +30,8 @@ export class TvProgramService {
   }
 
   getTvProgramBih(queryDate: string = '') {
-    let params = new HttpParams().set('program_date', queryDate);
     return this.http
-      .get<TvProgram>(`${environment.API_TV_PROGRAM_BIH}`, {
-        params: params,
-      })
+      .get<TvProgram>(`${environment.API_TV_PROGRAM_BIH}`)
       .subscribe({
         next: (res: TvProgram) => {
           this.tvProgramBih.next(res);

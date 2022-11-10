@@ -6,7 +6,7 @@ export interface TvProgram {
     id: number;
     date: string;
     schema: TvSchemaItem[];
-  };
-  success: boolean;
-  active?: boolean;
+    success: boolean;
+    active?: boolean;
+  }[];
 }
