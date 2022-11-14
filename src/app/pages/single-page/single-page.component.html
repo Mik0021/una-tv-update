@@ -5,11 +5,14 @@
         class="col-span-12 xl:pr-4 px-3 text-lg selection:bg-blue"
         *ngIf="single_post.data"
       >
-        <div
-          class="video-container w-full mb-3"
-          [innerHTML]="singleVideo | safeHtml"
-          appRunScripts
-        ></div>
+        <div class="video-outer aspect-video w-full">
+          <div
+            class="video-container w-full mb-3"
+            [ngClass]="{ scrolled: windowScrolled }"
+            [innerHTML]="singleVideo | safeHtml"
+            appRunScripts
+          ></div>
+        </div>
         <div *ngIf="!single_post.data.brid_video_id">
           <div
             class="w-full relative image-gradient mb-6 lg:mb-14"

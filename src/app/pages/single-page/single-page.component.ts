@@ -1,5 +1,14 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild,
+} from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -18,7 +27,7 @@ import { PostService } from './../../services/post.service';
   templateUrl: './single-page.component.html',
   styleUrls: ['./single-page.component.scss'],
 })
-export class SinglePageComponent implements OnInit {
+export class SinglePageComponent implements OnInit, AfterViewInit {
   single_post = {} as Post;
   tags_list: Tags[] = [];
   episodes: TvShow[] = [];
@@ -33,6 +42,7 @@ export class SinglePageComponent implements OnInit {
   isTvLice: boolean = false;
   duration: number = 0;
   personalities: Personality[] = [];
+  windowScrolled: boolean = false;
 
   singleVideo: string = '';
 
@@ -122,7 +132,17 @@ export class SinglePageComponent implements OnInit {
     });
   }
 
+  @HostListener('window:scroll', []) onWindowScroll() {
+    if (window.pageYOffset > 350) {
+      this.windowScrolled = true;
+    } else {
+      this.windowScrolled = false;
+    }
+  }
+
   ngOnInit(): void {}
+
+  ngAfterViewInit(): void {}
 
   createVideoScript(playerId: string, videoId: string | null) {
     if (videoId === null) {
