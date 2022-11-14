@@ -5,7 +5,10 @@
         class="col-span-12 xl:pr-4 px-3 text-lg selection:bg-blue"
         *ngIf="single_post.data"
       >
-        <div class="video-outer aspect-video w-full">
+        <div
+          class="video-outer aspect-video w-full"
+          *ngIf="single_post.data.brid_video_id"
+        >
           <div
             class="video-container w-full mb-3"
             [ngClass]="{ scrolled: windowScrolled }"
