@@ -34,9 +34,9 @@ export class CategorysService {
       });
   }
 
-  getCategoryTest(category: string | null, subcategory: string | null) {
-    return this.http.get<CategoryList>(
-      `${environment.API_UNA}${environment.API_CATEGORY}/${category}/${subcategory}`
+  getCategoryTest(subcategory: string | null) {
+    return this.http.get<boolean>(
+      `${environment.API_UNA}${environment.API_TV_IS_SUBCATEGORY}/${subcategory}`
     );
   }
 

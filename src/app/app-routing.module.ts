@@ -56,6 +56,7 @@ const routes: Routes = [
   },
   {
     path: ':category/:subcategory',
+    pathMatch: 'full',
     loadChildren: () =>
       import('./pages/category-list/category-list.module').then(
         (m) => m.CategoryListModule

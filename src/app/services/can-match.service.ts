@@ -23,16 +23,18 @@ export class CanMatchService implements CanMatch {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    this.categoryService
-      .getCategoryTest(segments[0].path, segments[1].path)
-      .subscribe(
-        (sucess) => {
+    this.categoryService.getCategoryTest(segments[1].path).subscribe({
+      next: (sucess: boolean) => {
+        if (sucess) {
           this.isCategoryPath.next(true);
-        },
-        (error) => {
+        } else {
           this.isCategoryPath.next(false);
         }
-      );
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
 
     return this.isCategoryPath$;
   }

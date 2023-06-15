@@ -3,19 +3,19 @@
     <div class="tabs">
       <ul class="tab-group">
         <li
-          *ngFor="let tab of schema; index as i"
+          *ngFor="let tab of schema.data; index as i"
           class="tab py-2 lg:py-4 px-3 lg:px-6 capitalize whitespace-nowrap"
           [class.active]="tab.active"
           (click)="changeTab(i)"
         >
-          {{ tab.data.date | date: 'EEE, dd.MM.' }}
+          {{ tab.date | date: 'EEE, dd.MM.' }}
         </li>
       </ul>
       <div class="tab-content-group">
-        <ng-container *ngFor="let tab of schema; let j = index">
+        <ng-container *ngFor="let tab of schema.data; let j = index">
           <div class="tab-content" *ngIf="tab.active">
             <table class="text-white text-xl w-full">
-              <ng-container *ngFor="let item of tab.data.schema; let i = index">
+              <ng-container *ngFor="let item of tab.schema; let i = index">
                 <tr
                   (click)="toggleAccordion($event, i, j)"
                   class="cursor-pointer"

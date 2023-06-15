@@ -15,3 +15,19 @@
     rgba(15, 22, 26, 0.5) 100%
   );
 }
+
+@media only screen and (min-width: 1024px) {
+  .scrolled {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    aspect-ratio: 16 / 9;
+    transform: scale(0.3);
+    z-index: 55;
+  }
+
+  .video-container {
+    transition: transform ease 300ms;
+    transform-origin: right bottom;
+  }
+}
