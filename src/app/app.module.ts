@@ -40,7 +40,7 @@ registerLocaleData(localeBa);
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxGoogleAnalyticsModule.forRoot('G-8C8G6F45QE'),
+    NgxGoogleAnalyticsModule.forRoot('G-ZEB8YWRBVD'),
     NgxGoogleAnalyticsRouterModule,
     AdsenseModule.forRoot(),
   ],
