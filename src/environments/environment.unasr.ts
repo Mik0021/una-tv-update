@@ -21,6 +21,7 @@ export const environment = {
   API_TV_IS_SUBCATEGORY: '/tv/categories/is-child',
   APP_PORT: 3040,
   APP_TITLE: 'UNA TV',
+  APP_GOOGLE_VERIFICATION: 'gLhpy8ZQ3YtQgWlE0IIN8-dPVDrwMri7u2jabN5Ci64',
   APP_FOLDER: '/rs/',
   APP_FACEBOOK: 'https://www.facebook.com/unatelevizija',
   APP_SHARE: 'Podeli',

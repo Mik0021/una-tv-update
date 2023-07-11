@@ -15,6 +15,7 @@ export const environment = {
   API_PAGES: '/pages',
   APP_PORT: 3030,
   APP_TITLE: 'UNA TV eng test prod',
+  APP_GOOGLE_VERIFICATION: 'gLhpy8ZQ3YtQgWlE0IIN8-dPVDrwMri7u2jabN5Ci64',
   APP_FOLDER: '/',
   APP_FACEBOOK: 'https://www.facebook.com/Unaworld-BIH-110454274959233/',
   APP_SHARE: 'Podijeli',

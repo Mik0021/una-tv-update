@@ -67,5 +67,9 @@ export class HomeComponent implements OnInit {
       name: 'keywords',
       content: environment.APP_HOME_META_KEYWORDS,
     });
+    this.metaService.addTag({
+      name: 'google-site-verification',
+      content: environment.APP_GOOGLE_VERIFICATION,
+    });
   }
 }

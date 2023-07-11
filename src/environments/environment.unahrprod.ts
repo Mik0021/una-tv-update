@@ -15,6 +15,7 @@ export const environment = {
   API_PAGES: '/pages',
   APP_PORT: 3070,
   APP_TITLE: 'UNA TV Hrvatska',
+  APP_GOOGLE_VERIFICATION: 'gLhpy8ZQ3YtQgWlE0IIN8-dPVDrwMri7u2jabN5Ci64',
   APP_FOLDER: '/hr/',
   APP_FACEBOOK: 'https://www.facebook.com/Unaworld-Hrvatska-100763459277636/',
   APP_SHARE: 'Podijeli',
