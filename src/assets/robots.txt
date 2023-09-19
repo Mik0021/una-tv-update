@@ -1,0 +1,6 @@
+User-Agent: *
+Disallow: /p/o-nama
+Disallow: /p/impressum
+Disallow: /p/pravila-koristenja
+Disallow: /pretraga
+Disallow: /p/politika-privatnosti

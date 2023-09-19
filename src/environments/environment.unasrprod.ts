@@ -26,6 +26,7 @@ export const environment = {
   APP_FACEBOOK: 'https://www.facebook.com/unatelevizija',
   APP_SHARE: 'Podeli',
   APP_LANG: 'sr',
+  APP_SERVER_DIST_FOLDER: '../',
   APP_HOME_META_TITLE: 'UNA TV',
   APP_HOME_META_DESCRIPTION:
     'Na stranicama UNA TV možete pronaći sve informacije o našem programu, emisijama i licima koja gledate na malim i većim ekranima.',

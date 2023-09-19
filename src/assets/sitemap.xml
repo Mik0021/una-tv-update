@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
+<url><loc>https://una.rs</loc><priority>1.0</priority></url>
+<url><loc>https://una.rs/sve-vesti</loc><priority>0.9</priority></url>
+<url><loc>https://una.rs/biznis</loc><priority>0.9</priority></url>
+<url><loc>https://una.rs/sport</loc><priority>0.9</priority></url>
+<url><loc>https://una.rs/tehnologija</loc><priority>0.9</priority></url>
+<url><loc>https://una.rs/zabava</loc><priority>0.9</priority></url>
+<url><loc>https://una.rs/vesti</loc><priority>0.9</priority></url>
+<url><loc>https://una.rs/zivot</loc><priority>0.9</priority></url>
+<url><loc>https://una.rs/vesti/politika</loc><priority>0.8</priority></url>
+<url><loc>https://una.rs/vesti/drustvo</loc><priority>0.8</priority></url>
+<url><loc>https://una.rs/vesti/crna-hronika</loc><priority>0.8</priority></url>
+<url><loc>https://una.rs/vesti/region</loc><priority>0.8</priority></url>
+<url><loc>https://una.rs/vesti/svet</loc><priority>0.8</priority></url>
+<url><loc>https://una.rs/vesti/kultura</loc><priority>0.8</priority></url>
+<url><loc>https://una.rs/zivot/zdravlje</loc><priority>0.8</priority></url>
+<url><loc>https://una.rs/zivot/prakticno</loc><priority>0.8</priority></url>
+<url><loc>https://una.rs/zivot/zanimljivosti</loc><priority>0.8</priority></url>
+<url><loc>https://una.rs/program</loc><priority>0.8</priority></url>
+<url><loc>https://unaworld.tv/</loc><priority>0.6</priority></url>
+</urlset>
