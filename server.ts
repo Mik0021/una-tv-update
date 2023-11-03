@@ -13,7 +13,8 @@ import { AppServerModule } from './src/main.server';
 export function app(): express.Express {
   const server = express();
   // const distFolder = join(process.cwd(), '/dist/');
-  const distFolder = join(process.cwd(), '../');
+  // const distFolder = join(process.cwd(), '../');
+  const distFolder = join(process.cwd(), environment.APP_SERVER_DIST_FOLDER);
   const indexHtml = existsSync(join(distFolder, 'index.original.html'))
     ? 'index.original.html'
     : 'index';
@@ -52,8 +53,9 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = environment.APP_PORT;
+  // const port = environment.APP_PORT;
   // const port = process.env['PORT'] || 4000;
+  const port = environment.APP_PORT || process.env['PORT'] || 4000;
   // Start up the Node server
   const server = app();
   server.listen(port, () => {

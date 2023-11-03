@@ -21,6 +21,7 @@ export const environment = {
   APP_SHARE: 'Podijeli',
   APP_LANG: 'hr',
   APP_HOME_META_TITLE: 'UNA TV Bosna i Hercegovina',
+  APP_SERVER_DIST_FOLDER: '../',
   APP_HOME_META_DESCRIPTION:
     'Na portalu UNA TV možete pronaći najnovije informacije iz zemlje i svijeta. Politika, društvo, ekonomija, zabava, sport - sve na jednom mjestu!',
   APP_HOME_META_KEYWORDS:
