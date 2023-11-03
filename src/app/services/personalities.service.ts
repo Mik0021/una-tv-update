@@ -1,6 +1,6 @@
 import { PersonalitySingle } from './../interfaces/personality-single.model';
 import { PersonalityListing } from './../interfaces/personality-listing.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
@@ -19,10 +19,12 @@ export class PersonalitiesService {
   personalityShows$ = this.personalityShows.asObservable();
   constructor(private http: HttpClient) {}
 
-  getPersonalities() {
+  getPersonalities(currPage: number) {
+    let params = new HttpParams().set('per_page', 24).set('page', currPage);
     return this.http
       .get<PersonalityListing>(
-        `${environment.API_UNA}${environment.API_PERSONALITIES}`
+        `${environment.API_UNA}${environment.API_PERSONALITIES}`,
+        { params }
       )
       .subscribe({
         next: (personalityList: PersonalityListing) => {

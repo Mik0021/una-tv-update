@@ -30,6 +30,7 @@ export const environment = {
   APP_FACEBOOK: 'https://www.facebook.com/unatelevizija',
   APP_SHARE: 'Podijeli emisiju',
   APP_LANG: 'sr',
+  APP_SERVER_DIST_FOLDER: '/dist/',
   APP_HOME_META_TITLE: 'UNA TV Bosna i Hercegovina',
   APP_SERVER_DIST_FOLDER: '/dist/',
   APP_HOME_META_DESCRIPTION:

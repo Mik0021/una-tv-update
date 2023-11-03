@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Personality } from './../../interfaces/personality.model';
 import { PersonalityListing } from './../../interfaces/personality-listing.model';
 import { Observable } from 'rxjs';
@@ -22,11 +22,21 @@ export class PersonalityListComponent implements OnInit {
 
   constructor(
     private personalitiesService: PersonalitiesService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params['p'] === undefined) {
+        this.p = 1;
+      } else {
+        this.p = params['p'];
+      }
+      this.personalitiesService.getPersonalities(this.p);
+    });
+  }
 
   ngOnInit(): void {
-    this.personalitiesService.getPersonalities();
+    this.personalitiesService.getPersonalities(this.p);
     this.personalitiesList$.subscribe({
       next: (res: PersonalityListing) => {
         this.personalityList = res.data.tv_personalities;
