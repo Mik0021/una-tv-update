@@ -1,1 +1,221 @@
-<p>quiz-apply works!</p>
+<section class="container px-3 mt-[126px]">
+  <div class="grid grid-cols-5 gap-5">
+    <aside class="col-span-1 hidden lg:block">
+      <a href="" class="sticky top-[130px]"
+        ><img
+          class="w-full h-auto"
+          src="./assets/images/una-kviz-banner-left.jpg"
+          alt=""
+      /></a>
+    </aside>
+    <main class="col-span-5 lg:col-span-3">
+      <div>
+        <a href=""
+          ><img
+            class="w-full h-auto"
+            src="./assets/images/una-kviz-banner-top.jpeg"
+            alt=""
+        /></a>
+      </div>
+      <div class="text-white space-y-5 my-10">
+        <h1 class="font-bold text-4xl">KVIZ JEDNO PITANJE</h1>
+        <p class="text-lg">
+          "Jedno pitanje" nije klasičan kviz! Pored znanja koje je potrebno da
+          se osvoji novčana nagrada, neophodna je intuicija, malo sreće, ali i
+          neizostavna pomoć voditeljke Marije Kilibarde.
+        </p>
+        <p class="text-lg">
+          Pravila su jednostavna: takmičarski par od voditeljke dobija samo
+          jedno pitanje i 16 ponuđenih odgovora, gde će sistemom eliminacije
+          pokušati da dođu do jedinog ispravnog odgovora. Ako takmičarski parovi
+          uspeju da savladaju sve korake koji su pred njima, čeka ih vredna
+          nagrada u iznosu do 10.000 evra.
+        </p>
+        <h2 class="text-2xl font-bold italic">
+          PRAVILA ZA PRIJAVLJIVANJE NA AUDICIJU ZA KVIZ
+        </h2>
+        <p class="text-lg">
+          Za audiciju za učešće u kvizu „Jedno pitanje“, potrebno je da se
+          prijavite u paru, da pošaljete zajednički video u kome nam se
+          predstavljate dalje navedenim pitanjima, da potvrdite da ste dostavili
+          ispravne i tačne podatke, kao i da ste detaljno upoznati sa
+          procedurama i pravilima. Parovi moraju da budu punoletni, a dalje faze
+          audicije podrazumevaju test znanja kroz organizovane zoom intervjue
+          produkcije.
+        </p>
+        <p class="text-lg">
+          Produkcijski tim će vas kontaktirati i obavestiti o daljem toku
+          audicije, ako se budete plasirali u naredne krugove. Produkcija TV Una
+          zadržava pravo izbora učesnika. Finalni broj parova koji je potreban
+          za snimanje kviza je ograničen. Snimanje kviza se realizuje u
+          Beogradu.
+        </p>
+      </div>
+      <form
+        class="border border-blue border-solid py-3 lg:py-6 px-4 lg:px-8 apply-form"
+        [formGroup]="quizForm"
+        (ngSubmit)="submit()"
+      >
+        <h2 class="font-semibold text-blue text-2xl mb-5">Prijava na kviz:</h2>
+        <div class="px-2.5 lg:px-5 py-2 lg:py-4 bg-[#d9d9d9] mb-8">
+          <p class="text-sm text-[#4E4E55] mb-2">
+            Video ne sme da bude veći od 500 MB, što odgovara video snimku
+            dužine do četiri minuta. Zajednički video treba da sadrži kratko
+            predstavljanje vas i vašeg odnosa, kao i kratku anegdotu iz vašeg
+            života. Prijavu na sajtu podnosi jedan kandidat uz podrazumevanu
+            saglasnost svog para. Ukoliko se vaš par dobro pokaže i bude
+            selektovan za naredne krugove audicije, neophodno je potpisivanje
+            saglasnosti oba potencijalna učesnika. Kako biste se prijavili na
+            audiciju, obavezno je da popunite sva navedena polja, okačite video
+            i klikom na „Uslovi i pravila audicije i kviza“ potvrdite da ste
+            saglasni sa svim gore navedenim.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-[30px]">
+          <div class="col-span-2 lg:col-span-1">
+            <input
+              class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
+              type="text"
+              placeholder="Ime i Prezime"
+              formControlName="name"
+            />
+          </div>
+          <div class="col-span-2 lg:col-span-1">
+            <input
+              class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
+              type="text"
+              placeholder="Datum rođenja"
+              formControlName="birthDate"
+              onfocus="(this.type='date')"
+            />
+          </div>
+          <div class="col-span-2 lg:col-span-1">
+            <input
+              class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
+              type="text"
+              placeholder="Mesto stanovanja"
+              formControlName="residency"
+            />
+          </div>
+          <div class="col-span-2 lg:col-span-1">
+            <input
+              class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
+              type="text"
+              placeholder="Zanimanje"
+              formControlName="ocupation"
+            />
+          </div>
+          <div class="col-span-2">
+            <div class="flex">
+              <p class="font-semibold text-white mr-4 sm:mr-16">
+                Da li ste do sada učestvovali u nekom kvizu?
+              </p>
+              <div class="flex gap-5 flex-wrap sm:flex-nowrap">
+                <label class="control control-radio text-white font-semibold">
+                  <span class="px-4">Da</span>
+                  <input type="radio" name="radio" />
+                  <div class="control_indicator"></div>
+                </label>
+                <label class="control control-radio text-white font-semibold">
+                  <span class="px-4">Ne</span>
+                  <input type="radio" name="radio" />
+                  <div class="control_indicator"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-span-2">
+            <input
+              class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
+              type="text"
+              placeholder="Ukoliko jeste, u kom i kada? "
+              formControlName="otherQuizes"
+            />
+          </div>
+          <div class="col-span-2 lg:col-span-1">
+            <input
+              class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
+              type="text"
+              placeholder="Broj telefona"
+              formControlName="phone"
+            />
+          </div>
+          <div class="col-span-2 lg:col-span-1">
+            <input
+              class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
+              type="email"
+              placeholder="E-mail adresa"
+              formControlName="email"
+            />
+          </div>
+          <div class="col-span-2"></div>
+        </div>
+        <div class="px-2.5 lg:px-5 py-2 lg:py-4 bg-[#d9d9d9] mb-8">
+          <p class="font-bold">NAPOMENA: Slanjem ove prijave potvrđujete:</p>
+          <ul class="text-sm text-[#4E4E55] list-disc ml-6">
+            <li>
+              da ispunjavate sve navedene uslove za prijavljivanje na audiciju
+              za kviz
+            </li>
+            <li>da ste lično poslali prijavu,</li>
+            <li>da su svi dostavljeni podaci tačni,</li>
+            <li>
+              da prihvatate pravila kviza odnosno pravila audicije za kviz
+              (Opšta pravila i uslove prijave za kviz),
+            </li>
+            <li>
+              da ste se detaljno upoznali, te da dajete pristanak za obradu
+              podataka o ličnosti u skladu sa Obaveštenjem o obradi podataka.
+            </li>
+            <li>
+              da se i drugo lice - koje se zajedno sa vama prijavljuje detaljno
+              upoznalo i prihvatilo pravila kviza, odnosno pravila audicije za
+              kviz, kao i da se detaljno upoznalo i pristaje na obradu podataka
+              o ličnosti u skladu sa Obaveštenjem o obradi podataka.
+            </li>
+          </ul>
+        </div>
+        <div class="mb-5">
+          <label class="control control-radio">
+            <span class="px-4 text-white block"
+              >Saglasan sam sa
+              <strong class="font-extrabold"
+                >Pravilima audicije za kviz i pravilima kviza
+              </strong>
+            </span>
+            <input type="radio" name="radio" />
+            <div class="control_indicator"></div>
+          </label>
+        </div>
+        <div class="mb-5">
+          <label class="control control-radio">
+            <span class="px-4 text-white block"
+              >Saglasan sam sa
+              <strong class="font-extrabold"
+                >Obradom podataka o ličnosti učesnika audicije za kviz
+              </strong>
+            </span>
+            <input type="radio" name="radio" />
+            <div class="control_indicator"></div>
+          </label>
+        </div>
+        <div class="text-center mb-6">
+          <button
+            type="submit"
+            class="font-bold text-base text-black-strong px-1.5 py-2.5 bg-blue rounded disabled:opacity-80 w-36"
+          >
+            Prijavi se
+          </button>
+        </div>
+      </form>
+    </main>
+    <aside class="col-span-1 hidden lg:block">
+      <a href="" class="sticky top-[130px]"
+        ><img
+          class="w-full h-auto"
+          src="./assets/images/una-kviz-banner-right.jpg"
+          alt=""
+      /></a>
+    </aside>
+  </div>
+</section>
