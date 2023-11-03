@@ -83,6 +83,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
   },
+  { path: 'prijava-za-kviz', loadChildren: () => import('./pages/quiz-apply/quiz-apply.module').then(m => m.QuizApplyModule) },
 
   {
     path: '**',

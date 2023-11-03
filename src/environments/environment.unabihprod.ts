@@ -20,7 +20,6 @@ export const environment = {
   APP_FACEBOOK: 'https://www.facebook.com/Unaworld-BIH-110454274959233/',
   APP_SHARE: 'Podijeli',
   APP_LANG: 'hr',
-  APP_SERVER_DIST_FOLDER: '/dist/',
   APP_HOME_META_TITLE: 'UNA TV Bosna i Hercegovina',
   APP_SERVER_DIST_FOLDER: '../',
   APP_HOME_META_DESCRIPTION:
