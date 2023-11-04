@@ -72,15 +72,21 @@
           </p>
         </div>
         <div class="grid grid-cols-2 gap-[30px]">
-          <div class="col-span-2 lg:col-span-1">
+          <div class="col-span-2 lg:col-span-1 relative">
             <input
               class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
               placeholder="Ime i Prezime"
               formControlName="name"
             />
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="name.hasError('required') && name.touched"
+            >
+              Ime i prezime su obavezni.
+            </p>
           </div>
-          <div class="col-span-2 lg:col-span-1">
+          <div class="col-span-2 lg:col-span-1 relative">
             <input
               class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
@@ -88,22 +94,40 @@
               formControlName="birthDate"
               onfocus="(this.type='date')"
             />
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="birthDate.hasError('required') && birthDate.touched"
+            >
+              Datum rođenja je obavezan.
+            </p>
           </div>
-          <div class="col-span-2 lg:col-span-1">
+          <div class="col-span-2 lg:col-span-1 relative">
             <input
               class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
               placeholder="Mesto stanovanja"
               formControlName="residency"
             />
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="residency.hasError('required') && residency.touched"
+            >
+              Mesto stanovanja je obavezno.
+            </p>
           </div>
-          <div class="col-span-2 lg:col-span-1">
+          <div class="col-span-2 lg:col-span-1 relative">
             <input
               class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
               placeholder="Zanimanje"
               formControlName="ocupation"
             />
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="ocupation.hasError('required') && ocupation.touched"
+            >
+              Zanimanje je obavezno.
+            </p>
           </div>
           <div class="col-span-2">
             <div class="flex">
@@ -113,40 +137,72 @@
               <div class="flex gap-5 flex-wrap sm:flex-nowrap">
                 <label class="control control-radio text-white font-semibold">
                   <span class="px-4">Da</span>
-                  <input type="radio" name="radio" />
+                  <input
+                    type="radio"
+                    formControlName="otherQuizesCheck"
+                    value="true"
+                  />
                   <div class="control_indicator"></div>
                 </label>
                 <label class="control control-radio text-white font-semibold">
                   <span class="px-4">Ne</span>
-                  <input type="radio" name="radio" />
+                  <input
+                    type="radio"
+                    formControlName="otherQuizesCheck"
+                    value="false"
+                  />
                   <div class="control_indicator"></div>
                 </label>
               </div>
             </div>
           </div>
-          <div class="col-span-2">
+          <div class="col-span-2 relative">
             <input
-              class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
+              class="w-full font-semibold disabled:opacity-70 text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
               placeholder="Ukoliko jeste, u kom i kada? "
               formControlName="otherQuizes"
             />
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="otherQuizes.hasError('required') && otherQuizes.touched"
+            >
+              Ako ste učestvovali u drugim kvzovima napišite u kojim i kada.
+            </p>
           </div>
-          <div class="col-span-2 lg:col-span-1">
+          <div class="col-span-2 lg:col-span-1 relative">
             <input
               class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="tel"
               placeholder="Broj telefona"
               formControlName="phone"
             />
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="phone.hasError('required') && phone.touched"
+            >
+              Broj telefona je obavezan.
+            </p>
           </div>
-          <div class="col-span-2 lg:col-span-1">
+          <div class="col-span-2 lg:col-span-1 relative">
             <input
               class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="email"
               placeholder="E-mail adresa"
               formControlName="email"
             />
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="email.hasError('required') && email.touched"
+            >
+              E-mail adresa je obavezna.
+            </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="email.hasError('email') && email.touched"
+            >
+              E-mail adresa je neispravna.
+            </p>
           </div>
           <div class="col-span-2">
             <div
@@ -190,7 +246,7 @@
             </li>
           </ul>
         </div>
-        <div class="mb-5">
+        <div class="mb-5 relative">
           <label class="control control-radio">
             <span class="px-4 text-white block"
               >Saglasan sam sa
@@ -198,11 +254,17 @@
                 >Pravilima audicije za kviz i pravilima kviza
               </strong>
             </span>
-            <input type="checkbox" />
+            <input type="checkbox" formControlName="auditionRules" />
             <div class="control_indicator"></div>
           </label>
+          <p
+            class="absolute top-full text-[#F82F2F] text-sm"
+            *ngIf="auditionRules.hasError('required') && auditionRules.touched"
+          >
+            Morate se složiti sa Pravilima audicije za kviz i pravilima kviza.
+          </p>
         </div>
-        <div class="mb-5">
+        <div class="mb-5 relative">
           <label class="control control-radio">
             <span class="px-4 text-white block"
               >Saglasan sam sa
@@ -210,16 +272,29 @@
                 >Obradom podataka o ličnosti učesnika audicije za kviz
               </strong>
             </span>
-            <input type="checkbox" />
+            <input type="checkbox" formControlName="dataPrivacy" />
             <div class="control_indicator"></div>
           </label>
+          <p
+            class="absolute top-full text-[#F82F2F] text-sm"
+            *ngIf="dataPrivacy.hasError('required') && dataPrivacy.touched"
+          >
+            Morate se složiti sa Obradom podataka o ličnosti učesnika adudicije
+            za kviz.
+          </p>
         </div>
-        <div class="text-center mb-6">
+        <div class="text-center mb-6 pt-8 relative">
+          <p
+            class="absolute top-1 left-1/2 -translate-x-1/2 text-[#F82F2F] text-sm"
+            *ngIf="quizForm.invalid && quizForm.touched"
+          >
+            Molimo Vas popunite sva polja u formi!
+          </p>
           <button
             type="submit"
             class="font-bold text-base text-black-strong px-1.5 py-2.5 bg-blue rounded disabled:opacity-80 w-36"
           >
-            PRIJAVI SE
+            PRIJAVI SE {{ quizForm.valid }}
           </button>
         </div>
       </form>

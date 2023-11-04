@@ -5,10 +5,22 @@
       color: #89898c;
     }
     &:invalid {
-      border-color: red;
+      border-color: #f82f2f;
       &::placeholder {
-        color: red;
+        color: #f82f2f;
       }
+    }
+  }
+  .ng-touched.ng-invalid {
+    border-color: #f82f2f;
+    &::placeholder {
+      color: #f82f2f;
+    }
+    &:focus-visible,
+    &:focus {
+      outline: 1px solid #f82f2f;
+      --webkit-focus-ring-color: #f82f2f !important;
+      box-shadow: none;
     }
   }
 }
@@ -55,6 +67,10 @@
   opacity: 0.6;
   pointer-events: none;
 }
+.control input.ng-touched.ng-invalid ~ .control_indicator {
+  background: #f82f2f;
+}
+
 .control_indicator:after {
   box-sizing: unset;
   content: '';
