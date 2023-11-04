@@ -281,6 +281,9 @@
               <p
                 class="absolute top-full text-[#F82F2F] text-sm"
                 *ngIf="videoSizeError"
+                [ngClass]="{
+                  'top-[80px]': video.hasError('required') && video.touched
+                }"
               >
                 Maksimalna veličina video snimka je 500MB
               </p>
