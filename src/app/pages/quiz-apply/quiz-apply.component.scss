@@ -25,6 +25,13 @@
   }
 }
 
+.custom-input {
+  border: 3px solid #c8f1ff;
+}
+.custom-input-invalid {
+  border: 3px solid #f82f2f;
+}
+
 .control {
   font-family: arial;
   display: block;
