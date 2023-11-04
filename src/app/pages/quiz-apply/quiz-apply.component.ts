@@ -1,5 +1,15 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+} from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { finalize, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-quiz-apply',
@@ -59,9 +69,17 @@ export class QuizApplyComponent implements OnInit, AfterViewInit {
     return this.quizForm.controls.dataPrivacy;
   }
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private recaptchaV3Service: ReCaptchaV3Service,
+    @Inject(DOCUMENT) private _document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private metaService: Meta,
+    private titleService: Title
+  ) {}
 
   ngOnInit(): void {
+    this.addTags();
     this.otherQuizes.disable();
     this.quizForm.valueChanges.subscribe((res) => {
       // console.log(res);
@@ -115,9 +133,63 @@ export class QuizApplyComponent implements OnInit, AfterViewInit {
   submit() {
     if (this.quizForm.valid && !this.videoSizeError && !this.videoTypeError) {
       console.log(this.quizForm.value);
+
+      // this.recaptchaV3Service
+      // .execute('importantAction')
+      // .pipe(
+      //   switchMap((token) => {
+      //     return this.postService.addComment(
+      //       this.postId,
+      //       this.name.value!,
+      //       this.content.value!,
+      //       token
+      //     );
+      //   })
+      // )
+      // .pipe(
+      //   finalize(() => {
+      //     this.addingComment = false;
+      //   })
+      // )
     } else {
       this.quizForm.markAllAsTouched();
       this.quizForm.updateValueAndValidity();
     }
+  }
+
+  addTags() {
+    // this.titleService.setTitle(environment.APP_TITLE);
+    // this.metaService.updateTag({
+    //   name: 'og:title',
+    //   content: environment.APP_HOME_META_TITLE,
+    // });
+    // this.metaService.updateTag({
+    //   name: 'og:description',
+    //   content: environment.APP_HOME_META_DESCRIPTION,
+    // });
+    // this.metaService.updateTag({
+    //   name: 'og:url',
+    //   content: `${this._document.location.href}`,
+    // });
+    // this.metaService.updateTag({
+    //   name: 'og:type',
+    //   content: 'website',
+    // });
+    // this.metaService.updateTag({
+    //   name: 'og:image',
+    //   content: 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
+    // });
+    // this.metaService.updateTag({
+    //   name: 'description',
+    //   content: environment.APP_HOME_META_DESCRIPTION,
+    // });
+    // this.metaService.updateTag({
+    //   name: 'keywords',
+    //   content: environment.APP_HOME_META_KEYWORDS,
+    // });
+    // this.metaService.addTag({
+    //   name: 'google-site-verification',
+    //   content: environment.APP_GOOGLE_VERIFICATION,
+    // });
   }
 }

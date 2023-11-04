@@ -28,6 +28,7 @@ export const environment = {
   APP_LANG: 'sr',
   APP_HOME_META_TITLE: 'UNA TV',
   APP_SERVER_DIST_FOLDER: '../',
+  APP_RECAPTCHA_PUBLIC_KEY: '',
   APP_HOME_META_DESCRIPTION:
     'Na stranicama UNA TV možete pronaći sve informacije o našem programu, emisijama i licima koja gledate na malim i većim ekranima.',
   APP_HOME_META_KEYWORDS:
