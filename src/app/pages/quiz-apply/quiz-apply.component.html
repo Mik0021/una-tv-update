@@ -205,18 +205,66 @@
             </p>
           </div>
           <div class="col-span-2">
+            <input
+              type="file"
+              #videoUpload
+              class="hidden"
+              accept=".mp4"
+              #filePicker
+              (change)="onFileSelected($event)"
+            />
+
             <div
-              class="flex justify-between items-center font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF]"
+              class="flex justify-between items-center font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] relative"
             >
-              <p>Postavi video snimak</p>
+              <p
+                class="text-ellipsis overflow-hidden whitespace-nowrap text-width"
+              >
+                <ng-container
+                  *ngIf="videoFileName === ''; else videoFileNameTemp"
+                >
+                  Postavi video snimak
+                </ng-container>
+                <ng-template #videoFileNameTemp>
+                  {{ videoFileName }}
+                </ng-template>
+              </p>
+
               <button
+                (click)="onVideoUpload(videoUpload)"
                 type="button"
                 class="font-bold text-base text-[#4E4E55] px-1.5 py-2.5 bg-[#79DDFF] rounded disabled:opacity-80 w-32"
               >
                 Upload
               </button>
+              <p
+                class="absolute top-full text-[#F82F2F] text-sm"
+                *ngIf="videoSizeError"
+              >
+                Maksimalna veličina video snimka je 500MB
+              </p>
+              <p
+                class="absolute top-full text-[#F82F2F] text-sm"
+                *ngIf="videoTypeError"
+              >
+                Dozvoljeni tip fajla je .mp4
+              </p>
+              <p
+                class="absolute top-full text-[#F82F2F] text-sm"
+                *ngIf="video.hasError('required') && video.touched"
+              >
+                Video je obavezan.
+              </p>
             </div>
-            <p class="text-right text-xs font-semibold text-[#FFB23F] mb-5">
+            <p
+              [ngClass]="{
+                invisible:
+                  videoTypeError ||
+                  videoSizeError ||
+                  (video.hasError('required') && video.touched)
+              }"
+              class="text-right text-xs font-semibold text-[#FFB23F] mb-5"
+            >
               Napomena: Maksimalna veličina video snimka je 500MB
             </p>
           </div>

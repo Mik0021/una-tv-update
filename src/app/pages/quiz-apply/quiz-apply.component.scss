@@ -146,3 +146,7 @@
 .control-radio input:checked + .control_indicator::before {
   animation-name: s-ripple-dup;
 }
+
+.text-width {
+  width: calc(100% - 150px);
+}
