@@ -287,6 +287,9 @@
               <p
                 class="absolute top-full text-[#F82F2F] text-sm"
                 *ngIf="videoTypeError"
+                [ngClass]="{
+                  'top-[80px]': video.hasError('required') && video.touched
+                }"
               >
                 Dozvoljeni tip fajla je .mp4
               </p>
@@ -335,7 +338,7 @@
             </li>
           </ul>
         </div>
-        <div class="mb-5 relative">
+        <div class="mb-10 sm:mb-5 relative">
           <label class="control control-radio">
             <span
               class="px-4 text-white block"
@@ -358,7 +361,7 @@
             Morate se složiti sa Pravilima audicije za kviz i pravilima kviza.
           </p>
         </div>
-        <div class="mb-5 relative">
+        <div class="mb-10 sm:mb-5 relative">
           <label class="control control-radio">
             <span
               class="px-4 text-white block"
@@ -382,7 +385,7 @@
             za kviz.
           </p>
         </div>
-        <div class="text-center mb-6 pt-8 relative">
+        <div class="text-center mb-6 pt-14 sm:pt-8 relative">
           <p
             class="absolute top-1 left-1/2 -translate-x-1/2 text-[#F82F2F] text-sm"
             *ngIf="quizForm.invalid && quizForm.touched"
