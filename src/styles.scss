@@ -4,7 +4,7 @@
   font-style: normal;
   font-weight: 100;
   src: local(''),
-    url('./assets/font-unitext/Unitext-Hairline.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-Hairline.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @font-face {
@@ -12,7 +12,7 @@
   font-style: italic;
   font-weight: 100;
   src: local(''),
-    url('./assets/font-unitext/Unitext-HairlineItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-HairlineItalic.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @font-face {
@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 200;
   src: local(''),
-    url('./assets/font-unitext/Unitext-Extralight.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-Extralight.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @font-face {
@@ -28,7 +28,7 @@
   font-style: italic;
   font-weight: 200;
   src: local(''),
-    url('./assets/font-unitext/Unitext-ExtralightItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-ExtralightItalic.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @font-face {
@@ -36,7 +36,7 @@
   font-style: normal;
   font-weight: 300;
   src: local(''),
-    url('./assets/font-unitext/Unitext-Light.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-Light.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @font-face {
@@ -44,7 +44,7 @@
   font-style: italic;
   font-weight: 300;
   src: local(''),
-    url('./assets/font-unitext/Unitext-LightItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-LightItalic.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @font-face {
@@ -52,7 +52,7 @@
   font-style: normal;
   font-weight: 400;
   src: local(''),
-    url('./assets/font-unitext/Unitext-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-Regular.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @font-face {
@@ -60,7 +60,7 @@
   font-style: italic;
   font-weight: 400;
   src: local(''),
-    url('./assets/font-unitext/Unitext-Italic.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-Italic.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @font-face {
@@ -68,7 +68,7 @@
   font-style: normal;
   font-weight: 600;
   src: local(''),
-    url('./assets/font-unitext/Unitext-Semibold.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-Semibold.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @font-face {
@@ -76,7 +76,7 @@
   font-style: italic;
   font-weight: 600;
   src: local(''),
-    url('./assets/font-unitext/Unitext-SemiboldItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-SemiboldItalic.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @font-face {
@@ -84,7 +84,7 @@
   font-style: normal;
   font-weight: 700;
   src: local(''),
-    url('./assets/font-unitext/Unitext-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-Bold.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @font-face {
@@ -92,14 +92,14 @@
   font-style: italic;
   font-weight: 700;
   src: local(''),
-    url('./assets/font-unitext/Unitext-BoldItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-BoldItalic.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 @font-face {
   font-family: 'Unitext';
   font-style: normal;
   font-weight: 900;
   src: local(''),
-    url('./assets/font-unitext/Unitext-Black.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-Black.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @font-face {
@@ -107,7 +107,7 @@
   font-style: italic;
   font-weight: 900;
   src: local(''),
-    url('./assets/font-unitext/Unitext-BlackItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+    url('./assets/font-unitext/Unitext-BlackItalic.woff2') format('woff2'); /* Safari, Android, iOS */
 }
 
 @tailwind base;
