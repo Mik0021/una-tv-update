@@ -158,31 +158,33 @@ export class QuizApplyComponent implements OnInit, AfterViewInit {
   }
 
   addTags() {
-    // this.titleService.setTitle(environment.APP_TITLE);
-    // this.metaService.updateTag({
-    //   name: 'og:title',
-    //   content: environment.APP_HOME_META_TITLE,
-    // });
-    // this.metaService.updateTag({
-    //   name: 'og:description',
-    //   content: environment.APP_HOME_META_DESCRIPTION,
-    // });
-    // this.metaService.updateTag({
-    //   name: 'og:url',
-    //   content: `${this._document.location.href}`,
-    // });
-    // this.metaService.updateTag({
-    //   name: 'og:type',
-    //   content: 'website',
-    // });
-    // this.metaService.updateTag({
-    //   name: 'og:image',
-    //   content: 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
-    // });
-    // this.metaService.updateTag({
-    //   name: 'description',
-    //   content: environment.APP_HOME_META_DESCRIPTION,
-    // });
+    this.titleService.setTitle('UNA televizija kviz');
+    this.metaService.updateTag({
+      name: 'og:title',
+      content: 'UNA televizija kviz',
+    });
+    this.metaService.updateTag({
+      name: 'og:description',
+      content:
+        'Una televizija svojim gledaocima pruža uzbudljiv kviz i mnošto zabave i izazova. Učesnike očekuje i vredna novčana nagrada, a potrebno je da se pored znanja pokaže i intuicija i veštine. ',
+    });
+    this.metaService.updateTag({
+      name: 'og:url',
+      content: `${this._document.location.href}`,
+    });
+    this.metaService.updateTag({
+      name: 'og:type',
+      content: 'website',
+    });
+    this.metaService.updateTag({
+      name: 'og:image',
+      content: `${this._document.location.origin}/assets/images/una-jedno-pitanje-share.jpg`,
+    });
+    this.metaService.updateTag({
+      name: 'description',
+      content:
+        'Una televizija svojim gledaocima pruža uzbudljiv kviz i mnošto zabave i izazova. Učesnike očekuje i vredna novčana nagrada, a potrebno je da se pored znanja pokaže i intuicija i veštine. ',
+    });
     // this.metaService.updateTag({
     //   name: 'keywords',
     //   content: environment.APP_HOME_META_KEYWORDS,
