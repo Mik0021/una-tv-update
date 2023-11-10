@@ -40,8 +40,14 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     phone: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     video: new FormControl<File | null>(null, [Validators.required]),
-    auditionRules: [false, [Validators.required, Validators.requiredTrue]],
-    dataPrivacy: [false, [Validators.required, Validators.requiredTrue]],
+    agreed_to_audition_rules: [
+      false,
+      [Validators.required, Validators.requiredTrue],
+    ],
+    agreed_with_the_processing_of_personal_data: [
+      false,
+      [Validators.required, Validators.requiredTrue],
+    ],
   });
 
   get name() {
@@ -71,11 +77,11 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   get video() {
     return this.quizForm.controls.video;
   }
-  get auditionRules() {
-    return this.quizForm.controls.auditionRules;
+  get agreed_to_audition_rules() {
+    return this.quizForm.controls.agreed_to_audition_rules;
   }
-  get dataPrivacy() {
-    return this.quizForm.controls.dataPrivacy;
+  get agreed_with_the_processing_of_personal_data() {
+    return this.quizForm.controls.agreed_with_the_processing_of_personal_data;
   }
 
   constructor(
@@ -125,7 +131,9 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onFileSelected(event: Event) {
-    const video: FileList | null = (event.target as HTMLInputElement).files;
+    let video: FileList | null = null;
+    video = (event.target as HTMLInputElement).files;
+    // console.log(video);
     if (video !== null) {
       if (video.length > 0) {
         // console.log(video[0]);
@@ -161,6 +169,8 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
         phone: this.phone.value!,
         email: this.email.value!,
         occupation: this.occupation.value!,
+        agreed_to_audition_rules: '1',
+        agreed_with_the_processing_of_personal_data: '1',
       };
 
       // this.recaptchaV3Service
@@ -192,11 +202,15 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
             this.quizForm.reset();
             this.progress = 0;
             this.uploadSuccess = true;
+            this.videoSizeError = false;
+            this.videoTypeError = false;
+            this.videoFileName = '';
             if (event.status === 201) {
             }
           }
         },
         error: (err) => {
+          this.progress = 0;
           console.log(err);
         },
       });

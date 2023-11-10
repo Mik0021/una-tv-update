@@ -361,19 +361,23 @@
               class="px-4 text-white block"
               [ngClass]="{
                 'text-[#F82F2F]':
-                  auditionRules.hasError('required') && auditionRules.touched
+                  agreed_to_audition_rules.hasError('required') &&
+                  agreed_to_audition_rules.touched
               }"
               >Saglasan sam sa
               <strong class="font-extrabold"
                 >Pravilima audicije za kviz i pravilima kviza
               </strong>
             </span>
-            <input type="checkbox" formControlName="auditionRules" />
+            <input type="checkbox" formControlName="agreed_to_audition_rules" />
             <div class="control_indicator"></div>
           </label>
           <p
             class="absolute top-full text-[#F82F2F] text-sm"
-            *ngIf="auditionRules.hasError('required') && auditionRules.touched"
+            *ngIf="
+              agreed_to_audition_rules.hasError('required') &&
+              agreed_to_audition_rules.touched
+            "
           >
             Morate se složiti sa Pravilima audicije za kviz i pravilima kviza.
           </p>
@@ -384,19 +388,28 @@
               class="px-4 text-white block"
               [ngClass]="{
                 'text-[#F82F2F]':
-                  dataPrivacy.hasError('required') && dataPrivacy.touched
+                  agreed_with_the_processing_of_personal_data.hasError(
+                    'required'
+                  ) && agreed_with_the_processing_of_personal_data.touched
               }"
               >Saglasan sam sa
               <strong class="font-extrabold"
                 >Obradom podataka o ličnosti učesnika audicije za kviz
               </strong>
             </span>
-            <input type="checkbox" formControlName="dataPrivacy" />
+            <input
+              type="checkbox"
+              formControlName="agreed_with_the_processing_of_personal_data"
+            />
             <div class="control_indicator"></div>
           </label>
           <p
             class="absolute top-full text-[#F82F2F] text-sm"
-            *ngIf="dataPrivacy.hasError('required') && dataPrivacy.touched"
+            *ngIf="
+              agreed_with_the_processing_of_personal_data.hasError(
+                'required'
+              ) && agreed_with_the_processing_of_personal_data.touched
+            "
           >
             Morate se složiti sa Obradom podataka o ličnosti učesnika adudicije
             za kviz.
@@ -411,9 +424,9 @@
           </p>
           <p
             class="absolute top-1 left-1/2 -translate-x-1/2 text-[#45fd00] text-sm"
-            *ngIf="uploadSuccess"
+            *ngIf="uploadSuccess && !quizForm.touched"
           >
-            Uspjesno ste se prijavili. Hvala na prijavi.
+            Uspesno ste se prijavili. Hvala na prijavi.
           </p>
           <button
             type="submit"
