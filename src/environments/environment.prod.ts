@@ -19,6 +19,7 @@ export const environment = {
   API_TV_PROGRAM: '/tv/program-schemas',
   API_TV_PROGRAM_BIH: 'https://una-test-api-ba.ha.rs/api/v1/tv/program-schemas',
   API_TV_IS_SUBCATEGORY: '/tv/categories/is-child',
+  API_QUIZ: '/quiz-requests',
   APP_PORT: 3030,
   APP_TITLE: 'UnaTV developmnent',
   APP_GOOGLE_VERIFICATION: 'gLhpy8ZQ3YtQgWlE0IIN8-dPVDrwMri7u2jabN5Ci64',

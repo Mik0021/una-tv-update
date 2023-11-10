@@ -91,12 +91,12 @@
               class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
               placeholder="Datum rođenja"
-              formControlName="birthDate"
+              formControlName="dob"
               onfocus="(this.type='date')"
             />
             <p
               class="absolute top-full text-[#F82F2F] text-sm"
-              *ngIf="birthDate.hasError('required') && birthDate.touched"
+              *ngIf="dob.hasError('required') && dob.touched"
             >
               Datum rođenja je obavezan.
             </p>
@@ -106,11 +106,14 @@
               class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
               placeholder="Mesto stanovanja"
-              formControlName="residency"
+              formControlName="place_of_residence"
             />
             <p
               class="absolute top-full text-[#F82F2F] text-sm"
-              *ngIf="residency.hasError('required') && residency.touched"
+              *ngIf="
+                place_of_residence.hasError('required') &&
+                place_of_residence.touched
+              "
             >
               Mesto stanovanja je obavezno.
             </p>
@@ -120,11 +123,11 @@
               class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
               placeholder="Zanimanje"
-              formControlName="ocupation"
+              formControlName="occupation"
             />
             <p
               class="absolute top-full text-[#F82F2F] text-sm"
-              *ngIf="ocupation.hasError('required') && ocupation.touched"
+              *ngIf="occupation.hasError('required') && occupation.touched"
             >
               Zanimanje je obavezno.
             </p>
@@ -135,8 +138,8 @@
                 class="font-semibold text-white mr-4 sm:mr-16"
                 [ngClass]="{
                   'text-[#F82F2F]':
-                    otherQuizesCheck.hasError('required') &&
-                    otherQuizesCheck.touched
+                    already_participated.hasError('required') &&
+                    already_participated.touched
                 }"
               >
                 Da li ste do sada učestvovali u nekom kvizu?
@@ -147,15 +150,15 @@
                     class="px-4"
                     [ngClass]="{
                       'text-[#F82F2F]':
-                        otherQuizesCheck.hasError('required') &&
-                        otherQuizesCheck.touched
+                        already_participated.hasError('required') &&
+                        already_participated.touched
                     }"
                     >Da</span
                   >
                   <input
                     type="radio"
-                    formControlName="otherQuizesCheck"
-                    value="true"
+                    formControlName="already_participated"
+                    value="1"
                   />
                   <div class="control_indicator"></div>
                 </label>
@@ -164,15 +167,15 @@
                     class="px-4"
                     [ngClass]="{
                       'text-[#F82F2F]':
-                        otherQuizesCheck.hasError('required') &&
-                        otherQuizesCheck.touched
+                        already_participated.hasError('required') &&
+                        already_participated.touched
                     }"
                     >Ne</span
                   >
                   <input
                     type="radio"
-                    formControlName="otherQuizesCheck"
-                    value="false"
+                    formControlName="already_participated"
+                    value="0"
                   />
                   <div class="control_indicator"></div>
                 </label>
@@ -184,11 +187,14 @@
               class="w-full font-semibold disabled:opacity-70 text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
               placeholder="Ukoliko jeste, u kom i kada? "
-              formControlName="otherQuizes"
+              formControlName="already_participated_description"
             />
             <p
               class="absolute top-full text-[#F82F2F] text-sm"
-              *ngIf="otherQuizes.hasError('required') && otherQuizes.touched"
+              *ngIf="
+                already_participated_description.hasError('required') &&
+                already_participated_description.touched
+              "
             >
               Ako ste učestvovali u drugim kvzovima napišite u kojim i kada.
             </p>
@@ -401,6 +407,10 @@
           >
             PRIJAVI SE
           </button>
+          <div class="upload-progress mt-4 flex justify-center items-center">
+            <progress value="70" max="100">70 %</progress>
+            <span class="text-blue font-semibold align-middle ml-2">70 %</span>
+          </div>
         </div>
       </form>
     </main>

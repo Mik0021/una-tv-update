@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   Component,
   Inject,
+  OnDestroy,
   OnInit,
   PLATFORM_ID,
 } from '@angular/core';
@@ -10,24 +11,28 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { finalize, switchMap } from 'rxjs';
+import { QuizUpload } from 'src/app/interfaces/quiz-upload.model';
+import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
   selector: 'app-quiz-apply',
   templateUrl: './quiz-apply.component.html',
   styleUrls: ['./quiz-apply.component.scss'],
 })
-export class QuizApplyComponent implements OnInit, AfterViewInit {
+export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   videoTypeError = false;
   videoSizeError = false;
   videoFileName = '';
 
   quizForm = this.formBuilder.group({
     name: ['', [Validators.required]],
-    birthDate: ['', [Validators.required]],
-    residency: ['', [Validators.required]],
-    ocupation: ['', [Validators.required]],
-    otherQuizesCheck: ['', [Validators.required]],
-    otherQuizes: [''],
+    dob: ['', [Validators.required]],
+    place_of_residence: ['', [Validators.required]],
+    occupation: ['', [Validators.required]],
+    already_participated: new FormControl<'0' | '1' | null>(null, [
+      Validators.required,
+    ]),
+    already_participated_description: [''],
     phone: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     video: new FormControl<File | null>(null, [Validators.required]),
@@ -38,20 +43,20 @@ export class QuizApplyComponent implements OnInit, AfterViewInit {
   get name() {
     return this.quizForm.controls.name;
   }
-  get birthDate() {
-    return this.quizForm.controls.birthDate;
+  get dob() {
+    return this.quizForm.controls.dob;
   }
-  get residency() {
-    return this.quizForm.controls.residency;
+  get place_of_residence() {
+    return this.quizForm.controls.place_of_residence;
   }
-  get ocupation() {
-    return this.quizForm.controls.ocupation;
+  get occupation() {
+    return this.quizForm.controls.occupation;
   }
-  get otherQuizesCheck() {
-    return this.quizForm.controls.otherQuizesCheck;
+  get already_participated() {
+    return this.quizForm.controls.already_participated;
   }
-  get otherQuizes() {
-    return this.quizForm.controls.otherQuizes;
+  get already_participated_description() {
+    return this.quizForm.controls.already_participated_description;
   }
   get phone() {
     return this.quizForm.controls.phone;
@@ -75,28 +80,33 @@ export class QuizApplyComponent implements OnInit, AfterViewInit {
     @Inject(DOCUMENT) private _document: Document,
     @Inject(PLATFORM_ID) private platformId: Object,
     private metaService: Meta,
-    private titleService: Title
+    private titleService: Title,
+    private quizService: QuizService
   ) {}
 
   ngOnInit(): void {
     this.addTags();
-    this.otherQuizes.disable();
+    this.already_participated_description.disable();
     this.quizForm.valueChanges.subscribe((res) => {
       // console.log(res);
     });
   }
 
   ngAfterViewInit(): void {
-    this.otherQuizesCheck.valueChanges.subscribe({
+    this.already_participated.valueChanges.subscribe({
       next: (res) => {
-        if (res === 'true') {
-          this.otherQuizes.enable();
-          this.otherQuizes.setValidators([Validators.required]);
-          this.otherQuizes.updateValueAndValidity();
+        if (res === '1') {
+          this.already_participated_description.enable();
+          this.already_participated_description.setValidators([
+            Validators.required,
+          ]);
+          this.already_participated_description.updateValueAndValidity();
         }
-        if (res === 'false') {
-          this.otherQuizes.removeValidators([Validators.required]);
-          this.otherQuizes.disable();
+        if (res === '0') {
+          this.already_participated_description.removeValidators([
+            Validators.required,
+          ]);
+          this.already_participated_description.disable();
         }
       },
     });
@@ -133,6 +143,18 @@ export class QuizApplyComponent implements OnInit, AfterViewInit {
   submit() {
     if (this.quizForm.valid && !this.videoSizeError && !this.videoTypeError) {
       console.log(this.quizForm.value);
+      const quizData: QuizUpload = {
+        recaptcha_response: '123',
+        name: this.name.value!,
+        dob: this.dob.value!,
+        place_of_residence: this.place_of_residence.value!,
+        already_participated: this.already_participated.value!,
+        already_participated_description:
+          this.already_participated_description.value!,
+        phone: this.phone.value!,
+        email: this.email.value!,
+        occupation: this.occupation.value!,
+      };
 
       // this.recaptchaV3Service
       // .execute('importantAction')
@@ -151,6 +173,15 @@ export class QuizApplyComponent implements OnInit, AfterViewInit {
       //     this.addingComment = false;
       //   })
       // )
+
+      this.quizService.uploadVideo(quizData, this.video.value!).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
     } else {
       this.quizForm.markAllAsTouched();
       this.quizForm.updateValueAndValidity();
@@ -193,5 +224,9 @@ export class QuizApplyComponent implements OnInit, AfterViewInit {
     //   name: 'google-site-verification',
     //   content: environment.APP_GOOGLE_VERIFICATION,
     // });
+  }
+
+  ngOnDestroy(): void {
+    // throw new Error('Method not implemented.');
   }
 }
