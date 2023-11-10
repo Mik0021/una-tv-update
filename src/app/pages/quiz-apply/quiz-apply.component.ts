@@ -160,6 +160,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   submit() {
     if (this.quizForm.valid && !this.videoSizeError && !this.videoTypeError) {
+      this.quizForm.disable();
       console.log(this.quizForm.value);
       const quizData: QuizUpload = {
         recaptcha_response: '123',
@@ -194,29 +195,36 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
       //   })
       // )
 
-      this.quizService.uploadVideo(quizData, this.video.value!).subscribe({
-        next: (event: HttpEvent<any>) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            console.log(event);
-            this.progress = Math.round((event.loaded / event.total!) * 100);
-          }
-          if (event.type === HttpEventType.Response) {
-            console.log(event);
-            this.quizForm.reset();
-            this.progress = 0;
-            this.uploadSuccess = true;
-            this.videoSizeError = false;
-            this.videoTypeError = false;
-            this.videoFileName = '';
-            if (event.status === 201) {
+      this.quizService
+        .uploadVideo(quizData, this.video.value!)
+        .pipe(
+          finalize(() => {
+            this.quizForm.enable();
+          })
+        )
+        .subscribe({
+          next: (event: HttpEvent<any>) => {
+            if (event.type === HttpEventType.UploadProgress) {
+              console.log(event);
+              this.progress = Math.round((event.loaded / event.total!) * 100);
             }
-          }
-        },
-        error: (err) => {
-          this.progress = 0;
-          console.log(err);
-        },
-      });
+            if (event.type === HttpEventType.Response) {
+              console.log(event);
+              this.quizForm.reset();
+              this.progress = 0;
+              this.uploadSuccess = true;
+              this.videoSizeError = false;
+              this.videoTypeError = false;
+              this.videoFileName = '';
+              if (event.status === 201) {
+              }
+            }
+          },
+          error: (err) => {
+            this.progress = 0;
+            console.log(err);
+          },
+        });
     } else {
       this.quizForm.markAllAsTouched();
       this.quizForm.updateValueAndValidity();
