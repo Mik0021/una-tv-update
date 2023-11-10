@@ -23,7 +23,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   videoTypeError = false;
   videoSizeError = false;
   videoFileName = '';
-
+  maxAge = '';
   quizForm = this.formBuilder.group({
     name: ['', [Validators.required]],
     dob: ['', [Validators.required]],
@@ -86,9 +86,12 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.addTags();
+    let today = new Date();
+    today.setTime(today.setFullYear(today.getFullYear() - 18));
+    this.maxAge = today.toISOString().split('T')[0];
     this.already_participated_description.disable();
     this.quizForm.valueChanges.subscribe((res) => {
-      // console.log(res);
+      console.log(res);
     });
   }
 

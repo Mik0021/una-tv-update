@@ -92,6 +92,8 @@
               type="text"
               placeholder="Datum rođenja"
               formControlName="dob"
+              min="1920-01-01"
+              [max]="maxAge"
               onfocus="(this.type='date')"
             />
             <p
