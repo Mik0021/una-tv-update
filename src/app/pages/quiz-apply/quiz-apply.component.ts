@@ -132,6 +132,9 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onFileSelected(event: Event) {
     let video: FileList | null = null;
+    this.videoSizeError = false;
+    this.videoTypeError = false;
+    this.videoFileName = '';
     video = (event.target as HTMLInputElement).files;
     // console.log(video);
     if (video !== null) {
