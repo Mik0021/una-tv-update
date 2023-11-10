@@ -14,6 +14,7 @@ import { finalize, switchMap } from 'rxjs';
 import { QuizUpload } from 'src/app/interfaces/quiz-upload.model';
 import { QuizService } from 'src/app/services/quiz.service';
 import { AgeValidator } from './age.validator';
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-quiz-apply',
@@ -25,6 +26,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   videoSizeError = false;
   videoFileName = '';
   maxAge = '';
+  progress = 0;
   quizForm = this.formBuilder.group({
     name: ['', [Validators.required]],
     dob: ['', [Validators.required, AgeValidator]],
@@ -179,8 +181,11 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
       // )
 
       this.quizService.uploadVideo(quizData, this.video.value!).subscribe({
-        next: (res) => {
-          console.log(res);
+        next: (event: HttpEvent<any>) => {
+          console.log(event);
+          if (event.type === HttpEventType.UploadProgress) {
+            this.progress = Math.round((event.loaded / event.total!) * 100);
+          }
         },
         error: (err) => {
           console.log(err);

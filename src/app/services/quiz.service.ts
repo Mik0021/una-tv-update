@@ -29,6 +29,8 @@ export class QuizService {
 
     return this.http.post(`${environment.API_QUIZ}`, form, {
       params,
+      reportProgress: true,
+      observe: 'events',
     });
   }
 }

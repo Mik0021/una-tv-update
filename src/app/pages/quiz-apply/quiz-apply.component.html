@@ -415,9 +415,14 @@
           >
             PRIJAVI SE
           </button>
-          <div class="upload-progress mt-4 flex justify-center items-center">
-            <progress value="70" max="100">70 %</progress>
-            <span class="text-blue font-semibold align-middle ml-2">70 %</span>
+          <div
+            class="upload-progress mt-4 flex justify-center items-center"
+            *ngIf="progress > 0"
+          >
+            <progress [value]="progress" max="100">{{ progress }} %</progress>
+            <span class="text-blue font-semibold align-middle ml-2"
+              >{{ progress }} %</span
+            >
           </div>
         </div>
       </form>
