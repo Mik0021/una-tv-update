@@ -102,6 +102,12 @@
             >
               Datum rođenja je obavezan.
             </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="dob.hasError('age') && dob.touched"
+            >
+              Morate biti stariji od 18 godina.
+            </p>
           </div>
           <div class="col-span-2 lg:col-span-1 relative">
             <input

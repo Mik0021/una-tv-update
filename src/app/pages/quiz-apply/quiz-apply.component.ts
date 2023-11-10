@@ -13,6 +13,7 @@ import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { finalize, switchMap } from 'rxjs';
 import { QuizUpload } from 'src/app/interfaces/quiz-upload.model';
 import { QuizService } from 'src/app/services/quiz.service';
+import { AgeValidator } from './age.validator';
 
 @Component({
   selector: 'app-quiz-apply',
@@ -26,7 +27,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   maxAge = '';
   quizForm = this.formBuilder.group({
     name: ['', [Validators.required]],
-    dob: ['', [Validators.required]],
+    dob: ['', [Validators.required, AgeValidator]],
     place_of_residence: ['', [Validators.required]],
     occupation: ['', [Validators.required]],
     already_participated: new FormControl<'0' | '1' | null>(null, [
