@@ -27,6 +27,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   videoFileName = '';
   maxAge = '';
   progress = 0;
+  uploadSuccess = false;
   quizForm = this.formBuilder.group({
     name: ['', [Validators.required]],
     dob: ['', [Validators.required, AgeValidator]],
@@ -182,9 +183,17 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.quizService.uploadVideo(quizData, this.video.value!).subscribe({
         next: (event: HttpEvent<any>) => {
-          console.log(event);
           if (event.type === HttpEventType.UploadProgress) {
+            console.log(event);
             this.progress = Math.round((event.loaded / event.total!) * 100);
+          }
+          if (event.type === HttpEventType.Response) {
+            console.log(event);
+            this.quizForm.reset();
+            this.progress = 0;
+            this.uploadSuccess = true;
+            if (event.status === 201) {
+            }
           }
         },
         error: (err) => {
