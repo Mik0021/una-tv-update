@@ -115,12 +115,14 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
           this.already_participated_description.enable();
           this.already_participated_description.setValidators([
             Validators.required,
+            Validators.maxLength(1024),
           ]);
           this.already_participated_description.updateValueAndValidity();
         }
         if (res === '0') {
           this.already_participated_description.removeValidators([
             Validators.required,
+            Validators.maxLength(1024),
           ]);
           this.already_participated_description.disable();
         }

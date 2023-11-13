@@ -29,11 +29,15 @@ export class QuizService {
       form.append('video', file, file.name);
       console.log(params);
 
-      return this.http.post(`${environment.API_QUIZ}`, form, {
-        params,
-        reportProgress: true,
-        observe: 'events',
-      });
+      return this.http.post(
+        `${environment.API_UNA}${environment.API_QUIZ}`,
+        form,
+        {
+          params,
+          reportProgress: true,
+          observe: 'events',
+        }
+      );
     } else {
       const params = new HttpParams()
         .set('recaptcha_response', quizData.recaptcha_response)
@@ -60,11 +64,15 @@ export class QuizService {
       form.append('video', file, file.name);
       console.log(params);
 
-      return this.http.post(`${environment.API_QUIZ}`, form, {
-        params,
-        reportProgress: true,
-        observe: 'events',
-      });
+      return this.http.post(
+        `${environment.API_UNA}${environment.API_QUIZ}`,
+        form,
+        {
+          params,
+          reportProgress: true,
+          observe: 'events',
+        }
+      );
     }
   }
 }
