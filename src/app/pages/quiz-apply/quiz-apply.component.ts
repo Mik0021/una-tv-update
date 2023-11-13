@@ -36,7 +36,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     already_participated: new FormControl<'0' | '1' | null>(null, [
       Validators.required,
     ]),
-    already_participated_description: [''],
+    already_participated_description: [{ value: '', disabled: true }],
     phone: ['', [Validators.required, Validators.maxLength(100)]],
     email: [
       '',
@@ -102,7 +102,6 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     let today = new Date();
     today.setTime(today.setFullYear(today.getFullYear() - 18));
     this.maxAge = today.toISOString().split('T')[0];
-    this.already_participated_description.disable();
     this.quizForm.valueChanges.subscribe((res) => {
       console.log(res);
     });
@@ -206,6 +205,11 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
         .pipe(
           finalize(() => {
             this.quizForm.enable();
+            this.already_participated_description.disable();
+            this.already_participated_description.removeValidators([
+              Validators.required,
+              Validators.maxLength(1024),
+            ]);
           })
         )
         .subscribe({
@@ -222,11 +226,6 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
               this.videoSizeError = false;
               this.videoTypeError = false;
               this.videoFileName = '';
-              this.already_participated_description.removeValidators([
-                Validators.required,
-                Validators.maxLength(1024),
-              ]);
-              this.already_participated_description.disable();
               if (event.status === 201) {
               }
             }
