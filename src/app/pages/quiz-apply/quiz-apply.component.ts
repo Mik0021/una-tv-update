@@ -253,7 +253,12 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
           const invalidControl = this.el.nativeElement.querySelector(
             '[formcontrolname="' + key + '"]'
           );
-          invalidControl.focus();
+          if (invalidControl) {
+            invalidControl.focus();
+          }
+          if (key === 'video') {
+            this.el.nativeElement.querySelector('.video-upload-btn').focus();
+          }
           break;
         }
       }
