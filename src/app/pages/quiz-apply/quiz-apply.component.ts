@@ -131,6 +131,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onVideoUpload(videoUpload: HTMLInputElement) {
+    videoUpload.value = '';
     videoUpload.click();
     this.video.markAsTouched();
   }
@@ -221,6 +222,11 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
               this.videoSizeError = false;
               this.videoTypeError = false;
               this.videoFileName = '';
+              this.already_participated_description.removeValidators([
+                Validators.required,
+                Validators.maxLength(1024),
+              ]);
+              this.already_participated_description.disable();
               if (event.status === 201) {
               }
             }
