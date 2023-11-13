@@ -29,16 +29,19 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   progress = 0;
   uploadSuccess = false;
   quizForm = this.formBuilder.group({
-    name: ['', [Validators.required]],
+    name: ['', [Validators.required, Validators.maxLength(100)]],
     dob: ['', [Validators.required, AgeValidator]],
-    place_of_residence: ['', [Validators.required]],
-    occupation: ['', [Validators.required]],
+    place_of_residence: ['', [Validators.required, Validators.maxLength(100)]],
+    occupation: ['', [Validators.required, Validators.maxLength(100)]],
     already_participated: new FormControl<'0' | '1' | null>(null, [
       Validators.required,
     ]),
     already_participated_description: [''],
-    phone: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
+    phone: ['', [Validators.required, Validators.maxLength(100)]],
+    email: [
+      '',
+      [Validators.required, Validators.email, Validators.maxLength(100)],
+    ],
     video: new FormControl<File | null>(null, [Validators.required]),
     agreed_to_audition_rules: [
       false,

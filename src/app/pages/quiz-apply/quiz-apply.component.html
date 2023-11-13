@@ -85,6 +85,12 @@
             >
               Ime i prezime su obavezni.
             </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="name.hasError('maxlength') && name.touched"
+            >
+              Maksimalan broj karaktera je 100.
+            </p>
           </div>
           <div class="col-span-2 lg:col-span-1 relative">
             <input
@@ -125,6 +131,15 @@
             >
               Mesto stanovanja je obavezno.
             </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="
+                place_of_residence.hasError('maxlength') &&
+                place_of_residence.touched
+              "
+            >
+              Maksimalan broj karaktera je 100.
+            </p>
           </div>
           <div class="col-span-2 lg:col-span-1 relative">
             <input
@@ -138,6 +153,12 @@
               *ngIf="occupation.hasError('required') && occupation.touched"
             >
               Zanimanje je obavezno.
+            </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="occupation.hasError('maxlength') && occupation.touched"
+            >
+              Maksimalan broj karaktera je 100.
             </p>
           </div>
           <div class="col-span-2">
@@ -206,6 +227,15 @@
             >
               Ako ste učestvovali u drugim kvzovima napišite u kojim i kada.
             </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="
+                already_participated_description.hasError('maxlength') &&
+                already_participated_description.touched
+              "
+            >
+              Maksimalan broj karaktera je 1024.
+            </p>
           </div>
           <div class="col-span-2 lg:col-span-1 relative">
             <input
@@ -220,6 +250,12 @@
             >
               Broj telefona je obavezan.
             </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="phone.hasError('maxlength') && phone.touched"
+            >
+              Maksimalan broj karaktera je 100.
+            </p>
           </div>
           <div class="col-span-2 lg:col-span-1 relative">
             <input
@@ -233,6 +269,12 @@
               *ngIf="email.hasError('required') && email.touched"
             >
               E-mail adresa je obavezna.
+            </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="email.hasError('maxlength') && email.touched"
+            >
+              Maksimalan broj karaktera je 100.
             </p>
             <p
               class="absolute top-full text-[#F82F2F] text-sm"
