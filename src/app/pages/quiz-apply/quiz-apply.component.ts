@@ -2,12 +2,18 @@ import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   Component,
+  ElementRef,
   Inject,
   OnDestroy,
   OnInit,
   PLATFORM_ID,
 } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { finalize, switchMap } from 'rxjs';
@@ -94,7 +100,8 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     @Inject(PLATFORM_ID) private platformId: Object,
     private metaService: Meta,
     private titleService: Title,
-    private quizService: QuizService
+    private quizService: QuizService,
+    private el: ElementRef
   ) {}
 
   ngOnInit(): void {
@@ -239,6 +246,17 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.quizForm.markAllAsTouched();
       this.quizForm.updateValueAndValidity();
+      for (const key of Object.keys(this.quizForm.controls)) {
+        if (
+          ((this.quizForm as FormGroup).controls[key] as FormControl).invalid
+        ) {
+          const invalidControl = this.el.nativeElement.querySelector(
+            '[formcontrolname="' + key + '"]'
+          );
+          invalidControl.focus();
+          break;
+        }
+      }
     }
   }
 
