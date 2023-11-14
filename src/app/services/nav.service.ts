@@ -1,7 +1,7 @@
 import { Nav } from 'src/app/interfaces/nav.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, filter, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Pages } from '../interfaces/pages.model';
 
@@ -53,6 +53,20 @@ export class NavService {
   getFooterPages() {
     return this.http
       .get<Pages>(`${environment.API_UNA}${environment.API_PAGES}`)
+      .pipe(
+        map((data) => {
+          data.data = data.data.filter((page) => {
+            return (
+              page.slug !== 'pravila-kviza-i-audicije-za-kviz' &&
+              page.slug !== 'kako-nas-gledati' &&
+              page.slug !==
+                'obavestenje-o-obradi-podataka-o-licnosti-ucesnika-u-audiciji-za-kviz-jedno-pitanje'
+            );
+          });
+
+          return data;
+        })
+      )
       .subscribe((pages: Pages) => {
         pages.data.forEach((e) => {
           e.slug = 'p/' + e.slug;

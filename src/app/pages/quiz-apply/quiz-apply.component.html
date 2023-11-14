@@ -407,9 +407,12 @@
                   agreed_to_audition_rules.touched
               }"
               >Saglasan sam sa
-              <strong class="font-extrabold"
+              <a
+                [routerLink]="['/p/pravila-kviza-i-audicije-za-kviz']"
+                target="_blank"
+                class="font-extrabold"
                 >Pravilima audicije za kviz i pravilima kviza
-              </strong>
+              </a>
             </span>
             <input type="checkbox" formControlName="agreed_to_audition_rules" />
             <div class="control_indicator"></div>
@@ -435,9 +438,14 @@
                   ) && agreed_with_the_processing_of_personal_data.touched
               }"
               >Saglasan sam sa
-              <strong class="font-extrabold"
+              <a
+                [routerLink]="[
+                  '/p/obavestenje-o-obradi-podataka-o-licnosti-ucesnika-u-audiciji-za-kviz-jedno-pitanje'
+                ]"
+                class="font-extrabold"
+                target="_blank"
                 >Obradom podataka o ličnosti učesnika audicije za kviz
-              </strong>
+              </a>
             </span>
             <input
               type="checkbox"
