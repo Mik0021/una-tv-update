@@ -109,9 +109,9 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     let today = new Date();
     today.setTime(today.setFullYear(today.getFullYear() - 18));
     this.maxAge = today.toISOString().split('T')[0];
-    this.quizForm.valueChanges.subscribe((res) => {
-      console.log(res);
-    });
+    // this.quizForm.valueChanges.subscribe((res) => {
+    //   console.log(res);
+    // });
   }
 
   ngAfterViewInit(): void {
@@ -174,7 +174,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   submit() {
     if (this.quizForm.valid && !this.videoSizeError && !this.videoTypeError) {
       this.quizForm.disable();
-      console.log(this.quizForm.value);
+      // console.log(this.quizForm.value);
 
       this.recaptchaV3Service
         .execute('importantAction')
@@ -194,7 +194,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
               agreed_to_audition_rules: '1',
               agreed_with_the_processing_of_personal_data: '1',
             };
-            console.log(quizData);
+            // console.log(quizData);
             return this.quizService.uploadVideo(quizData, this.video.value!);
           })
         )
@@ -211,11 +211,11 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
         .subscribe({
           next: (event: HttpEvent<any>) => {
             if (event.type === HttpEventType.UploadProgress) {
-              console.log(event);
+              // console.log(event);
               this.progress = Math.round((event.loaded / event.total!) * 100);
             }
             if (event.type === HttpEventType.Response) {
-              console.log(event);
+              // console.log(event);
               this.quizForm.reset();
               this.progress = 0;
               this.uploadSuccess = true;
@@ -228,7 +228,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
           },
           error: (err) => {
             this.progress = 0;
-            console.log(err);
+            // console.log(err);
           },
         });
     } else {

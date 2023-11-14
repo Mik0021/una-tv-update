@@ -27,7 +27,7 @@ export class QuizService {
         );
       const form = new FormData();
       form.append('video', file, file.name);
-      console.log(params);
+      // console.log(params);
 
       return this.http.post(
         `${environment.API_UNA}${environment.API_QUIZ}`,
@@ -62,7 +62,7 @@ export class QuizService {
 
       const form = new FormData();
       form.append('video', file, file.name);
-      console.log(params);
+      // console.log(params);
 
       return this.http.post(
         `${environment.API_UNA}${environment.API_QUIZ}`,
