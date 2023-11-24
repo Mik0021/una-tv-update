@@ -255,40 +255,76 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   addTags() {
     this.titleService.setTitle('UNA televizija kviz');
-    this.metaService.updateTag({
-      name: 'og:title',
-      content: 'UNA televizija kviz',
-    });
-    this.metaService.updateTag({
-      name: 'og:description',
-      content:
-        'Una televizija svojim gledaocima pruža uzbudljiv kviz i mnošto zabave i izazova. Učesnike očekuje i vredna novčana nagrada, a potrebno je da se pored znanja pokaže i intuicija i veštine. ',
-    });
-    this.metaService.updateTag({
-      name: 'og:url',
-      content: `${this._document.location.href}`,
-    });
-    this.metaService.updateTag({
-      name: 'og:type',
-      content: 'website',
-    });
-    this.metaService.updateTag({
-      name: 'og:image',
-      content: `${this._document.location.origin}/assets/images/una-jedno-pitanje-share.jpg`,
-    });
+
     this.metaService.updateTag({
       name: 'description',
       content:
-        'Una televizija svojim gledaocima pruža uzbudljiv kviz i mnošto zabave i izazova. Učesnike očekuje i vredna novčana nagrada, a potrebno je da se pored znanja pokaže i intuicija i veštine. ',
+        'Una televizija svojim gledaocima pruža uzbudljiv kviz i mnošto zabave i izazova. Učesnike očekuje i vredna novčana nagrada, a potrebno je da se pored znanja pokaže i intuicija i veštine.',
     });
-    // this.metaService.updateTag({
-    //   name: 'keywords',
-    //   content: environment.APP_HOME_META_KEYWORDS,
-    // });
-    // this.metaService.addTag({
-    //   name: 'google-site-verification',
-    //   content: environment.APP_GOOGLE_VERIFICATION,
-    // });
+    this.metaService.updateTag({
+      name: 'keywords',
+      content: 'UNA, kviz, jedno pitanje, una televizija',
+    });
+
+    this.metaService.updateTag({
+      property: 'og:title',
+      content: 'UNA televizija kviz',
+    });
+    this.metaService.updateTag({
+      property: 'og:description',
+      content:
+        'Una televizija svojim gledaocima pruža uzbudljiv kviz i mnošto zabave i izazova. Učesnike očekuje i vredna novčana nagrada, a potrebno je da se pored znanja pokaže i intuicija i veštine.',
+    });
+    this.metaService.updateTag({
+      property: 'og:image',
+      content: `${this._document.location.origin}/assets/images/una-jedno-pitanje-share.jpg`,
+    });
+    this.metaService.updateTag({
+      property: 'og:image:width',
+      content: '1920',
+    });
+    this.metaService.updateTag({
+      property: 'og:image:height',
+      content: '1080',
+    });
+    this.metaService.updateTag({
+      property: 'og:url',
+      content: `${this._document.location.href}`,
+    });
+    this.metaService.updateTag({
+      property: 'og:type',
+      content: 'website',
+    });
+
+    this.metaService.updateTag({
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    });
+    this.metaService.updateTag({
+      name: 'twitter:site',
+      content: '@',
+    });
+    this.metaService.updateTag({
+      name: 'twitter:creator',
+      content: `${this._document.location.host}`,
+    });
+    this.metaService.updateTag({
+      name: 'twitter:domain',
+      content: `${this._document.location.host}`,
+    });
+    this.metaService.updateTag({
+      name: 'twitter:title',
+      content: 'UNA televizija kviz',
+    });
+    this.metaService.updateTag({
+      name: 'twitter:description',
+      content:
+        'Una televizija svojim gledaocima pruža uzbudljiv kviz i mnošto zabave i izazova. Učesnike očekuje i vredna novčana nagrada, a potrebno je da se pored znanja pokaže i intuicija i veštine.',
+    });
+    this.metaService.updateTag({
+      name: 'twitter:image',
+      content: `${this._document.location.origin}/assets/images/una-jedno-pitanje-share.jpg`,
+    });
   }
 
   ngOnDestroy(): void {

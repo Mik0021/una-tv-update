@@ -28,8 +28,7 @@ export class ViberShareDirective implements OnInit {
       ?.getAttribute('content');
     linkElem.setAttribute(
       'href',
-      'viber://forward?text=' +
-        encodeURIComponent(text + ' ' + window.location.href)
+      'viber://forward?text=' + encodeURIComponent(window.location.href)
     );
   }
 }

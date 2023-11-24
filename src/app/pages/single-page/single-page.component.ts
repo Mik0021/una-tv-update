@@ -167,28 +167,6 @@ export class SinglePageComponent implements OnInit, AfterViewInit {
   addTags() {
     this.titleService.setTitle(this.single_post.data.title);
     this.metaService.updateTag({
-      name: 'og:title',
-      content: this.single_post.data.title,
-    });
-    this.metaService.updateTag({
-      name: 'og:description',
-      content: this.single_post.data.seo_description,
-    });
-    this.metaService.updateTag({
-      name: 'og:url',
-      content: `${this._document.location.href}`,
-    });
-    this.metaService.updateTag({
-      name: 'og:type',
-      content: 'article',
-    });
-    this.metaService.updateTag({
-      name: 'og:image',
-      content: this.single_post.data.image
-        ? this.single_post.data.image.url
-        : 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
-    });
-    this.metaService.updateTag({
       name: 'description',
       content: this.single_post.data.seo_description,
     });
@@ -196,5 +174,72 @@ export class SinglePageComponent implements OnInit, AfterViewInit {
       name: 'keywords',
       content: this.single_post.data.tv_category.name,
     });
+
+    this.metaService.updateTag({
+      property: 'og:title',
+      content: this.single_post.data.title,
+    });
+    this.metaService.updateTag({
+      property: 'og:description',
+      content: this.single_post.data.seo_description,
+    });
+    this.metaService.updateTag({
+      property: 'og:image',
+      content: this.single_post.data.image
+        ? this.single_post.data.image.url
+        : 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
+    });
+    this.metaService.updateTag({
+      property: 'og:image:width',
+      content: '1920',
+    });
+    this.metaService.updateTag({
+      property: 'og:image:height',
+      content: '1080',
+    });
+    this.metaService.updateTag({
+      property: 'og:url',
+      content: `${this._document.location.href}`,
+    });
+    this.metaService.updateTag({
+      property: 'og:type',
+      content: 'article',
+    });
+
+    this.metaService.updateTag({
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    });
+
+    this.metaService.updateTag({
+      name: 'twitter:site',
+      content: '@',
+    });
+    this.metaService.updateTag({
+      name: 'twitter:creator',
+      content: `${this._document.location.host}`,
+    });
+    this.metaService.updateTag({
+      name: 'twitter:domain',
+      content: `${this._document.location.host}`,
+    });
+    this.metaService.updateTag({
+      name: 'twitter:title',
+      content: this.single_post.data.title,
+    });
+    this.metaService.updateTag({
+      name: 'twitter:description',
+      content: this.single_post.data.seo_description,
+    });
+    this.metaService.updateTag({
+      name: 'twitter:image',
+      content: this.single_post.data.image
+        ? this.single_post.data.image.url
+        : 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
+    });
+
+    this._document.head
+      .querySelector('[rel=canonical]')
+      ?.setAttribute('href', `${this._document.location.href}`);
   }
 }
