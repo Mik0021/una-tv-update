@@ -19,6 +19,7 @@ export const environment = {
   API_TV_PROGRAM: '/tv/program-schemas',
   API_TV_PROGRAM_BIH: 'https://api-ba.unaworld.com/api/v1/tv/program-schemas',
   API_TV_IS_SUBCATEGORY: '/tv/categories/is-child',
+  API_QUIZ: '/quiz-requests',
   APP_PORT: 3040,
   APP_TITLE: 'UNA TV',
   APP_GOOGLE_VERIFICATION: 'gLhpy8ZQ3YtQgWlE0IIN8-dPVDrwMri7u2jabN5Ci64',
@@ -28,7 +29,7 @@ export const environment = {
   APP_LANG: 'sr',
   APP_HOME_META_TITLE: 'UNA TV',
   APP_SERVER_DIST_FOLDER: '../',
-  APP_RECAPTCHA_PUBLIC_KEY: '',
+  APP_RECAPTCHA_PUBLIC_KEY: '6LcpCVonAAAAAKTi07dizaEPfFZLVWdfMfqVI-HS',
   APP_HOME_META_DESCRIPTION:
     'Na stranicama UNA TV možete pronaći sve informacije o našem programu, emisijama i licima koja gledate na malim i većim ekranima.',
   APP_HOME_META_KEYWORDS:

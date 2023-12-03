@@ -13,6 +13,7 @@ export const environment = {
   API_LIVE_PREVIEW: '/articles/preview',
   API_HOME_LIVE_PREVIEW: '/article-collections/preview',
   API_PAGES: '/pages',
+  API_QUIZ: '/quiz-requests',
   APP_PORT: 3070,
   APP_TITLE: 'UNA TV Hrvatska',
   APP_GOOGLE_VERIFICATION: 'gLhpy8ZQ3YtQgWlE0IIN8-dPVDrwMri7u2jabN5Ci64',

@@ -40,26 +40,6 @@ export class HomeComponent implements OnInit {
   addTags() {
     this.titleService.setTitle(environment.APP_TITLE);
     this.metaService.updateTag({
-      name: 'og:title',
-      content: environment.APP_HOME_META_TITLE,
-    });
-    this.metaService.updateTag({
-      name: 'og:description',
-      content: environment.APP_HOME_META_DESCRIPTION,
-    });
-    this.metaService.updateTag({
-      name: 'og:url',
-      content: `${this._document.location.href}`,
-    });
-    this.metaService.updateTag({
-      name: 'og:type',
-      content: 'website',
-    });
-    this.metaService.updateTag({
-      name: 'og:image',
-      content: 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
-    });
-    this.metaService.updateTag({
       name: 'description',
       content: environment.APP_HOME_META_DESCRIPTION,
     });
@@ -67,9 +47,71 @@ export class HomeComponent implements OnInit {
       name: 'keywords',
       content: environment.APP_HOME_META_KEYWORDS,
     });
+
+    this.metaService.updateTag({
+      property: 'og:title',
+      content: environment.APP_HOME_META_TITLE,
+    });
+    this.metaService.updateTag({
+      property: 'og:description',
+      content: environment.APP_HOME_META_DESCRIPTION,
+    });
+    this.metaService.updateTag({
+      property: 'og:image',
+      content: 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
+    });
+    this.metaService.updateTag({
+      property: 'og:image:width',
+      content: '1920',
+    });
+    this.metaService.updateTag({
+      property: 'og:image:height',
+      content: '1080',
+    });
+    this.metaService.updateTag({
+      property: 'og:url',
+      content: `${this._document.location.href}`,
+    });
+    this.metaService.updateTag({
+      property: 'og:type',
+      content: 'website',
+    });
+
+    this.metaService.updateTag({
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    });
+
+    this.metaService.updateTag({
+      name: 'twitter:site',
+      content: '@',
+    });
+    this.metaService.updateTag({
+      name: 'twitter:creator',
+      content: `${this._document.location.host}`,
+    });
+    this.metaService.updateTag({
+      name: 'twitter:domain',
+      content: `${this._document.location.host}`,
+    });
+    this.metaService.updateTag({
+      name: 'twitter:title',
+      content: environment.APP_HOME_META_TITLE,
+    });
+    this.metaService.updateTag({
+      name: 'twitter:description',
+      content: environment.APP_HOME_META_DESCRIPTION,
+    });
+    this.metaService.updateTag({
+      name: 'twitter:image',
+      content: 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
+    });
     this.metaService.addTag({
       name: 'google-site-verification',
       content: environment.APP_GOOGLE_VERIFICATION,
     });
+    this._document.head
+      .querySelector('[rel=canonical]')
+      ?.setAttribute('href', `${this._document.location.href}`);
   }
 }

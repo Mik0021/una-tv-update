@@ -14,7 +14,7 @@
     <div class="text-xs text-white">
       <ul class="flex gap-4 lg:gap-20 py-5">
         <ng-container *ngFor="let item of pagesList.data; let i = index">
-          <li *ngIf="item.slug !== 'p/kako-nas-gledati'">
+          <li>
             <a
               class="opacity-50 whitespace-nowrap"
               routerLink="{{ item.slug }}"

@@ -85,20 +85,34 @@
             >
               Ime i prezime su obavezni.
             </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="name.hasError('maxlength') && name.touched"
+            >
+              Maksimalan broj karaktera je 100.
+            </p>
           </div>
           <div class="col-span-2 lg:col-span-1 relative">
             <input
               class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
               placeholder="Datum rođenja"
-              formControlName="birthDate"
+              formControlName="dob"
+              min="1920-01-01"
+              [max]="maxAge"
               onfocus="(this.type='date')"
             />
             <p
               class="absolute top-full text-[#F82F2F] text-sm"
-              *ngIf="birthDate.hasError('required') && birthDate.touched"
+              *ngIf="dob.hasError('required') && dob.touched"
             >
               Datum rođenja je obavezan.
+            </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="dob.hasError('age') && dob.touched"
+            >
+              Morate biti stariji od 18 godina.
             </p>
           </div>
           <div class="col-span-2 lg:col-span-1 relative">
@@ -106,13 +120,25 @@
               class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
               placeholder="Mesto stanovanja"
-              formControlName="residency"
+              formControlName="place_of_residence"
             />
             <p
               class="absolute top-full text-[#F82F2F] text-sm"
-              *ngIf="residency.hasError('required') && residency.touched"
+              *ngIf="
+                place_of_residence.hasError('required') &&
+                place_of_residence.touched
+              "
             >
               Mesto stanovanja je obavezno.
+            </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="
+                place_of_residence.hasError('maxlength') &&
+                place_of_residence.touched
+              "
+            >
+              Maksimalan broj karaktera je 100.
             </p>
           </div>
           <div class="col-span-2 lg:col-span-1 relative">
@@ -120,13 +146,19 @@
               class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
               placeholder="Zanimanje"
-              formControlName="ocupation"
+              formControlName="occupation"
             />
             <p
               class="absolute top-full text-[#F82F2F] text-sm"
-              *ngIf="ocupation.hasError('required') && ocupation.touched"
+              *ngIf="occupation.hasError('required') && occupation.touched"
             >
               Zanimanje je obavezno.
+            </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="occupation.hasError('maxlength') && occupation.touched"
+            >
+              Maksimalan broj karaktera je 100.
             </p>
           </div>
           <div class="col-span-2">
@@ -135,8 +167,8 @@
                 class="font-semibold text-white mr-4 sm:mr-16"
                 [ngClass]="{
                   'text-[#F82F2F]':
-                    otherQuizesCheck.hasError('required') &&
-                    otherQuizesCheck.touched
+                    already_participated.hasError('required') &&
+                    already_participated.touched
                 }"
               >
                 Da li ste do sada učestvovali u nekom kvizu?
@@ -147,15 +179,15 @@
                     class="px-4"
                     [ngClass]="{
                       'text-[#F82F2F]':
-                        otherQuizesCheck.hasError('required') &&
-                        otherQuizesCheck.touched
+                        already_participated.hasError('required') &&
+                        already_participated.touched
                     }"
                     >Da</span
                   >
                   <input
                     type="radio"
-                    formControlName="otherQuizesCheck"
-                    value="true"
+                    formControlName="already_participated"
+                    value="1"
                   />
                   <div class="control_indicator"></div>
                 </label>
@@ -164,15 +196,15 @@
                     class="px-4"
                     [ngClass]="{
                       'text-[#F82F2F]':
-                        otherQuizesCheck.hasError('required') &&
-                        otherQuizesCheck.touched
+                        already_participated.hasError('required') &&
+                        already_participated.touched
                     }"
                     >Ne</span
                   >
                   <input
                     type="radio"
-                    formControlName="otherQuizesCheck"
-                    value="false"
+                    formControlName="already_participated"
+                    value="0"
                   />
                   <div class="control_indicator"></div>
                 </label>
@@ -184,13 +216,25 @@
               class="w-full font-semibold disabled:opacity-70 text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
               type="text"
               placeholder="Ukoliko jeste, u kom i kada? "
-              formControlName="otherQuizes"
+              formControlName="already_participated_description"
             />
             <p
               class="absolute top-full text-[#F82F2F] text-sm"
-              *ngIf="otherQuizes.hasError('required') && otherQuizes.touched"
+              *ngIf="
+                already_participated_description.hasError('required') &&
+                already_participated_description.touched
+              "
             >
               Ako ste učestvovali u drugim kvzovima napišite u kojim i kada.
+            </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="
+                already_participated_description.hasError('maxlength') &&
+                already_participated_description.touched
+              "
+            >
+              Maksimalan broj karaktera je 1024.
             </p>
           </div>
           <div class="col-span-2 lg:col-span-1 relative">
@@ -206,6 +250,12 @@
             >
               Broj telefona je obavezan.
             </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="phone.hasError('maxlength') && phone.touched"
+            >
+              Maksimalan broj karaktera je 100.
+            </p>
           </div>
           <div class="col-span-2 lg:col-span-1 relative">
             <input
@@ -219,6 +269,12 @@
               *ngIf="email.hasError('required') && email.touched"
             >
               E-mail adresa je obavezna.
+            </p>
+            <p
+              class="absolute top-full text-[#F82F2F] text-sm"
+              *ngIf="email.hasError('maxlength') && email.touched"
+            >
+              Maksimalan broj karaktera je 100.
             </p>
             <p
               class="absolute top-full text-[#F82F2F] text-sm"
@@ -268,7 +324,7 @@
               <button
                 (click)="onVideoUpload(videoUpload)"
                 type="button"
-                class="font-bold text-base text-[#4E4E55] px-1.5 py-2.5 bg-[#79DDFF] rounded disabled:opacity-80 w-32"
+                class="font-bold text-base text-[#4E4E55] px-1.5 py-2.5 bg-[#79DDFF] rounded disabled:opacity-80 w-32 video-upload-btn"
                 [ngClass]="{
                   'text-[#F82F2F]':
                     videoTypeError ||
@@ -347,19 +403,26 @@
               class="px-4 text-white block"
               [ngClass]="{
                 'text-[#F82F2F]':
-                  auditionRules.hasError('required') && auditionRules.touched
+                  agreed_to_audition_rules.hasError('required') &&
+                  agreed_to_audition_rules.touched
               }"
               >Saglasan sam sa
-              <strong class="font-extrabold"
+              <a
+                [routerLink]="['/p/pravila-kviza-i-audicije-za-kviz']"
+                target="_blank"
+                class="font-extrabold"
                 >Pravilima audicije za kviz i pravilima kviza
-              </strong>
+              </a>
             </span>
-            <input type="checkbox" formControlName="auditionRules" />
+            <input type="checkbox" formControlName="agreed_to_audition_rules" />
             <div class="control_indicator"></div>
           </label>
           <p
             class="absolute top-full text-[#F82F2F] text-sm"
-            *ngIf="auditionRules.hasError('required') && auditionRules.touched"
+            *ngIf="
+              agreed_to_audition_rules.hasError('required') &&
+              agreed_to_audition_rules.touched
+            "
           >
             Morate se složiti sa Pravilima audicije za kviz i pravilima kviza.
           </p>
@@ -370,19 +433,33 @@
               class="px-4 text-white block"
               [ngClass]="{
                 'text-[#F82F2F]':
-                  dataPrivacy.hasError('required') && dataPrivacy.touched
+                  agreed_with_the_processing_of_personal_data.hasError(
+                    'required'
+                  ) && agreed_with_the_processing_of_personal_data.touched
               }"
               >Saglasan sam sa
-              <strong class="font-extrabold"
+              <a
+                [routerLink]="[
+                  '/p/obavestenje-o-obradi-podataka-o-licnosti-ucesnika-u-audiciji-za-kviz-jedno-pitanje'
+                ]"
+                class="font-extrabold"
+                target="_blank"
                 >Obradom podataka o ličnosti učesnika audicije za kviz
-              </strong>
+              </a>
             </span>
-            <input type="checkbox" formControlName="dataPrivacy" />
+            <input
+              type="checkbox"
+              formControlName="agreed_with_the_processing_of_personal_data"
+            />
             <div class="control_indicator"></div>
           </label>
           <p
             class="absolute top-full text-[#F82F2F] text-sm"
-            *ngIf="dataPrivacy.hasError('required') && dataPrivacy.touched"
+            *ngIf="
+              agreed_with_the_processing_of_personal_data.hasError(
+                'required'
+              ) && agreed_with_the_processing_of_personal_data.touched
+            "
           >
             Morate se složiti sa Obradom podataka o ličnosti učesnika adudicije
             za kviz.
@@ -395,12 +472,27 @@
           >
             Molimo Vas popunite sva polja u formi!
           </p>
+          <p
+            class="absolute top-1 left-1/2 -translate-x-1/2 text-[#45fd00] text-sm"
+            *ngIf="uploadSuccess && !quizForm.touched"
+          >
+            Uspesno ste se prijavili. Hvala na prijavi.
+          </p>
           <button
             type="submit"
             class="font-bold text-base text-black-strong px-1.5 py-2.5 bg-blue rounded disabled:opacity-80 w-36"
           >
             PRIJAVI SE
           </button>
+          <div
+            class="upload-progress mt-4 flex justify-center items-center"
+            *ngIf="progress > 0"
+          >
+            <progress [value]="progress" max="100">{{ progress }} %</progress>
+            <span class="text-blue font-semibold align-middle ml-2"
+              >{{ progress }} %</span
+            >
+          </div>
         </div>
       </form>
     </main>
