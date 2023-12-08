@@ -414,3 +414,19 @@
     margin-top: 8px;
   }
 }
+
+.custom-header-img {
+  background-image: url('./assets/images/21dan.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center left;
+  color: transparent !important;
+  a.active {
+    color: transparent !important;
+  }
+  &:hover {
+    a {
+      color: transparent !important;
+    }
+  }
+}

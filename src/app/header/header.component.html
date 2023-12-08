@@ -43,6 +43,9 @@
             class="mb-4 lg:mb-0 lg:py-10 relative menu-item pr-20 lg:pr-0 text-white no-tap-color"
             *ngFor="let item of navList.data"
             [ngStyle]="{ color: item.color }"
+            [ngClass]="{
+              'custom-header-img': item.slug === '21-dan-zahvalnosti'
+            }"
           >
             <a
               class="hover:text-blue transition-colors"
