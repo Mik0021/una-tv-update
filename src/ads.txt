@@ -1,7 +1,8 @@
 target-video.com, 361, DIRECT 					
 brid.tv, 361, DIRECT					
 #Google					
-google.com, pub-4090704406626496, RESELLER, f08c47fec0942fa0					
+google.com, pub-4090704406626496, RESELLER, f08c47fec0942fa0
+google.com, pub-7817832659801529, DIRECT, f08c47fec0942fa0					
 #Rubicon					
 rubiconproject.com, 22860, RESELLER, 0bfd66d529a55807					
 rubiconproject.com, 22862, RESELLER, 0bfd66d529a55807					
