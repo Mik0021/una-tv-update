@@ -5,12 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { registerLocaleData } from '@angular/common';
+import localeBa from '@angular/common/locales/sr-Latn-BA';
 import { FormsModule } from '@angular/forms';
 import { AdsenseModule } from 'ng2-adsense';
-import {
-  NgxGoogleAnalyticsModule,
-  NgxGoogleAnalyticsRouterModule,
-} from 'ngx-google-analytics';
 import { FooterNavComponent } from './footer/footer-nav/footer-nav.component';
 import { FooterSocialComponent } from './footer/footer-social/footer-social.component';
 import { FooterComponent } from './footer/footer.component';
@@ -19,8 +17,6 @@ import { HeaderSelectSiteComponent } from './header/header-select-site/header-se
 import { HeaderSubmenuComponent } from './header/header-submenu/header-submenu.component';
 import { HeaderComponent } from './header/header.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
-import { registerLocaleData } from '@angular/common';
-import localeBa from '@angular/common/locales/sr-Latn-BA';
 
 registerLocaleData(localeBa);
 @NgModule({
@@ -40,8 +36,6 @@ registerLocaleData(localeBa);
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxGoogleAnalyticsModule.forRoot('G-ZEB8YWRBVD'),
-    NgxGoogleAnalyticsRouterModule,
     AdsenseModule.forRoot(),
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'sr-Latn-BA' }],

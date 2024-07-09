@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { GtagService } from './services/gtag.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,10 @@ import { environment } from 'src/environments/environment';
 export class AppComponent implements OnInit {
   windowScrolled: boolean = false;
 
-  constructor(@Inject(DOCUMENT) private _document: Document) {}
+  constructor(
+    @Inject(DOCUMENT) private _document: Document,
+    private gtagService: GtagService
+  ) {}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
