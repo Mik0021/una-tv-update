@@ -2,12 +2,10 @@ import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   Component,
-  ElementRef,
   HostListener,
   Inject,
   OnInit,
   PLATFORM_ID,
-  ViewChild,
 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -44,6 +42,8 @@ export class SinglePageComponent implements OnInit, AfterViewInit {
   personalities: Personality[] = [];
   windowScrolled: boolean = false;
 
+  p: number = 1;
+
   singleVideo: string = '';
 
   $search: Observable<Search> = this.searchService.searchRes$;
@@ -57,6 +57,13 @@ export class SinglePageComponent implements OnInit, AfterViewInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     private searchService: SearchService
   ) {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params['p'] === undefined) {
+        this.p = 1;
+      } else {
+        this.p = params['p'];
+      }
+    });
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       if (
         !paramMap.has('post') &&
@@ -149,6 +156,20 @@ export class SinglePageComponent implements OnInit, AfterViewInit {
       return;
     } else {
       this.singleVideo = `<div class="raw-html-embed"><script type="text/javascript" src="https://services.brid.tv/player/build/brid.min.js"></script> <div id="Brid_64470599" class="brid" style="width:480;height:270;" > </div> <script type="text/javascript"> $bp("Brid_64470599", {"id":"${playerId}","width":"480","height":"270","video":"${videoId}"}); </script></div>`;
+    }
+  }
+
+  getPage(page: number) {
+    this.p = page;
+    if (this.p > 1) {
+      this.router.navigate([], {
+        queryParams: {
+          p: this.p,
+        },
+        queryParamsHandling: 'merge',
+      });
+    } else {
+      this.router.navigate([]);
     }
   }
 

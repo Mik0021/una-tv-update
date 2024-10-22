@@ -10,6 +10,7 @@ import { SinglePageRoutingModule } from './single-page-routing.module';
 import { SinglePageComponent } from './single-page.component';
 import { SingleSocialComponent } from './single-social/single-social.component';
 import { SingleTagsComponent } from './single-tags/single-tags.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SingleTagsComponent } from './single-tags/single-tags.component';
     PipesModule,
     DirectivesModule,
     ComponentsModule,
+    NgxPaginationModule,
   ],
 })
 export class SinglePageModule {}
