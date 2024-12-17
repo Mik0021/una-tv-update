@@ -277,7 +277,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.metaService.updateTag({
       property: 'og:image',
-      content: `${this._document.location.origin}/assets/images/una-jedno-pitanje-share.jpg`,
+      content: `https://unatv.una.rs/assets/images/una-jedno-pitanje-share.jpg`,
     });
     this.metaService.updateTag({
       property: 'og:image:width',
