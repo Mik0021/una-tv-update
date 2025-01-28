@@ -34,21 +34,100 @@
       type="text/javascript"
       src="https://services.brid.tv/player/build/brid.min.js"
     ></script>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-ZEB8YWRBVD"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-ZEB8YWRBVD');
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(
+        window,
+        document,
+        'script',
+        'https://mc.yandex.ru/metrika/tag.js',
+        'ym'
+      );
+
+      ym(98237873, 'init', {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+      });
     </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/98237873"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
   </head>
   <body class="bg-dark">
+    <!-- (C)2000-2024 Gemius SA - gemiusPrism  / una.rs/Default section -->
+    <script type="text/javascript">
+      var pp_gemius_identifier =
+        'ncnrs.udLJJvvnwXNiOWP8PcroG_4IOU74VzxgnEE1P.X7';
+      // lines below shouldn't be edited
+      function gemius_pending(i) {
+        window[i] =
+          window[i] ||
+          function () {
+            var x = (window[i + '_pdata'] = window[i + '_pdata'] || []);
+            x[x.length] = Array.prototype.slice.call(arguments, 0);
+          };
+      }
+      (function (cmds) {
+        var c;
+        while ((c = cmds.pop())) gemius_pending(c);
+      })([
+        'gemius_cmd',
+        'gemius_hit',
+        'gemius_event',
+        'gemius_init',
+        'pp_gemius_hit',
+        'pp_gemius_event',
+        'pp_gemius_init',
+      ]);
+      window.pp_gemius_cmd = window.pp_gemius_cmd || window.gemius_cmd;
+      (function (d, t) {
+        try {
+          var gt = d.createElement(t),
+            s = d.getElementsByTagName(t)[0],
+            l = 'http' + (location.protocol == 'https:' ? 's' : '');
+          gt.setAttribute('async', 'async');
+          gt.setAttribute('defer', 'defer');
+          gt.src = l + '://gars.hit.gemius.pl/xgemius.js';
+          s.parentNode.insertBefore(gt, s);
+        } catch (e) {}
+      })(document, 'script');
+    </script>
     <app-root></app-root>
+    <!-- (c) 2024 Gemius SA / gemiusHeatMap / una.rs -->
+    <script type="text/javascript">
+      var ghmxy_type = 'percent';
+      var ghmxy_identifier = 'bV2b8k8CbILN1NILGstIsIawXrEdXwcnXGTrlqd67jb.V7';
+      var ghmxy_hitcollector = 'ghmrs.hit.gemius.pl';
+    </script>
+    <script
+      async
+      type="text/javascript"
+      src="https://ghmrs.hit.gemius.pl/hmapxy.js"
+    ></script>
   </body>
 </html>
