@@ -27,13 +27,13 @@ const routes: Routes = [
         (m) => m.PersonalityListModule
       ),
   },
-  // {
-  //   path: 'una-kviz',
-  //   loadChildren: () =>
-  //     import('./pages/quiz-apply/quiz-apply.module').then(
-  //       (m) => m.QuizApplyModule
-  //     ),
-  // },
+  {
+    path: 'una-kviz',
+    loadChildren: () =>
+      import('./pages/quiz-apply/quiz-apply.module').then(
+        (m) => m.QuizApplyModule
+      ),
+  },
   {
     path: 'nasa-lica/:personality',
     loadChildren: () =>
