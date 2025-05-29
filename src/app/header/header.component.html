@@ -60,7 +60,9 @@
               (isMenuShown)="closeFromSubmenu($event)"
             ></app-header-submenu>
           </li>
+
           <li
+            *ngIf="navList.meta?.settings?.quiz_enabled"
             class="mb-4 lg:mb-0 lg:py-10 relative menu-item pr-20 lg:pr-0 text-white no-tap-color"
           >
             <a

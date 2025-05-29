@@ -1,10 +1,11 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
+// https://una-test-api-rs.ha.rs/api/v1
+// https://api-rs.unaworld.com/api/v1
 export const environment = {
   production: false,
-  API_UNA: 'https://api-rs.unaworld.com/api/v1',
+  API_UNA: 'https://una-test-api-rs.ha.rs/api/v1',
   API_PARENT_CATEGORY: '/tv/categories/parent',
   API_TAG: '/tv/shows/tag',
   API_POST: '/tv/shows/slug',
