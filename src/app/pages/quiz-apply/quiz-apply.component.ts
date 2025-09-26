@@ -21,6 +21,8 @@ import { QuizUpload } from 'src/app/interfaces/quiz-upload.model';
 import { QuizService } from 'src/app/services/quiz.service';
 import { AgeValidator } from './age.validator';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { NavService } from 'src/app/services/nav.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-apply',
@@ -101,7 +103,9 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     private metaService: Meta,
     private titleService: Title,
     private quizService: QuizService,
-    private el: ElementRef
+    private el: ElementRef,
+    private navService: NavService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -132,6 +136,13 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
           ]);
           this.already_participated_description.setValue('');
           this.already_participated_description.disable();
+        }
+      },
+    });
+    this.navService.quizEnabled$.subscribe({
+      next: (res) => {
+        if (res === false) {
+          this.router.navigate(['/']);
         }
       },
     });

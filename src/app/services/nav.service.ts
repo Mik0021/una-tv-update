@@ -11,7 +11,7 @@ import { Pages } from '../interfaces/pages.model';
 export class NavService {
   private allNav = new Subject<Nav>();
   private footerPages = new Subject<Pages>();
-  private quizEnabled = new BehaviorSubject<boolean>(false);
+  private quizEnabled = new BehaviorSubject<boolean | undefined>(undefined);
 
   allNav$ = this.allNav.asObservable();
   footerPages$ = this.footerPages.asObservable();
@@ -51,6 +51,8 @@ export class NavService {
         this.allNav.next(nav);
         if (nav.meta?.settings?.quiz_enabled) {
           this.quizEnabled.next(true);
+        } else {
+          this.quizEnabled.next(false);
         }
       });
   }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanMatchService } from './services/can-match.service';
-import { QuizEnabledGuard } from './guards/quiz-enabled.guard';
 
 const routes: Routes = [
   {
@@ -34,7 +33,6 @@ const routes: Routes = [
       import('./pages/quiz-apply/quiz-apply.module').then(
         (m) => m.QuizApplyModule
       ),
-    canActivate: [QuizEnabledGuard],
   },
   {
     path: 'nasa-lica/:personality',
