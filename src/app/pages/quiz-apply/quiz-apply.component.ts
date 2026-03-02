@@ -105,7 +105,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     private quizService: QuizService,
     private el: ElementRef,
     private navService: NavService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -207,7 +207,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
             };
             // console.log(quizData);
             return this.quizService.uploadVideo(quizData, this.video.value!);
-          })
+          }),
         )
         .pipe(
           finalize(() => {
@@ -217,7 +217,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
               Validators.required,
               Validators.maxLength(1024),
             ]);
-          })
+          }),
         )
         .subscribe({
           next: (event: HttpEvent<any>) => {
@@ -250,7 +250,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
           ((this.quizForm as FormGroup).controls[key] as FormControl).invalid
         ) {
           const invalidControl = this.el.nativeElement.querySelector(
-            '[formcontrolname="' + key + '"]'
+            '[formcontrolname="' + key + '"]',
           );
           if (invalidControl) {
             invalidControl.focus();
@@ -288,7 +288,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.metaService.updateTag({
       property: 'og:image',
-      content: `https://unatv.una.rs/assets/images/una-jedno-pitanje-share.jpg`,
+      content: `https://unatv.una.rs/assets/images/una-jedno-pitanje-share.webp`,
     });
     this.metaService.updateTag({
       property: 'og:image:width',
@@ -334,7 +334,7 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.metaService.updateTag({
       name: 'twitter:image',
-      content: `${this._document.location.origin}/assets/images/una-jedno-pitanje-share.jpg`,
+      content: `${this._document.location.origin}/assets/images/una-jedno-pitanje-share.webp`,
     });
   }
 
