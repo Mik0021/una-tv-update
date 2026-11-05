@@ -15,16 +15,16 @@ export class ProgramComponent implements OnInit {
   schemaComplete = {} as TvProgram;
   schemaCompleteBih = {} as TvProgram;
   tvProgram$: Observable<TvProgram> = this.tvProgramService.tvProgram$;
-  tvProgramBih$: Observable<TvProgram> = this.tvProgramService.tvProgramBih$;
+  // tvProgramBih$: Observable<TvProgram> = this.tvProgramService.tvProgramBih$;
   constructor(
     private tvProgramService: TvProgramService,
     private metaService: Meta,
     private titleService: Title,
-    @Inject(DOCUMENT) private _document: Document
+    @Inject(DOCUMENT) private _document: Document,
   ) {}
   ngOnInit(): void {
     this.tvProgramService.getTvProgram();
-    this.tvProgramService.getTvProgramBih();
+    // this.tvProgramService.getTvProgramBih();
     this.addTags();
     this.tvProgram$.subscribe({
       next: (res) => {
@@ -36,16 +36,16 @@ export class ProgramComponent implements OnInit {
         }
       },
     });
-    this.tvProgramBih$.subscribe({
-      next: (res) => {
-        this.schemaCompleteBih = res;
-        for (let i = 0; i < this.schemaCompleteBih.data.length; i++) {
-          i === 0
-            ? (this.schemaCompleteBih.data[i].active = true)
-            : (this.schemaCompleteBih.data[i].active = false);
-        }
-      },
-    });
+    // this.tvProgramBih$.subscribe({
+    //   next: (res) => {
+    //     this.schemaCompleteBih = res;
+    //     for (let i = 0; i < this.schemaCompleteBih.data.length; i++) {
+    //       i === 0
+    //         ? (this.schemaCompleteBih.data[i].active = true)
+    //         : (this.schemaCompleteBih.data[i].active = false);
+    //     }
+    //   },
+    // });
   }
 
   addTags() {
