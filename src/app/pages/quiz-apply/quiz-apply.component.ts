@@ -209,6 +209,23 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
             return this.quizService.uploadVideo(quizData, this.video.value!);
           }),
         )
+        // const quizData: QuizUpload = {
+        //   recaptcha_response: '8fde3b6feba52d91febb01',
+        //   name: this.name.value!,
+        //   dob: this.dob.value!,
+        //   place_of_residence: this.place_of_residence.value!,
+        //   already_participated: this.already_participated.value!,
+        //   already_participated_description:
+        //     this.already_participated_description.value!,
+        //   phone: this.phone.value!,
+        //   email: this.email.value!,
+        //   occupation: this.occupation.value!,
+        //   agreed_to_audition_rules: '1',
+        //   agreed_with_the_processing_of_personal_data: '1',
+        // };
+
+        // this.quizService
+        //   .uploadVideo(quizData, this.video.value!)
         .pipe(
           finalize(() => {
             this.quizForm.enable();
