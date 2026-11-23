@@ -1,17 +1,12 @@
 import { inject, Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NavService } from '../services/nav.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class QuizEnabledGuard implements CanActivate {
+export class QuizEnabledGuard  {
   navService = inject(NavService);
   canActivate(
     route: ActivatedRouteSnapshot,

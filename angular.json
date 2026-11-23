@@ -261,7 +261,8 @@
               "optimization": false,
               "sourceMap": true,
               "extractLicenses": false,
-              "vendorChunk": true
+              "vendorChunk": true,
+              "buildOptimizer": false
             },
             "unabih": {
               "outputPath": "ba/server",
@@ -380,7 +381,6 @@
       }
     }
   },
-  "defaultProject": "unatvbih",
   "cli": {
     "analytics": "edb180c0-23c7-493b-97f7-fff65bfed7ff"
   }

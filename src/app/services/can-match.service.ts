@@ -1,14 +1,14 @@
 import { Category } from 'src/app/interfaces/category.model';
 import { CategorysService } from './categorys.service';
 import { Injectable } from '@angular/core';
-import { CanMatch, Route, UrlSegment, UrlTree } from '@angular/router';
+import { Route, UrlSegment, UrlTree } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { CategoryList } from '../interfaces/category-list.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CanMatchService implements CanMatch {
+export class CanMatchService  {
   private isCategoryPath = new Subject<boolean>();
 
   isCategoryPath$ = this.isCategoryPath.asObservable();
