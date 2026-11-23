@@ -11,7 +11,7 @@ All phases are done on `feat/angular-22` (Angular 22.3, Node 24). Deviations fro
 - **Phase 0** was replaced by an ad-hoc SSR snapshot script (13 routes, compared after every step); the missing `production` configuration and the written deploy steps are still open.
 - **Phase 2:** `ng2-adsense` was removed (unused; ads come from the script in `index.html`). The v21 update already ran the control-flow migration.
 - **Phase 3:** all routes use `RenderMode.Server` (no prerendering). Incremental hydration was measured and left out (+11 kB initial, most carousels are in the first viewport). Not-found pages keep their URL (`skipLocationChange`), because a URL change during SSR becomes an empty redirect. Unknown `Host` headers now get HTTP 400; `security.allowedHosts` must list the production hostnames.
-- **Phase 4:** HttpClient uses XHR, not fetch: the quiz upload needs upload progress.
+- **Phase 4:** HttpClient uses fetch; only the quiz upload uses XHR (it needs upload progress, and XHR on the server is deprecated in v22).
 - **Phase 5:** Tailwind 4 not attempted (out of scope, as planned).
 
 Still open, all pre-existing: the six non-Serbian site configurations miss TV-only environment keys and don't build; the quiz upload URL is a hardcoded staging host in every environment.

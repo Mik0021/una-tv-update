@@ -1,4 +1,8 @@
-import { HttpEventType, provideHttpClient } from '@angular/common/http';
+import {
+  HttpBackend,
+  HttpEventType,
+  provideHttpClient,
+} from '@angular/common/http';
 import {
   HttpTestingController,
   provideHttpClientTesting,
@@ -9,6 +13,7 @@ import { Router, provideRouter } from '@angular/router';
 import { ReCaptchaV3Service } from 'ng-recaptcha-2';
 import { of } from 'rxjs';
 import { NavService } from 'src/app/services/nav.service';
+import { QUIZ_UPLOAD_BACKEND } from 'src/app/services/quiz.service';
 import { QuizApplyComponent } from './quiz-apply.component';
 
 describe('QuizApplyComponent', () => {
@@ -25,6 +30,8 @@ describe('QuizApplyComponent', () => {
         provideRouter([]),
         provideHttpClient(),
         provideHttpClientTesting(),
+        // Route the XHR upload backend to HttpTestingController.
+        { provide: QUIZ_UPLOAD_BACKEND, useExisting: HttpBackend },
         { provide: NavService, useValue: { quizEnabled } },
         {
           provide: ReCaptchaV3Service,

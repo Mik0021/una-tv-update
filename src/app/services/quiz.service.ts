@@ -1,12 +1,29 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import {
+  HttpBackend,
+  HttpClient,
+  HttpHeaders,
+  HttpXhrBackend,
+} from '@angular/common/http';
+import { Injectable, InjectionToken, inject } from '@angular/core';
 import { QuizUpload } from '../interfaces/quiz-upload.model';
+
+/**
+ * Backend for the video upload. The app's HttpClient uses fetch, which can't
+ * report upload progress, so the upload goes through XHR instead. Uploads only
+ * happen in the browser (on submit), so the deprecated server-side XHR is never
+ * used. Specs provide the testing backend here.
+ */
+export const QUIZ_UPLOAD_BACKEND = new InjectionToken<HttpBackend>(
+  'QUIZ_UPLOAD_BACKEND',
+  { providedIn: 'root', factory: () => inject(HttpXhrBackend) },
+);
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuizService {
-  private http = inject(HttpClient);
+  /** XHR-backed client (bypasses app interceptors; none apply to uploads). */
+  private http = new HttpClient(inject(QUIZ_UPLOAD_BACKEND));
 
   uploadVideo(quizData: QuizUpload, file: File) {
     if (quizData.already_participated === '0') {
