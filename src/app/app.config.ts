@@ -25,7 +25,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
-      withComponentInputBinding()
+      withComponentInputBinding(),
     ),
     // XHR until Phase 3 switches to fetch + the hydration transfer cache.
     provideHttpClient(withXhr()),

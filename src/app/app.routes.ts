@@ -3,12 +3,12 @@ import { subcategoryGuard } from './guards/subcategory.guard';
 
 const loadNotFound = () =>
   import('./pages/not-found/not-found.component').then(
-    (m) => m.NotFoundComponent
+    (m) => m.NotFoundComponent,
   );
 
 const loadSinglePage = () =>
   import('./pages/single-page/single-page.component').then(
-    (m) => m.SinglePageComponent
+    (m) => m.SinglePageComponent,
   );
 
 // Order matters: `:category/:subcategory` is tried first and only matches when
@@ -33,7 +33,7 @@ export const routes: Routes = [
     path: 'nasa-lica',
     loadComponent: () =>
       import('./pages/personality-list/personality-list.component').then(
-        (m) => m.PersonalityListComponent
+        (m) => m.PersonalityListComponent,
       ),
   },
   {
@@ -41,14 +41,14 @@ export const routes: Routes = [
     // Lazy child routes so the reCAPTCHA providers stay in the quiz chunk.
     loadChildren: () =>
       import('./pages/quiz-apply/quiz-apply.routes').then(
-        (m) => m.QUIZ_APPLY_ROUTES
+        (m) => m.QUIZ_APPLY_ROUTES,
       ),
   },
   {
     path: 'nasa-lica/:personality',
     loadComponent: () =>
       import('./pages/personality-single/personality-single.component').then(
-        (m) => m.PersonalitySingleComponent
+        (m) => m.PersonalitySingleComponent,
       ),
   },
   {
@@ -68,7 +68,7 @@ export const routes: Routes = [
     pathMatch: 'full',
     loadComponent: () =>
       import('./pages/parent-category/parent-category.component').then(
-        (m) => m.ParentCategoryComponent
+        (m) => m.ParentCategoryComponent,
       ),
   },
   {
@@ -76,7 +76,7 @@ export const routes: Routes = [
     pathMatch: 'full',
     loadComponent: () =>
       import('./pages/category-list/category-list.component').then(
-        (m) => m.CategoryListComponent
+        (m) => m.CategoryListComponent,
       ),
     canMatch: [subcategoryGuard],
   },

@@ -1,6 +1,21 @@
-
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, PLATFORM_ID, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  DOCUMENT,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ReCaptchaV3Service } from 'ng-recaptcha-2';
 import { finalize, switchMap } from 'rxjs';
@@ -13,11 +28,11 @@ import { Router, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'app-quiz-apply',
-    templateUrl: './quiz-apply.component.html',
-    styleUrls: ['./quiz-apply.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [ReactiveFormsModule, NgClass, RouterLink]
+  selector: 'app-quiz-apply',
+  templateUrl: './quiz-apply.component.html',
+  styleUrls: ['./quiz-apply.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [ReactiveFormsModule, NgClass, RouterLink],
 })
 export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   private formBuilder = inject(FormBuilder);

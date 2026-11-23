@@ -7,15 +7,15 @@
           src="{{ articleData.image.url }}"
           srcset="{{ srcSet }}"
           sizes="(min-width: 340px) 50vw, 20vw"
-      [alt]="
-        articleData.image.description
-          ? articleData.image.description
-          : articleData.image.name
-      "
-          />
+          [alt]="
+            articleData.image.description
+              ? articleData.image.description
+              : articleData.image.name
+          "
+        />
         <div
           class="absolute inset-0 flex flex-col justify-end p-3.5 z-30 text-white bg-gray-dark opacity-0 card-image transition-opacity border-l-2 border-blue"
-          >
+        >
           <!-- <h5>{{ articleData.category.name }}</h5> -->
           <p>{{ articleData.sub_title }}</p>
         </div>
@@ -23,7 +23,7 @@
     }
     <h2
       class="text-white font-semibold my-3.5 text-lg sm:text-[22px] leading-7 card-title transition-colors"
-      >
+    >
       {{ articleData.title }}
     </h2>
   </a>

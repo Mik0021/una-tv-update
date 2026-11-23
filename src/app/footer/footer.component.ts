@@ -1,6 +1,11 @@
 import { SiteSelectService } from './../services/site-select.service';
 import { Observable } from 'rxjs';
-import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { Nav } from '../interfaces/nav.model';
 import { NavService } from '../services/nav.service';
 import { SiteSelect } from '../interfaces/site-select.model';
@@ -10,11 +15,11 @@ import { FooterNavComponent } from './footer-nav/footer-nav.component';
 import { FooterSocialComponent } from './footer-social/footer-social.component';
 
 @Component({
-    selector: 'app-footer',
-    templateUrl: './footer.component.html',
-    styleUrls: ['./footer.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [RouterLink, FooterNavComponent, FooterSocialComponent]
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [RouterLink, FooterNavComponent, FooterSocialComponent],
 })
 export class FooterComponent implements OnInit {
   private navService = inject(NavService);

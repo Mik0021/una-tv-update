@@ -25,7 +25,7 @@ export class PersonalitiesService {
     return this.http
       .get<PersonalityListing>(
         `${environment.API_UNA}${environment.API_PERSONALITIES}`,
-        { params }
+        { params },
       )
       .subscribe({
         next: (personalityList: PersonalityListing) => {
@@ -40,7 +40,7 @@ export class PersonalitiesService {
   getPersonality(personalitySlug: string | null) {
     return this.http
       .get<PersonalitySingle>(
-        `${environment.API_UNA}${environment.API_PERSNALITY}/${personalitySlug}`
+        `${environment.API_UNA}${environment.API_PERSNALITY}/${personalitySlug}`,
       )
       .subscribe({
         next: (personalitySingle: PersonalitySingle) => {
@@ -55,7 +55,7 @@ export class PersonalitiesService {
   getPersonalityShows(personalitySlug: string | null) {
     return this.http
       .get<PersonalityShow>(
-        `${environment.API_UNA}${environment.API_PERSONALITY_SHOWS}/${personalitySlug}`
+        `${environment.API_UNA}${environment.API_PERSONALITY_SHOWS}/${personalitySlug}`,
       )
       .subscribe({
         next: (personalityShows: PersonalityShow) => {

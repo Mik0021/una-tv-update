@@ -1,12 +1,18 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Directive, ElementRef, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  inject,
+} from '@angular/core';
 declare function destroyPlayer(): any;
 
 @Directive({ selector: '[appRunScripts]' })
 export class RunScriptsDirective implements OnInit, OnDestroy {
   private elementRef = inject(ElementRef);
   private platformId = inject<Object>(PLATFORM_ID);
-
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -21,7 +27,7 @@ export class RunScriptsDirective implements OnInit, OnDestroy {
   reinsertScripts(): void {
     const scripts = <HTMLScriptElement[]>(
       this.elementRef.nativeElement.querySelectorAll(
-        ".raw-html-embed script[src='https://services.brid.tv/player/build/brid.min.js']"
+        ".raw-html-embed script[src='https://services.brid.tv/player/build/brid.min.js']",
       )
     );
 
@@ -36,7 +42,7 @@ export class RunScriptsDirective implements OnInit, OnDestroy {
         setTimeout(() => {
           const snipets = <HTMLScriptElement[]>(
             this.elementRef.nativeElement.querySelectorAll(
-              ".raw-html-embed script[src='https://services.brid.tv/player/build/brid.min.js']"
+              ".raw-html-embed script[src='https://services.brid.tv/player/build/brid.min.js']",
             )
           );
           snipets.forEach((e) => {
@@ -63,7 +69,7 @@ export class RunScriptsDirective implements OnInit, OnDestroy {
   twitterScriptReupload() {
     const scripts = <HTMLScriptElement[]>(
       this.elementRef.nativeElement.querySelectorAll(
-        ".raw-html-embed script[src='https://platform.twitter.com/widgets.js']"
+        ".raw-html-embed script[src='https://platform.twitter.com/widgets.js']",
       )
     );
     const scriptsInitialLength = scripts.length;
@@ -83,7 +89,7 @@ export class RunScriptsDirective implements OnInit, OnDestroy {
   reinsertScriptsLivestream(): void {
     const scripts = <HTMLScriptElement[]>(
       this.elementRef.nativeElement.querySelectorAll(
-        ".raw-html-embed script[src='//services.brid.tv/player/build/brid.min.js']"
+        ".raw-html-embed script[src='//services.brid.tv/player/build/brid.min.js']",
       )
     );
 
@@ -98,7 +104,7 @@ export class RunScriptsDirective implements OnInit, OnDestroy {
         setTimeout(() => {
           const snipets = <HTMLScriptElement[]>(
             this.elementRef.nativeElement.querySelectorAll(
-              ".raw-html-embed script[src='//services.brid.tv/player/build/brid.min.js']"
+              ".raw-html-embed script[src='//services.brid.tv/player/build/brid.min.js']",
             )
           );
           snipets.forEach((e) => {

@@ -1,5 +1,10 @@
-
-import { Component, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  DOCUMENT,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { Home } from 'src/app/interfaces/home.model';
@@ -11,11 +16,15 @@ import { CategorySectionSmallCardsContentDownComponent } from '../../sections/ca
 import { CategorySectionPersonalitiesComponent } from '../../sections/category-section-personalities/category-section-personalities.component';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [HomeHeroSectionFullComponent, CategorySectionSmallCardsContentDownComponent, CategorySectionPersonalitiesComponent]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    HomeHeroSectionFullComponent,
+    CategorySectionSmallCardsContentDownComponent,
+    CategorySectionPersonalitiesComponent,
+  ],
 })
 export class HomeComponent implements OnInit {
   private homeService = inject(HomeService);

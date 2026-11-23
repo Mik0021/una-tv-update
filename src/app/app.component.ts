@@ -1,5 +1,11 @@
-
-import { Component, HostListener, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnInit,
+  DOCUMENT,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { GtagService } from './services/gtag.service';
 import { NgClass } from '@angular/common';
@@ -9,11 +15,17 @@ import { FooterComponent } from './footer/footer.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [NgClass, HeaderComponent, RouterOutlet, FooterComponent, ScrollToTopComponent]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    NgClass,
+    HeaderComponent,
+    RouterOutlet,
+    FooterComponent,
+    ScrollToTopComponent,
+  ],
 })
 export class AppComponent implements OnInit {
   private _document = inject<Document>(DOCUMENT);

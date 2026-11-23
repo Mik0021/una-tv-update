@@ -27,7 +27,7 @@ export class TvProgramService {
             tvProg.data = tvProg.data.slice(0, MAX_TV_DAYS);
           }
           return tvProg;
-        })
+        }),
       )
       .subscribe({
         next: (res: TvProgram) => {
@@ -48,7 +48,7 @@ export class TvProgramService {
             tvProg.data = tvProg.data.slice(0, MAX_TV_DAYS);
           }
           return tvProg;
-        })
+        }),
       )
       .subscribe({
         next: (res: TvProgram) => {

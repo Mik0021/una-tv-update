@@ -1,5 +1,10 @@
 import { NavService } from './../services/nav.service';
-import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { Nav } from '../interfaces/nav.model';
 import { Observable } from 'rxjs';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -8,11 +13,18 @@ import { HeaderSubmenuComponent } from './header-submenu/header-submenu.componen
 import { HeaderSearchComponent } from './header-search/header-search.component';
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [RouterLink, NgClass, NgStyle, RouterLinkActive, HeaderSubmenuComponent, HeaderSearchComponent]
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    RouterLink,
+    NgClass,
+    NgStyle,
+    RouterLinkActive,
+    HeaderSubmenuComponent,
+    HeaderSearchComponent,
+  ],
 })
 export class HeaderComponent implements OnInit {
   private navService = inject(NavService);

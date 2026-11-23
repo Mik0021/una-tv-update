@@ -1,14 +1,19 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { TvProgram } from './../../interfaces/tv-program.model';
 import { NgClass, DatePipe } from '@angular/common';
 import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
 
 @Component({
-    selector: 'app-table',
-    templateUrl: './table.component.html',
-    styleUrls: ['./table.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [NgClass, DatePipe, SafeHtmlPipe]
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [NgClass, DatePipe, SafeHtmlPipe],
 })
 export class TableComponent implements OnInit {
   @Input() schema = {} as TvProgram;
@@ -18,7 +23,7 @@ export class TableComponent implements OnInit {
 
   changeTab(index: number) {
     this.schema.data = this.schema.data.map((schema, i) =>
-      i === index ? { ...schema, active: true } : { ...schema, active: false }
+      i === index ? { ...schema, active: true } : { ...schema, active: false },
     );
   }
 

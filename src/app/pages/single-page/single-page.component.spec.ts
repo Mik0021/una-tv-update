@@ -8,9 +8,8 @@ describe('SinglePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [SinglePageComponent]
-})
-    .compileComponents();
+      imports: [SinglePageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SinglePageComponent);
     component = fixture.componentInstance;

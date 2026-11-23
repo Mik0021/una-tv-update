@@ -1,5 +1,16 @@
 import { isPlatformBrowser, NgStyle } from '@angular/common';
-import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, Input, OnInit, PLATFORM_ID, ViewChild, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
+  Input,
+  OnInit,
+  PLATFORM_ID,
+  ViewChild,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { Category } from 'src/app/interfaces/category.model';
 import { Section } from 'src/app/interfaces/section.model';
 import { initCardCarousel } from '../card-carousel';
@@ -8,15 +19,17 @@ import { RouterLink } from '@angular/router';
 import { CardSmallContentDownComponent } from '../../components/card-small-content-down/card-small-content-down.component';
 
 @Component({
-    selector: 'app-category-section-small-cards-content-down',
-    templateUrl: './category-section-small-cards-content-down.component.html',
-    styleUrls: ['./category-section-small-cards-content-down.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [NgStyle, RouterLink, CardSmallContentDownComponent],
-    // <swiper-container>/<swiper-slide> are Swiper Element web components
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  selector: 'app-category-section-small-cards-content-down',
+  templateUrl: './category-section-small-cards-content-down.component.html',
+  styleUrls: ['./category-section-small-cards-content-down.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [NgStyle, RouterLink, CardSmallContentDownComponent],
+  // <swiper-container>/<swiper-slide> are Swiper Element web components
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class CategorySectionSmallCardsContentDownComponent implements OnInit, AfterViewInit {
+export class CategorySectionSmallCardsContentDownComponent
+  implements OnInit, AfterViewInit
+{
   private platformId = inject(PLATFORM_ID);
 
   @Input() sectionData = {} as Section;

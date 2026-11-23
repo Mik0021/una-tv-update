@@ -10,7 +10,7 @@ if (environment.production) {
 
 function bootstrap() {
   bootstrapApplication(AppComponent, appConfig).catch((err) =>
-    console.error(err)
+    console.error(err),
   );
 }
 

@@ -12,7 +12,7 @@ export class StaticService {
   getStaticPage(query: string | null) {
     // let params = new HttpParams().set('keyword', query);
     return this.http.get<Static>(
-      `${environment.API_UNA}${environment.API_STATIC}/${query}`
+      `${environment.API_UNA}${environment.API_STATIC}/${query}`,
     );
   }
 }

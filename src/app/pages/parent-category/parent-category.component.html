@@ -4,36 +4,36 @@
       <div class="mb-6 lg:mb-14 flex justify-between">
         <h2
           class="font-semibold inline-block text-white py-1 items-center -mb-px text-2xl md:text-3xl lg:text-4xl capitalize"
-          >
+        >
           {{ category.data.tv_category.name }}
         </h2>
       </div>
       <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
         @for (
           article of articles
-          | paginate
-          : {
-          itemsPerPage: 24,
-          currentPage: p,
-          totalItems: paginator.total
+            | paginate
+              : {
+                  itemsPerPage: 24,
+                  currentPage: p,
+                  totalItems: paginator.total,
+                };
+          track article
+        ) {
+          <app-card-small-content-down
+            [articleData]="article"
+          ></app-card-small-content-down>
         }
-        ; track
-        article) {
-        <app-card-small-content-down
-          [articleData]="article"
-        ></app-card-small-content-down>
+      </div>
+      @if (paginator.last_page > 1) {
+        <div class="grid place-items-center mt-28">
+          <pagination-controls
+            class="pagination"
+            (pageChange)="getPage($event)"
+            previousLabel=""
+            nextLabel=""
+          ></pagination-controls>
+        </div>
       }
     </div>
-    @if (paginator.last_page > 1) {
-      <div class="grid place-items-center mt-28">
-        <pagination-controls
-          class="pagination"
-          (pageChange)="getPage($event)"
-          previousLabel=""
-          nextLabel=""
-        ></pagination-controls>
-      </div>
-    }
-  </div>
-}
+  }
 </section>

@@ -5,12 +5,10 @@
 }
 
 @for (section of heroSection.data; track section) {
-  <section
-    class="bg-dark container-slider"
-    >
+  <section class="bg-dark container-slider">
     @if (
       section.tv_show_template.type_id === 2 && section.tv_shows.length > 0
-      ) {
+    ) {
       <app-category-section-small-cards-content-down
         [sectionData]="section"
       ></app-category-section-small-cards-content-down>
@@ -18,10 +16,8 @@
     @if (
       section.tv_show_template.type_id === 2 &&
       section.tv_personalities.length > 0
-      ) {
-      <app-category-section-personalities
-        [sectionData]="section"
-        >
+    ) {
+      <app-category-section-personalities [sectionData]="section">
       </app-category-section-personalities>
     }
   </section>

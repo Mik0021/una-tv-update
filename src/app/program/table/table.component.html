@@ -7,7 +7,7 @@
             class="tab py-2 lg:py-4 px-3 lg:px-6 capitalize whitespace-nowrap"
             [class.active]="tab.active"
             (click)="changeTab(i)"
-            >
+          >
             {{ tab.date | date: 'EEE, dd.MM.' }}
           </li>
         }
@@ -21,7 +21,7 @@
                   <tr
                     (click)="toggleAccordion($event, i, j)"
                     class="cursor-pointer"
-                    >
+                  >
                     <td class="py-2">{{ item.time }}</td>
                     <td class="py-2">{{ item.type }}</td>
                     <td class="py-2">{{ item.title }}</td>
@@ -29,7 +29,7 @@
                     <td
                       class="py-2 button font-extrabold text-2xl"
                       [ngClass]="item.description === '' ? 'invisible' : ''"
-                      >
+                    >
                       +
                     </td>
                   </tr>

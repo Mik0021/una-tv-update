@@ -20,16 +20,16 @@
         BiH
       </button>
     </div> -->
-    @if (showTab) {
-      <div>
-        <app-table [schema]="schemaComplete"></app-table>
-      </div>
-    }
-    @if (!showTab) {
-      <div>
-        <app-table [schema]="schemaCompleteBih"></app-table>
-      </div>
-    }
+      @if (showTab) {
+        <div>
+          <app-table [schema]="schemaComplete"></app-table>
+        </div>
+      }
+      @if (!showTab) {
+        <div>
+          <app-table [schema]="schemaCompleteBih"></app-table>
+        </div>
+      }
+    </div>
   </div>
-</div>
 </section>

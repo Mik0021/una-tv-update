@@ -1,5 +1,10 @@
-
-import { Component, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  DOCUMENT,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -11,11 +16,11 @@ import { CardSmallContentDownComponent } from '../../components/card-small-conte
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
-    selector: 'app-search',
-    templateUrl: './search.component.html',
-    styleUrls: ['./search.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [CardSmallContentDownComponent, NgxPaginationModule]
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [CardSmallContentDownComponent, NgxPaginationModule],
 })
 export class SearchComponent implements OnInit {
   private searchService = inject(SearchService);
@@ -75,7 +80,7 @@ export class SearchComponent implements OnInit {
 
   addTags() {
     this.titleService.setTitle(
-      `${this.searchTerm} - ${this._document.location.host}`
+      `${this.searchTerm} - ${this._document.location.host}`,
     );
 
     this.metaService.updateTag({

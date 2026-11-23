@@ -7,5 +7,5 @@ import { NavService } from '../services/nav.service';
 export const quizEnabledGuard: CanActivateFn = () =>
   inject(NavService).quizEnabled$.pipe(
     filter((enabled): enabled is boolean => enabled !== undefined),
-    take(1)
+    take(1),
   );

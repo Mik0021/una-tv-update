@@ -8,9 +8,8 @@ describe('ParentCategoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [ParentCategoryComponent]
-})
-    .compileComponents();
+      imports: [ParentCategoryComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ParentCategoryComponent);
     component = fixture.componentInstance;

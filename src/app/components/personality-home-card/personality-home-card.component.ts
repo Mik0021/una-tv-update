@@ -1,16 +1,21 @@
 import { Personality } from './../../interfaces/personality.model';
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-personality-home-card',
-    templateUrl: './personality-home-card.component.html',
-    styleUrls: ['./personality-home-card.component.scss'],
-    host: {
-        class: 'text-base',
-    },
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [RouterLink]
+  selector: 'app-personality-home-card',
+  templateUrl: './personality-home-card.component.html',
+  styleUrls: ['./personality-home-card.component.scss'],
+  host: {
+    class: 'text-base',
+  },
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [RouterLink],
 })
 export class PersonalityHomeCardComponent implements OnInit {
   @Input() articleData = {} as Personality;

@@ -73,7 +73,7 @@ export class NavService {
           });
 
           return data;
-        })
+        }),
       )
       .subscribe((pages: Pages) => {
         pages.data.forEach((e) => {

@@ -4,36 +4,34 @@
       <div class="block mb-6 lg:mb-14 flex justify-between">
         <h2
           class="font-semibold inline-block text-white py-1 items-center mb-0 text-2xl md:text-3xl lg:text-4xl capitalize"
-          >
+        >
           NAŠA LICA
         </h2>
       </div>
       <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
         @for (
           article of personalityList
-          | paginate
-          : {
-          itemsPerPage: 24,
-          currentPage: p,
-          totalItems: paginator.total
+            | paginate
+              : {
+                  itemsPerPage: 24,
+                  currentPage: p,
+                  totalItems: paginator.total,
+                };
+          track article
+        ) {
+          <app-personality-card [articleData]="article"></app-personality-card>
         }
-        ; track
-        article) {
-        <app-personality-card
-          [articleData]="article"
-        ></app-personality-card>
+      </div>
+      @if (paginator.last_page > 1) {
+        <div class="grid place-items-center mt-28">
+          <pagination-controls
+            class="pagination"
+            (pageChange)="getPage($event)"
+            previousLabel=""
+            nextLabel=""
+          ></pagination-controls>
+        </div>
       }
     </div>
-    @if (paginator.last_page > 1) {
-      <div class="grid place-items-center mt-28">
-        <pagination-controls
-          class="pagination"
-          (pageChange)="getPage($event)"
-          previousLabel=""
-          nextLabel=""
-        ></pagination-controls>
-      </div>
-    }
-  </div>
-}
+  }
 </section>

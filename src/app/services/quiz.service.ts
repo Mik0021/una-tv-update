@@ -8,7 +8,6 @@ import { QuizUpload } from '../interfaces/quiz-upload.model';
 export class QuizService {
   private http = inject(HttpClient);
 
-
   uploadVideo(quizData: QuizUpload, file: File) {
     if (quizData.already_participated === '0') {
       // const params = new HttpParams()
@@ -50,8 +49,7 @@ export class QuizService {
         form,
         {
           // params,
-          headers: new HttpHeaders()
-            .set('Accept', 'application/json'),
+          headers: new HttpHeaders().set('Accept', 'application/json'),
           reportProgress: true,
           observe: 'events',
         },
@@ -107,8 +105,7 @@ export class QuizService {
         form,
         {
           // params,
-          headers: new HttpHeaders()
-            .set('Accept', 'application/json'),
+          headers: new HttpHeaders().set('Accept', 'application/json'),
           reportProgress: true,
           observe: 'events',
         },

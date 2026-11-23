@@ -1,13 +1,19 @@
-
-import { Component, HostListener, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnInit,
+  DOCUMENT,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'app-scroll-to-top',
-    templateUrl: './scroll-to-top.component.html',
-    styleUrls: ['./scroll-to-top.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [NgClass]
+  selector: 'app-scroll-to-top',
+  templateUrl: './scroll-to-top.component.html',
+  styleUrls: ['./scroll-to-top.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [NgClass],
 })
 export class ScrollToTopComponent implements OnInit {
   private document = inject<Document>(DOCUMENT);

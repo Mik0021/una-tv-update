@@ -4,20 +4,20 @@ import {
   OnChanges,
   OnInit,
   SimpleChanges,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { TvShow } from './../../interfaces/tv-show.model';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-home-hero-section-full',
-    templateUrl: './home-hero-section-full.component.html',
-    styleUrls: ['./home-hero-section-full.component.scss'],
-    host: {
-        class: 'lg:pb-64',
-    },
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [RouterLink]
+  selector: 'app-home-hero-section-full',
+  templateUrl: './home-hero-section-full.component.html',
+  styleUrls: ['./home-hero-section-full.component.scss'],
+  host: {
+    class: 'lg:pb-64',
+  },
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [RouterLink],
 })
 export class HomeHeroSectionFullComponent implements OnInit, OnChanges {
   @Input() articles = [] as TvShow[];

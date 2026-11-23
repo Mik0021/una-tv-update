@@ -18,8 +18,8 @@ export class GtagService {
     this.router.events
       .pipe(
         filter(
-          (event): event is NavigationEnd => event instanceof NavigationEnd
-        )
+          (event): event is NavigationEnd => event instanceof NavigationEnd,
+        ),
       )
       .subscribe((event: NavigationEnd) => {
         this.pushTag({

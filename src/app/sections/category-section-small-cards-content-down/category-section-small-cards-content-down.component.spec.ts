@@ -8,11 +8,12 @@ describe('CategorySectionSmallCardsContentDownComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [CategorySectionSmallCardsContentDownComponent]
-})
-    .compileComponents();
+      imports: [CategorySectionSmallCardsContentDownComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(CategorySectionSmallCardsContentDownComponent);
+    fixture = TestBed.createComponent(
+      CategorySectionSmallCardsContentDownComponent,
+    );
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

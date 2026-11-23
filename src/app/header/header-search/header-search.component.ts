@@ -1,4 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { NgForm, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { Search } from 'src/app/interfaces/search.model';
@@ -6,11 +13,11 @@ import { SearchService } from './../../services/search.service';
 import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'app-header-search',
-    templateUrl: './header-search.component.html',
-    styleUrls: ['./header-search.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [ReactiveFormsModule, FormsModule, NgClass]
+  selector: 'app-header-search',
+  templateUrl: './header-search.component.html',
+  styleUrls: ['./header-search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [ReactiveFormsModule, FormsModule, NgClass],
 })
 export class HeaderSearchComponent implements OnInit {
   private router = inject(Router);

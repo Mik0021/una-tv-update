@@ -6,7 +6,7 @@
           class="w-full h-auto"
           src="./assets/images/una-kviz-banner-left.webp"
           alt=""
-          />
+        />
       </div>
     </aside>
     <main class="col-span-7 lg:col-span-5">
@@ -15,7 +15,7 @@
           class="w-full h-auto"
           src="./assets/images/una-kviz-banner-top.webp"
           alt=""
-          />
+        />
       </div>
       <div class="text-white space-y-5 my-10">
         <h1 class="font-bold text-4xl">KVIZ JEDNO PITANJE</h1>
@@ -69,7 +69,7 @@
         class="border border-blue border-solid py-3 lg:py-6 px-4 lg:px-8 apply-form"
         [formGroup]="quizForm"
         (ngSubmit)="submit()"
-        >
+      >
         <h2 class="font-semibold text-blue text-2xl mb-5">Prijava na kviz:</h2>
         <div class="px-2.5 lg:px-5 py-2 lg:py-4 bg-[#d9d9d9] mb-8">
           <p class="text-sm text-[#4E4E55] mb-2">
@@ -91,18 +91,14 @@
               type="text"
               placeholder="Ime i Prezime"
               formControlName="name"
-              />
+            />
             @if (name.hasError('required') && name.touched) {
-              <p
-                class="absolute top-full text-[#F82F2F] text-sm"
-                >
+              <p class="absolute top-full text-[#F82F2F] text-sm">
                 Ime i prezime su obavezni.
               </p>
             }
             @if (name.hasError('maxlength') && name.touched) {
-              <p
-                class="absolute top-full text-[#F82F2F] text-sm"
-                >
+              <p class="absolute top-full text-[#F82F2F] text-sm">
                 Maksimalan broj karaktera je 100.
               </p>
             }
@@ -116,18 +112,14 @@
               min="1920-01-01"
               [max]="maxAge"
               onfocus="(this.type='date')"
-              />
+            />
             @if (dob.hasError('required') && dob.touched) {
-              <p
-                class="absolute top-full text-[#F82F2F] text-sm"
-                >
+              <p class="absolute top-full text-[#F82F2F] text-sm">
                 Datum rođenja je obavezan.
               </p>
             }
             @if (dob.hasError('age') && dob.touched) {
-              <p
-                class="absolute top-full text-[#F82F2F] text-sm"
-                >
+              <p class="absolute top-full text-[#F82F2F] text-sm">
                 Morate biti stariji od 18 godina.
               </p>
             }
@@ -138,24 +130,20 @@
               type="text"
               placeholder="Mesto stanovanja"
               formControlName="place_of_residence"
-              />
+            />
             @if (
               place_of_residence.hasError('required') &&
               place_of_residence.touched
-              ) {
-              <p
-                class="absolute top-full text-[#F82F2F] text-sm"
-                >
+            ) {
+              <p class="absolute top-full text-[#F82F2F] text-sm">
                 Mesto stanovanja je obavezno.
               </p>
             }
             @if (
               place_of_residence.hasError('maxlength') &&
               place_of_residence.touched
-              ) {
-              <p
-                class="absolute top-full text-[#F82F2F] text-sm"
-                >
+            ) {
+              <p class="absolute top-full text-[#F82F2F] text-sm">
                 Maksimalan broj karaktera je 100.
               </p>
             }
@@ -166,18 +154,14 @@
               type="text"
               placeholder="Zanimanje"
               formControlName="occupation"
-              />
+            />
             @if (occupation.hasError('required') && occupation.touched) {
-              <p
-                class="absolute top-full text-[#F82F2F] text-sm"
-                >
+              <p class="absolute top-full text-[#F82F2F] text-sm">
                 Zanimanje je obavezno.
               </p>
             }
             @if (occupation.hasError('maxlength') && occupation.touched) {
-              <p
-                class="absolute top-full text-[#F82F2F] text-sm"
-                >
+              <p class="absolute top-full text-[#F82F2F] text-sm">
                 Maksimalan broj karaktera je 100.
               </p>
             }
@@ -189,9 +173,9 @@
                 [ngClass]="{
                   'text-[#F82F2F]':
                     already_participated.hasError('required') &&
-                    already_participated.touched
+                    already_participated.touched,
                 }"
-                >
+              >
                 Da li ste učestvovali u nekom kvizu?
               </p>
               <div class="flex gap-5 flex-wrap sm:flex-nowrap">
@@ -201,343 +185,320 @@
                     [ngClass]="{
                       'text-[#F82F2F]':
                         already_participated.hasError('required') &&
-                        already_participated.touched
+                        already_participated.touched,
                     }"
                     >Da</span
-                    >
-                    <input
-                      type="radio"
-                      formControlName="already_participated"
-                      value="1"
-                      />
-                    <div class="control_indicator"></div>
-                  </label>
-                  <label class="control control-radio text-white font-semibold">
-                    <span
-                      class="px-4"
+                  >
+                  <input
+                    type="radio"
+                    formControlName="already_participated"
+                    value="1"
+                  />
+                  <div class="control_indicator"></div>
+                </label>
+                <label class="control control-radio text-white font-semibold">
+                  <span
+                    class="px-4"
                     [ngClass]="{
                       'text-[#F82F2F]':
                         already_participated.hasError('required') &&
-                        already_participated.touched
+                        already_participated.touched,
                     }"
-                      >Ne</span
-                      >
-                      <input
-                        type="radio"
-                        formControlName="already_participated"
-                        value="0"
-                        />
-                      <div class="control_indicator"></div>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-span-2 relative">
-                <input
-                  class="w-full font-semibold disabled:opacity-70 text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
-                  type="text"
-                  placeholder="Ukoliko jeste, u kom i kada? "
-                  formControlName="already_participated_description"
+                    >Ne</span
+                  >
+                  <input
+                    type="radio"
+                    formControlName="already_participated"
+                    value="0"
                   />
-                @if (
-                  already_participated_description.hasError('required') &&
-                  already_participated_description.touched
-                  ) {
-                  <p
-                    class="absolute top-full text-[#F82F2F] text-sm"
-                    >
-                    Ako ste učestvovali u drugim kvzovima napišite u kojim i kada.
-                  </p>
-                }
-                @if (
-                  already_participated_description.hasError('maxlength') &&
-                  already_participated_description.touched
-                  ) {
-                  <p
-                    class="absolute top-full text-[#F82F2F] text-sm"
-                    >
-                    Maksimalan broj karaktera je 1024.
-                  </p>
-                }
+                  <div class="control_indicator"></div>
+                </label>
               </div>
-              <div class="col-span-2 lg:col-span-1 relative">
-                <input
-                  class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
-                  type="tel"
-                  placeholder="Broj telefona"
-                  formControlName="phone"
-                  />
-                @if (phone.hasError('required') && phone.touched) {
-                  <p
-                    class="absolute top-full text-[#F82F2F] text-sm"
-                    >
-                    Broj telefona je obavezan.
-                  </p>
-                }
-                @if (phone.hasError('maxlength') && phone.touched) {
-                  <p
-                    class="absolute top-full text-[#F82F2F] text-sm"
-                    >
-                    Maksimalan broj karaktera je 100.
-                  </p>
-                }
-              </div>
-              <div class="col-span-2 lg:col-span-1 relative">
-                <input
-                  class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
-                  type="email"
-                  placeholder="E-mail adresa"
-                  formControlName="email"
-                  />
-                @if (email.hasError('required') && email.touched) {
-                  <p
-                    class="absolute top-full text-[#F82F2F] text-sm"
-                    >
-                    E-mail adresa je obavezna.
-                  </p>
-                }
-                @if (email.hasError('maxlength') && email.touched) {
-                  <p
-                    class="absolute top-full text-[#F82F2F] text-sm"
-                    >
-                    Maksimalan broj karaktera je 100.
-                  </p>
-                }
-                @if (email.hasError('email') && email.touched) {
-                  <p
-                    class="absolute top-full text-[#F82F2F] text-sm"
-                    >
-                    E-mail adresa je neispravna.
-                  </p>
-                }
-              </div>
-              <div class="col-span-2">
-                <input
-                  type="file"
-                  #videoUpload
-                  class="hidden"
-                  accept=".mp4"
-                  #filePicker
-                  (change)="onFileSelected($event)"
-                  />
+            </div>
+          </div>
+          <div class="col-span-2 relative">
+            <input
+              class="w-full font-semibold disabled:opacity-70 text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
+              type="text"
+              placeholder="Ukoliko jeste, u kom i kada? "
+              formControlName="already_participated_description"
+            />
+            @if (
+              already_participated_description.hasError('required') &&
+              already_participated_description.touched
+            ) {
+              <p class="absolute top-full text-[#F82F2F] text-sm">
+                Ako ste učestvovali u drugim kvzovima napišite u kojim i kada.
+              </p>
+            }
+            @if (
+              already_participated_description.hasError('maxlength') &&
+              already_participated_description.touched
+            ) {
+              <p class="absolute top-full text-[#F82F2F] text-sm">
+                Maksimalan broj karaktera je 1024.
+              </p>
+            }
+          </div>
+          <div class="col-span-2 lg:col-span-1 relative">
+            <input
+              class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
+              type="tel"
+              placeholder="Broj telefona"
+              formControlName="phone"
+            />
+            @if (phone.hasError('required') && phone.touched) {
+              <p class="absolute top-full text-[#F82F2F] text-sm">
+                Broj telefona je obavezan.
+              </p>
+            }
+            @if (phone.hasError('maxlength') && phone.touched) {
+              <p class="absolute top-full text-[#F82F2F] text-sm">
+                Maksimalan broj karaktera je 100.
+              </p>
+            }
+          </div>
+          <div class="col-span-2 lg:col-span-1 relative">
+            <input
+              class="w-full font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] placeholder:font-semibold"
+              type="email"
+              placeholder="E-mail adresa"
+              formControlName="email"
+            />
+            @if (email.hasError('required') && email.touched) {
+              <p class="absolute top-full text-[#F82F2F] text-sm">
+                E-mail adresa je obavezna.
+              </p>
+            }
+            @if (email.hasError('maxlength') && email.touched) {
+              <p class="absolute top-full text-[#F82F2F] text-sm">
+                Maksimalan broj karaktera je 100.
+              </p>
+            }
+            @if (email.hasError('email') && email.touched) {
+              <p class="absolute top-full text-[#F82F2F] text-sm">
+                E-mail adresa je neispravna.
+              </p>
+            }
+          </div>
+          <div class="col-span-2">
+            <input
+              type="file"
+              #videoUpload
+              class="hidden"
+              accept=".mp4"
+              #filePicker
+              (change)="onFileSelected($event)"
+            />
 
-                <div
-                  class="flex justify-between items-center font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] relative custom-input"
+            <div
+              class="flex justify-between items-center font-semibold text-base py-2.5 px-5 text-[#4E4E55] bg-[#C8F1FF] relative custom-input"
               [ngClass]="{
                 'custom-input-invalid':
                   videoTypeError ||
                   videoSizeError ||
-                  (video.hasError('required') && video.touched)
+                  (video.hasError('required') && video.touched),
               }"
-                  >
-                  <p
-                    class="text-ellipsis overflow-hidden whitespace-nowrap text-width"
+            >
+              <p
+                class="text-ellipsis overflow-hidden whitespace-nowrap text-width"
                 [ngClass]="{
                   'text-[#F82F2F]':
                     videoTypeError ||
                     videoSizeError ||
-                    (video.hasError('required') && video.touched)
+                    (video.hasError('required') && video.touched),
                 }"
-                    >
-                    @if (videoFileName === '') {
-                      Postavi video snimak
-                    } @else {
-                      {{ videoFileName }}
-                    }
-                  </p>
+              >
+                @if (videoFileName === '') {
+                  Postavi video snimak
+                } @else {
+                  {{ videoFileName }}
+                }
+              </p>
 
-                  <button
-                    (click)="onVideoUpload(videoUpload)"
-                    type="button"
-                    class="font-bold text-base text-[#4E4E55] px-1.5 py-2.5 bg-[#79DDFF] rounded disabled:opacity-80 w-32 video-upload-btn"
+              <button
+                (click)="onVideoUpload(videoUpload)"
+                type="button"
+                class="font-bold text-base text-[#4E4E55] px-1.5 py-2.5 bg-[#79DDFF] rounded disabled:opacity-80 w-32 video-upload-btn"
                 [ngClass]="{
                   'text-[#F82F2F]':
                     videoTypeError ||
                     videoSizeError ||
-                    (video.hasError('required') && video.touched)
+                    (video.hasError('required') && video.touched),
                 }"
-                    >
-                    Upload
-                  </button>
-                  @if (videoSizeError) {
-                    <p
-                      class="absolute top-full text-[#F82F2F] text-sm"
-                [ngClass]="{
-                  'top-[80px]': video.hasError('required') && video.touched
-                }"
-                      >
-                      Maksimalna veličina video snimka je 500MB
-                    </p>
-                  }
-                  @if (videoTypeError) {
-                    <p
-                      class="absolute top-full text-[#F82F2F] text-sm"
-                [ngClass]="{
-                  'top-[80px]': video.hasError('required') && video.touched
-                }"
-                      >
-                      Dozvoljeni tip fajla je .mp4
-                    </p>
-                  }
-                  @if (video.hasError('required') && video.touched) {
-                    <p
-                      class="absolute top-full text-[#F82F2F] text-sm"
-                      >
-                      Video je obavezan.
-                    </p>
-                  }
-                </div>
+              >
+                Upload
+              </button>
+              @if (videoSizeError) {
                 <p
+                  class="absolute top-full text-[#F82F2F] text-sm"
+                  [ngClass]="{
+                    'top-[80px]': video.hasError('required') && video.touched,
+                  }"
+                >
+                  Maksimalna veličina video snimka je 500MB
+                </p>
+              }
+              @if (videoTypeError) {
+                <p
+                  class="absolute top-full text-[#F82F2F] text-sm"
+                  [ngClass]="{
+                    'top-[80px]': video.hasError('required') && video.touched,
+                  }"
+                >
+                  Dozvoljeni tip fajla je .mp4
+                </p>
+              }
+              @if (video.hasError('required') && video.touched) {
+                <p class="absolute top-full text-[#F82F2F] text-sm">
+                  Video je obavezan.
+                </p>
+              }
+            </div>
+            <p
               [ngClass]="{
                 invisible:
                   videoTypeError ||
                   videoSizeError ||
-                  (video.hasError('required') && video.touched)
+                  (video.hasError('required') && video.touched),
               }"
-                  class="text-right text-xs font-semibold text-[#FFB23F] mb-5"
-                  >
-                  Napomena: Maksimalna veličina video snimka je 500MB
-                </p>
-              </div>
-            </div>
-            <div class="px-2.5 lg:px-5 py-2 lg:py-4 bg-[#d9d9d9] mb-8">
-              <p class="font-bold">NAPOMENA: Slanjem ove prijave potvrđujete:</p>
-              <ul class="text-sm text-[#4E4E55] list-disc ml-6">
-                <li>
-                  da ispunjavate sve gore navedene uslove za Pravo na audiciju,
-                </li>
-                <li>da ste lično poslali prijavu,</li>
-                <li>da su svi dostavljeni podaci tačni,</li>
-                <li>
-                  da prihvatate pravila kviza odnosno pravila audicije za kviz
-                  (Uslovi i Pravila Audicije za Kviz i Pravila Kviza),
-                </li>
-                <li>
-                  da ste se detaljno upoznali, te da dajete pristanak za obradu
-                  podataka o ličnosti u skladu sa Obaveštenjem o obradi podataka o
-                  ličnosti,
-                </li>
-                <li>
-                  da se i drugo lice - par koji se zajedno sa vama prijavljuje
-                  detaljno upoznalo i prihvatilo pravila kviza odnosno pravila
-                  audicije za kviz, kao i da se detaljno upoznalo sa obradom
-                  podataka o ličnosti, te da je dalo pristanak u skladu sa
-                  Obaveštenjem o obradi podataka o ličnosti.
-                </li>
-              </ul>
-            </div>
-            <div class="mb-10 sm:mb-5 relative">
-              <label class="control control-radio">
-                <span
-                  class="px-4 text-white block"
+              class="text-right text-xs font-semibold text-[#FFB23F] mb-5"
+            >
+              Napomena: Maksimalna veličina video snimka je 500MB
+            </p>
+          </div>
+        </div>
+        <div class="px-2.5 lg:px-5 py-2 lg:py-4 bg-[#d9d9d9] mb-8">
+          <p class="font-bold">NAPOMENA: Slanjem ove prijave potvrđujete:</p>
+          <ul class="text-sm text-[#4E4E55] list-disc ml-6">
+            <li>
+              da ispunjavate sve gore navedene uslove za Pravo na audiciju,
+            </li>
+            <li>da ste lično poslali prijavu,</li>
+            <li>da su svi dostavljeni podaci tačni,</li>
+            <li>
+              da prihvatate pravila kviza odnosno pravila audicije za kviz
+              (Uslovi i Pravila Audicije za Kviz i Pravila Kviza),
+            </li>
+            <li>
+              da ste se detaljno upoznali, te da dajete pristanak za obradu
+              podataka o ličnosti u skladu sa Obaveštenjem o obradi podataka o
+              ličnosti,
+            </li>
+            <li>
+              da se i drugo lice - par koji se zajedno sa vama prijavljuje
+              detaljno upoznalo i prihvatilo pravila kviza odnosno pravila
+              audicije za kviz, kao i da se detaljno upoznalo sa obradom
+              podataka o ličnosti, te da je dalo pristanak u skladu sa
+              Obaveštenjem o obradi podataka o ličnosti.
+            </li>
+          </ul>
+        </div>
+        <div class="mb-10 sm:mb-5 relative">
+          <label class="control control-radio">
+            <span
+              class="px-4 text-white block"
               [ngClass]="{
                 'text-[#F82F2F]':
                   agreed_to_audition_rules.hasError('required') &&
-                  agreed_to_audition_rules.touched
+                  agreed_to_audition_rules.touched,
               }"
-                  >Saglasan sam sa
-                  <a
-                    [routerLink]="['/p/pravila-kviza-i-audicije-za-kviz']"
-                    target="_blank"
-                    class="font-extrabold"
-                    >Uslovima i Pravilima Audicije za Kviz i Pravilima Kviza
-                  </a>
-                </span>
-                <input type="checkbox" formControlName="agreed_to_audition_rules" />
-                <div class="control_indicator"></div>
-              </label>
-              @if (
-                agreed_to_audition_rules.hasError('required') &&
-                agreed_to_audition_rules.touched
-                ) {
-                <p
-                  class="absolute top-full text-[#F82F2F] text-sm"
-                  >
-                  Morate se složiti sa Pravilima audicije za kviz i pravilima kviza.
-                </p>
-              }
-            </div>
-            <div class="mb-10 sm:mb-5 relative">
-              <label class="control control-radio">
-                <span
-                  class="px-4 text-white block"
+              >Saglasan sam sa
+              <a
+                [routerLink]="['/p/pravila-kviza-i-audicije-za-kviz']"
+                target="_blank"
+                class="font-extrabold"
+                >Uslovima i Pravilima Audicije za Kviz i Pravilima Kviza
+              </a>
+            </span>
+            <input type="checkbox" formControlName="agreed_to_audition_rules" />
+            <div class="control_indicator"></div>
+          </label>
+          @if (
+            agreed_to_audition_rules.hasError('required') &&
+            agreed_to_audition_rules.touched
+          ) {
+            <p class="absolute top-full text-[#F82F2F] text-sm">
+              Morate se složiti sa Pravilima audicije za kviz i pravilima kviza.
+            </p>
+          }
+        </div>
+        <div class="mb-10 sm:mb-5 relative">
+          <label class="control control-radio">
+            <span
+              class="px-4 text-white block"
               [ngClass]="{
                 'text-[#F82F2F]':
                   agreed_with_the_processing_of_personal_data.hasError(
                     'required'
-                  ) && agreed_with_the_processing_of_personal_data.touched
+                  ) && agreed_with_the_processing_of_personal_data.touched,
               }"
-                  >Saglasan sam sa
-                  <a
+              >Saglasan sam sa
+              <a
                 [routerLink]="[
-                  '/p/obavestenje-o-obradi-podataka-o-licnosti-ucesnika-u-audiciji-za-kviz-jedno-pitanje'
+                  '/p/obavestenje-o-obradi-podataka-o-licnosti-ucesnika-u-audiciji-za-kviz-jedno-pitanje',
                 ]"
-                    class="font-extrabold"
-                    target="_blank"
-                    >Obradom podataka o ličnosti učesnika Audicije za Kviz
-                  </a>
-                </span>
-                <input
-                  type="checkbox"
-                  formControlName="agreed_with_the_processing_of_personal_data"
-                  />
-                <div class="control_indicator"></div>
-              </label>
-              @if (
-                agreed_with_the_processing_of_personal_data.hasError(
-                'required'
-                ) && agreed_with_the_processing_of_personal_data.touched
-                ) {
-                <p
-                  class="absolute top-full text-[#F82F2F] text-sm"
-                  >
-                  Morate se složiti sa Obradom podataka o ličnosti učesnika adudicije
-                  za kviz.
-                </p>
-              }
-            </div>
-            <div class="text-center mb-6 pt-14 sm:pt-8 relative">
-              @if (quizForm.invalid && quizForm.touched) {
-                <p
-                  class="absolute top-1 left-1/2 -translate-x-1/2 text-[#F82F2F] text-sm"
-                  >
-                  Molimo Vas popunite sva polja u formi!
-                </p>
-              }
-              @if (uploadSuccess && !quizForm.touched) {
-                <p
-                  class="absolute top-1 left-1/2 -translate-x-1/2 text-[#45fd00] text-sm"
-                  >
-                  Uspesno ste se prijavili. Hvala na prijavi.
-                </p>
-              }
-              <button
-                type="submit"
-                class="font-bold text-base text-black-strong px-1.5 py-2.5 bg-blue rounded disabled:opacity-80 w-36"
-                >
-                PRIJAVI SE
-              </button>
-              @if (progress > 0) {
-                <div
-                  class="upload-progress mt-4 flex justify-center items-center"
-                  >
-                  <progress [value]="progress" max="100">{{ progress }} %</progress>
-                  <span class="text-blue font-semibold align-middle ml-2"
-                    >{{ progress }} %</span
-                    >
-                  </div>
-                }
-              </div>
-            </form>
-          </main>
-          <aside class="col-span-1 hidden lg:block">
-            <div class="sticky top-[130px]">
-              <img
-                class="w-full h-auto"
-                src="./assets/images/una-kviz-banner-right.webp"
-                alt=""
-                />
-            </div>
-          </aside>
+                class="font-extrabold"
+                target="_blank"
+                >Obradom podataka o ličnosti učesnika Audicije za Kviz
+              </a>
+            </span>
+            <input
+              type="checkbox"
+              formControlName="agreed_with_the_processing_of_personal_data"
+            />
+            <div class="control_indicator"></div>
+          </label>
+          @if (
+            agreed_with_the_processing_of_personal_data.hasError('required') &&
+            agreed_with_the_processing_of_personal_data.touched
+          ) {
+            <p class="absolute top-full text-[#F82F2F] text-sm">
+              Morate se složiti sa Obradom podataka o ličnosti učesnika
+              adudicije za kviz.
+            </p>
+          }
         </div>
-      </section>
+        <div class="text-center mb-6 pt-14 sm:pt-8 relative">
+          @if (quizForm.invalid && quizForm.touched) {
+            <p
+              class="absolute top-1 left-1/2 -translate-x-1/2 text-[#F82F2F] text-sm"
+            >
+              Molimo Vas popunite sva polja u formi!
+            </p>
+          }
+          @if (uploadSuccess && !quizForm.touched) {
+            <p
+              class="absolute top-1 left-1/2 -translate-x-1/2 text-[#45fd00] text-sm"
+            >
+              Uspesno ste se prijavili. Hvala na prijavi.
+            </p>
+          }
+          <button
+            type="submit"
+            class="font-bold text-base text-black-strong px-1.5 py-2.5 bg-blue rounded disabled:opacity-80 w-36"
+          >
+            PRIJAVI SE
+          </button>
+          @if (progress > 0) {
+            <div class="upload-progress mt-4 flex justify-center items-center">
+              <progress [value]="progress" max="100">{{ progress }} %</progress>
+              <span class="text-blue font-semibold align-middle ml-2"
+                >{{ progress }} %</span
+              >
+            </div>
+          }
+        </div>
+      </form>
+    </main>
+    <aside class="col-span-1 hidden lg:block">
+      <div class="sticky top-[130px]">
+        <img
+          class="w-full h-auto"
+          src="./assets/images/una-kviz-banner-right.webp"
+          alt=""
+        />
+      </div>
+    </aside>
+  </div>
+</section>

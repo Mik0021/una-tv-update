@@ -1,5 +1,13 @@
-
-import { AfterViewInit, Component, HostListener, OnInit, PLATFORM_ID, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  HostListener,
+  OnInit,
+  PLATFORM_ID,
+  DOCUMENT,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -21,11 +29,20 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
 
 @Component({
-    selector: 'app-single-page',
-    templateUrl: './single-page.component.html',
-    styleUrls: ['./single-page.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [RunScriptsDirective, NgClass, RouterLink, SingleSocialComponent, SingleTagsComponent, CardSmallContentDownComponent, NgxPaginationModule, SafeHtmlPipe]
+  selector: 'app-single-page',
+  templateUrl: './single-page.component.html',
+  styleUrls: ['./single-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    RunScriptsDirective,
+    NgClass,
+    RouterLink,
+    SingleSocialComponent,
+    SingleTagsComponent,
+    CardSmallContentDownComponent,
+    NgxPaginationModule,
+    SafeHtmlPipe,
+  ],
 })
 export class SinglePageComponent implements OnInit, AfterViewInit {
   private postService = inject(PostService);
@@ -100,7 +117,7 @@ export class SinglePageComponent implements OnInit, AfterViewInit {
                 this.createSrcSet();
                 this.createVideoScript(
                   this.single_post.data.brid_default_player_id,
-                  this.single_post.data.brid_video_id
+                  this.single_post.data.brid_video_id,
                 );
               },
               error: (error: any) => {
@@ -129,7 +146,7 @@ export class SinglePageComponent implements OnInit, AfterViewInit {
                 this.createSrcSet();
                 this.createVideoScript(
                   this.single_post.data.brid_default_player_id,
-                  this.single_post.data.brid_video_id
+                  this.single_post.data.brid_video_id,
                 );
               },
               error: (error: any) => {

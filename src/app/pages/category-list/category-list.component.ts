@@ -1,5 +1,10 @@
-
-import { Component, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  DOCUMENT,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -12,11 +17,11 @@ import { CardSmallContentDownComponent } from '../../components/card-small-conte
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
-    selector: 'app-category-list',
-    templateUrl: './category-list.component.html',
-    styleUrls: ['./category-list.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [NgStyle, CardSmallContentDownComponent, NgxPaginationModule]
+  selector: 'app-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [NgStyle, CardSmallContentDownComponent, NgxPaginationModule],
 })
 export class CategoryListComponent implements OnInit {
   private categoryService = inject(CategorysService);
@@ -82,7 +87,7 @@ export class CategoryListComponent implements OnInit {
     this.categoryService.getCategory(
       this.parentCategoryRoute,
       this.categoryRoute,
-      this.p
+      this.p,
     );
   }
 

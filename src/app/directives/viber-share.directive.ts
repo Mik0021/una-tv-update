@@ -1,5 +1,11 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Directive, ElementRef, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  OnInit,
+  PLATFORM_ID,
+  inject,
+} from '@angular/core';
 
 @Directive({ selector: '[appViberShare]' })
 export class ViberShareDirective implements OnInit {
@@ -19,7 +25,7 @@ export class ViberShareDirective implements OnInit {
       ?.getAttribute('content');
     linkElem.setAttribute(
       'href',
-      'viber://forward?text=' + encodeURIComponent(window.location.href)
+      'viber://forward?text=' + encodeURIComponent(window.location.href),
     );
   }
 }

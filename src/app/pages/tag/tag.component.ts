@@ -1,5 +1,10 @@
-
-import { Component, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  DOCUMENT,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -12,11 +17,11 @@ import { CardSmallContentDownComponent } from '../../components/card-small-conte
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
-    selector: 'app-tag',
-    templateUrl: './tag.component.html',
-    styleUrls: ['./tag.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [CardSmallContentDownComponent, NgxPaginationModule]
+  selector: 'app-tag',
+  templateUrl: './tag.component.html',
+  styleUrls: ['./tag.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [CardSmallContentDownComponent, NgxPaginationModule],
 })
 export class TagComponent implements OnInit {
   private tagService = inject(TagService);

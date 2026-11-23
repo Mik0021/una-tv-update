@@ -10,13 +10,20 @@ describe('quizEnabledGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: NavService, useValue: { quizEnabled$: quizEnabled } }],
+      providers: [
+        { provide: NavService, useValue: { quizEnabled$: quizEnabled } },
+      ],
     });
   });
 
   it('waits for the menu, then resolves to the quiz flag', (done) => {
-    const result = runInInjectionContext(TestBed.inject(EnvironmentInjector), () =>
-      quizEnabledGuard({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot)
+    const result = runInInjectionContext(
+      TestBed.inject(EnvironmentInjector),
+      () =>
+        quizEnabledGuard(
+          {} as ActivatedRouteSnapshot,
+          {} as RouterStateSnapshot,
+        ),
     ) as Observable<boolean>;
     result.subscribe((v) => {
       expect(v).toBeTrue();

@@ -4,20 +4,20 @@ import {
   OnChanges,
   OnInit,
   SimpleChanges,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { TvShow } from './../../interfaces/tv-show.model';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-card-small-content-down',
-    templateUrl: './card-small-content-down.component.html',
-    styleUrls: ['./card-small-content-down.component.scss'],
-    host: {
-        class: 'text-base',
-    },
-    changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [RouterLink]
+  selector: 'app-card-small-content-down',
+  templateUrl: './card-small-content-down.component.html',
+  styleUrls: ['./card-small-content-down.component.scss'],
+  host: {
+    class: 'text-base',
+  },
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [RouterLink],
 })
 export class CardSmallContentDownComponent implements OnInit, OnChanges {
   @Input() articleData = {} as TvShow;

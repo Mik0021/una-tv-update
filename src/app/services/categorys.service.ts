@@ -22,13 +22,13 @@ export class CategorysService {
   getCategory(
     category: string | null,
     subcategory: string | null,
-    currPage: number
+    currPage: number,
   ) {
     let params = new HttpParams().set('per_page', 24).set('page', currPage);
     return this.http
       .get<CategoryList>(
         `${environment.API_UNA}${environment.API_CATEGORY}/${category}/${subcategory}`,
-        { params }
+        { params },
       )
       .subscribe((category: CategoryList) => {
         this.category.next(category);
@@ -37,7 +37,7 @@ export class CategorysService {
 
   getCategoryTest(subcategory: string | null) {
     return this.http.get<boolean>(
-      `${environment.API_UNA}${environment.API_TV_IS_SUBCATEGORY}/${subcategory}`
+      `${environment.API_UNA}${environment.API_TV_IS_SUBCATEGORY}/${subcategory}`,
     );
   }
 
@@ -46,7 +46,7 @@ export class CategorysService {
     return this.http
       .get<ParentCategory>(
         `${environment.API_UNA}${environment.API_PARENT_CATEGORY}/${query}`,
-        { params }
+        { params },
       )
       .subscribe(
         (parentCat: ParentCategory) => {
@@ -54,7 +54,7 @@ export class CategorysService {
         },
         (error: any) => {
           this.router.navigate(['404']);
-        }
+        },
       );
   }
 }

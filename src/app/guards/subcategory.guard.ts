@@ -12,5 +12,5 @@ export const subcategoryGuard: CanMatchFn = (_route, segments) =>
     .getCategoryTest(segments[1]?.path ?? null)
     .pipe(
       map((isSubcategory) => !!isSubcategory),
-      catchError(() => of(false))
+      catchError(() => of(false)),
     );

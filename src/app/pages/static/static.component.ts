@@ -1,13 +1,18 @@
 import { ActivatedRoute } from '@angular/router';
 import { StaticService } from './../../services/static.service';
 import { Static } from './../../interfaces/static.model';
-import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 
 @Component({
-    selector: 'app-static',
-    templateUrl: './static.component.html',
-    styleUrls: ['./static.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager
+  selector: 'app-static',
+  templateUrl: './static.component.html',
+  styleUrls: ['./static.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class StaticComponent implements OnInit {
   private staticService = inject(StaticService);
