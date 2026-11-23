@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy, inject } from '@angular/core';
 import { NgForm, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { Search } from 'src/app/interfaces/search.model';
@@ -13,10 +13,15 @@ import { NgClass } from '@angular/common';
     imports: [ReactiveFormsModule, FormsModule, NgClass]
 })
 export class HeaderSearchComponent implements OnInit {
+  private router = inject(Router);
+  private searchService = inject(SearchService);
+
   isShown: string = '';
   @ViewChild('searchField', { static: true })
   searchField: ElementRef<HTMLInputElement> = {} as ElementRef;
-  constructor(private router: Router, private searchService: SearchService) {
+  constructor() {
+    const router = this.router;
+
     router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.closeSearch();

@@ -1,5 +1,5 @@
 
-import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { Home } from 'src/app/interfaces/home.model';
@@ -18,19 +18,17 @@ import { CategorySectionPersonalitiesComponent } from '../../sections/category-s
     imports: [HomeHeroSectionFullComponent, CategorySectionSmallCardsContentDownComponent, CategorySectionPersonalitiesComponent]
 })
 export class HomeComponent implements OnInit {
+  private homeService = inject(HomeService);
+  private metaService = inject(Meta);
+  private titleService = inject(Title);
+  private _document = inject<Document>(DOCUMENT);
+
   heroSection = {} as Home;
   heroType: number = 1;
   heroArticleList: TvShow[] = [];
   sectionArticleList: TvShow[] = [];
 
   home$: Observable<Home> = this.homeService.home$;
-
-  constructor(
-    private homeService: HomeService,
-    private metaService: Meta,
-    private titleService: Title,
-    @Inject(DOCUMENT) private _document: Document
-  ) {}
 
   ngOnInit(): void {
     this.homeService.getHomePage();

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
@@ -12,7 +12,9 @@ declare global {
   providedIn: 'root',
 })
 export class GtagService {
-  constructor(private router: Router) {
+  private router = inject(Router);
+
+  constructor() {
     this.router.events
       .pipe(
         filter(

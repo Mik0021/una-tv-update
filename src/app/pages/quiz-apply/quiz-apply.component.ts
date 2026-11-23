@@ -1,15 +1,5 @@
 
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Inject,
-  OnDestroy,
-  OnInit,
-  PLATFORM_ID,
-  DOCUMENT,
-  ChangeDetectionStrategy
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, PLATFORM_ID, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ReCaptchaV3Service } from 'ng-recaptcha-2';
@@ -30,6 +20,17 @@ import { NgClass } from '@angular/common';
     imports: [ReactiveFormsModule, NgClass, RouterLink]
 })
 export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
+  private formBuilder = inject(FormBuilder);
+  private recaptchaV3Service = inject(ReCaptchaV3Service);
+  private _document = inject<Document>(DOCUMENT);
+  private platformId = inject<Object>(PLATFORM_ID);
+  private metaService = inject(Meta);
+  private titleService = inject(Title);
+  private quizService = inject(QuizService);
+  private el = inject(ElementRef);
+  private navService = inject(NavService);
+  private router = inject(Router);
+
   videoTypeError = false;
   videoSizeError = false;
   videoFileName = '';
@@ -94,19 +95,6 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   get agreed_with_the_processing_of_personal_data() {
     return this.quizForm.controls.agreed_with_the_processing_of_personal_data;
   }
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private recaptchaV3Service: ReCaptchaV3Service,
-    @Inject(DOCUMENT) private _document: Document,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private metaService: Meta,
-    private titleService: Title,
-    private quizService: QuizService,
-    private el: ElementRef,
-    private navService: NavService,
-    private router: Router,
-  ) {}
 
   ngOnInit(): void {
     this.addTags();

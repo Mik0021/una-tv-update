@@ -4,7 +4,7 @@ import { Image } from 'src/app/interfaces/image.model';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { PersonalitiesService } from './../../services/personalities.service';
-import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
 import { PersonalitySingle } from 'src/app/interfaces/personality-single.model';
 import { Meta, Title } from '@angular/platform-browser';
 import { RunScriptsDirective } from '../../directives/run-scripts.directive';
@@ -20,6 +20,12 @@ import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
     imports: [RunScriptsDirective, CardSmallContentDownComponent, SafeHtmlPipe]
 })
 export class PersonalitySingleComponent implements OnInit {
+  private personalitiesService = inject(PersonalitiesService);
+  private activatedRoute = inject(ActivatedRoute);
+  private metaService = inject(Meta);
+  private titleService = inject(Title);
+  private _document = inject<Document>(DOCUMENT);
+
   image = {} as Image;
   srcSet: string = '';
   content: any;
@@ -33,13 +39,7 @@ export class PersonalitySingleComponent implements OnInit {
   personalityShows$: Observable<PersonalityShow> =
     this.personalitiesService.personalityShows$;
 
-  constructor(
-    private personalitiesService: PersonalitiesService,
-    private activatedRoute: ActivatedRoute,
-    private metaService: Meta,
-    private titleService: Title,
-    @Inject(DOCUMENT) private _document: Document
-  ) {
+  constructor() {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('personality')) {
         return;

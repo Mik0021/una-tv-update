@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { StaticService } from './../../services/static.service';
 import { Static } from './../../interfaces/static.model';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 
 @Component({
     selector: 'app-static',
@@ -10,12 +10,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.Eager
 })
 export class StaticComponent implements OnInit {
+  private staticService = inject(StaticService);
+  private activatedRoute = inject(ActivatedRoute);
+
   staticPage = {} as Static;
   staticPageRoute: string | null = '';
-  constructor(
-    private staticService: StaticService,
-    private activatedRoute: ActivatedRoute
-  ) {
+  constructor() {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('static')) {
         return;

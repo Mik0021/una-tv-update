@@ -1,5 +1,5 @@
 import { NavService } from './../services/nav.service';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Nav } from '../interfaces/nav.model';
 import { Observable } from 'rxjs';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -15,11 +15,11 @@ import { HeaderSearchComponent } from './header-search/header-search.component';
     imports: [RouterLink, NgClass, NgStyle, RouterLinkActive, HeaderSubmenuComponent, HeaderSearchComponent]
 })
 export class HeaderComponent implements OnInit {
+  private navService = inject(NavService);
+
   isMenuShown: string = '-translate-x-full';
   navList = {} as Nav;
   nav$: Observable<Nav> = this.navService.allNav$;
-
-  constructor(private navService: NavService) {}
 
   ngOnInit(): void {
     this.navService.getNav();

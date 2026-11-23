@@ -1,5 +1,5 @@
 
-import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -19,6 +19,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     imports: [CardSmallContentDownComponent, NgxPaginationModule]
 })
 export class TagComponent implements OnInit {
+  private tagService = inject(TagService);
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
+  private metaService = inject(Meta);
+  private titleService = inject(Title);
+  private _document = inject<Document>(DOCUMENT);
+
   tag = {} as Tags;
   articles: TvShow[] = [];
   tagRoute: string | null = '';
@@ -27,14 +34,7 @@ export class TagComponent implements OnInit {
 
   tag$: Observable<Tag> = this.tagService.tag$;
 
-  constructor(
-    private tagService: TagService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private metaService: Meta,
-    private titleService: Title,
-    @Inject(DOCUMENT) private _document: Document
-  ) {
+  constructor() {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['p'] === undefined) {
         this.p = 1;

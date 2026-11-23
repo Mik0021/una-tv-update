@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Static } from './../interfaces/static.model';
 
@@ -7,7 +7,8 @@ import { Static } from './../interfaces/static.model';
   providedIn: 'root',
 })
 export class StaticService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+
   getStaticPage(query: string | null) {
     // let params = new HttpParams().set('keyword', query);
     return this.http.get<Static>(

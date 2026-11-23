@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -10,13 +10,14 @@ import { ParentCategory } from './../interfaces/parent-category.model';
   providedIn: 'root',
 })
 export class CategorysService {
+  private http = inject(HttpClient);
+  private router = inject(Router);
+
   private category = new Subject<CategoryList>();
   private parentCategory = new Subject<ParentCategory>();
 
   category$ = this.category.asObservable();
   parentCategory$ = this.parentCategory.asObservable();
-
-  constructor(private http: HttpClient, private router: Router) {}
 
   getCategory(
     category: string | null,

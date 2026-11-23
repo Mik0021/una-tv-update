@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { QuizUpload } from '../interfaces/quiz-upload.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuizService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+
 
   uploadVideo(quizData: QuizUpload, file: File) {
     if (quizData.already_participated === '0') {

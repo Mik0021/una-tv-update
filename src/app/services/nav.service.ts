@@ -1,6 +1,6 @@
 import { Nav } from 'src/app/interfaces/nav.model';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Subject, filter, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Pages } from '../interfaces/pages.model';
@@ -9,6 +9,8 @@ import { Pages } from '../interfaces/pages.model';
   providedIn: 'root',
 })
 export class NavService {
+  private http = inject(HttpClient);
+
   private allNav = new Subject<Nav>();
   private footerPages = new Subject<Pages>();
   private quizEnabled = new BehaviorSubject<boolean | undefined>(undefined);
@@ -16,7 +18,6 @@ export class NavService {
   allNav$ = this.allNav.asObservable();
   footerPages$ = this.footerPages.asObservable();
   quizEnabled$ = this.quizEnabled.asObservable();
-  constructor(private http: HttpClient) {}
 
   getNav() {
     return this.http

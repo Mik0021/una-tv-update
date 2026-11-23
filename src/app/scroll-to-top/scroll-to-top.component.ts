@@ -1,5 +1,5 @@
 
-import { Component, HostListener, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, HostListener, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -10,8 +10,9 @@ import { NgClass } from '@angular/common';
     imports: [NgClass]
 })
 export class ScrollToTopComponent implements OnInit {
+  private document = inject<Document>(DOCUMENT);
+
   windowScrolled: boolean = false;
-  constructor(@Inject(DOCUMENT) private document: Document) {}
   @HostListener('window:scroll', [])
   onWindowScroll() {
     if (

@@ -1,18 +1,11 @@
 import { isPlatformBrowser } from '@angular/common';
-import {
-  Directive,
-  ElementRef,
-  Inject,
-  OnInit,
-  PLATFORM_ID,
-} from '@angular/core';
+import { Directive, ElementRef, OnInit, PLATFORM_ID, inject } from '@angular/core';
 
 @Directive({ selector: '[appViberShare]' })
 export class ViberShareDirective implements OnInit {
-  constructor(
-    private elementRef: ElementRef,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  private elementRef = inject(ElementRef);
+  private platformId = inject<Object>(PLATFORM_ID);
+
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.setViberLink();

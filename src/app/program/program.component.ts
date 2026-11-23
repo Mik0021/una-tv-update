@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TvProgram } from './../interfaces/tv-program.model';
 import { TvProgramService } from './../services/tv-program.service';
@@ -14,17 +14,15 @@ import { TableComponent } from './table/table.component';
     imports: [TableComponent]
 })
 export class ProgramComponent implements OnInit {
+  private tvProgramService = inject(TvProgramService);
+  private metaService = inject(Meta);
+  private titleService = inject(Title);
+  private _document = inject<Document>(DOCUMENT);
+
   showTab: boolean = true;
   schemaComplete = {} as TvProgram;
   schemaCompleteBih = {} as TvProgram;
   tvProgram$: Observable<TvProgram> = this.tvProgramService.tvProgram$;
-  // tvProgramBih$: Observable<TvProgram> = this.tvProgramService.tvProgramBih$;
-  constructor(
-    private tvProgramService: TvProgramService,
-    private metaService: Meta,
-    private titleService: Title,
-    @Inject(DOCUMENT) private _document: Document,
-  ) {}
   ngOnInit(): void {
     this.tvProgramService.getTvProgram();
     // this.tvProgramService.getTvProgramBih();

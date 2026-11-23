@@ -1,5 +1,5 @@
 
-import { Component, HostListener, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, HostListener, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { GtagService } from './services/gtag.service';
 import { NgClass } from '@angular/common';
@@ -16,12 +16,10 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
     imports: [NgClass, HeaderComponent, RouterOutlet, FooterComponent, ScrollToTopComponent]
 })
 export class AppComponent implements OnInit {
-  windowScrolled: boolean = false;
+  private _document = inject<Document>(DOCUMENT);
+  private gtagService = inject(GtagService);
 
-  constructor(
-    @Inject(DOCUMENT) private _document: Document,
-    private gtagService: GtagService
-  ) {}
+  windowScrolled: boolean = false;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {

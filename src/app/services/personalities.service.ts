@@ -1,7 +1,7 @@
 import { PersonalitySingle } from './../interfaces/personality-single.model';
 import { PersonalityListing } from './../interfaces/personality-listing.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
 import { PersonalityShow } from '../interfaces/personality-show.model';
@@ -10,6 +10,8 @@ import { PersonalityShow } from '../interfaces/personality-show.model';
   providedIn: 'root',
 })
 export class PersonalitiesService {
+  private http = inject(HttpClient);
+
   private personalitiesList = new Subject<PersonalityListing>();
   private personalitySingle = new Subject<PersonalitySingle>();
   private personalityShows = new Subject<PersonalityShow>();
@@ -17,7 +19,6 @@ export class PersonalitiesService {
   personalitiesList$ = this.personalitiesList.asObservable();
   personalitySingle$ = this.personalitySingle.asObservable();
   personalityShows$ = this.personalityShows.asObservable();
-  constructor(private http: HttpClient) {}
 
   getPersonalities(currPage: number) {
     let params = new HttpParams().set('per_page', 24).set('page', currPage);

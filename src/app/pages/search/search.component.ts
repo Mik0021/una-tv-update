@@ -1,5 +1,5 @@
 
-import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -18,6 +18,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     imports: [CardSmallContentDownComponent, NgxPaginationModule]
 })
 export class SearchComponent implements OnInit {
+  private searchService = inject(SearchService);
+  private router = inject(Router);
+  private acitivatedRoute = inject(ActivatedRoute);
+  private _document = inject<Document>(DOCUMENT);
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
+
   articles: TvShow[] = [];
   searchTerm: string = '';
   paginator = {} as Paginator;
@@ -25,14 +32,7 @@ export class SearchComponent implements OnInit {
 
   $search: Observable<Search> = this.searchService.searchRes$;
 
-  constructor(
-    private searchService: SearchService,
-    private router: Router,
-    private acitivatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private _document: Document,
-    private titleService: Title,
-    private metaService: Meta
-  ) {
+  constructor() {
     this.acitivatedRoute.queryParams.subscribe((params) => {
       if (params['p'] === undefined) {
         this.p = 1;

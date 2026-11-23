@@ -1,14 +1,5 @@
 
-import {
-  AfterViewInit,
-  Component,
-  HostListener,
-  Inject,
-  OnInit,
-  PLATFORM_ID,
-  DOCUMENT,
-  ChangeDetectionStrategy
-} from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit, PLATFORM_ID, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -37,6 +28,15 @@ import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
     imports: [RunScriptsDirective, NgClass, RouterLink, SingleSocialComponent, SingleTagsComponent, CardSmallContentDownComponent, NgxPaginationModule, SafeHtmlPipe]
 })
 export class SinglePageComponent implements OnInit, AfterViewInit {
+  private postService = inject(PostService);
+  private activatedRoute = inject(ActivatedRoute);
+  private metaService = inject(Meta);
+  private titleService = inject(Title);
+  private router = inject(Router);
+  private _document = inject<Document>(DOCUMENT);
+  private platformId = inject<Object>(PLATFORM_ID);
+  private searchService = inject(SearchService);
+
   single_post = {} as Post;
   tags_list: Tags[] = [];
   episodes: TvShow[] = [];
@@ -58,16 +58,7 @@ export class SinglePageComponent implements OnInit, AfterViewInit {
   singleVideo: string = '';
 
   $search: Observable<Search> = this.searchService.searchRes$;
-  constructor(
-    private postService: PostService,
-    private activatedRoute: ActivatedRoute,
-    private metaService: Meta,
-    private titleService: Title,
-    private router: Router,
-    @Inject(DOCUMENT) private _document: Document,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private searchService: SearchService
-  ) {
+  constructor() {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['p'] === undefined) {
         this.p = 1;

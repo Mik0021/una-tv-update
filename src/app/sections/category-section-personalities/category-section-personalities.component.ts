@@ -1,16 +1,5 @@
 import { isPlatformBrowser, NgStyle } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  CUSTOM_ELEMENTS_SCHEMA,
-  ElementRef,
-  Inject,
-  Input,
-  OnInit,
-  PLATFORM_ID,
-  ViewChild,
-  ChangeDetectionStrategy
-} from '@angular/core';
+import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, Input, OnInit, PLATFORM_ID, ViewChild, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Category } from 'src/app/interfaces/category.model';
 import { Personality } from 'src/app/interfaces/personality.model';
 import { Section } from 'src/app/interfaces/section.model';
@@ -28,13 +17,13 @@ import { PersonalityHomeCardComponent } from '../../components/personality-home-
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CategorySectionPersonalitiesComponent implements OnInit, AfterViewInit {
+  private platformId = inject(PLATFORM_ID);
+
   @Input() sectionData = {} as Section;
   articleList = [] as Personality[];
   category = {} as Category;
   categorySlug: string = '';
   @ViewChild('carousel') carousel?: ElementRef<HTMLElement>;
-
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   ngOnInit(): void {
     this.articleList = this.sectionData.tv_personalities;

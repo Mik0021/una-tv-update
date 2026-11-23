@@ -1,13 +1,14 @@
 import { Post } from './../interfaces/post.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+
   getPost(
     parentCategory: string | null,
     category: string | null,

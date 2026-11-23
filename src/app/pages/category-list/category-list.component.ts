@@ -1,5 +1,5 @@
 
-import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -19,6 +19,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     imports: [NgStyle, CardSmallContentDownComponent, NgxPaginationModule]
 })
 export class CategoryListComponent implements OnInit {
+  private categoryService = inject(CategorysService);
+  private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
+  private metaService = inject(Meta);
+  private titleService = inject(Title);
+  private _document = inject<Document>(DOCUMENT);
+
   category = {} as CategoryList;
   articles: TvShow[] = [];
   categoryRoute: string | null = '';
@@ -28,14 +35,7 @@ export class CategoryListComponent implements OnInit {
 
   category$: Observable<CategoryList> = this.categoryService.category$;
 
-  constructor(
-    private categoryService: CategorysService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private metaService: Meta,
-    private titleService: Title,
-    @Inject(DOCUMENT) private _document: Document
-  ) {
+  constructor() {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['p'] === undefined) {
         this.p = 1;

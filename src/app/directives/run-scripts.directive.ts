@@ -1,20 +1,12 @@
 import { isPlatformBrowser } from '@angular/common';
-import {
-  Directive,
-  ElementRef,
-  Inject,
-  OnDestroy,
-  OnInit,
-  PLATFORM_ID,
-} from '@angular/core';
+import { Directive, ElementRef, OnDestroy, OnInit, PLATFORM_ID, inject } from '@angular/core';
 declare function destroyPlayer(): any;
 
 @Directive({ selector: '[appRunScripts]' })
 export class RunScriptsDirective implements OnInit, OnDestroy {
-  constructor(
-    private elementRef: ElementRef,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  private elementRef = inject(ElementRef);
+  private platformId = inject<Object>(PLATFORM_ID);
+
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
