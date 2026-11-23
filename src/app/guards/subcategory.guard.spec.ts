@@ -1,9 +1,10 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { EnvironmentInjector, runInInjectionContext } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Route, UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs';
 import { subcategoryGuard } from './subcategory.guard';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('subcategoryGuard', () => {
   let http: HttpTestingController;
@@ -14,7 +15,7 @@ describe('subcategoryGuard', () => {
     ) as Observable<boolean>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
+    TestBed.configureTestingModule({ imports: [], providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()] });
     http = TestBed.inject(HttpTestingController);
   });
 
