@@ -4,7 +4,11 @@ import {
 } from '@angular/common/http/testing';
 import { EnvironmentInjector, runInInjectionContext } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { Route, UrlSegment } from '@angular/router';
+import {
+  PartialMatchRouteSnapshot,
+  Route,
+  UrlSegment,
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { subcategoryGuard } from './subcategory.guard';
 import {
@@ -18,10 +22,11 @@ describe('subcategoryGuard', () => {
 
   const run = (path: string) =>
     runInInjectionContext(TestBed.inject(EnvironmentInjector), () =>
-      subcategoryGuard({} as Route, [
-        new UrlSegment('cat', {}),
-        new UrlSegment(path, {}),
-      ]),
+      subcategoryGuard(
+        {} as Route,
+        [new UrlSegment('cat', {}), new UrlSegment(path, {})],
+        {} as PartialMatchRouteSnapshot,
+      ),
     ) as Observable<boolean>;
 
   beforeEach(() => {
