@@ -40,6 +40,10 @@ export class CategorySectionPersonalitiesComponent {
 
   constructor() {
     // Browser only; runs once the (hydrated) slides are in the DOM.
-    afterNextRender(() => initCardCarousel(this.carousel().nativeElement));
+    afterNextRender(() =>
+      initCardCarousel(this.carousel().nativeElement).catch((error) =>
+        console.error('Carousel initialization failed', error),
+      ),
+    );
   }
 }

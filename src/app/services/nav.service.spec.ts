@@ -71,7 +71,7 @@ describe('NavService', () => {
       data: [],
     });
     await settle();
-    expect(service.quizEnabled()).toBeFalse();
+    expect(service.quizEnabled()).toBe(false);
   });
 
   it('filters and prefixes footer pages', async () => {

@@ -4,11 +4,7 @@ import {
 } from '@angular/common/http/testing';
 import { EnvironmentInjector, runInInjectionContext } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import {
-  PartialMatchRouteSnapshot,
-  Route,
-  UrlSegment,
-} from '@angular/router';
+import { PartialMatchRouteSnapshot, Route, UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs';
 import { subcategoryGuard } from './subcategory.guard';
 import {
@@ -42,26 +38,23 @@ describe('subcategoryGuard', () => {
 
   afterEach(() => http.verify());
 
-  it('matches when the API says the segment is a subcategory', (done) => {
+  it('matches when the API says the segment is a subcategory', async () => {
     run('sub').subscribe((v) => {
-      expect(v).toBeTrue();
-      done();
+      expect(v).toBe(true);
     });
     http.expectOne((r) => r.url.endsWith('/sub')).flush(true);
   });
 
-  it('does not match when the API says false', (done) => {
+  it('does not match when the API says false', async () => {
     run('post').subscribe((v) => {
-      expect(v).toBeFalse();
-      done();
+      expect(v).toBe(false);
     });
     http.expectOne((r) => r.url.endsWith('/post')).flush(false);
   });
 
-  it('does not match when the API call fails', (done) => {
+  it('does not match when the API call fails', async () => {
     run('x').subscribe((v) => {
-      expect(v).toBeFalse();
-      done();
+      expect(v).toBe(false);
     });
     http
       .expectOne((r) => r.url.endsWith('/x'))

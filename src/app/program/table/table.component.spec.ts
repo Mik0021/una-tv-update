@@ -65,7 +65,7 @@ describe('TableComponent', () => {
     expect(activeIndex()).toBe(1);
     expect(shownTitles()).toEqual(['B1']);
     const input = fixture.componentInstance.schema();
-    expect(input.data.every((d) => d.active === undefined)).toBeTrue();
+    expect(input.data.every((d) => d.active === undefined)).toBe(true);
   });
 
   it('goes back to the first day when a new schedule arrives', () => {
