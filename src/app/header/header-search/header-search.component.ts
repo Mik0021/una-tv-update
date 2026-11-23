@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { Search } from 'src/app/interfaces/search.model';
@@ -8,6 +8,7 @@ import { SearchService } from './../../services/search.service';
     selector: 'app-header-search',
     templateUrl: './header-search.component.html',
     styleUrls: ['./header-search.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HeaderSearchComponent implements OnInit {

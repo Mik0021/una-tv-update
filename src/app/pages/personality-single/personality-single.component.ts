@@ -4,7 +4,7 @@ import { Image } from 'src/app/interfaces/image.model';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { PersonalitiesService } from './../../services/personalities.service';
-import { Component, Inject, OnInit, DOCUMENT } from '@angular/core';
+import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { PersonalitySingle } from 'src/app/interfaces/personality-single.model';
 import { Meta, Title } from '@angular/platform-browser';
 
@@ -13,6 +13,7 @@ import { Meta, Title } from '@angular/platform-browser';
     selector: 'app-personality-single',
     templateUrl: './personality-single.component.html',
     styleUrls: ['./personality-single.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PersonalitySingleComponent implements OnInit {

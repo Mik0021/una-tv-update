@@ -1,5 +1,5 @@
 
-import { Component, HostListener, Inject, OnInit, DOCUMENT } from '@angular/core';
+import { Component, HostListener, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { GtagService } from './services/gtag.service';
 
@@ -7,6 +7,7 @@ import { GtagService } from './services/gtag.service';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AppComponent implements OnInit {

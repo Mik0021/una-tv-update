@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, DOCUMENT } from '@angular/core';
+import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TvProgram } from './../interfaces/tv-program.model';
 import { TvProgramService } from './../services/tv-program.service';
@@ -9,6 +9,7 @@ import { Meta, Title } from '@angular/platform-browser';
     selector: 'app-program',
     templateUrl: './program.component.html',
     styleUrls: ['./program.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ProgramComponent implements OnInit {

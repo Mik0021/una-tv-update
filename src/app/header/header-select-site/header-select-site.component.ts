@@ -1,11 +1,12 @@
 import { SiteSelect } from './../../interfaces/site-select.model';
 import { SiteSelectService } from './../../services/site-select.service';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-header-select-site',
     templateUrl: './header-select-site.component.html',
     styleUrls: ['./header-select-site.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HeaderSelectSiteComponent implements OnInit {

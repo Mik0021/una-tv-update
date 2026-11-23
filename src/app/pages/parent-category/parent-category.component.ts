@@ -1,5 +1,5 @@
 
-import { Component, Inject, OnInit, DOCUMENT } from '@angular/core';
+import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -12,6 +12,7 @@ import { TvShow } from './../../interfaces/tv-show.model';
     selector: 'app-parent-category',
     templateUrl: './parent-category.component.html',
     styleUrls: ['./parent-category.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ParentCategoryComponent implements OnInit {

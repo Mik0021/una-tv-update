@@ -4,6 +4,7 @@ import {
   OnChanges,
   OnInit,
   SimpleChanges,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { TvShow } from './../../interfaces/tv-show.model';
 
@@ -14,6 +15,7 @@ import { TvShow } from './../../interfaces/tv-show.model';
     host: {
         class: 'text-base',
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CardSmallContentDownComponent implements OnInit, OnChanges {

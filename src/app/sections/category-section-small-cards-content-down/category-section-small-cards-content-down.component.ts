@@ -8,6 +8,7 @@ import {
   OnInit,
   PLATFORM_ID,
   ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Category } from 'src/app/interfaces/category.model';
 import { Section } from 'src/app/interfaces/section.model';
@@ -18,6 +19,7 @@ import { TvShow } from './../../interfaces/tv-show.model';
     selector: 'app-category-section-small-cards-content-down',
     templateUrl: './category-section-small-cards-content-down.component.html',
     styleUrls: ['./category-section-small-cards-content-down.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CategorySectionSmallCardsContentDownComponent implements OnInit, AfterViewInit {

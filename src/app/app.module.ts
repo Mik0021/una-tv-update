@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import {
   APP_ID,
   LOCALE_ID,
@@ -49,7 +49,7 @@ registerLocaleData(localeBa);
     // Replaces BrowserModule.withServerTransition({ appId: 'serverApp' }), removed in v19
     { provide: APP_ID, useValue: 'serverApp' },
     { provide: LOCALE_ID, useValue: 'sr-Latn-BA' },
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withXhr(), withInterceptorsFromDi()),
   ],
   bootstrap: [AppComponent],
 })

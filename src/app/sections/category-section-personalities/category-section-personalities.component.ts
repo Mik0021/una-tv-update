@@ -8,6 +8,7 @@ import {
   OnInit,
   PLATFORM_ID,
   ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Category } from 'src/app/interfaces/category.model';
 import { Personality } from 'src/app/interfaces/personality.model';
@@ -18,6 +19,7 @@ import { initCardCarousel } from '../card-carousel';
     selector: 'app-category-section-personalities',
     templateUrl: './category-section-personalities.component.html',
     styleUrls: ['./category-section-personalities.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CategorySectionPersonalitiesComponent implements OnInit, AfterViewInit {

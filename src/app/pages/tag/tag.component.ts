@@ -1,5 +1,5 @@
 
-import { Component, Inject, OnInit, DOCUMENT } from '@angular/core';
+import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -13,6 +13,7 @@ import { TagService } from './../../services/tag.service';
     selector: 'app-tag',
     templateUrl: './tag.component.html',
     styleUrls: ['./tag.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TagComponent implements OnInit {

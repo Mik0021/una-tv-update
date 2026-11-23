@@ -3,7 +3,7 @@ import { Personality } from './../../interfaces/personality.model';
 import { PersonalityListing } from './../../interfaces/personality-listing.model';
 import { Observable } from 'rxjs';
 import { PersonalitiesService } from './../../services/personalities.service';
-import { Component, Inject, OnInit, DOCUMENT } from '@angular/core';
+import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { Paginator } from 'src/app/interfaces/paginator.model';
 import { Meta, Title } from '@angular/platform-browser';
 
@@ -12,6 +12,7 @@ import { Meta, Title } from '@angular/platform-browser';
     selector: 'app-personality-list',
     templateUrl: './personality-list.component.html',
     styleUrls: ['./personality-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PersonalityListComponent implements OnInit {

@@ -1,5 +1,5 @@
 import { Personality } from './../../interfaces/personality.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-personality-home-card',
@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
     host: {
         class: 'text-base',
     },
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PersonalityHomeCardComponent implements OnInit {

@@ -7,7 +7,8 @@ import {
   OnDestroy,
   OnInit,
   PLATFORM_ID,
-  DOCUMENT
+  DOCUMENT,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   FormBuilder,
@@ -29,6 +30,7 @@ import { Router } from '@angular/router';
     selector: 'app-quiz-apply',
     templateUrl: './quiz-apply.component.html',
     styleUrls: ['./quiz-apply.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {

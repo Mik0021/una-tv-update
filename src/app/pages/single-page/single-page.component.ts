@@ -6,7 +6,8 @@ import {
   Inject,
   OnInit,
   PLATFORM_ID,
-  DOCUMENT
+  DOCUMENT,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,6 +26,7 @@ import { PostService } from './../../services/post.service';
     selector: 'app-single-page',
     templateUrl: './single-page.component.html',
     styleUrls: ['./single-page.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SinglePageComponent implements OnInit, AfterViewInit {
