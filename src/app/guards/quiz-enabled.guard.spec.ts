@@ -1,16 +1,27 @@
+import { EnvironmentInjector, runInInjectionContext } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { NavService } from '../services/nav.service';
+import { quizEnabledGuard } from './quiz-enabled.guard';
 
-import { QuizEnabledGuard } from './quiz-enabled.guard';
-
-describe('QuizEnabledGuard', () => {
-  let guard: QuizEnabledGuard;
+describe('quizEnabledGuard', () => {
+  const quizEnabled = new BehaviorSubject<boolean | undefined>(undefined);
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    guard = TestBed.inject(QuizEnabledGuard);
+    TestBed.configureTestingModule({
+      providers: [{ provide: NavService, useValue: { quizEnabled$: quizEnabled } }],
+    });
   });
 
-  it('should be created', () => {
-    expect(guard).toBeTruthy();
+  it('waits for the menu, then resolves to the quiz flag', (done) => {
+    const result = runInInjectionContext(TestBed.inject(EnvironmentInjector), () =>
+      quizEnabledGuard({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot)
+    ) as Observable<boolean>;
+    result.subscribe((v) => {
+      expect(v).toBeTrue();
+      done();
+    });
+    quizEnabled.next(true);
   });
 });

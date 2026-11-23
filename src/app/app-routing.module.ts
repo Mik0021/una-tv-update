@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CanMatchService } from './services/can-match.service';
+import { subcategoryGuard } from './guards/subcategory.guard';
 
 const routes: Routes = [
   {
@@ -68,7 +68,7 @@ const routes: Routes = [
       import('./pages/category-list/category-list.module').then(
         (m) => m.CategoryListModule
       ),
-    canMatch: [CanMatchService],
+    canMatch: [subcategoryGuard],
   },
   {
     path: ':category/:post',
