@@ -3,10 +3,10 @@ import { Personality } from './../../interfaces/personality.model';
 import { PersonalityListing } from './../../interfaces/personality-listing.model';
 import { Observable } from 'rxjs';
 import { PersonalitiesService } from './../../services/personalities.service';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, DOCUMENT } from '@angular/core';
 import { Paginator } from 'src/app/interfaces/paginator.model';
 import { Meta, Title } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+
 
 @Component({
     selector: 'app-personality-list',

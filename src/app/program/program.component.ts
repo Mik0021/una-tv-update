@@ -1,9 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, DOCUMENT } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TvProgram } from './../interfaces/tv-program.model';
 import { TvProgramService } from './../services/tv-program.service';
 import { Meta, Title } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+
 
 @Component({
     selector: 'app-program',

@@ -4,10 +4,10 @@ import { Image } from 'src/app/interfaces/image.model';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { PersonalitiesService } from './../../services/personalities.service';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, DOCUMENT } from '@angular/core';
 import { PersonalitySingle } from 'src/app/interfaces/personality-single.model';
 import { Meta, Title } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+
 
 @Component({
     selector: 'app-personality-single',

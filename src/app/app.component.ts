@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
+
+import { Component, HostListener, Inject, OnInit, DOCUMENT } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { GtagService } from './services/gtag.service';
 
