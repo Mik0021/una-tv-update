@@ -16,7 +16,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~22.3.0",
-    "@angular/cdk": "^21.2.14",
+    "@angular/cdk": "^22.3.0",
     "@angular/common": "~22.3.0",
     "@angular/compiler": "~22.3.0",
     "@angular/core": "~22.3.0",
@@ -27,7 +27,7 @@
     "@angular/router": "~22.3.0",
     "@angular/ssr": "^22.3.0",
     "express": "^4.15.2",
-    "ng-recaptcha-2": "^21.0.1",
+    "ng-recaptcha-2": "^22.0.1",
     "ng2-adsense": "^14.0.0",
     "ngx-pagination": "^6.0.3",
     "ngx-sharebuttons": "^17.0.0",
