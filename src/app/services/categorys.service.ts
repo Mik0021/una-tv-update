@@ -53,7 +53,7 @@ export class CategorysService {
           this.parentCategory.next(parentCat);
         },
         (error: any) => {
-          this.router.navigate(['404']);
+          this.router.navigate(['404'], { skipLocationChange: true });
         },
       );
   }

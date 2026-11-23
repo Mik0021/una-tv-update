@@ -8,15 +8,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-function bootstrap() {
-  bootstrapApplication(AppComponent, appConfig).catch((err) =>
-    console.error(err),
-  );
-}
-
-// Removed in Phase 3 together with the switch to hydration.
-if (document.readyState === 'complete') {
-  bootstrap();
-} else {
-  document.addEventListener('DOMContentLoaded', bootstrap);
-}
+bootstrapApplication(AppComponent, appConfig).catch((err) =>
+  console.error(err),
+);

@@ -18,29 +18,59 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/",
+            "outputPath": {
+              "base": "dist/"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets", "src/ads.txt"],
-            "styles": ["src/styles.scss"],
-            "scripts": ["src/assets/brid.js"]
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/ads.txt"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "src/assets/brid.js"
+            ],
+            "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "security": {
+              "allowedHosts": [
+                "localhost",
+                "127.0.0.1",
+                "una.rs",
+                "*.una.rs",
+                "unaworld.com",
+                "*.unaworld.com",
+                "unaworld.tv",
+                "*.unaworld.tv",
+                "*.ha.rs"
+              ]
+            },
+            "outputMode": "server",
+            "ssr": {
+              "entry": "src/server.ts"
+            }
           },
           "configurations": {
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
             },
             "unabih": {
-              "outputPath": "ba",
+              "outputPath": {
+                "base": "ba"
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -62,7 +92,9 @@
               "outputHashing": "all"
             },
             "unabihprod": {
-              "outputPath": "ba",
+              "outputPath": {
+                "base": "ba"
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -84,7 +116,9 @@
               "outputHashing": "all"
             },
             "unasr": {
-              "outputPath": "dist",
+              "outputPath": {
+                "base": "dist"
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -106,7 +140,9 @@
               "outputHashing": "all"
             },
             "unasrprod": {
-              "outputPath": "dist",
+              "outputPath": {
+                "base": "dist"
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -128,7 +164,9 @@
               "outputHashing": "all"
             },
             "unahr": {
-              "outputPath": "hr",
+              "outputPath": {
+                "base": "hr"
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -150,7 +188,9 @@
               "outputHashing": "all"
             },
             "unahrprod": {
-              "outputPath": "hr",
+              "outputPath": {
+                "base": "hr"
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -172,7 +212,9 @@
               "outputHashing": "all"
             },
             "unaen": {
-              "outputPath": "en",
+              "outputPath": {
+                "base": "en"
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -194,7 +236,9 @@
               "outputHashing": "all"
             },
             "unaenprod": {
-              "outputPath": "en",
+              "outputPath": {
+                "base": "en"
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -219,7 +263,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
               "buildTarget": "unatvbih:build:production"
@@ -231,13 +275,13 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "unatvbih:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
@@ -247,136 +291,6 @@
             "styles": ["src/styles.scss"],
             "scripts": ["src/assets/brid.js"]
           }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/server/",
-            "main": "server.ts",
-            "tsConfig": "tsconfig.server.json",
-            "inlineStyleLanguage": "scss"
-          },
-          "configurations": {
-            "development": {
-              "optimization": false,
-              "sourceMap": true,
-              "extractLicenses": false,
-              "vendorChunk": true,
-              "buildOptimizer": false
-            },
-            "unabih": {
-              "outputPath": "ba/server",
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.unabih.ts"
-                }
-              ]
-            },
-            "unabihprod": {
-              "outputPath": "ba/server",
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.unabihprod.ts"
-                }
-              ]
-            },
-            "unasr": {
-              "outputPath": "dist/server",
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.unasr.ts"
-                }
-              ]
-            },
-            "unasrprod": {
-              "outputPath": "dist/server",
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.unasrprod.ts"
-                }
-              ]
-            },
-            "unahr": {
-              "outputPath": "hr/server",
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.unahr.ts"
-                }
-              ]
-            },
-            "unahrprod": {
-              "outputPath": "hr/server",
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.unahrprod.ts"
-                }
-              ]
-            },
-            "unaen": {
-              "outputPath": "en/server",
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.unaen.ts"
-                }
-              ]
-            },
-            "unaenprod": {
-              "outputPath": "en/server",
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.unaenprod.ts"
-                }
-              ]
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve-ssr": {
-          "builder": "@angular-devkit/build-angular:ssr-dev-server",
-          "configurations": {
-            "development": {
-              "browserTarget": "unatvbih:build:development",
-              "serverTarget": "unatvbih:server:development"
-            },
-            "production": {
-              "browserTarget": "unatvbih:build:production",
-              "serverTarget": "unatvbih:server:production"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "routes": ["/"]
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "unatvbih:build:production",
-              "serverTarget": "unatvbih:server:production"
-            },
-            "development": {
-              "browserTarget": "unatvbih:build:development",
-              "serverTarget": "unatvbih:server:development"
-            }
-          },
-          "defaultConfiguration": "production"
         }
       }
     }

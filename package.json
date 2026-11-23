@@ -7,11 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev:ssr": "ng run unatvbih:serve-ssr",
-    "serve:ssr": "node dist/server/main.js",
-    "build:ssrsrb": "ng build --configuration=unasr --aot && ng run unatvbih:server:unasr",
-    "build:ssrsrbprod": "ng build --configuration=unasrprod --aot && ng run unatvbih:server:unasrprod",
-    "prerender": "ng run unatvbih:prerender"
+    "build:ssrsrb": "ng build --configuration=unasr",
+    "build:ssrsrbprod": "ng build --configuration=unasrprod",
+    "serve:ssr": "node dist/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -26,7 +24,7 @@
     "@angular/platform-server": "~22.3.0",
     "@angular/router": "~22.3.0",
     "@angular/ssr": "^22.3.0",
-    "express": "^4.15.2",
+    "express": "^5.1.0",
     "ng-recaptcha-2": "^22.0.1",
     "ngx-pagination": "^6.0.3",
     "ngx-sharebuttons": "^17.0.0",
@@ -37,12 +35,12 @@
     "zone.js": "^0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~22.3.0",
+    "@angular/build": "~22.3.0",
     "@angular/cli": "~22.3.0",
     "@angular/compiler-cli": "~22.3.0",
-    "@types/express": "^4.17.0",
+    "@types/express": "^5.0.1",
     "@types/jasmine": "~4.3.0",
-    "@types/node": "^18.19.130",
+    "@types/node": "^24.19.2",
     "browser-sync": "^3.0.0",
     "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~4.3.0",

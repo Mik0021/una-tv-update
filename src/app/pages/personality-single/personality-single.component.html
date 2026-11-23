@@ -40,11 +40,10 @@
           </div>
         </div>
       }
-      <div
-        class="sp-content text-white text-xl mt-0 lg:mt-6"
-        [innerHTML]="content | safeHtml"
-        appRunScripts
-      ></div>
+      <app-html-embed
+        [html]="content"
+        contentClass="sp-content text-white text-xl mt-0 lg:mt-6"
+      />
     </div>
     @if (personalityShows.length > 0) {
       <ng-container class="mt-7">

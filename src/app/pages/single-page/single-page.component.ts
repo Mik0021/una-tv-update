@@ -20,13 +20,11 @@ import { SearchService } from 'src/app/services/search.service';
 import { Personality } from './../../interfaces/personality.model';
 import { Post } from './../../interfaces/post.model';
 import { PostService } from './../../services/post.service';
-import { RunScriptsDirective } from '../../directives/run-scripts.directive';
-import { NgClass } from '@angular/common';
 import { SingleSocialComponent } from './single-social/single-social.component';
 import { SingleTagsComponent } from './single-tags/single-tags.component';
 import { CardSmallContentDownComponent } from '../../components/card-small-content-down/card-small-content-down.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
+import { HtmlEmbedComponent } from '../../components/html-embed/html-embed.component';
 
 @Component({
   selector: 'app-single-page',
@@ -34,14 +32,12 @@ import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
   styleUrls: ['./single-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
-    RunScriptsDirective,
-    NgClass,
+    HtmlEmbedComponent,
     RouterLink,
     SingleSocialComponent,
     SingleTagsComponent,
     CardSmallContentDownComponent,
     NgxPaginationModule,
-    SafeHtmlPipe,
   ],
 })
 export class SinglePageComponent implements OnInit, AfterViewInit {
@@ -121,7 +117,7 @@ export class SinglePageComponent implements OnInit, AfterViewInit {
                 );
               },
               error: (error: any) => {
-                this.router.navigate(['404']);
+                this.router.navigate(['404'], { skipLocationChange: true });
               },
             });
         } else {
@@ -150,7 +146,7 @@ export class SinglePageComponent implements OnInit, AfterViewInit {
                 );
               },
               error: (error: any) => {
-                this.router.navigate(['404']);
+                this.router.navigate(['404'], { skipLocationChange: true });
               },
             });
         }

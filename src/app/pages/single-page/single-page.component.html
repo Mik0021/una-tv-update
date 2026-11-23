@@ -5,12 +5,13 @@
         <div class="col-span-12 xl:pr-4 px-3 text-lg selection:bg-blue">
           @if (single_post.data.brid_video_id) {
             <div class="video-outer aspect-video w-full">
-              <div
-                class="video-container w-full mb-3"
-                [ngClass]="{ scrolled: windowScrolled }"
-                [innerHTML]="singleVideo | safeHtml"
-                appRunScripts
-              ></div>
+              <app-html-embed
+                [html]="singleVideo"
+                [contentClass]="{
+                  'video-container w-full mb-3': true,
+                  scrolled: windowScrolled,
+                }"
+              />
             </div>
           }
           @if (!single_post.data.brid_video_id) {
@@ -40,11 +41,10 @@
               >
                 {{ single_post.data.title }}
               </h1>
-              <div
-                class="sp-content text-white text-xl mt-0 lg:mt-6"
-                [innerHTML]="content | safeHtml"
-                appRunScripts
-              ></div>
+              <app-html-embed
+                [html]="content"
+                contentClass="sp-content text-white text-xl mt-0 lg:mt-6"
+              />
               <div class="flex text-white text-lg pb-4 gap-x-1">
                 @if (personalities.length !== 0) {
                   <div>
