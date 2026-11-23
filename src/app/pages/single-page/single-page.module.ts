@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ShareButtonDirective } from 'ngx-sharebuttons';
-import { ComponentsModule } from 'src/app/components/components.module';
-import { DirectivesModule } from './../../directives/directives.module';
-import { PipesModule } from './../../pipes/pipes.module';
+
+
+
 import { ConectedNewsComponent } from './conected-news/conected-news.component';
 import { SinglePageRoutingModule } from './single-page-routing.module';
 import { SinglePageComponent } from './single-page.component';
@@ -14,18 +14,15 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
     imports: [
-        CommonModule,
-        SinglePageRoutingModule,
-        RouterModule,
-        ShareButtonDirective,
-        PipesModule,
-        DirectivesModule,
-        ComponentsModule,
-        NgxPaginationModule,
-        SinglePageComponent,
-        SingleSocialComponent,
-        SingleTagsComponent,
-        ConectedNewsComponent,
-    ],
+    CommonModule,
+    SinglePageRoutingModule,
+    RouterModule,
+    ShareButtonDirective,
+    NgxPaginationModule,
+    SinglePageComponent,
+    SingleSocialComponent,
+    SingleTagsComponent,
+    ConectedNewsComponent,
+],
 })
 export class SinglePageModule {}
