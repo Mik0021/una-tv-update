@@ -48,3 +48,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# PM2 (server-local copy of ecosystem.config-example.js)
+/ecosystem.config.js

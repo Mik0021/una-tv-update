@@ -26,17 +26,9 @@
             "index": "src/index.html",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/ads.txt"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [
-              "src/assets/brid.js"
-            ],
+            "assets": ["src/favicon.ico", "src/assets", "src/ads.txt"],
+            "styles": ["src/styles.scss"],
+            "scripts": ["src/assets/brid.js"],
             "browser": "src/main.ts",
             "server": "src/main.server.ts",
             "security": {
@@ -45,11 +37,8 @@
                 "127.0.0.1",
                 "una.rs",
                 "*.una.rs",
-                "unaworld.com",
-                "*.unaworld.com",
-                "unaworld.tv",
-                "*.unaworld.tv",
-                "*.ha.rs"
+                "una-test-rs.ha.rs",
+                "una-test-una-tv.ha.rs"
               ]
             },
             "outputMode": "server",
@@ -142,13 +131,8 @@
           "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "tsconfig.spec.json",
-            "reporters": [
-              "default"
-            ],
-            "coverageReporters": [
-              "html",
-              "text-summary"
-            ],
+            "reporters": ["default"],
+            "coverageReporters": ["html", "text-summary"],
             "buildTarget": ":build:testing",
             "runner": "vitest"
           }
