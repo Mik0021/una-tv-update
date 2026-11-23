@@ -19,13 +19,8 @@ export class ScrollToTopComponent {
   protected readonly windowScrolled = computed(() => this.scrollY() > 0);
 
   protected scrollToTop() {
-    const step = () => {
-      const current = window.scrollY;
-      if (current > 0) {
-        window.requestAnimationFrame(step);
-        window.scrollTo(0, current - current / 8);
-      }
-    };
-    step();
+    // The old hand-rolled easing (y -= y / 8 per frame) stalled a few pixels
+    // above 0 and kept a requestAnimationFrame loop running forever.
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

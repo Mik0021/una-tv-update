@@ -5,7 +5,7 @@ import {
   APP_ID,
   ApplicationConfig,
   LOCALE_ID,
-  provideZoneChangeDetection,
+  provideZonelessChangeDetection,
 } from '@angular/core';
 import {
   provideClientHydration,
@@ -23,8 +23,9 @@ registerLocaleData(localeBa);
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    // Zoneless is the default since v21; keep zone.js until Phase 5.
-    provideZoneChangeDetection(),
+    // No zone.js: change detection runs on signal changes, template/host
+    // listeners, markForCheck() and pending tasks (HTTP, resources) for SSR.
+    provideZonelessChangeDetection(),
     // Initial navigation stays non-blocking (the provideRouter default, same as
     // the old `initialNavigation: 'enabledNonBlocking'`).
     provideRouter(
