@@ -10,9 +10,10 @@ import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-personality-single',
-  templateUrl: './personality-single.component.html',
-  styleUrls: ['./personality-single.component.scss'],
+    selector: 'app-personality-single',
+    templateUrl: './personality-single.component.html',
+    styleUrls: ['./personality-single.component.scss'],
+    standalone: false
 })
 export class PersonalitySingleComponent implements OnInit {
   image = {} as Image;

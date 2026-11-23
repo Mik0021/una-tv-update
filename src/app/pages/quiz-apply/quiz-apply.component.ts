@@ -25,9 +25,10 @@ import { NavService } from 'src/app/services/nav.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-quiz-apply',
-  templateUrl: './quiz-apply.component.html',
-  styleUrls: ['./quiz-apply.component.scss'],
+    selector: 'app-quiz-apply',
+    templateUrl: './quiz-apply.component.html',
+    styleUrls: ['./quiz-apply.component.scss'],
+    standalone: false
 })
 export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   videoTypeError = false;

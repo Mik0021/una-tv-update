@@ -3,9 +3,10 @@ import { SiteSelectService } from './../../services/site-select.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-header-select-site',
-  templateUrl: './header-select-site.component.html',
-  styleUrls: ['./header-select-site.component.scss'],
+    selector: 'app-header-select-site',
+    templateUrl: './header-select-site.component.html',
+    styleUrls: ['./header-select-site.component.scss'],
+    standalone: false
 })
 export class HeaderSelectSiteComponent implements OnInit {
   sites = {} as SiteSelect;

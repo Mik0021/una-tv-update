@@ -21,9 +21,10 @@ import { Post } from './../../interfaces/post.model';
 import { PostService } from './../../services/post.service';
 
 @Component({
-  selector: 'app-single-page',
-  templateUrl: './single-page.component.html',
-  styleUrls: ['./single-page.component.scss'],
+    selector: 'app-single-page',
+    templateUrl: './single-page.component.html',
+    styleUrls: ['./single-page.component.scss'],
+    standalone: false
 })
 export class SinglePageComponent implements OnInit, AfterViewInit {
   single_post = {} as Post;

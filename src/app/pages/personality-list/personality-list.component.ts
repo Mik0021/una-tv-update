@@ -9,9 +9,10 @@ import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-personality-list',
-  templateUrl: './personality-list.component.html',
-  styleUrls: ['./personality-list.component.scss'],
+    selector: 'app-personality-list',
+    templateUrl: './personality-list.component.html',
+    styleUrls: ['./personality-list.component.scss'],
+    standalone: false
 })
 export class PersonalityListComponent implements OnInit {
   personalityList = [] as Personality[];

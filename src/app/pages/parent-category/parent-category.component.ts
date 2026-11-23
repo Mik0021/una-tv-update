@@ -9,9 +9,10 @@ import { ParentCategory } from './../../interfaces/parent-category.model';
 import { TvShow } from './../../interfaces/tv-show.model';
 
 @Component({
-  selector: 'app-parent-category',
-  templateUrl: './parent-category.component.html',
-  styleUrls: ['./parent-category.component.scss'],
+    selector: 'app-parent-category',
+    templateUrl: './parent-category.component.html',
+    styleUrls: ['./parent-category.component.scss'],
+    standalone: false
 })
 export class ParentCategoryComponent implements OnInit {
   category = {} as ParentCategory;

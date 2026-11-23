@@ -8,7 +8,8 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[appViberShare]',
+    selector: '[appViberShare]',
+    standalone: false
 })
 export class ViberShareDirective implements OnInit {
   constructor(

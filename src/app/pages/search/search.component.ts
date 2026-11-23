@@ -9,9 +9,10 @@ import { TvShow } from './../../interfaces/tv-show.model';
 import { SearchService } from './../../services/search.service';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+    selector: 'app-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.scss'],
+    standalone: false
 })
 export class SearchComponent implements OnInit {
   articles: TvShow[] = [];

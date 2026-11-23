@@ -15,9 +15,10 @@ import { initCardCarousel } from '../card-carousel';
 import { TvShow } from './../../interfaces/tv-show.model';
 
 @Component({
-  selector: 'app-category-section-small-cards-content-down',
-  templateUrl: './category-section-small-cards-content-down.component.html',
-  styleUrls: ['./category-section-small-cards-content-down.component.scss'],
+    selector: 'app-category-section-small-cards-content-down',
+    templateUrl: './category-section-small-cards-content-down.component.html',
+    styleUrls: ['./category-section-small-cards-content-down.component.scss'],
+    standalone: false
 })
 export class CategorySectionSmallCardsContentDownComponent implements OnInit, AfterViewInit {
   @Input() sectionData = {} as Section;

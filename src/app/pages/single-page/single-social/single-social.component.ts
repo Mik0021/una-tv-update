@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-single-social',
-  templateUrl: './single-social.component.html',
-  styleUrls: ['./single-social.component.scss'],
+    selector: 'app-single-social',
+    templateUrl: './single-social.component.html',
+    styleUrls: ['./single-social.component.scss'],
+    standalone: false
 })
 export class SingleSocialComponent implements OnInit {
   appShare: string = '';

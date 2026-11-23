@@ -4,9 +4,10 @@ import { environment } from 'src/environments/environment';
 import { GtagService } from './services/gtag.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent implements OnInit {
   windowScrolled: boolean = false;

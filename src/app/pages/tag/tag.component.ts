@@ -10,9 +10,10 @@ import { TvShow } from './../../interfaces/tv-show.model';
 import { TagService } from './../../services/tag.service';
 
 @Component({
-  selector: 'app-tag',
-  templateUrl: './tag.component.html',
-  styleUrls: ['./tag.component.scss'],
+    selector: 'app-tag',
+    templateUrl: './tag.component.html',
+    styleUrls: ['./tag.component.scss'],
+    standalone: false
 })
 export class TagComponent implements OnInit {
   tag = {} as Tags;

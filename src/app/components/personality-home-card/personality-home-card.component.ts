@@ -2,12 +2,13 @@ import { Personality } from './../../interfaces/personality.model';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-personality-home-card',
-  templateUrl: './personality-home-card.component.html',
-  styleUrls: ['./personality-home-card.component.scss'],
-  host: {
-    class: 'text-base',
-  },
+    selector: 'app-personality-home-card',
+    templateUrl: './personality-home-card.component.html',
+    styleUrls: ['./personality-home-card.component.scss'],
+    host: {
+        class: 'text-base',
+    },
+    standalone: false
 })
 export class PersonalityHomeCardComponent implements OnInit {
   @Input() articleData = {} as Personality;

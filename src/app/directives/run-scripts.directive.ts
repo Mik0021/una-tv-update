@@ -10,7 +10,8 @@ import {
 declare function destroyPlayer(): any;
 
 @Directive({
-  selector: '[appRunScripts]',
+    selector: '[appRunScripts]',
+    standalone: false
 })
 export class RunScriptsDirective implements OnInit, OnDestroy {
   constructor(

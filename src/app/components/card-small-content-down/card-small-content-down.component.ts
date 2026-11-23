@@ -8,12 +8,13 @@ import {
 import { TvShow } from './../../interfaces/tv-show.model';
 
 @Component({
-  selector: 'app-card-small-content-down',
-  templateUrl: './card-small-content-down.component.html',
-  styleUrls: ['./card-small-content-down.component.scss'],
-  host: {
-    class: 'text-base',
-  },
+    selector: 'app-card-small-content-down',
+    templateUrl: './card-small-content-down.component.html',
+    styleUrls: ['./card-small-content-down.component.scss'],
+    host: {
+        class: 'text-base',
+    },
+    standalone: false
 })
 export class CardSmallContentDownComponent implements OnInit, OnChanges {
   @Input() articleData = {} as TvShow;

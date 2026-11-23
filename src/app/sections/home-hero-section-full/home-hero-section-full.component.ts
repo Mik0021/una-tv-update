@@ -8,12 +8,13 @@ import {
 import { TvShow } from './../../interfaces/tv-show.model';
 
 @Component({
-  selector: 'app-home-hero-section-full',
-  templateUrl: './home-hero-section-full.component.html',
-  styleUrls: ['./home-hero-section-full.component.scss'],
-  host: {
-    class: 'lg:pb-64',
-  },
+    selector: 'app-home-hero-section-full',
+    templateUrl: './home-hero-section-full.component.html',
+    styleUrls: ['./home-hero-section-full.component.scss'],
+    host: {
+        class: 'lg:pb-64',
+    },
+    standalone: false
 })
 export class HomeHeroSectionFullComponent implements OnInit, OnChanges {
   @Input() articles = [] as TvShow[];

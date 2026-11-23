@@ -2,9 +2,10 @@ import { SubmenuItem } from './../../interfaces/submenu-item.model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-header-submenu',
-  templateUrl: './header-submenu.component.html',
-  styleUrls: ['./header-submenu.component.scss'],
+    selector: 'app-header-submenu',
+    templateUrl: './header-submenu.component.html',
+    styleUrls: ['./header-submenu.component.scss'],
+    standalone: false
 })
 export class HeaderSubmenuComponent implements OnInit {
   @Input() subcategory: SubmenuItem[] = [];

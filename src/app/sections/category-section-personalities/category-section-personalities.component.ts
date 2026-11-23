@@ -15,9 +15,10 @@ import { Section } from 'src/app/interfaces/section.model';
 import { initCardCarousel } from '../card-carousel';
 
 @Component({
-  selector: 'app-category-section-personalities',
-  templateUrl: './category-section-personalities.component.html',
-  styleUrls: ['./category-section-personalities.component.scss'],
+    selector: 'app-category-section-personalities',
+    templateUrl: './category-section-personalities.component.html',
+    styleUrls: ['./category-section-personalities.component.scss'],
+    standalone: false
 })
 export class CategorySectionPersonalitiesComponent implements OnInit, AfterViewInit {
   @Input() sectionData = {} as Section;

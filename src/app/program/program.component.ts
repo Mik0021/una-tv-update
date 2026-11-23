@@ -6,9 +6,10 @@ import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-program',
-  templateUrl: './program.component.html',
-  styleUrls: ['./program.component.scss'],
+    selector: 'app-program',
+    templateUrl: './program.component.html',
+    styleUrls: ['./program.component.scss'],
+    standalone: false
 })
 export class ProgramComponent implements OnInit {
   showTab: boolean = true;

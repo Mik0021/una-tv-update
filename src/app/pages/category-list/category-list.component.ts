@@ -9,9 +9,10 @@ import { TvShow } from './../../interfaces/tv-show.model';
 import { CategorysService } from './../../services/categorys.service';
 
 @Component({
-  selector: 'app-category-list',
-  templateUrl: './category-list.component.html',
-  styleUrls: ['./category-list.component.scss'],
+    selector: 'app-category-list',
+    templateUrl: './category-list.component.html',
+    styleUrls: ['./category-list.component.scss'],
+    standalone: false
 })
 export class CategoryListComponent implements OnInit {
   category = {} as CategoryList;
