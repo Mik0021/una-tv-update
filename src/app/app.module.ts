@@ -1,5 +1,5 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { APP_ID, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,19 +19,30 @@ import { HeaderComponent } from './header/header.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 
 registerLocaleData(localeBa);
-@NgModule({ declarations: [
-        AppComponent,
-        HeaderSearchComponent,
-        HeaderSelectSiteComponent,
-        HeaderComponent,
-        FooterNavComponent,
-        FooterComponent,
-        FooterSocialComponent,
-        ScrollToTopComponent,
-        HeaderSubmenuComponent,
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }),
-        AppRoutingModule,
-        FormsModule,
-        AdsenseModule.forRoot()], providers: [{ provide: LOCALE_ID, useValue: 'sr-Latn-BA' }, provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderSearchComponent,
+    HeaderSelectSiteComponent,
+    HeaderComponent,
+    FooterNavComponent,
+    FooterComponent,
+    FooterSocialComponent,
+    ScrollToTopComponent,
+    HeaderSubmenuComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    AdsenseModule.forRoot(),
+  ],
+  providers: [
+    // Replaces BrowserModule.withServerTransition({ appId: 'serverApp' }), removed in v19
+    { provide: APP_ID, useValue: 'serverApp' },
+    { provide: LOCALE_ID, useValue: 'sr-Latn-BA' },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+  bootstrap: [AppComponent],
+})
 export class AppModule {}

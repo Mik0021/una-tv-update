@@ -15,7 +15,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { ReCaptchaV3Service } from 'ng-recaptcha-2';
 import { finalize, switchMap } from 'rxjs';
 import { QuizUpload } from 'src/app/interfaces/quiz-upload.model';
 import { QuizService } from 'src/app/services/quiz.service';

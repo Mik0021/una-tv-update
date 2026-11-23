@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { QuizApplyRoutingModule } from './quiz-apply-routing.module';
 import { QuizApplyComponent } from './quiz-apply.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha-2';
 import { environment } from 'src/environments/environment';
 
 @NgModule({

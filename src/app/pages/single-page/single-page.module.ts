@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ShareModule } from 'ngx-sharebuttons';
+import { ShareButtonDirective } from 'ngx-sharebuttons';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { DirectivesModule } from './../../directives/directives.module';
 import { PipesModule } from './../../pipes/pipes.module';
@@ -23,7 +23,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     SinglePageRoutingModule,
     RouterModule,
-    ShareModule,
+    ShareButtonDirective,
     PipesModule,
     DirectivesModule,
     ComponentsModule,

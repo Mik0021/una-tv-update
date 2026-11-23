@@ -9,6 +9,24 @@ import { environment } from 'src/environments/environment';
 
 import { AppServerModule } from './src/main.server';
 
+/**
+ * Hosts allowed to be server-rendered (Angular 19.2+ SSRF protection). Requests
+ * for any other Host header fall back to client-side rendering. The
+ * NG_ALLOWED_HOSTS environment variable (comma separated) overrides this list.
+ * Note: '*.example.com' matches subdomains only, so list the apex domain too.
+ */
+const ALLOWED_HOSTS = [
+  'localhost',
+  '127.0.0.1',
+  'una.rs',
+  '*.una.rs',
+  'unaworld.com',
+  '*.unaworld.com',
+  'unaworld.tv',
+  '*.unaworld.tv',
+  '*.ha.rs',
+];
+
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
@@ -18,7 +36,7 @@ export function app(): express.Express {
     ? join(distFolder, 'index.original.html')
     : join(distFolder, 'index.html');
 
-  const commonEngine = new CommonEngine();
+  const commonEngine = new CommonEngine({ allowedHosts: ALLOWED_HOSTS });
 
   server.set('view engine', 'html');
   server.set('views', distFolder);
