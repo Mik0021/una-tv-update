@@ -7,6 +7,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { TvShow } from './../../interfaces/tv-show.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-card-small-content-down',
@@ -16,7 +17,7 @@ import { TvShow } from './../../interfaces/tv-show.model';
         class: 'text-base',
     },
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [RouterLink]
 })
 export class CardSmallContentDownComponent implements OnInit, OnChanges {
   @Input() articleData = {} as TvShow;

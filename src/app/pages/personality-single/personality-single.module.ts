@@ -7,13 +7,13 @@ import { PersonalitySingleRoutingModule } from './personality-single-routing.mod
 import { PersonalitySingleComponent } from './personality-single.component';
 
 @NgModule({
-  declarations: [PersonalitySingleComponent],
-  imports: [
-    CommonModule,
-    PersonalitySingleRoutingModule,
-    PipesModule,
-    DirectivesModule,
-    ComponentsModule,
-  ],
+    imports: [
+        CommonModule,
+        PersonalitySingleRoutingModule,
+        PipesModule,
+        DirectivesModule,
+        ComponentsModule,
+        PersonalitySingleComponent,
+    ],
 })
 export class PersonalitySingleModule {}

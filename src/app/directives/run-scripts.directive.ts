@@ -9,10 +9,7 @@ import {
 } from '@angular/core';
 declare function destroyPlayer(): any;
 
-@Directive({
-    selector: '[appRunScripts]',
-    standalone: false
-})
+@Directive({ selector: '[appRunScripts]' })
 export class RunScriptsDirective implements OnInit, OnDestroy {
   constructor(
     private elementRef: ElementRef,

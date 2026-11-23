@@ -1,12 +1,14 @@
 
 import { Component, HostListener, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { HeaderSearchComponent } from '../header/header-search/header-search.component';
 
 @Component({
     selector: 'app-scroll-to-top',
     templateUrl: './scroll-to-top.component.html',
     styleUrls: ['./scroll-to-top.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [NgClass, HeaderSearchComponent]
 })
 export class ScrollToTopComponent implements OnInit {
   windowScrolled: boolean = false;

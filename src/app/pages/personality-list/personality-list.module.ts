@@ -7,12 +7,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
-  declarations: [PersonalityListComponent],
-  imports: [
-    CommonModule,
-    PersonalityListRoutingModule,
-    ComponentsModule,
-    NgxPaginationModule,
-  ],
+    imports: [
+        CommonModule,
+        PersonalityListRoutingModule,
+        ComponentsModule,
+        NgxPaginationModule,
+        PersonalityListComponent,
+    ],
 })
 export class PersonalityListModule {}

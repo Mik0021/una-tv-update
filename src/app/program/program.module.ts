@@ -7,7 +7,6 @@ import { TableComponent } from './table/table.component';
 import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
-  declarations: [ProgramComponent, TableComponent],
-  imports: [CommonModule, ProgramRoutingModule, PipesModule],
+    imports: [CommonModule, ProgramRoutingModule, PipesModule, ProgramComponent, TableComponent],
 })
 export class ProgramModule {}

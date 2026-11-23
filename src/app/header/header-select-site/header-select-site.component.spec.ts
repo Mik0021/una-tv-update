@@ -8,8 +8,8 @@ describe('HeaderSelectSiteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderSelectSiteComponent ]
-    })
+    imports: [HeaderSelectSiteComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(HeaderSelectSiteComponent);

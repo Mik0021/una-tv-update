@@ -6,17 +6,14 @@ import { PersonalityCardComponent } from './personality-card/personality-card.co
 import { PersonalityHomeCardComponent } from './personality-home-card/personality-home-card.component';
 
 @NgModule({
-  declarations: [
-    CardSmallContentDownComponent,
-    PersonalityCardComponent,
-    PersonalityHomeCardComponent,
-  ],
-  imports: [CommonModule, RouterModule],
-  exports: [
-    CardSmallContentDownComponent,
-    PersonalityCardComponent,
-    PersonalityHomeCardComponent,
-    CommonModule,
-  ],
+    imports: [CommonModule, RouterModule, CardSmallContentDownComponent,
+        PersonalityCardComponent,
+        PersonalityHomeCardComponent],
+    exports: [
+        CardSmallContentDownComponent,
+        PersonalityCardComponent,
+        PersonalityHomeCardComponent,
+        CommonModule,
+    ],
 })
 export class ComponentsModule {}

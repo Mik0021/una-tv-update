@@ -1,5 +1,6 @@
 import { Personality } from './../../interfaces/personality.model';
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-personality-home-card',
@@ -9,7 +10,7 @@ import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core
         class: 'text-base',
     },
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [RouterLink]
 })
 export class PersonalityHomeCardComponent implements OnInit {
   @Input() articleData = {} as Personality;

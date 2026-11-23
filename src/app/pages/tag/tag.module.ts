@@ -6,12 +6,12 @@ import { TagComponent } from './tag.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
-  declarations: [TagComponent],
-  imports: [
-    CommonModule,
-    TagRoutingModule,
-    ComponentsModule,
-    NgxPaginationModule,
-  ],
+    imports: [
+        CommonModule,
+        TagRoutingModule,
+        ComponentsModule,
+        NgxPaginationModule,
+        TagComponent,
+    ],
 })
 export class TagModule {}

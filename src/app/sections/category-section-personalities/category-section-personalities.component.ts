@@ -1,7 +1,8 @@
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, NgStyle } from '@angular/common';
 import {
   AfterViewInit,
   Component,
+  CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
   Inject,
   Input,
@@ -14,13 +15,17 @@ import { Category } from 'src/app/interfaces/category.model';
 import { Personality } from 'src/app/interfaces/personality.model';
 import { Section } from 'src/app/interfaces/section.model';
 import { initCardCarousel } from '../card-carousel';
+import { RouterLink } from '@angular/router';
+import { PersonalityHomeCardComponent } from '../../components/personality-home-card/personality-home-card.component';
 
 @Component({
     selector: 'app-category-section-personalities',
     templateUrl: './category-section-personalities.component.html',
     styleUrls: ['./category-section-personalities.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [NgStyle, RouterLink, PersonalityHomeCardComponent],
+    // <swiper-container>/<swiper-slide> are Swiper Element web components
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CategorySectionPersonalitiesComponent implements OnInit, AfterViewInit {
   @Input() sectionData = {} as Section;

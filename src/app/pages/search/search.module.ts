@@ -7,12 +7,12 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
-  declarations: [SearchComponent],
-  imports: [
-    CommonModule,
-    SearchRoutingModule,
-    ComponentsModule,
-    NgxPaginationModule,
-  ],
+    imports: [
+        CommonModule,
+        SearchRoutingModule,
+        ComponentsModule,
+        NgxPaginationModule,
+        SearchComponent,
+    ],
 })
 export class SearchModule {}

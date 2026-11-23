@@ -8,13 +8,15 @@ import { Tags } from 'src/app/interfaces/tags.model';
 import { Paginator } from './../../interfaces/paginator.model';
 import { TvShow } from './../../interfaces/tv-show.model';
 import { TagService } from './../../services/tag.service';
+import { CardSmallContentDownComponent } from '../../components/card-small-content-down/card-small-content-down.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
     selector: 'app-tag',
     templateUrl: './tag.component.html',
     styleUrls: ['./tag.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [CardSmallContentDownComponent, NgxPaginationModule]
 })
 export class TagComponent implements OnInit {
   tag = {} as Tags;

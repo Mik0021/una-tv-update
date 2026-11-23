@@ -7,10 +7,7 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 
-@Directive({
-    selector: '[appViberShare]',
-    standalone: false
-})
+@Directive({ selector: '[appViberShare]' })
 export class ViberShareDirective implements OnInit {
   constructor(
     private elementRef: ElementRef,

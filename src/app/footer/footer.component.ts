@@ -5,13 +5,16 @@ import { Nav } from '../interfaces/nav.model';
 import { NavService } from '../services/nav.service';
 import { SiteSelect } from '../interfaces/site-select.model';
 import { Pages } from '../interfaces/pages.model';
+import { RouterLink } from '@angular/router';
+import { FooterNavComponent } from './footer-nav/footer-nav.component';
+import { FooterSocialComponent } from './footer-social/footer-social.component';
 
 @Component({
     selector: 'app-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [RouterLink, FooterNavComponent, FooterSocialComponent]
 })
 export class FooterComponent implements OnInit {
   sites = {} as SiteSelect;

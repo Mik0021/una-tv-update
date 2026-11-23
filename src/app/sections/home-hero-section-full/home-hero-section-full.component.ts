@@ -7,6 +7,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { TvShow } from './../../interfaces/tv-show.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-home-hero-section-full',
@@ -16,7 +17,7 @@ import { TvShow } from './../../interfaces/tv-show.model';
         class: 'lg:pb-64',
     },
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [RouterLink]
 })
 export class HomeHeroSectionFullComponent implements OnInit, OnChanges {
   @Input() articles = [] as TvShow[];

@@ -8,8 +8,8 @@ describe('SingleSocialComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SingleSocialComponent ]
-    })
+    imports: [SingleSocialComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(SingleSocialComponent);

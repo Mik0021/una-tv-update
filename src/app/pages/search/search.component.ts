@@ -7,13 +7,15 @@ import { Paginator } from 'src/app/interfaces/paginator.model';
 import { Search } from './../../interfaces/search.model';
 import { TvShow } from './../../interfaces/tv-show.model';
 import { SearchService } from './../../services/search.service';
+import { CardSmallContentDownComponent } from '../../components/card-small-content-down/card-small-content-down.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
     selector: 'app-search',
     templateUrl: './search.component.html',
     styleUrls: ['./search.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [CardSmallContentDownComponent, NgxPaginationModule]
 })
 export class SearchComponent implements OnInit {
   articles: TvShow[] = [];

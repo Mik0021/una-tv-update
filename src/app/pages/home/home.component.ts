@@ -6,13 +6,16 @@ import { Home } from 'src/app/interfaces/home.model';
 import { environment } from 'src/environments/environment';
 import { TvShow } from './../../interfaces/tv-show.model';
 import { HomeService } from './../../services/home.service';
+import { HomeHeroSectionFullComponent } from '../../sections/home-hero-section-full/home-hero-section-full.component';
+import { CategorySectionSmallCardsContentDownComponent } from '../../sections/category-section-small-cards-content-down/category-section-small-cards-content-down.component';
+import { CategorySectionPersonalitiesComponent } from '../../sections/category-section-personalities/category-section-personalities.component';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [HomeHeroSectionFullComponent, CategorySectionSmallCardsContentDownComponent, CategorySectionPersonalitiesComponent]
 })
 export class HomeComponent implements OnInit {
   heroSection = {} as Home;

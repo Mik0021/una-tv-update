@@ -8,8 +8,8 @@ describe('CategorySectionSmallCardsContentDownComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategorySectionSmallCardsContentDownComponent ]
-    })
+    imports: [CategorySectionSmallCardsContentDownComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(CategorySectionSmallCardsContentDownComponent);

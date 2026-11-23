@@ -25,32 +25,30 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 
 registerLocaleData(localeBa);
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderSearchComponent,
-    HeaderSelectSiteComponent,
-    HeaderComponent,
-    FooterNavComponent,
-    FooterComponent,
-    FooterSocialComponent,
-    ScrollToTopComponent,
-    HeaderSubmenuComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    AdsenseModule.forRoot(),
-  ],
-  providers: [
-    // Zoneless is the default since v21; keep zone.js until Phase 5. Declared here
-    // (not in main.ts) so the server bootstrap gets it too.
-    provideZoneChangeDetection(),
-    // Replaces BrowserModule.withServerTransition({ appId: 'serverApp' }), removed in v19
-    { provide: APP_ID, useValue: 'serverApp' },
-    { provide: LOCALE_ID, useValue: 'sr-Latn-BA' },
-    provideHttpClient(withXhr(), withInterceptorsFromDi()),
-  ],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        AdsenseModule.forRoot(),
+        HeaderSearchComponent,
+        HeaderSelectSiteComponent,
+        HeaderComponent,
+        FooterNavComponent,
+        FooterComponent,
+        FooterSocialComponent,
+        ScrollToTopComponent,
+        HeaderSubmenuComponent,
+    ],
+    providers: [
+        // Zoneless is the default since v21; keep zone.js until Phase 5. Declared here
+        // (not in main.ts) so the server bootstrap gets it too.
+        provideZoneChangeDetection(),
+        // Replaces BrowserModule.withServerTransition({ appId: 'serverApp' }), removed in v19
+        { provide: APP_ID, useValue: 'serverApp' },
+        { provide: LOCALE_ID, useValue: 'sr-Latn-BA' },
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

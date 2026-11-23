@@ -4,8 +4,7 @@ import { RunScriptsDirective } from './run-scripts.directive';
 import { ViberShareDirective } from './viber-share.directive';
 
 @NgModule({
-  declarations: [RunScriptsDirective, ViberShareDirective],
-  imports: [CommonModule],
-  exports: [RunScriptsDirective, ViberShareDirective],
+    imports: [CommonModule, RunScriptsDirective, ViberShareDirective],
+    exports: [RunScriptsDirective, ViberShareDirective],
 })
 export class DirectivesModule {}

@@ -7,12 +7,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
-  declarations: [ParentCategoryComponent],
-  imports: [
-    CommonModule,
-    ParentCategoryRoutingModule,
-    ComponentsModule,
-    NgxPaginationModule,
-  ],
+    imports: [
+        CommonModule,
+        ParentCategoryRoutingModule,
+        ComponentsModule,
+        NgxPaginationModule,
+        ParentCategoryComponent,
+    ],
 })
 export class ParentCategoryModule {}

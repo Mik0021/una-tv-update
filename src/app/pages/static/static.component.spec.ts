@@ -8,8 +8,8 @@ describe('StaticComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StaticComponent ]
-    })
+    imports: [StaticComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(StaticComponent);

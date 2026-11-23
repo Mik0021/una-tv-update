@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { TvProgram } from './../interfaces/tv-program.model';
 import { TvProgramService } from './../services/tv-program.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { TableComponent } from './table/table.component';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Meta, Title } from '@angular/platform-browser';
     templateUrl: './program.component.html',
     styleUrls: ['./program.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [TableComponent]
 })
 export class ProgramComponent implements OnInit {
   showTab: boolean = true;

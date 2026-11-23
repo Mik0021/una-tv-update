@@ -1,12 +1,14 @@
 import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { TvProgram } from './../../interfaces/tv-program.model';
+import { NgClass, DatePipe } from '@angular/common';
+import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
 
 @Component({
     selector: 'app-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [NgClass, DatePipe, SafeHtmlPipe]
 })
 export class TableComponent implements OnInit {
   @Input() schema = {} as TvProgram;

@@ -10,12 +10,7 @@ import {
   DOCUMENT,
   ChangeDetectionStrategy
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ReCaptchaV3Service } from 'ng-recaptcha-2';
 import { finalize, switchMap } from 'rxjs';
@@ -24,14 +19,15 @@ import { QuizService } from 'src/app/services/quiz.service';
 import { AgeValidator } from './age.validator';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { NavService } from 'src/app/services/nav.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-quiz-apply',
     templateUrl: './quiz-apply.component.html',
     styleUrls: ['./quiz-apply.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [ReactiveFormsModule, NgClass, RouterLink]
 })
 export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
   videoTypeError = false;

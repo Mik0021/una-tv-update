@@ -7,8 +7,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     selector: 'app-static',
     templateUrl: './static.component.html',
     styleUrls: ['./static.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.Eager
 })
 export class StaticComponent implements OnInit {
   staticPage = {} as Static;

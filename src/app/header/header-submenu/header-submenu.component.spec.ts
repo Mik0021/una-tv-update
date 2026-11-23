@@ -8,8 +8,8 @@ describe('HeaderSubmenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderSubmenuComponent ]
-    })
+    imports: [HeaderSubmenuComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(HeaderSubmenuComponent);

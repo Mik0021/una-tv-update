@@ -10,7 +10,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Image } from 'src/app/interfaces/image.model';
 import { Search } from 'src/app/interfaces/search.model';
@@ -21,13 +21,20 @@ import { SearchService } from 'src/app/services/search.service';
 import { Personality } from './../../interfaces/personality.model';
 import { Post } from './../../interfaces/post.model';
 import { PostService } from './../../services/post.service';
+import { RunScriptsDirective } from '../../directives/run-scripts.directive';
+import { NgClass } from '@angular/common';
+import { SingleSocialComponent } from './single-social/single-social.component';
+import { SingleTagsComponent } from './single-tags/single-tags.component';
+import { CardSmallContentDownComponent } from '../../components/card-small-content-down/card-small-content-down.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
 
 @Component({
     selector: 'app-single-page',
     templateUrl: './single-page.component.html',
     styleUrls: ['./single-page.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [RunScriptsDirective, NgClass, RouterLink, SingleSocialComponent, SingleTagsComponent, CardSmallContentDownComponent, NgxPaginationModule, SafeHtmlPipe]
 })
 export class SinglePageComponent implements OnInit, AfterViewInit {
   single_post = {} as Post;

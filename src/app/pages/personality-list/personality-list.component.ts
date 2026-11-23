@@ -6,6 +6,8 @@ import { PersonalitiesService } from './../../services/personalities.service';
 import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { Paginator } from 'src/app/interfaces/paginator.model';
 import { Meta, Title } from '@angular/platform-browser';
+import { PersonalityCardComponent } from '../../components/personality-card/personality-card.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @Component({
@@ -13,7 +15,7 @@ import { Meta, Title } from '@angular/platform-browser';
     templateUrl: './personality-list.component.html',
     styleUrls: ['./personality-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [PersonalityCardComponent, NgxPaginationModule]
 })
 export class PersonalityListComponent implements OnInit {
   personalityList = [] as Personality[];

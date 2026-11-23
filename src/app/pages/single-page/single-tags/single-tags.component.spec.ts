@@ -8,8 +8,8 @@ describe('SingleTagsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SingleTagsComponent ]
-    })
+    imports: [SingleTagsComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(SingleTagsComponent);

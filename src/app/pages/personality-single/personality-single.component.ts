@@ -7,6 +7,9 @@ import { PersonalitiesService } from './../../services/personalities.service';
 import { Component, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { PersonalitySingle } from 'src/app/interfaces/personality-single.model';
 import { Meta, Title } from '@angular/platform-browser';
+import { RunScriptsDirective } from '../../directives/run-scripts.directive';
+import { CardSmallContentDownComponent } from '../../components/card-small-content-down/card-small-content-down.component';
+import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
 
 
 @Component({
@@ -14,7 +17,7 @@ import { Meta, Title } from '@angular/platform-browser';
     templateUrl: './personality-single.component.html',
     styleUrls: ['./personality-single.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [RunScriptsDirective, CardSmallContentDownComponent, SafeHtmlPipe]
 })
 export class PersonalitySingleComponent implements OnInit {
   image = {} as Image;

@@ -13,21 +13,19 @@ import { SingleTagsComponent } from './single-tags/single-tags.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
-  declarations: [
-    SinglePageComponent,
-    SingleSocialComponent,
-    SingleTagsComponent,
-    ConectedNewsComponent,
-  ],
-  imports: [
-    CommonModule,
-    SinglePageRoutingModule,
-    RouterModule,
-    ShareButtonDirective,
-    PipesModule,
-    DirectivesModule,
-    ComponentsModule,
-    NgxPaginationModule,
-  ],
+    imports: [
+        CommonModule,
+        SinglePageRoutingModule,
+        RouterModule,
+        ShareButtonDirective,
+        PipesModule,
+        DirectivesModule,
+        ComponentsModule,
+        NgxPaginationModule,
+        SinglePageComponent,
+        SingleSocialComponent,
+        SingleTagsComponent,
+        ConectedNewsComponent,
+    ],
 })
 export class SinglePageModule {}

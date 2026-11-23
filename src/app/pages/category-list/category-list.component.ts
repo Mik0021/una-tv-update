@@ -7,13 +7,16 @@ import { Paginator } from 'src/app/interfaces/paginator.model';
 import { CategoryList } from './../../interfaces/category-list.model';
 import { TvShow } from './../../interfaces/tv-show.model';
 import { CategorysService } from './../../services/categorys.service';
+import { NgStyle } from '@angular/common';
+import { CardSmallContentDownComponent } from '../../components/card-small-content-down/card-small-content-down.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
     selector: 'app-category-list',
     templateUrl: './category-list.component.html',
     styleUrls: ['./category-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [NgStyle, CardSmallContentDownComponent, NgxPaginationModule]
 })
 export class CategoryListComponent implements OnInit {
   category = {} as CategoryList;

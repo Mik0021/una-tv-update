@@ -7,13 +7,15 @@ import { CategorysService } from 'src/app/services/categorys.service';
 import { Paginator } from './../../interfaces/paginator.model';
 import { ParentCategory } from './../../interfaces/parent-category.model';
 import { TvShow } from './../../interfaces/tv-show.model';
+import { CardSmallContentDownComponent } from '../../components/card-small-content-down/card-small-content-down.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
     selector: 'app-parent-category',
     templateUrl: './parent-category.component.html',
     styleUrls: ['./parent-category.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [CardSmallContentDownComponent, NgxPaginationModule]
 })
 export class ParentCategoryComponent implements OnInit {
   category = {} as ParentCategory;

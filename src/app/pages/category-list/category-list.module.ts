@@ -7,12 +7,12 @@ import { CategoryListComponent } from './category-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
-  declarations: [CategoryListComponent],
-  imports: [
-    CommonModule,
-    CategoryListRoutingModule,
-    ComponentsModule,
-    NgxPaginationModule,
-  ],
+    imports: [
+        CommonModule,
+        CategoryListRoutingModule,
+        ComponentsModule,
+        NgxPaginationModule,
+        CategoryListComponent,
+    ],
 })
 export class CategoryListModule {}
