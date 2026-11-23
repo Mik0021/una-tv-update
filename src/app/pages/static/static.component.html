@@ -1,13 +1,15 @@
 <section class="bg-dark mb-14 mt-60">
-  <div class="container px-3 sm:px-0" *ngIf="staticPage.data">
-    <h1
-      class="text-white font-bold text-3xl sm:text-[42px] pb-4 leading-[3rem]"
-    >
-      {{ staticPage.data.title }}
-    </h1>
-    <div
-      class="sp-content text-white text-lg"
-      [innerHTML]="staticPage.data.description"
-    ></div>
-  </div>
+  @if (staticPage.data) {
+    <div class="container px-3 sm:px-0">
+      <h1
+        class="text-white font-bold text-3xl sm:text-[42px] pb-4 leading-[3rem]"
+        >
+        {{ staticPage.data.title }}
+      </h1>
+      <div
+        class="sp-content text-white text-lg"
+        [innerHTML]="staticPage.data.description"
+      ></div>
+    </div>
+  }
 </section>

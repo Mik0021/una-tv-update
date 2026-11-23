@@ -1,5 +1,10 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { APP_ID, LOCALE_ID, NgModule } from '@angular/core';
+import {
+  APP_ID,
+  LOCALE_ID,
+  NgModule,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -38,6 +43,9 @@ registerLocaleData(localeBa);
     AdsenseModule.forRoot(),
   ],
   providers: [
+    // Zoneless is the default since v21; keep zone.js until Phase 5. Declared here
+    // (not in main.ts) so the server bootstrap gets it too.
+    provideZoneChangeDetection(),
     // Replaces BrowserModule.withServerTransition({ appId: 'serverApp' }), removed in v19
     { provide: APP_ID, useValue: 'serverApp' },
     { provide: LOCALE_ID, useValue: 'sr-Latn-BA' },

@@ -2,50 +2,53 @@
   <div class="block min-w-[600px]">
     <div class="tabs">
       <ul class="tab-group">
-        <li
-          *ngFor="let tab of schema.data; index as i"
-          class="tab py-2 lg:py-4 px-3 lg:px-6 capitalize whitespace-nowrap"
-          [class.active]="tab.active"
-          (click)="changeTab(i)"
-        >
-          {{ tab.date | date: 'EEE, dd.MM.' }}
-        </li>
+        @for (tab of schema.data; track tab; let i = $index) {
+          <li
+            class="tab py-2 lg:py-4 px-3 lg:px-6 capitalize whitespace-nowrap"
+            [class.active]="tab.active"
+            (click)="changeTab(i)"
+            >
+            {{ tab.date | date: 'EEE, dd.MM.' }}
+          </li>
+        }
       </ul>
       <div class="tab-content-group">
-        <ng-container *ngFor="let tab of schema.data; let j = index">
-          <div class="tab-content" *ngIf="tab.active">
-            <table class="text-white text-xl w-full">
-              <ng-container *ngFor="let item of tab.schema; let i = index">
-                <tr
-                  (click)="toggleAccordion($event, i, j)"
-                  class="cursor-pointer"
-                >
-                  <td class="py-2">{{ item.time }}</td>
-                  <td class="py-2">{{ item.type }}</td>
-                  <td class="py-2">{{ item.title }}</td>
-                  <td class="py-2">{{ item.replay }}</td>
-                  <td
-                    class="py-2 button font-extrabold text-2xl"
-                    [ngClass]="item.description === '' ? 'invisible' : ''"
-                  >
-                    +
-                  </td>
-                </tr>
-                <tr class="p-0">
-                  <td colspan="5" class="p-0">
-                    <div hide="!item.isActive" class="panel">
-                      <div
-                        [innerHTML]="item.description | safeHtml"
-                        class="tv-program-description"
-                        [ngClass]="item.description === '' ? '' : 'py-2'"
-                      ></div>
-                    </div>
-                  </td>
-                </tr>
-              </ng-container>
-            </table>
-          </div>
-        </ng-container>
+        @for (tab of schema.data; track tab; let j = $index) {
+          @if (tab.active) {
+            <div class="tab-content">
+              <table class="text-white text-xl w-full">
+                @for (item of tab.schema; track item; let i = $index) {
+                  <tr
+                    (click)="toggleAccordion($event, i, j)"
+                    class="cursor-pointer"
+                    >
+                    <td class="py-2">{{ item.time }}</td>
+                    <td class="py-2">{{ item.type }}</td>
+                    <td class="py-2">{{ item.title }}</td>
+                    <td class="py-2">{{ item.replay }}</td>
+                    <td
+                      class="py-2 button font-extrabold text-2xl"
+                      [ngClass]="item.description === '' ? 'invisible' : ''"
+                      >
+                      +
+                    </td>
+                  </tr>
+                  <tr class="p-0">
+                    <td colspan="5" class="p-0">
+                      <div hide="!item.isActive" class="panel">
+                        <div
+                          [innerHTML]="item.description | safeHtml"
+                          class="tv-program-description"
+                          [ngClass]="item.description === '' ? '' : 'py-2'"
+                        ></div>
+                      </div>
+                    </td>
+                  </tr>
+                }
+              </table>
+            </div>
+          }
+        }
       </div>
     </div>
   </div>

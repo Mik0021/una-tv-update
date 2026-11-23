@@ -10,24 +10,24 @@
   <app-footer-social></app-footer-social>
   <div
     class="grid items-center justify-center md:justify-between sm:grid-cols-2 border-t border-gray"
-  >
+    >
     <div class="text-xs text-white">
       <ul class="flex gap-4 lg:gap-20 py-5">
-        <ng-container *ngFor="let item of pagesList.data; let i = index">
+        @for (item of pagesList.data; track item; let i = $index) {
           <li>
             <a
               class="opacity-50 whitespace-nowrap"
               routerLink="{{ item.slug }}"
-            >
+              >
               {{ item.title }}
             </a>
           </li>
-        </ng-container>
+        }
       </ul>
     </div>
     <div
       class="text-xs text-white justify-self-center sm:justify-self-end py-2 sm:py-5"
-    >
+      >
       <h2 class="opacity-50 font-bold">
         <a routerLink="">UNA TV &copy; 2022</a>
       </h2>

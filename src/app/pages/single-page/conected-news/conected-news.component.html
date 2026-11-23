@@ -2,37 +2,39 @@
   <div class="block border-b-blue border-b-4 mb-8 flex justify-between">
     <h2
       class="font-semibold text-lg inline-block text-black bg-blue px-3 py-1 uppercase items-center mb-0"
-    >
+      >
       Povezano
     </h2>
   </div>
   <div class="grid gap-y-6">
-    <a
+    @for (article of articleList; track article) {
+      <a
       routerLink="{{ article.category.parent_category ? '/' : '' }}{{
         article.category.parent_category
           ? article.category.parent_category.slug
           : ''
       }}/{{ article.category.slug }}/{{ article.slug }}"
-      *ngFor="let article of articleList"
-    >
-      <div class="grid grid-cols-3 gap-4 items-center">
-        <div class="aspect-video">
-          <img
-            class="h-full w-full object-cover object-top"
-            *ngIf="article.images"
-            src="{{ article.images[0].url }}"
-            srcset="{{ article.images[0].thumbnails? article.images[0].thumbnails[144] : null }}"
+        >
+        <div class="grid grid-cols-3 gap-4 items-center">
+          <div class="aspect-video">
+            @if (article.images) {
+              <img
+                class="h-full w-full object-cover object-top"
+                src="{{ article.images[0].url }}"
+                srcset="{{ article.images[0].thumbnails? article.images[0].thumbnails[144] : null }}"
             [alt]="
               article.images[0].description
                 ? article.images[0].description
                 : article.images[0].name
             "
-          />
+                />
+            }
+          </div>
+          <p class="col-span-2 text-white text-base line-clamp-4">
+            {{ article.title }}
+          </p>
         </div>
-        <p class="col-span-2 text-white text-base line-clamp-4">
-          {{ article.title }}
-        </p>
-      </div>
-    </a>
+      </a>
+    }
   </div>
 </div>

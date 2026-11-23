@@ -5,27 +5,31 @@
         Programska šema
       </h1>
       <!-- <div class="flex justify-center text-white gap-5">
-        <button
-          class="px-3 py-2 text-2xl font-semibold border-b-2"
-          (click)="showTab = true"
-          [ngClass]="showTab ? 'text-blue  border-blue' : 'border-transparent'"
+      <button
+        class="px-3 py-2 text-2xl font-semibold border-b-2"
+        (click)="showTab = true"
+        [ngClass]="showTab ? 'text-blue  border-blue' : 'border-transparent'"
         >
-          Srbija
-        </button>
-        <button
-          class="px-3 py-2 text-2xl font-semibold border-b-2"
-          (click)="showTab = false"
-          [ngClass]="!showTab ? 'text-blue  border-blue' : 'border-transparent'"
+        Srbija
+      </button>
+      <button
+        class="px-3 py-2 text-2xl font-semibold border-b-2"
+        (click)="showTab = false"
+        [ngClass]="!showTab ? 'text-blue  border-blue' : 'border-transparent'"
         >
-          BiH
-        </button>
-      </div> -->
-      <div *ngIf="showTab">
+        BiH
+      </button>
+    </div> -->
+    @if (showTab) {
+      <div>
         <app-table [schema]="schemaComplete"></app-table>
       </div>
-      <div *ngIf="!showTab">
+    }
+    @if (!showTab) {
+      <div>
         <app-table [schema]="schemaCompleteBih"></app-table>
       </div>
-    </div>
+    }
   </div>
+</div>
 </section>

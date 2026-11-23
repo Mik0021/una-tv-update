@@ -1,34 +1,39 @@
 <section class="bg-dark mb-14 mt-[76px] sm:mt-[89px] lg:mt-[124px]">
-  <div class="container px-3 sm:px-0" *ngIf="personalityList">
-    <div class="block mb-6 lg:mb-14 flex justify-between">
-      <h2
-        class="font-semibold inline-block text-white py-1 items-center mb-0 text-2xl md:text-3xl lg:text-4xl capitalize"
-      >
-        NAŠA LICA
-      </h2>
+  @if (personalityList) {
+    <div class="container px-3 sm:px-0">
+      <div class="block mb-6 lg:mb-14 flex justify-between">
+        <h2
+          class="font-semibold inline-block text-white py-1 items-center mb-0 text-2xl md:text-3xl lg:text-4xl capitalize"
+          >
+          NAŠA LICA
+        </h2>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
+        @for (
+          article of personalityList
+          | paginate
+          : {
+          itemsPerPage: 24,
+          currentPage: p,
+          totalItems: paginator.total
+        }
+        ; track
+        article) {
+        <app-personality-card
+          [articleData]="article"
+        ></app-personality-card>
+      }
     </div>
-
-    <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
-      <app-personality-card
-        *ngFor="
-          let article of personalityList
-            | paginate
-              : {
-                  itemsPerPage: 24,
-                  currentPage: p,
-                  totalItems: paginator.total
-                }
-        "
-        [articleData]="article"
-      ></app-personality-card>
-    </div>
-    <div class="grid place-items-center mt-28" *ngIf="paginator.last_page > 1">
-      <pagination-controls
-        class="pagination"
-        (pageChange)="getPage($event)"
-        previousLabel=""
-        nextLabel=""
-      ></pagination-controls>
-    </div>
+    @if (paginator.last_page > 1) {
+      <div class="grid place-items-center mt-28">
+        <pagination-controls
+          class="pagination"
+          (pageChange)="getPage($event)"
+          previousLabel=""
+          nextLabel=""
+        ></pagination-controls>
+      </div>
+    }
   </div>
+}
 </section>

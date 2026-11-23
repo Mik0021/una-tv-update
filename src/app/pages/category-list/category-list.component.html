@@ -1,37 +1,43 @@
 <section class="bg-dark mb-14 mt-40">
-  <div class="container px-3 sm:px-0" *ngIf="category.data">
-    <div
-      class="block border-b-blue border-b-4 mb-14 flex justify-between"
-      [ngStyle]="{ 'border-color': category.data.tv_category.color }"
-    >
-      <h2
-        class="font-semibold inline-block text-black bg-blue px-12 py-1 uppercase items-center -mb-px"
-        [ngStyle]="{ 'background-color': category.data.tv_category.color }"
-      >
-        {{ category.data.tv_category.name }}
-      </h2>
+  @if (category.data) {
+    <div class="container px-3 sm:px-0">
+      <div
+        class="block border-b-blue border-b-4 mb-14 flex justify-between"
+        [ngStyle]="{ 'border-color': category.data.tv_category.color }"
+        >
+        <h2
+          class="font-semibold inline-block text-black bg-blue px-12 py-1 uppercase items-center -mb-px"
+          [ngStyle]="{ 'background-color': category.data.tv_category.color }"
+          >
+          {{ category.data.tv_category.name }}
+        </h2>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
+        @for (
+          article of articles
+          | paginate
+          : {
+          itemsPerPage: 24,
+          currentPage: p,
+          totalItems: paginator.total
+        }
+        ; track
+        article) {
+        <app-card-small-content-down
+          [articleData]="article"
+        ></app-card-small-content-down>
+      }
     </div>
-    <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
-      <app-card-small-content-down
-        *ngFor="
-          let article of articles
-            | paginate
-              : {
-                  itemsPerPage: 24,
-                  currentPage: p,
-                  totalItems: paginator.total
-                }
-        "
-        [articleData]="article"
-      ></app-card-small-content-down>
-    </div>
-    <div class="grid place-items-center mt-28" *ngIf="paginator.last_page > 1">
-      <pagination-controls
-        class="pagination"
-        (pageChange)="getPage($event)"
-        previousLabel=""
-        nextLabel=""
-      ></pagination-controls>
-    </div>
+    @if (paginator.last_page > 1) {
+      <div class="grid place-items-center mt-28">
+        <pagination-controls
+          class="pagination"
+          (pageChange)="getPage($event)"
+          previousLabel=""
+          nextLabel=""
+        ></pagination-controls>
+      </div>
+    }
   </div>
+}
 </section>

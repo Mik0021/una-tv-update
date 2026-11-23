@@ -1,24 +1,28 @@
-<app-home-hero-section-full
-  *ngIf="heroType === 1 && heroArticleList"
-  [articles]="heroArticleList"
-></app-home-hero-section-full>
+@if (heroType === 1 && heroArticleList) {
+  <app-home-hero-section-full
+    [articles]="heroArticleList"
+  ></app-home-hero-section-full>
+}
 
-<section
-  *ngFor="let section of heroSection.data"
-  class="bg-dark container-slider"
->
-  <app-category-section-small-cards-content-down
-    [sectionData]="section"
-    *ngIf="
+@for (section of heroSection.data; track section) {
+  <section
+    class="bg-dark container-slider"
+    >
+    @if (
       section.tv_show_template.type_id === 2 && section.tv_shows.length > 0
-    "
-  ></app-category-section-small-cards-content-down>
-  <app-category-section-personalities
-    [sectionData]="section"
-    *ngIf="
+      ) {
+      <app-category-section-small-cards-content-down
+        [sectionData]="section"
+      ></app-category-section-small-cards-content-down>
+    }
+    @if (
       section.tv_show_template.type_id === 2 &&
       section.tv_personalities.length > 0
-    "
-  >
-  </app-category-section-personalities>
-</section>
+      ) {
+      <app-category-section-personalities
+        [sectionData]="section"
+        >
+      </app-category-section-personalities>
+    }
+  </section>
+}

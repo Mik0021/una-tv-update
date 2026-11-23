@@ -1,58 +1,64 @@
 <section class="bg-dark mt-[66px] sm:mt-[79px] lg:mt-[104px] mb-6 lg:mb-14">
   <div class="container">
     <div class="max-w-[900px] mx-auto px-2">
-      <div
-        class="flex items-center flex-wrap lg:flex-nowrap"
-        *ngIf="personality.data"
-      >
-        <div class="relative aspect-video h-48" *ngIf="personality.data.image">
-          <img
-            class="w-full h-full object-cover object-top aspect-video"
-            src="{{ personality.data.image.url }}"
-            srcset="{{ srcSet }}"
-            sizes="(min-width: 1280px) 100vw, 70vw"
+      @if (personality.data) {
+        <div
+          class="flex items-center flex-wrap lg:flex-nowrap"
+          >
+          @if (personality.data.image) {
+            <div class="relative aspect-video h-48">
+              <img
+                class="w-full h-full object-cover object-top aspect-video"
+                src="{{ personality.data.image.url }}"
+                srcset="{{ srcSet }}"
+                sizes="(min-width: 1280px) 100vw, 70vw"
             [alt]="
               personality.data.image.description
                 ? personality.data.image.description
                 : personality.data.image.name
             "
-          />
-        </div>
-        <div
-          class="flex items-center justify-between lg:ml-20 border-b-2 border-blue backgroud-title flex-grow"
-        >
-          <div class="lg:pl-5 py-6">
-            <h1 class="font-bold text-4xl text-white">
-              {{ personality.data.name }}
-            </h1>
-            <h2 class="font-bold text-2xl text-white">
-              {{ personality.data.sub_title }}
-            </h2>
+                />
+            </div>
+          }
+          <div
+            class="flex items-center justify-between lg:ml-20 border-b-2 border-blue backgroud-title flex-grow"
+            >
+            <div class="lg:pl-5 py-6">
+              <h1 class="font-bold text-4xl text-white">
+                {{ personality.data.name }}
+              </h1>
+              <h2 class="font-bold text-2xl text-white">
+                {{ personality.data.sub_title }}
+              </h2>
+            </div>
+            <div class="lg:pl-4">
+              <img
+                height="100"
+                width="128"
+                src="./assets/images/logo.png"
+                alt=""
+                />
+            </div>
           </div>
-          <div class="lg:pl-4">
-            <img
-              height="100"
-              width="128"
-              src="./assets/images/logo.png"
-              alt=""
-            />
-          </div>
         </div>
-      </div>
+      }
       <div
         class="sp-content text-white text-xl mt-0 lg:mt-6"
         [innerHTML]="content | safeHtml"
         appRunScripts
       ></div>
     </div>
-    <ng-container *ngIf="personalityShows.length > 0" class="mt-7">
-      <h2 class="text-3xl text-white font-semibold mb-3">Emisije:</h2>
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
-        <app-card-small-content-down
-          *ngFor="let show of personalityShows"
-          [articleData]="show"
-        ></app-card-small-content-down>
-      </div>
-    </ng-container>
+    @if (personalityShows.length > 0) {
+      <ng-container class="mt-7">
+        <h2 class="text-3xl text-white font-semibold mb-3">Emisije:</h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          @for (show of personalityShows; track show) {
+            <app-card-small-content-down
+              [articleData]="show"
+            ></app-card-small-content-down>
+          }
+        </div>
+      </ng-container>
+    }
   </div>
 </section>
