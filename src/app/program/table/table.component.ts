@@ -1,47 +1,38 @@
+import { DatePipe, NgClass } from '@angular/common';
 import {
-  Component,
-  Input,
-  OnInit,
   ChangeDetectionStrategy,
+  Component,
+  input,
+  linkedSignal,
 } from '@angular/core';
-import { TvProgram } from './../../interfaces/tv-program.model';
-import { NgClass, DatePipe } from '@angular/common';
 import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
+import { TvProgram } from './../../interfaces/tv-program.model';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgClass, DatePipe, SafeHtmlPipe],
 })
-export class TableComponent implements OnInit {
-  @Input() schema = {} as TvProgram;
-  constructor() {}
+export class TableComponent {
+  readonly schema = input.required<TvProgram>();
 
-  ngOnInit(): void {}
+  /** Selected day; back to the first day whenever a new schedule arrives. */
+  protected readonly activeTab = linkedSignal({
+    source: this.schema,
+    computation: () => 0,
+  });
 
-  changeTab(index: number) {
-    this.schema.data = this.schema.data.map((schema, i) =>
-      i === index ? { ...schema, active: true } : { ...schema, active: false },
-    );
-  }
-
-  toggleAccordion(event: any, index: number, dayIndex: number) {
-    const element = event.target;
-    element.parentElement.classList.toggle('active-acc');
-    if (this.schema.data[dayIndex].schema[index].isActive) {
-      this.schema.data[dayIndex].schema[index].isActive = false;
-    } else {
-      this.schema.data[dayIndex].schema[index].isActive = true;
+  protected toggleAccordion(event: Event) {
+    const row = (event.target as HTMLElement).parentElement!;
+    row.classList.toggle('active-acc');
+    const panel = row.nextElementSibling?.querySelector<HTMLElement>('.panel');
+    if (!panel) {
+      return;
     }
-    const panel =
-      element.parentElement.nextElementSibling.querySelector('.panel');
-
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + 'px';
-    }
+    panel.style.maxHeight = panel.style.maxHeight
+      ? ''
+      : panel.scrollHeight + 'px';
   }
 }

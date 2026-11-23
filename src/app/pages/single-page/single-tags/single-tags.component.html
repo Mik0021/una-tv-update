@@ -7,7 +7,7 @@
     </h2>
   </div>
   <div class="flex gap-x-8 gap-y-4 flex-wrap">
-    @for (tag of tags; track tag) {
+    @for (tag of tags(); track tag) {
       <a
         class="uppercase font-semibold underline decoration-blue decoration-2 underline-offset-4 text-sm text-white before:content-['#'] before:text-white hover:text-blue hover:before:text-blue transition-colors before:transition-colors"
         routerLink="/tag/{{ tag.slug }}"

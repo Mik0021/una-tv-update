@@ -13,9 +13,7 @@
           article of articles | paginate: { itemsPerPage: 24, currentPage: p };
           track article
         ) {
-          <app-card-small-content-down
-            [articleData]="article"
-          ></app-card-small-content-down>
+          <app-card-small-content-down [articleData]="article" />
         }
       </div>
       <div class="grid place-items-center mt-28">
@@ -24,7 +22,7 @@
           (pageChange)="getPage($event)"
           previousLabel=""
           nextLabel=""
-        ></pagination-controls>
+        />
       </div>
     </div>
   } @else {

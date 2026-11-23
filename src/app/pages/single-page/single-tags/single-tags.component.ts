@@ -1,8 +1,8 @@
 import {
   Component,
-  Input,
   OnInit,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import { Tags } from 'src/app/interfaces/tags.model';
 import { RouterLink } from '@angular/router';
@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
 })
 export class SingleTagsComponent implements OnInit {
-  @Input() tags = [] as Tags[];
+  readonly tags = input([] as Tags[]);
   constructor() {}
 
   ngOnInit(): void {}

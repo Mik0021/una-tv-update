@@ -1,49 +1,47 @@
+import { NgClass } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
-  OnInit,
-  ViewChild,
-  ChangeDetectionStrategy,
   inject,
+  signal,
+  viewChild,
 } from '@angular/core';
-import { NgForm, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormsModule, NgForm } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
-import { Search } from 'src/app/interfaces/search.model';
-import { SearchService } from './../../services/search.service';
-import { NgClass } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-header-search',
   templateUrl: './header-search.component.html',
   styleUrls: ['./header-search.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
-  imports: [ReactiveFormsModule, FormsModule, NgClass],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [FormsModule, NgClass],
 })
-export class HeaderSearchComponent implements OnInit {
+export class HeaderSearchComponent {
   private router = inject(Router);
-  private searchService = inject(SearchService);
 
-  isShown: string = '';
-  @ViewChild('searchField', { static: true })
-  searchField: ElementRef<HTMLInputElement> = {} as ElementRef;
+  /** CSS class that expands the search field. */
+  protected readonly isShown = signal('');
+  private readonly searchField =
+    viewChild.required<ElementRef<HTMLInputElement>>('searchField');
+
   constructor() {
-    const router = this.router;
-
-    router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd) {
-        this.closeSearch();
-      }
-    });
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        takeUntilDestroyed(),
+      )
+      .subscribe(() => this.isShown.set(''));
   }
 
-  ngOnInit(): void {}
-
-  onSearch(form: NgForm) {
-    if (this.isShown === '') {
-      this.isShown = 'scale-x-100';
-      this.searchField.nativeElement.focus();
+  protected onSearch(form: NgForm) {
+    if (this.isShown() === '') {
+      this.isShown.set('scale-x-100');
+      this.searchField().nativeElement.focus();
     } else {
-      this.isShown = '';
+      this.isShown.set('');
     }
     if (form.valid) {
       this.router.navigate(['/pretraga'], {
@@ -51,9 +49,5 @@ export class HeaderSearchComponent implements OnInit {
       });
       form.reset();
     }
-  }
-
-  closeSearch() {
-    this.isShown = '';
   }
 }

@@ -1,47 +1,26 @@
-import { Personality } from './../../interfaces/personality.model';
 import {
-  Component,
-  Input,
-  OnInit,
   ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Personality } from 'src/app/interfaces/personality.model';
 
 @Component({
   selector: 'app-personality-card',
   templateUrl: './personality-card.component.html',
   styleUrls: ['./personality-card.component.scss'],
-  host: {
-    class: 'text-base',
-  },
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink],
 })
-export class PersonalityCardComponent implements OnInit {
-  @Input() articleData = {} as Personality;
-  hasImage: boolean = false;
-  hasVideo: boolean = false;
-  isTimeline: boolean = false;
-  articleSlug: string = '';
-  categorySlug: string = '';
-  srcSet: string = '';
+export class PersonalityCardComponent {
+  readonly articleData = input.required<Personality>();
 
-  constructor() {}
-
-  ngOnInit(): void {
-    this.createSrcSet();
-  }
-
-  createSrcSet() {
-    if (this.articleData) {
-      if (
-        this.articleData.image &&
-        this.articleData.image.thumbnails &&
-        this.articleData.image.thumbnails[710] &&
-        this.articleData.image.thumbnails[944]
-      ) {
-        this.srcSet = `${this.articleData.image.thumbnails[710]} 175w, ${this.articleData.image.thumbnails[944]}`;
-      }
-    }
-  }
+  protected readonly srcSet = computed(() => {
+    const thumbs = this.articleData()?.image?.thumbnails;
+    return thumbs?.[710] && thumbs?.[944]
+      ? `${thumbs[710]} 175w, ${thumbs[944]}`
+      : '';
+  });
 }

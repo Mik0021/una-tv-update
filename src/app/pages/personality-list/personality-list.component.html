@@ -19,7 +19,7 @@
                 };
           track article
         ) {
-          <app-personality-card [articleData]="article"></app-personality-card>
+          <app-personality-card [articleData]="article" />
         }
       </div>
       @if (paginator.last_page > 1) {
@@ -29,7 +29,7 @@
             (pageChange)="getPage($event)"
             previousLabel=""
             nextLabel=""
-          ></pagination-controls>
+          />
         </div>
       }
     </div>

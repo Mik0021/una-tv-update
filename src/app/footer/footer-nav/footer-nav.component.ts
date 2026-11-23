@@ -1,8 +1,8 @@
 import {
   Component,
-  Input,
   OnInit,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import { Nav } from 'src/app/interfaces/nav.model';
 import { RouterLink } from '@angular/router';
@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
 })
 export class FooterNavComponent implements OnInit {
-  @Input() navList = {} as Nav;
+  readonly navList = input({} as Nav);
   constructor() {}
 
   ngOnInit(): void {}

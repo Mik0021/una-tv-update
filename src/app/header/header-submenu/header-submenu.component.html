@@ -22,7 +22,7 @@
       />
     </svg>
   </button>
-  @for (subItem of subcategory; track subItem) {
+  @for (subItem of subcategory(); track subItem) {
     <li
       class="mb-4 last:mb-0 transition-colors text-white"
       [ngStyle]="{ color: subItem.color }"

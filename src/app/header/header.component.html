@@ -58,7 +58,7 @@
                 <app-header-submenu
                   [subcategory]="item.children"
                   (isMenuShown)="closeFromSubmenu($event)"
-                ></app-header-submenu>
+                />
               }
             </li>
           }
@@ -91,7 +91,7 @@
       </nav>
     </div>
     <div class="flex">
-      <app-header-search></app-header-search>
+      <app-header-search />
       <!-- <app-header-select-site></app-header-select-site> -->
       <button
         class="lg:hidden ml-3 sm:ml-9 no-tap-color"

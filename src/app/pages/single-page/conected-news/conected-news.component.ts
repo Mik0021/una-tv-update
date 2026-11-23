@@ -1,9 +1,9 @@
 import { Article } from 'src/app/interfaces/article.model';
 import {
   Component,
-  Input,
   OnInit,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
 })
 export class ConectedNewsComponent implements OnInit {
-  @Input() articleList = [] as Article[];
+  readonly articleList = input([] as Article[]);
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,7 +1,5 @@
 @if (heroType === 1 && heroArticleList) {
-  <app-home-hero-section-full
-    [articles]="heroArticleList"
-  ></app-home-hero-section-full>
+  <app-home-hero-section-full [articles]="heroArticleList" />
 }
 
 @for (section of heroSection.data; track section) {
@@ -9,16 +7,13 @@
     @if (
       section.tv_show_template.type_id === 2 && section.tv_shows.length > 0
     ) {
-      <app-category-section-small-cards-content-down
-        [sectionData]="section"
-      ></app-category-section-small-cards-content-down>
+      <app-category-section-small-cards-content-down [sectionData]="section" />
     }
     @if (
       section.tv_show_template.type_id === 2 &&
       section.tv_personalities.length > 0
     ) {
-      <app-category-section-personalities [sectionData]="section">
-      </app-category-section-personalities>
+      <app-category-section-personalities [sectionData]="section" />
     }
   </section>
 }

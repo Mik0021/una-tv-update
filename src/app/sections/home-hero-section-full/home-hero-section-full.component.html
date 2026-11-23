@@ -1,37 +1,35 @@
 <section
   class="bg-dark pb-6 lg:pb-14 mt-[66px] sm:mt-[79px] lg:mt-0 relative 2xl:max-w-[1920px] 2xl:mx-auto"
 >
-  @if (articles[0]) {
+  @if (hero(); as hero) {
     <a
       class="container lg:max-w-full relative block aspect-video max-h-[750px] lg:after:absolute lg:after:inset-0 lg:after:bg-gradient-to-b lg:after:from-transparent lg:after:to-black lg:after:opacity-50"
-      routerLink="{{ articleSlug }}"
+      routerLink="{{ articleSlug() }}"
     >
-      @if (articles[0].image) {
+      @if (hero.image) {
         <img
           class="w-full h-full object-cover object-top"
-          src="{{ articles[0].image.url }}"
-          srcset="{{srcSet}}"
+          src="{{ hero.image.url }}"
+          srcset="{{ srcSet() }}"
           sizes="100vw"
           [alt]="
-            articles[0].image.description
-              ? articles[0].image.description
-              : articles[0].image.name
+            hero.image.description ? hero.image.description : hero.image.name
           "
         />
       }
       <div class="container lg:absolute inset-0 mt-4 lg:mt-0 px-3 sm:px-0 z-10">
-        @if (articles[0].tv_category) {
+        @if (hero.tv_category) {
           <div class="lg:absolute lg:bottom-0 lg:pb-20 lg:left-0 lg:right-2/3">
-            @if (articles[0]) {
+            @if (hero) {
               <p class="text-3xl text-white font-bold mb-3">
-                {{ articles[0].sub_title }}
+                {{ hero.sub_title }}
               </p>
             }
-            @if (articles[0]) {
+            @if (hero) {
               <h1
                 class="text-2xl sm:text-5xl text-white font-bold mb-3 lg:mb-0"
               >
-                {{ articles[0].title }}
+                {{ hero.title }}
               </h1>
             }
           </div>

@@ -23,9 +23,7 @@
                 };
           track article
         ) {
-          <app-card-small-content-down
-            [articleData]="article"
-          ></app-card-small-content-down>
+          <app-card-small-content-down [articleData]="article" />
         }
       </div>
       @if (paginator.last_page > 1) {
@@ -35,7 +33,7 @@
             (pageChange)="getPage($event)"
             previousLabel=""
             nextLabel=""
-          ></pagination-controls>
+          />
         </div>
       }
     </div>

@@ -1,12 +1,12 @@
 <div
   class="container lg:max-w-full lg:pl-[calc(50%-512px)] xl:pl-[calc(50%-640px)] 2xl:pl-[calc(50%-720px)] px-3 sm:px-0 pb-6 lg:pb-14"
 >
-  @if (category) {
+  @if (category(); as category) {
     <div
       class="block mb-1.5 flex justify-between"
       [ngStyle]="{ 'border-color': category.color }"
     >
-      <a routerLink="{{ categorySlug }}">
+      <a routerLink="{{ categorySlug() }}">
         <h2
           class="font-semibold text-white text-[28px] capitalize"
           [ngStyle]="{ 'background-color': category.color }"
@@ -17,11 +17,9 @@
     </div>
   }
   <swiper-container #carousel init="false" class="w-full">
-    @for (article of articleList; track article) {
+    @for (article of articleList(); track article) {
       <swiper-slide>
-        <app-card-small-content-down
-          [articleData]="article"
-        ></app-card-small-content-down>
+        <app-card-small-content-down [articleData]="article" />
       </swiper-slide>
     }
   </swiper-container>

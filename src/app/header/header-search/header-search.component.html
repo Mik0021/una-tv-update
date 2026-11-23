@@ -1,7 +1,7 @@
 <form class="flex" #searchForm="ngForm" (ngSubmit)="onSearch(searchForm)">
   <div
     class="absolute top-16 sm:top-1/2 sm:-translate-y-1/2 left-0 sm:left-44 right-0 sm:right-[210px] lg:right-36 scale-x-0 transition-transform origin-right ease-in-out delay-300 z-50"
-    [ngClass]="isShown"
+    [ngClass]="isShown()"
   >
     <input
       class="w-full border-0 py-2 px-3 text-gray text-2xl placeholder:text-gray placeholder:text-2xl focus-visible:outline-none"

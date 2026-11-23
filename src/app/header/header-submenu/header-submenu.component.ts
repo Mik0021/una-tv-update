@@ -1,11 +1,10 @@
 import { SubmenuItem } from './../../interfaces/submenu-item.model';
 import {
   Component,
-  EventEmitter,
-  Input,
   OnInit,
-  Output,
   ChangeDetectionStrategy,
+  input,
+  output,
 } from '@angular/core';
 import { NgClass, NgStyle } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -18,9 +17,9 @@ import { RouterLink } from '@angular/router';
   imports: [NgClass, NgStyle, RouterLink],
 })
 export class HeaderSubmenuComponent implements OnInit {
-  @Input() subcategory: SubmenuItem[] = [];
-  @Input() hideMenu: string = '';
-  @Output() isMenuShown = new EventEmitter<string>();
+  readonly subcategory = input<SubmenuItem[]>([]);
+  readonly hideMenu = input<string>('');
+  readonly isMenuShown = output<string>();
 
   submenuHide: string = '';
 
