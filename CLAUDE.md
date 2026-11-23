@@ -12,7 +12,7 @@ The migration in `MIGRATION_PLAN.md` is complete on `feat/angular-22`. The app i
 - `npm start`: dev server (`ng serve`, development config, http://localhost:4200)
 - `npm test`: Vitest unit tests (`@angular/build:unit-test`, jsdom, Vitest globals: `describe`/`it`/`expect`/`vi`). For a subset: `npx ng test --include 'src/app/path/**/*.spec.ts'`. Shared fixtures are in `src/testing/fixtures.ts`. In specs, `await fixture.whenStable()` waits for pending HTTP/resources, so flush `HttpTestingController` requests first. `destroyPlayer` (from `src/assets/brid.js`) must be stubbed for components that contain `app-html-embed`.
 - `npm start` (`ng serve`) also server-renders; it uses `environment.ts`, which points at the **production** API.
-- Per-site builds: `ng build --configuration=<site>` (one command builds browser and server), where `<site>` is one of `unabih`, `unasr`, `unahr`, `unaen` (test/staging) or the `...prod` variant. npm shortcuts exist only for Serbia: `npm run build:ssrsrb` / `npm run build:ssrsrbprod`.
+- Builds: `ng build --configuration=unasr` (test/staging) or `--configuration=unasrprod` (one command builds browser and server). npm shortcuts: `npm run build:ssrsrb` / `npm run build:ssrsrbprod`.
 - Output per site: `<base>/browser` (static files) and `<base>/server/server.mjs` (start with `node <base>/server/server.mjs`; port = `APP_PORT` from the environment). `npm run serve:ssr` runs `dist/server/server.mjs`.
 
 There is no lint setup. Formatting uses Prettier with `singleQuote: true`.
@@ -20,17 +20,16 @@ There is no lint setup. Formatting uses Prettier with `singleQuote: true`.
 Gotchas:
 - The `build`/`server` targets default to a `production` configuration that is not defined in `angular.json`. Always pass an explicit `--configuration`.
 - Requests are only served for hosts in `security.allowedHosts` in `angular.json` (or the `NG_ALLOWED_HOSTS` env var). Any other `Host` / `X-Forwarded-Host` gets **HTTP 400**. `src/server.ts` trusts `X-Forwarded-Proto`/`X-Forwarded-Host` from the reverse proxy, and server-side `document.location` (used for canonical/og:url) is built from them.
-- Only `unasr`/`unasrprod` build. The other site environments lack TV-only keys (`API_TV_IS_SUBCATEGORY`, `API_PERSONALITIES`, `API_TV_PROGRAM`, ...).
 
-## Multi-site setup via environments
+## Environments
 
-One codebase serves several country sites. Each site has its own `src/environments/environment.<site>[prod].ts`, which is swapped in through `fileReplacements` in `angular.json`. Each build writes to a different output folder: `ba/`, `dist/` (sr), `hr/`, `en/`, each with a `/server` subfolder.
+There are three environment files: `environment.ts` (default, used by `ng serve`), `environment.unasr.ts` (test/staging) and `environment.unasrprod.ts`. The `unasr`/`unasrprod` build configurations swap them in through `fileReplacements` in `angular.json`, and both build to `dist/`.
 
-The environment object holds everything that differs between sites:
-- `API_UNA` base URL plus endpoint paths (`API_POST`, `API_HOME`, ...). Endpoint paths **differ between sites**: the sr/tv environments use `/tv/...` paths, while some others (e.g. `unabihprod`) use `/articles/...`, `/categories/...` and lack TV-only keys such as `API_PERSONALITIES` and `API_TV_PROGRAM`.
-- `APP_PORT`, `APP_SERVER_DIST_FOLDER` (used by `server.ts`), `APP_FOLDER`, language/locale strings, SEO meta defaults, the reCAPTCHA key, and `SITE_SELECT` (the country switcher in the header).
+The environment object holds:
+- `API_UNA` base URL plus endpoint paths (`API_POST`, `API_HOME`, `API_TV_*`, ...).
+- `APP_PORT`, `APP_SERVER_DIST_FOLDER`, `APP_FOLDER`, language/locale strings, SEO meta defaults, the reCAPTCHA key, and `SITE_SELECT` (the country switcher in the header).
 
-When adding a new API endpoint or config value, add it to **every** environment file, or the builds for the other sites will break.
+When adding a new API endpoint or config value, add it to **all three** environment files.
 
 ## Architecture
 

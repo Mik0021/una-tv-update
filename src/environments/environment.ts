@@ -1,5 +1,5 @@
 // This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
+// `ng build --configuration=unasr|unasrprod` replaces it with `environment.unasr[prod].ts`.
 // The list of file replacements can be found in `angular.json`.
 // https://una-test-api-rs.ha.rs/api/v1
 // https://api-rs.unaworld.com/api/v1
