@@ -1,24 +1,24 @@
+import { NgClass } from '@angular/common';
 import {
-  Component,
-  HostListener,
-  OnInit,
-  DOCUMENT,
   ChangeDetectionStrategy,
+  Component,
+  DOCUMENT,
+  computed,
   inject,
 } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { GtagService } from './services/gtag.service';
-import { NgClass } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
 import { RouterOutlet } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
+import { GtagService } from './services/gtag.service';
+import { WindowScrollService } from './services/window-scroll.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgClass,
     HeaderComponent,
@@ -27,29 +27,14 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
     ScrollToTopComponent,
   ],
 })
-export class AppComponent implements OnInit {
-  private _document = inject<Document>(DOCUMENT);
-  private gtagService = inject(GtagService);
+export class AppComponent {
+  private readonly scrollY = inject(WindowScrollService).scrollY;
+  /** Header gets a solid background once the page is scrolled. */
+  protected readonly windowScrolled = computed(() => this.scrollY() > 0);
 
-  windowScrolled: boolean = false;
-
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    if (
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop > 100
-    ) {
-      this.windowScrolled = true;
-    } else if (
-      (this.windowScrolled && window.pageYOffset) ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop < 10
-    ) {
-      this.windowScrolled = false;
-    }
-  }
-  ngOnInit(): void {
-    this._document.documentElement.lang = environment.APP_LANG;
+  constructor() {
+    // Pushes a `page` event to the GTM dataLayer on every navigation.
+    inject(GtagService);
+    inject(DOCUMENT).documentElement.lang = environment.APP_LANG;
   }
 }

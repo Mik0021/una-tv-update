@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-single-tags',
   templateUrl: './single-tags.component.html',
   styleUrls: ['./single-tags.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink],
 })
 export class SingleTagsComponent implements OnInit {

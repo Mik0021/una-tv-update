@@ -1,9 +1,5 @@
 import { registerLocaleData } from '@angular/common';
-import {
-  provideHttpClient,
-  withFetch,
-  withInterceptors,
-} from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import localeBa from '@angular/common/locales/sr-Latn-BA';
 import {
   APP_ID,
@@ -22,7 +18,6 @@ import {
   withInMemoryScrolling,
 } from '@angular/router';
 import { routes } from './app.routes';
-import { asyncResponseInterceptor } from './interceptors/async-response.interceptor';
 
 registerLocaleData(localeBa);
 
@@ -37,10 +32,9 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
       withComponentInputBinding(),
     ),
-    provideHttpClient(
-      withFetch(),
-      withInterceptors([asyncResponseInterceptor]),
-    ),
+    // XHR, not fetch: the quiz video upload needs upload progress events, which
+    // the fetch backend doesn't support.
+    provideHttpClient(withXhr()),
     // Reuses the server-rendered DOM instead of re-rendering it. Hosts that run
     // third-party scripts opt out with ngSkipHydration (see HtmlEmbedComponent).
     // Incremental hydration (`@defer (hydrate on viewport)`) was measured on the

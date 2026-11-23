@@ -1,6 +1,5 @@
-import { Subject } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { httpResource } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Tag } from './../interfaces/tag.model';
 
@@ -8,19 +7,16 @@ import { Tag } from './../interfaces/tag.model';
   providedIn: 'root',
 })
 export class TagService {
-  private http = inject(HttpClient);
-
-  private tag = new Subject<Tag>();
-
-  tag$ = this.tag.asObservable();
-  getTag(query: string | null, currPage: number) {
-    let params = new HttpParams().set('per_page', 24).set('page', currPage);
-    return this.http
-      .get<Tag>(`${environment.API_UNA}${environment.API_TAG}/${query}`, {
-        params,
-      })
-      .subscribe((tag) => {
-        this.tag.next(tag);
-      });
+  /** Shows with a tag. Call in an injection context. */
+  tag(slug: () => string | undefined, page: () => number) {
+    return httpResource<Tag>(() => {
+      const tag = slug();
+      return tag
+        ? {
+            url: `${environment.API_UNA}${environment.API_TAG}/${tag}`,
+            params: { per_page: 24, page: page() },
+          }
+        : undefined;
+    });
   }
 }

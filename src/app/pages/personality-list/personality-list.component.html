@@ -1,5 +1,5 @@
 <section class="bg-dark mb-14 mt-[76px] sm:mt-[89px] lg:mt-[124px]">
-  @if (personalityList) {
+  @if (data(); as personalities) {
     <div class="container px-3 sm:px-0">
       <div class="block mb-6 lg:mb-14 flex justify-between">
         <h2
@@ -10,19 +10,19 @@
       </div>
       <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
         @for (
-          article of personalityList
+          article of personalities.data.tv_personalities
             | paginate
               : {
                   itemsPerPage: 24,
-                  currentPage: p,
-                  totalItems: paginator.total,
+                  currentPage: p(),
+                  totalItems: personalities.paginator.total,
                 };
           track article
         ) {
           <app-personality-card [articleData]="article" />
         }
       </div>
-      @if (paginator.last_page > 1) {
+      @if (personalities.paginator.last_page > 1) {
         <div class="grid place-items-center mt-28">
           <pagination-controls
             class="pagination"

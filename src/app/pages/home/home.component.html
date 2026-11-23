@@ -1,8 +1,8 @@
-@if (heroType === 1 && heroArticleList) {
-  <app-home-hero-section-full [articles]="heroArticleList" />
+@if (heroType() === 1) {
+  <app-home-hero-section-full [articles]="heroArticles()" />
 }
 
-@for (section of heroSection.data; track section) {
+@for (section of home()?.data; track section) {
   <section class="bg-dark container-slider">
     @if (
       section.tv_show_template.type_id === 2 && section.tv_shows.length > 0

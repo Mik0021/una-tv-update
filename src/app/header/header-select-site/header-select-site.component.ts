@@ -14,7 +14,7 @@ import { HeaderSearchComponent } from '../header-search/header-search.component'
   selector: 'app-header-select-site',
   templateUrl: './header-select-site.component.html',
   styleUrls: ['./header-select-site.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgClass, HeaderSearchComponent],
 })
 export class HeaderSelectSiteComponent implements OnInit {

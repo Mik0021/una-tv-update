@@ -1,32 +1,36 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { DOCUMENT } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, AppComponent],
-    }).compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [AppComponent],
+      providers: [
+        provideRouter([]),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
+    });
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'unatvbih'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('unatvbih');
-  });
-
-  it('should render title', () => {
+  it('renders the header, footer and router outlet', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'unatvbih app is running!',
+    const el = fixture.nativeElement as HTMLElement;
+    expect(el.querySelector('header app-header')).toBeTruthy();
+    expect(el.querySelector('router-outlet')).toBeTruthy();
+    expect(el.querySelector('footer app-footer')).toBeTruthy();
+  });
+
+  it('sets the document language', () => {
+    TestBed.createComponent(AppComponent);
+    expect(TestBed.inject(DOCUMENT).documentElement.lang).toBe(
+      environment.APP_LANG,
     );
   });
 });

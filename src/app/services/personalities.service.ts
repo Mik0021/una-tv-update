@@ -1,69 +1,39 @@
-import { PersonalitySingle } from './../interfaces/personality-single.model';
-import { PersonalityListing } from './../interfaces/personality-listing.model';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { httpResource } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Subject } from 'rxjs';
 import { PersonalityShow } from '../interfaces/personality-show.model';
+import { PersonalityListing } from './../interfaces/personality-listing.model';
+import { PersonalitySingle } from './../interfaces/personality-single.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PersonalitiesService {
-  private http = inject(HttpClient);
-
-  private personalitiesList = new Subject<PersonalityListing>();
-  private personalitySingle = new Subject<PersonalitySingle>();
-  private personalityShows = new Subject<PersonalityShow>();
-
-  personalitiesList$ = this.personalitiesList.asObservable();
-  personalitySingle$ = this.personalitySingle.asObservable();
-  personalityShows$ = this.personalityShows.asObservable();
-
-  getPersonalities(currPage: number) {
-    let params = new HttpParams().set('per_page', 24).set('page', currPage);
-    return this.http
-      .get<PersonalityListing>(
-        `${environment.API_UNA}${environment.API_PERSONALITIES}`,
-        { params },
-      )
-      .subscribe({
-        next: (personalityList: PersonalityListing) => {
-          this.personalitiesList.next(personalityList);
-        },
-        error: (err: Error) => {
-          console.log(err);
-        },
-      });
+  /** Paginated list of personalities. Call in an injection context. */
+  personalities(page: () => number) {
+    return httpResource<PersonalityListing>(() => ({
+      url: `${environment.API_UNA}${environment.API_PERSONALITIES}`,
+      params: { per_page: 24, page: page() },
+    }));
   }
 
-  getPersonality(personalitySlug: string | null) {
-    return this.http
-      .get<PersonalitySingle>(
-        `${environment.API_UNA}${environment.API_PERSNALITY}/${personalitySlug}`,
-      )
-      .subscribe({
-        next: (personalitySingle: PersonalitySingle) => {
-          this.personalitySingle.next(personalitySingle);
-        },
-        error: (err: Error) => {
-          console.log(err);
-        },
-      });
+  /** One personality. Call in an injection context. */
+  personality(slug: () => string | undefined) {
+    return httpResource<PersonalitySingle>(() => {
+      const personality = slug();
+      return personality
+        ? `${environment.API_UNA}${environment.API_PERSNALITY}/${personality}`
+        : undefined;
+    });
   }
 
-  getPersonalityShows(personalitySlug: string | null) {
-    return this.http
-      .get<PersonalityShow>(
-        `${environment.API_UNA}${environment.API_PERSONALITY_SHOWS}/${personalitySlug}`,
-      )
-      .subscribe({
-        next: (personalityShows: PersonalityShow) => {
-          this.personalityShows.next(personalityShows);
-        },
-        error: (err: Error) => {
-          console.log(err);
-        },
-      });
+  /** Shows a personality appears in. Call in an injection context. */
+  personalityShows(slug: () => string | undefined) {
+    return httpResource<PersonalityShow>(() => {
+      const personality = slug();
+      return personality
+        ? `${environment.API_UNA}${environment.API_PERSONALITY_SHOWS}/${personality}`
+        : undefined;
+    });
   }
 }

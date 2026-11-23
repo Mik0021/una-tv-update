@@ -12,7 +12,7 @@
       </a>
       <nav
         class="pl-3 lg:pl-14 fixed inset-0 lg:static lg:flex items-center z-50 overflow-auto lg:overflow-visible transition-transform lg:translate-x-0 bg-gray-dark lg:bg-transparent"
-        [ngClass]="isMenuShown"
+        [ngClass]="isMenuShown()"
       >
         <div class="flex justify-between lg:hidden mb-7">
           <a routerLink="" class="self-center py-3 no-tap-color"
@@ -39,7 +39,7 @@
         <ul
           class="uppercase flex flex-col lg:flex-row lg:gap-7 lg:items-center"
         >
-          @for (item of navList.data; track item) {
+          @for (item of nav()?.data; track item) {
             <li
               class="mb-4 lg:mb-0 lg:py-10 relative menu-item pr-20 lg:pr-0 text-white no-tap-color"
               [ngStyle]="{ color: item.color }"
@@ -57,13 +57,13 @@
               @if (item.children.length > 0) {
                 <app-header-submenu
                   [subcategory]="item.children"
-                  (isMenuShown)="closeFromSubmenu($event)"
+                  (isMenuShown)="onMenuClose()"
                 />
               }
             </li>
           }
 
-          @if (navList.meta?.settings?.quiz_enabled) {
+          @if (nav()?.meta?.settings?.quiz_enabled) {
             <li
               class="mb-4 lg:mb-0 lg:py-10 relative menu-item pr-20 lg:pr-0 text-white no-tap-color"
             >

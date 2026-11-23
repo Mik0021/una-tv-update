@@ -1,14 +1,14 @@
 <section class="bg-dark mb-14 mt-60">
-  @if (staticPage.data) {
+  @if (page()?.data; as page) {
     <div class="container px-3 sm:px-0">
       <h1
         class="text-white font-bold text-3xl sm:text-[42px] pb-4 leading-[3rem]"
       >
-        {{ staticPage.data.title }}
+        {{ page.title }}
       </h1>
       <div
         class="sp-content text-white text-lg"
-        [innerHTML]="staticPage.data.description"
+        [innerHTML]="page.description"
       ></div>
     </div>
   }

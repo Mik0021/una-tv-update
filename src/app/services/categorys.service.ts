@@ -1,60 +1,52 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, httpResource } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { CategoryList } from './../interfaces/category-list.model';
 import { ParentCategory } from './../interfaces/parent-category.model';
+
+const PER_PAGE = 24;
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategorysService {
   private http = inject(HttpClient);
-  private router = inject(Router);
 
-  private category = new Subject<CategoryList>();
-  private parentCategory = new Subject<ParentCategory>();
-
-  category$ = this.category.asObservable();
-  parentCategory$ = this.parentCategory.asObservable();
-
-  getCategory(
-    category: string | null,
-    subcategory: string | null,
-    currPage: number,
+  /** Shows of `category/subcategory`. Call in an injection context. */
+  category(
+    category: () => string | undefined,
+    subcategory: () => string | undefined,
+    page: () => number,
   ) {
-    let params = new HttpParams().set('per_page', 24).set('page', currPage);
-    return this.http
-      .get<CategoryList>(
-        `${environment.API_UNA}${environment.API_CATEGORY}/${category}/${subcategory}`,
-        { params },
-      )
-      .subscribe((category: CategoryList) => {
-        this.category.next(category);
-      });
+    return httpResource<CategoryList>(() => {
+      const parent = category();
+      const child = subcategory();
+      return parent && child
+        ? {
+            url: `${environment.API_UNA}${environment.API_CATEGORY}/${parent}/${child}`,
+            params: { per_page: PER_PAGE, page: page() },
+          }
+        : undefined;
+    });
   }
 
+  /** A top-level category and its shows. Call in an injection context. */
+  parentCategory(slug: () => string | undefined, page: () => number) {
+    return httpResource<ParentCategory>(() => {
+      const category = slug();
+      return category
+        ? {
+            url: `${environment.API_UNA}${environment.API_PARENT_CATEGORY}/${category}`,
+            params: { per_page: PER_PAGE, page: page() },
+          }
+        : undefined;
+    });
+  }
+
+  /** Whether `slug` is a subcategory (used by subcategoryGuard). */
   getCategoryTest(subcategory: string | null) {
     return this.http.get<boolean>(
       `${environment.API_UNA}${environment.API_TV_IS_SUBCATEGORY}/${subcategory}`,
     );
-  }
-
-  getParentCategory(query: string | null, currPage: number) {
-    let params = new HttpParams().set('per_page', 24).set('page', currPage);
-    return this.http
-      .get<ParentCategory>(
-        `${environment.API_UNA}${environment.API_PARENT_CATEGORY}/${query}`,
-        { params },
-      )
-      .subscribe(
-        (parentCat: ParentCategory) => {
-          this.parentCategory.next(parentCat);
-        },
-        (error: any) => {
-          this.router.navigate(['404'], { skipLocationChange: true });
-        },
-      );
   }
 }

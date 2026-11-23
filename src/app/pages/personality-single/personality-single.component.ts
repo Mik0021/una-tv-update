@@ -1,161 +1,54 @@
-import { TvShow } from './../../interfaces/tv-show.model';
-import { PersonalityShow } from './../../interfaces/personality-show.model';
-import { Image } from 'src/app/interfaces/image.model';
-import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
-import { PersonalitiesService } from './../../services/personalities.service';
 import {
-  Component,
-  OnInit,
-  DOCUMENT,
   ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
   inject,
+  input,
 } from '@angular/core';
-import { PersonalitySingle } from 'src/app/interfaces/personality-single.model';
-import { Meta, Title } from '@angular/platform-browser';
-import { HtmlEmbedComponent } from '../../components/html-embed/html-embed.component';
+import { SeoService } from 'src/app/services/seo.service';
 import { CardSmallContentDownComponent } from '../../components/card-small-content-down/card-small-content-down.component';
+import { HtmlEmbedComponent } from '../../components/html-embed/html-embed.component';
+import { lastValue, notFoundOnError } from '../../utils/resource';
+import { PersonalitiesService } from './../../services/personalities.service';
 
 @Component({
   selector: 'app-personality-single',
   templateUrl: './personality-single.component.html',
   styleUrls: ['./personality-single.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [HtmlEmbedComponent, CardSmallContentDownComponent],
 })
-export class PersonalitySingleComponent implements OnInit {
-  private personalitiesService = inject(PersonalitiesService);
-  private activatedRoute = inject(ActivatedRoute);
-  private metaService = inject(Meta);
-  private titleService = inject(Title);
-  private _document = inject<Document>(DOCUMENT);
+export class PersonalitySingleComponent {
+  /** Route param `:personality`. */
+  readonly personality = input<string>();
 
-  image = {} as Image;
-  srcSet: string = '';
-  content: any;
-  personalitySlug: string | null = '';
-  personality = {} as PersonalitySingle;
-  personalityShows = [] as TvShow[];
-
-  personalitySingle$: Observable<PersonalitySingle> =
-    this.personalitiesService.personalitySingle$;
-
-  personalityShows$: Observable<PersonalityShow> =
-    this.personalitiesService.personalityShows$;
+  private readonly personalities = inject(PersonalitiesService);
+  private readonly resource = this.personalities.personality(this.personality);
+  protected readonly data = lastValue(this.resource);
+  private readonly showsData = lastValue(
+    this.personalities.personalityShows(this.personality),
+  );
+  protected readonly shows = computed(
+    () => this.showsData()?.data.tv_shows ?? [],
+  );
 
   constructor() {
-    this.activatedRoute.paramMap.subscribe((paramMap) => {
-      if (!paramMap.has('personality')) {
-        return;
-      } else {
-        this.personalitySlug = paramMap.get('personality');
-        this.personalitiesService.getPersonality(this.personalitySlug);
-        this.personalitiesService.getPersonalityShows(this.personalitySlug);
+    notFoundOnError(this.resource);
+    const seo = inject(SeoService);
+    effect(() => {
+      const personality = this.data()?.data;
+      if (personality) {
+        seo.set({
+          title: personality.name,
+          description: personality.sub_title,
+          keywords: personality.name,
+          image: personality.image?.thumbnails?.[944] || undefined,
+          imageWidth: '944',
+          imageHeight: '531',
+          type: 'article',
+        });
       }
-    });
-  }
-
-  ngOnInit(): void {
-    this.personalitySingle$.subscribe({
-      next: (res: PersonalitySingle) => {
-        this.personality = res;
-        this.image = res.data.image;
-        this.content = res.data.description;
-        this.addTags();
-      },
-      error: (err: Error) => {
-        console.log(err);
-      },
-    });
-    this.personalityShows$.subscribe({
-      next: (res: PersonalityShow) => {
-        this.personalityShows = res.data.tv_shows;
-      },
-    });
-  }
-
-  createSrcSet() {
-    if (
-      this.image &&
-      this.image.thumbnails &&
-      this.image.thumbnails[710] &&
-      this.image.thumbnails[944]
-    ) {
-      this.srcSet = `${this.image.thumbnails[710]} 490w, ${this.image.thumbnails[944]}`;
-    }
-  }
-  addTags() {
-    this.titleService.setTitle(this.personality.data.name);
-
-    this.metaService.updateTag({
-      name: 'description',
-      content: this.personality.data.sub_title,
-    });
-    this.metaService.updateTag({
-      name: 'keywords',
-      content: this.personality.data.name,
-    });
-
-    this.metaService.updateTag({
-      property: 'og:title',
-      content: this.personality.data.name,
-    });
-    this.metaService.updateTag({
-      property: 'og:description',
-      content: this.personality.data.sub_title,
-    });
-    this.metaService.updateTag({
-      property: 'og:image',
-      content: this.personality.data.image.thumbnails[944]
-        ? this.personality.data.image.thumbnails[944]
-        : 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
-    });
-    this.metaService.updateTag({
-      property: 'og:image:width',
-      content: '944',
-    });
-    this.metaService.updateTag({
-      property: 'og:image:height',
-      content: '531',
-    });
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: `${this._document.location.href}`,
-    });
-    this.metaService.updateTag({
-      property: 'og:type',
-      content: 'article',
-    });
-
-    this.metaService.updateTag({
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    });
-    this.metaService.updateTag({
-      name: 'twitter:site',
-      content: '@',
-    });
-    this.metaService.updateTag({
-      name: 'twitter:creator',
-      content: `${this._document.location.host}`,
-    });
-    this.metaService.updateTag({
-      name: 'twitter:domain',
-      content: `${this._document.location.host}`,
-    });
-    this.metaService.updateTag({
-      name: 'twitter:title',
-      content: this.personality.data.name,
-    });
-    this.metaService.updateTag({
-      name: 'twitter:description',
-      content: this.personality.data.sub_title,
-    });
-    this.metaService.updateTag({
-      name: 'twitter:image',
-      content: this.personality.data.image.thumbnails[944]
-        ? this.personality.data.image.thumbnails[944]
-        : 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
     });
   }
 }

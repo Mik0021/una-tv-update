@@ -1,50 +1,31 @@
+import { NgClass } from '@angular/common';
 import {
-  Component,
-  HostListener,
-  OnInit,
-  DOCUMENT,
   ChangeDetectionStrategy,
+  Component,
+  computed,
   inject,
 } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { WindowScrollService } from '../services/window-scroll.service';
 
 @Component({
   selector: 'app-scroll-to-top',
   templateUrl: './scroll-to-top.component.html',
   styleUrls: ['./scroll-to-top.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgClass],
 })
-export class ScrollToTopComponent implements OnInit {
-  private document = inject<Document>(DOCUMENT);
+export class ScrollToTopComponent {
+  private readonly scrollY = inject(WindowScrollService).scrollY;
+  protected readonly windowScrolled = computed(() => this.scrollY() > 0);
 
-  windowScrolled: boolean = false;
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    if (
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop > 100
-    ) {
-      this.windowScrolled = true;
-    } else if (
-      (this.windowScrolled && window.pageYOffset) ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop < 10
-    ) {
-      this.windowScrolled = false;
-    }
-  }
-  scrollToTop() {
-    (function smoothscroll() {
-      var currentScroll =
-        document.documentElement.scrollTop || document.body.scrollTop;
-      if (currentScroll > 0) {
-        window.requestAnimationFrame(smoothscroll);
-        window.scrollTo(0, currentScroll - currentScroll / 8);
+  protected scrollToTop() {
+    const step = () => {
+      const current = window.scrollY;
+      if (current > 0) {
+        window.requestAnimationFrame(step);
+        window.scrollTo(0, current - current / 8);
       }
-    })();
+    };
+    step();
   }
-
-  ngOnInit(): void {}
 }

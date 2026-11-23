@@ -1,39 +1,35 @@
-import { ActivatedRoute } from '@angular/router';
-import { StaticService } from './../../services/static.service';
-import { Static } from './../../interfaces/static.model';
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
+  Component,
+  effect,
   inject,
+  input,
 } from '@angular/core';
+import { SeoService } from 'src/app/services/seo.service';
+import { lastValue, notFoundOnError } from '../../utils/resource';
+import { StaticService } from './../../services/static.service';
 
 @Component({
   selector: 'app-static',
   templateUrl: './static.component.html',
   styleUrls: ['./static.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StaticComponent implements OnInit {
-  private staticService = inject(StaticService);
-  private activatedRoute = inject(ActivatedRoute);
+export class StaticComponent {
+  /** Route param `:static`. */
+  readonly slug = input<string>(undefined, { alias: 'static' });
 
-  staticPage = {} as Static;
-  staticPageRoute: string | null = '';
+  private readonly resource = inject(StaticService).page(this.slug);
+  protected readonly page = lastValue(this.resource);
+
   constructor() {
-    this.activatedRoute.paramMap.subscribe((paramMap) => {
-      if (!paramMap.has('static')) {
-        return;
+    notFoundOnError(this.resource);
+    const seo = inject(SeoService);
+    effect(() => {
+      const page = this.page()?.data;
+      if (page) {
+        seo.set({ title: page.title, description: '', keywords: '' });
       }
-      this.staticPageRoute = paramMap.get('static');
-      this.staticService.getStaticPage(this.staticPageRoute).subscribe({
-        next: (res: Static) => {
-          this.staticPage = res;
-        },
-        error: (error: any) => {},
-      });
     });
   }
-
-  ngOnInit(): void {}
 }

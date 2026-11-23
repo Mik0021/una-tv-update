@@ -1,5 +1,5 @@
 <section class="bg-dark mb-14 mt-[76px] sm:mt-[89px] lg:mt-[124px]">
-  @if (category.data) {
+  @if (data(); as category) {
     <div class="container px-3 sm:px-0">
       <div class="mb-6 lg:mb-14 flex justify-between">
         <h2
@@ -10,19 +10,19 @@
       </div>
       <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
         @for (
-          article of articles
+          article of category.data.tv_shows
             | paginate
               : {
                   itemsPerPage: 24,
-                  currentPage: p,
-                  totalItems: paginator.total,
+                  currentPage: p(),
+                  totalItems: category.paginator.total,
                 };
           track article
         ) {
           <app-card-small-content-down [articleData]="article" />
         }
       </div>
-      @if (paginator.last_page > 1) {
+      @if (category.paginator.last_page > 1) {
         <div class="grid place-items-center mt-28">
           <pagination-controls
             class="pagination"

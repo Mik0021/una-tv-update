@@ -1,8 +1,7 @@
-import { map, Subject } from 'rxjs';
+import { httpResource } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { TvProgram } from './../interfaces/tv-program.model';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
 
 const MAX_TV_DAYS = 7;
 
@@ -10,53 +9,16 @@ const MAX_TV_DAYS = 7;
   providedIn: 'root',
 })
 export class TvProgramService {
-  private http = inject(HttpClient);
-
-  private tvProgram = new Subject<TvProgram>();
-  private tvProgramBih = new Subject<TvProgram>();
-
-  tvProgram$ = this.tvProgram.asObservable();
-  tvProgramBih$ = this.tvProgramBih.asObservable();
-
-  getTvProgram() {
-    return this.http
-      .get<TvProgram>(`${environment.API_UNA}${environment.API_TV_PROGRAM}`)
-      .pipe(
-        map((tvProg: TvProgram) => {
-          if (tvProg.data.length > MAX_TV_DAYS) {
-            tvProg.data = tvProg.data.slice(0, MAX_TV_DAYS);
-          }
-          return tvProg;
-        }),
-      )
-      .subscribe({
-        next: (res: TvProgram) => {
-          this.tvProgram.next(res);
+  /** The TV schedule, at most MAX_TV_DAYS days. Call in an injection context. */
+  tvProgram() {
+    return httpResource<TvProgram>(
+      () => `${environment.API_UNA}${environment.API_TV_PROGRAM}`,
+      {
+        parse: (raw) => {
+          const program = raw as TvProgram;
+          return { ...program, data: program.data.slice(0, MAX_TV_DAYS) };
         },
-        error: (err: Error) => {
-          console.log(err);
-        },
-      });
-  }
-
-  getTvProgramBih() {
-    return this.http
-      .get<TvProgram>(`${environment.API_TV_PROGRAM_BIH}`)
-      .pipe(
-        map((tvProg: TvProgram) => {
-          if (tvProg.data.length > MAX_TV_DAYS) {
-            tvProg.data = tvProg.data.slice(0, MAX_TV_DAYS);
-          }
-          return tvProg;
-        }),
-      )
-      .subscribe({
-        next: (res: TvProgram) => {
-          this.tvProgramBih.next(res);
-        },
-        error: (err: Error) => {
-          console.log(err);
-        },
-      });
+      },
+    );
   }
 }

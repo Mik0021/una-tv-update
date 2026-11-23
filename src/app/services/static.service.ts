@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { httpResource } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Static } from './../interfaces/static.model';
 
@@ -7,12 +7,13 @@ import { Static } from './../interfaces/static.model';
   providedIn: 'root',
 })
 export class StaticService {
-  private http = inject(HttpClient);
-
-  getStaticPage(query: string | null) {
-    // let params = new HttpParams().set('keyword', query);
-    return this.http.get<Static>(
-      `${environment.API_UNA}${environment.API_STATIC}/${query}`,
-    );
+  /** A static page (`/p/:static`). Call in an injection context. */
+  page(slug: () => string | undefined) {
+    return httpResource<Static>(() => {
+      const page = slug();
+      return page
+        ? `${environment.API_UNA}${environment.API_STATIC}/${page}`
+        : undefined;
+    });
   }
 }

@@ -5,7 +5,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   selector: 'app-footer-social',
   templateUrl: './footer-social.component.html',
   styleUrls: ['./footer-social.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterSocialComponent implements OnInit {
   facebokLink: string = '';

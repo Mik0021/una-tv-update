@@ -1,85 +1,85 @@
+import { httpResource } from '@angular/common/http';
+import { Injectable, computed } from '@angular/core';
 import { Nav } from 'src/app/interfaces/nav.model';
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Subject, filter, map } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { Pages } from '../interfaces/pages.model';
+import { Pages } from 'src/app/interfaces/pages.model';
+import { environment } from '../../environments/environment';
 
+/** Pages that are linked elsewhere, not in the footer. */
+const HIDDEN_FOOTER_PAGES = new Set([
+  'pravila-kviza-i-audicije-za-kviz',
+  'kako-nas-gledati',
+  'obavestenje-o-obradi-podataka-o-licnosti-ucesnika-u-audiciji-za-kviz-jedno-pitanje',
+]);
+
+/** Router path for a menu item, by its type. */
+function menuItemPath(item: { type: string; slug: string }): string {
+  switch (item.type) {
+    case 'page':
+      return 'p/' + item.slug;
+    case 'tag':
+      return 'tag/' + item.slug;
+    case 'personalities':
+      return 'nasa-lica';
+    case 'personality':
+      return 'nasa-lica/' + item.slug;
+    case 'program-schemas':
+      return 'program';
+    default:
+      return item.slug;
+  }
+}
+
+function withMenuPaths(nav: Nav): Nav {
+  return {
+    ...nav,
+    data: nav.data.map((item) => ({
+      ...item,
+      slug: menuItemPath(item),
+      children: item.children.map((child) => ({
+        ...child,
+        slug: menuItemPath(child),
+      })),
+    })),
+  };
+}
+
+function footerPages(pages: Pages): Pages {
+  return {
+    ...pages,
+    data: pages.data
+      .filter((page) => !HIDDEN_FOOTER_PAGES.has(page.slug))
+      .map((page) => ({ ...page, slug: 'p/' + page.slug })),
+  };
+}
+
+/**
+ * Site menu and footer pages, loaded once per app (per request on the server).
+ * Values are undefined until loaded (or if loading fails).
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class NavService {
-  private http = inject(HttpClient);
+  private readonly navResource = httpResource<Nav>(
+    () => `${environment.API_UNA}${environment.API_NAV}`,
+    { parse: (raw) => withMenuPaths(raw as Nav) },
+  );
+  private readonly pagesResource = httpResource<Pages>(
+    () => `${environment.API_UNA}${environment.API_PAGES}`,
+    { parse: (raw) => footerPages(raw as Pages) },
+  );
 
-  private allNav = new Subject<Nav>();
-  private footerPages = new Subject<Pages>();
-  private quizEnabled = new BehaviorSubject<boolean | undefined>(undefined);
+  readonly nav = computed(() =>
+    this.navResource.hasValue() ? this.navResource.value() : undefined,
+  );
 
-  allNav$ = this.allNav.asObservable();
-  footerPages$ = this.footerPages.asObservable();
-  quizEnabled$ = this.quizEnabled.asObservable();
+  readonly footerPages = computed(() =>
+    this.pagesResource.hasValue() ? this.pagesResource.value() : undefined,
+  );
 
-  getNav() {
-    return this.http
-      .get<Nav>(`${environment.API_UNA}${environment.API_NAV}`)
-      .subscribe((nav: Nav) => {
-        nav.data.forEach((e) => {
-          if (e.type === 'page') {
-            e.slug = 'p/' + e.slug;
-          } else if (e.type === 'tag') {
-            e.slug = 'tag/' + e.slug;
-          } else if (e.type === 'personalities') {
-            e.slug = 'nasa-lica';
-          } else if (e.type === 'personality') {
-            e.slug = 'nasa-lica/' + e.slug;
-          } else if (e.type === 'program-schemas') {
-            e.slug = 'program';
-          }
-          e.children.forEach((el) => {
-            if (el.type === 'page') {
-              el.slug = 'p/' + el.slug;
-            } else if (el.type === 'tag') {
-              el.slug = 'tag/' + el.slug;
-            } else if (el.type === 'personalities') {
-              el.slug = 'nasa-lica';
-            } else if (el.type === 'personality') {
-              el.slug = 'nasa-lica/' + el.slug;
-            } else if (el.type === 'program-schemas') {
-              el.slug = 'program';
-            }
-          });
-        });
-        this.allNav.next(nav);
-        if (nav.meta?.settings?.quiz_enabled) {
-          this.quizEnabled.next(true);
-        } else {
-          this.quizEnabled.next(false);
-        }
-      });
-  }
-
-  getFooterPages() {
-    return this.http
-      .get<Pages>(`${environment.API_UNA}${environment.API_PAGES}`)
-      .pipe(
-        map((data) => {
-          data.data = data.data.filter((page) => {
-            return (
-              page.slug !== 'pravila-kviza-i-audicije-za-kviz' &&
-              page.slug !== 'kako-nas-gledati' &&
-              page.slug !==
-                'obavestenje-o-obradi-podataka-o-licnosti-ucesnika-u-audiciji-za-kviz-jedno-pitanje'
-            );
-          });
-
-          return data;
-        }),
-      )
-      .subscribe((pages: Pages) => {
-        pages.data.forEach((e) => {
-          e.slug = 'p/' + e.slug;
-        });
-        this.footerPages.next(pages);
-      });
-  }
+  /** Whether the quiz is open; undefined until the menu has loaded. */
+  readonly quizEnabled = computed(() => {
+    const nav = this.nav();
+    return nav ? !!nav.meta?.settings?.quiz_enabled : undefined;
+  });
 }

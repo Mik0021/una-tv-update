@@ -1,36 +1,28 @@
 import {
-  AfterViewInit,
-  Component,
-  HostListener,
-  OnInit,
-  PLATFORM_ID,
-  DOCUMENT,
   ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
   inject,
+  input,
 } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Image } from 'src/app/interfaces/image.model';
-import { Search } from 'src/app/interfaces/search.model';
-import { Source } from 'src/app/interfaces/source.model';
-import { Tags } from 'src/app/interfaces/tags.model';
-import { TvShow } from 'src/app/interfaces/tv-show.model';
-import { SearchService } from 'src/app/services/search.service';
-import { Personality } from './../../interfaces/personality.model';
-import { Post } from './../../interfaces/post.model';
+import { Router, RouterLink } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SeoService } from 'src/app/services/seo.service';
+import { WindowScrollService } from 'src/app/services/window-scroll.service';
+import { CardSmallContentDownComponent } from '../../components/card-small-content-down/card-small-content-down.component';
+import { HtmlEmbedComponent } from '../../components/html-embed/html-embed.component';
+import { pageParam } from '../../utils/paging';
+import { lastValue, notFoundOnError } from '../../utils/resource';
 import { PostService } from './../../services/post.service';
 import { SingleSocialComponent } from './single-social/single-social.component';
 import { SingleTagsComponent } from './single-tags/single-tags.component';
-import { CardSmallContentDownComponent } from '../../components/card-small-content-down/card-small-content-down.component';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { HtmlEmbedComponent } from '../../components/html-embed/html-embed.component';
 
 @Component({
   selector: 'app-single-page',
   templateUrl: './single-page.component.html',
   styleUrls: ['./single-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     HtmlEmbedComponent,
     RouterLink,
@@ -40,242 +32,68 @@ import { HtmlEmbedComponent } from '../../components/html-embed/html-embed.compo
     NgxPaginationModule,
   ],
 })
-export class SinglePageComponent implements OnInit, AfterViewInit {
-  private postService = inject(PostService);
-  private activatedRoute = inject(ActivatedRoute);
-  private metaService = inject(Meta);
-  private titleService = inject(Title);
+export class SinglePageComponent {
   private router = inject(Router);
-  private _document = inject<Document>(DOCUMENT);
-  private platformId = inject<Object>(PLATFORM_ID);
-  private searchService = inject(SearchService);
 
-  single_post = {} as Post;
-  tags_list: Tags[] = [];
-  episodes: TvShow[] = [];
-  postRoute: string | null = '';
-  category: string | null = '';
-  subCategory: string | null = '';
-  articleSource = {} as Source;
-  content: any;
-  image = {} as Image;
-  appShare: string = '';
-  srcSet: string = '';
-  isTvLice: boolean = false;
-  duration: number = 0;
-  personalities: Personality[] = [];
-  windowScrolled: boolean = false;
+  /** Route params: `:category/:post` or `:category/:subcategory/:post`. */
+  readonly category = input<string>();
+  readonly subcategory = input<string>();
+  readonly post = input<string>();
+  /** Query param `p` (episode list page). */
+  readonly p = input(1, { transform: pageParam });
 
-  p: number = 1;
+  private readonly resource = inject(PostService).post(
+    this.category,
+    this.subcategory,
+    this.post,
+  );
+  protected readonly data = lastValue(this.resource);
 
-  singleVideo: string = '';
+  protected readonly episodes = computed(
+    () => this.data()?.data.related_tv_shows ?? [],
+  );
 
-  $search: Observable<Search> = this.searchService.searchRes$;
+  protected readonly srcSet = computed(() => {
+    const thumbs = this.data()?.data.image?.thumbnails;
+    return thumbs?.[345] && thumbs?.[710] && thumbs?.[944]
+      ? `${thumbs[345]} 245w, ${thumbs[710]} 490w, ${thumbs[944]}`
+      : '';
+  });
+
+  /** Brid.tv player embed for posts with a video. */
+  protected readonly video = computed(() => {
+    const post = this.data()?.data;
+    if (!post?.brid_video_id) {
+      return '';
+    }
+    return `<div class="raw-html-embed"><script type="text/javascript" src="https://services.brid.tv/player/build/brid.min.js"></script> <div id="Brid_64470599" class="brid" style="width:480;height:270;" > </div> <script type="text/javascript"> $bp("Brid_64470599", {"id":"${post.brid_default_player_id}","width":"480","height":"270","video":"${post.brid_video_id}"}); </script></div>`;
+  });
+
+  private readonly scrollY = inject(WindowScrollService).scrollY;
+  protected readonly windowScrolled = computed(() => this.scrollY() > 350);
+
   constructor() {
-    this.activatedRoute.queryParams.subscribe((params) => {
-      if (params['p'] === undefined) {
-        this.p = 1;
-      } else {
-        this.p = params['p'];
-      }
-    });
-    this.activatedRoute.paramMap.subscribe((paramMap) => {
-      if (
-        !paramMap.has('post') &&
-        !paramMap.has('category') &&
-        !paramMap.has('subcategory')
-      ) {
-        return;
-      } else {
-        this.postRoute = paramMap.get('post');
-        this.category = paramMap.get('category');
-        this.subCategory = paramMap.get('subcategory');
-
-        if (!this.subCategory) {
-          this.postService
-            .getParentCategoryPost(this.category, this.postRoute)
-            .subscribe({
-              next: (post: Post) => {
-                this.single_post = post;
-                this.tags_list = post.data.tv_tags;
-                this.duration = post.data.settings.duration;
-                this.episodes = post.data.related_tv_shows;
-                // this.episodes.sort((a, b) => {
-                //   let aDate = new Date();
-                //   let bDate = new Date();
-                //   return a.id - b.id;
-                // });
-                // this.articleSource = post.data.source;
-                this.content = this.single_post.data.description;
-                this.image = post.data.image;
-                this.personalities = post.data.tv_personalities;
-                this.addTags();
-                this.createSrcSet();
-                this.createVideoScript(
-                  this.single_post.data.brid_default_player_id,
-                  this.single_post.data.brid_video_id,
-                );
-              },
-              error: (error: any) => {
-                this.router.navigate(['404'], { skipLocationChange: true });
-              },
-            });
-        } else {
-          this.postService
-            .getPost(this.category, this.subCategory, this.postRoute)
-            .subscribe({
-              next: (post: Post) => {
-                this.single_post = post;
-                this.tags_list = post.data.tv_tags;
-                this.duration = post.data.settings.duration;
-                this.episodes = post.data.related_tv_shows;
-                // this.episodes.sort((a, b) => {
-                //   let aDate = new Date();
-                //   let bDate = new Date();
-                //   return a.id - b.id;
-                // });
-                // this.articleSource = post.data.source;
-                this.content = this.single_post.data.description;
-                this.image = post.data.image;
-                this.personalities = post.data.tv_personalities;
-                this.addTags();
-                this.createSrcSet();
-                this.createVideoScript(
-                  this.single_post.data.brid_default_player_id,
-                  this.single_post.data.brid_video_id,
-                );
-              },
-              error: (error: any) => {
-                this.router.navigate(['404'], { skipLocationChange: true });
-              },
-            });
-        }
+    notFoundOnError(this.resource);
+    const seo = inject(SeoService);
+    effect(() => {
+      const post = this.data()?.data;
+      if (post) {
+        seo.set({
+          title: post.title,
+          description: post.seo_description,
+          keywords: post.tv_category.name,
+          image: post.image?.url,
+          type: 'article',
+        });
       }
     });
   }
 
-  @HostListener('window:scroll', []) onWindowScroll() {
-    if (window.pageYOffset > 350) {
-      this.windowScrolled = true;
-    } else {
-      this.windowScrolled = false;
-    }
-  }
-
-  ngOnInit(): void {}
-
-  ngAfterViewInit(): void {}
-
-  createVideoScript(playerId: string, videoId: string | null) {
-    if (videoId === null) {
-      return;
-    } else {
-      this.singleVideo = `<div class="raw-html-embed"><script type="text/javascript" src="https://services.brid.tv/player/build/brid.min.js"></script> <div id="Brid_64470599" class="brid" style="width:480;height:270;" > </div> <script type="text/javascript"> $bp("Brid_64470599", {"id":"${playerId}","width":"480","height":"270","video":"${videoId}"}); </script></div>`;
-    }
-  }
-
-  getPage(page: number) {
-    this.p = page;
-    if (this.p > 1) {
-      this.router.navigate([], {
-        queryParams: {
-          p: this.p,
-        },
-        queryParamsHandling: 'merge',
-      });
-    } else {
-      this.router.navigate([]);
-    }
-  }
-
-  createSrcSet() {
-    if (
-      this.image &&
-      this.image.thumbnails &&
-      this.image.thumbnails[345] &&
-      this.image.thumbnails[710] &&
-      this.image.thumbnails[944]
-    ) {
-      this.srcSet = `${this.image.thumbnails[345]} 245w, ${this.image.thumbnails[710]} 490w, ${this.image.thumbnails[944]}`;
-    }
-  }
-
-  addTags() {
-    this.titleService.setTitle(this.single_post.data.title);
-    this.metaService.updateTag({
-      name: 'description',
-      content: this.single_post.data.seo_description,
+  /** Episode pagination (client-side list); keeps the scroll position. */
+  protected getPage(page: number) {
+    this.router.navigate([], {
+      queryParams: { p: page > 1 ? page : null },
+      queryParamsHandling: 'merge',
     });
-    this.metaService.updateTag({
-      name: 'keywords',
-      content: this.single_post.data.tv_category.name,
-    });
-
-    this.metaService.updateTag({
-      property: 'og:title',
-      content: this.single_post.data.title,
-    });
-    this.metaService.updateTag({
-      property: 'og:description',
-      content: this.single_post.data.seo_description,
-    });
-    this.metaService.updateTag({
-      property: 'og:image',
-      content: this.single_post.data.image
-        ? this.single_post.data.image.url
-        : 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
-    });
-    this.metaService.updateTag({
-      property: 'og:image:width',
-      content: '1920',
-    });
-    this.metaService.updateTag({
-      property: 'og:image:height',
-      content: '1080',
-    });
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: `${this._document.location.href}`,
-    });
-    this.metaService.updateTag({
-      property: 'og:type',
-      content: 'article',
-    });
-
-    this.metaService.updateTag({
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    });
-
-    this.metaService.updateTag({
-      name: 'twitter:site',
-      content: '@',
-    });
-    this.metaService.updateTag({
-      name: 'twitter:creator',
-      content: `${this._document.location.host}`,
-    });
-    this.metaService.updateTag({
-      name: 'twitter:domain',
-      content: `${this._document.location.host}`,
-    });
-    this.metaService.updateTag({
-      name: 'twitter:title',
-      content: this.single_post.data.title,
-    });
-    this.metaService.updateTag({
-      name: 'twitter:description',
-      content: this.single_post.data.seo_description,
-    });
-    this.metaService.updateTag({
-      name: 'twitter:image',
-      content: this.single_post.data.image
-        ? this.single_post.data.image.url
-        : 'https://una-test-images.ha.rs/storage/images/2022/09/una.webp',
-    });
-
-    this._document.head
-      .querySelector('[rel=canonical]')
-      ?.setAttribute('href', `${this._document.location.href}`);
   }
 }

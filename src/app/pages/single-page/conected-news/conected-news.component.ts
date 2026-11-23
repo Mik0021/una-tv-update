@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-conected-news',
   templateUrl: './conected-news.component.html',
   styleUrls: ['./conected-news.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink],
 })
 export class ConectedNewsComponent implements OnInit {

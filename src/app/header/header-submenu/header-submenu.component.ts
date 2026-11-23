@@ -1,40 +1,34 @@
-import { SubmenuItem } from './../../interfaces/submenu-item.model';
+import { NgClass, NgStyle } from '@angular/common';
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
+  Component,
   input,
   output,
+  signal,
 } from '@angular/core';
-import { NgClass, NgStyle } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SubmenuItem } from './../../interfaces/submenu-item.model';
 
 @Component({
   selector: 'app-header-submenu',
   templateUrl: './header-submenu.component.html',
   styleUrls: ['./header-submenu.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgClass, NgStyle, RouterLink],
 })
-export class HeaderSubmenuComponent implements OnInit {
+export class HeaderSubmenuComponent {
   readonly subcategory = input<SubmenuItem[]>([]);
-  readonly hideMenu = input<string>('');
+  /** Emitted when a submenu link is clicked, so the header closes the mobile menu. */
   readonly isMenuShown = output<string>();
 
-  submenuHide: string = '';
+  /** Mobile: CSS class that expands the submenu. */
+  protected readonly submenuHide = signal('');
 
-  constructor() {}
-
-  ngOnInit(): void {}
-  onCollapseSubmenu() {
-    if (this.submenuHide === 'max-h-96') {
-      this.submenuHide = '';
-    } else {
-      this.submenuHide = 'max-h-96';
-    }
+  protected onCollapseSubmenu() {
+    this.submenuHide.update((cls) => (cls === 'max-h-96' ? '' : 'max-h-96'));
   }
 
-  onMenuClose() {
+  protected onMenuClose() {
     this.isMenuShown.emit('-translate-x-full');
   }
 }

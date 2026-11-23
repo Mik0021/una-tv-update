@@ -4,24 +4,24 @@
       <h2
         class="font-semibold inline-block text-black bg-blue px-12 py-1 uppercase items-center mb-0"
       >
-        {{ tag.name }}
+        {{ data()?.data?.tv_tag?.name }}
       </h2>
     </div>
     <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
       @for (
-        article of articles
+        article of data()?.data?.tv_shows ?? []
           | paginate
             : {
                 itemsPerPage: 24,
-                currentPage: p,
-                totalItems: paginator.total,
+                currentPage: p(),
+                totalItems: data()?.paginator?.total,
               };
         track article
       ) {
         <app-card-small-content-down [articleData]="article" />
       }
     </div>
-    @if (paginator.last_page > 1) {
+    @if ((data()?.paginator?.last_page ?? 0) > 1) {
       <div class="grid place-items-center mt-28">
         <pagination-controls
           class="pagination"

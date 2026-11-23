@@ -1,22 +1,22 @@
-import { NavService } from './../services/nav.service';
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  inject,
-} from '@angular/core';
-import { Nav } from '../interfaces/nav.model';
-import { Observable } from 'rxjs';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgClass, NgStyle } from '@angular/common';
-import { HeaderSubmenuComponent } from './header-submenu/header-submenu.component';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NavService } from './../services/nav.service';
 import { HeaderSearchComponent } from './header-search/header-search.component';
+import { HeaderSubmenuComponent } from './header-submenu/header-submenu.component';
+
+const MENU_HIDDEN = '-translate-x-full';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterLink,
     NgClass,
@@ -26,28 +26,17 @@ import { HeaderSearchComponent } from './header-search/header-search.component';
     HeaderSearchComponent,
   ],
 })
-export class HeaderComponent implements OnInit {
-  private navService = inject(NavService);
+export class HeaderComponent {
+  protected readonly nav = inject(NavService).nav;
 
-  isMenuShown: string = '-translate-x-full';
-  navList = {} as Nav;
-  nav$: Observable<Nav> = this.navService.allNav$;
+  /** Mobile menu: CSS class that slides it out of view when closed. */
+  protected readonly isMenuShown = signal(MENU_HIDDEN);
 
-  ngOnInit(): void {
-    this.navService.getNav();
-    this.nav$.subscribe((nav) => {
-      this.navList = nav;
-    });
-  }
-  onMenuOpen() {
-    this.isMenuShown = '';
+  protected onMenuOpen() {
+    this.isMenuShown.set('');
   }
 
-  onMenuClose() {
-    this.isMenuShown = '-translate-x-full';
-  }
-
-  closeFromSubmenu(close: string) {
-    this.onMenuClose();
+  protected onMenuClose() {
+    this.isMenuShown.set(MENU_HIDDEN);
   }
 }

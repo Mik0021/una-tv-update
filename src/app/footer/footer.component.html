@@ -6,14 +6,14 @@
       ><img src="./assets/images/logo.png" height="55" width="124" alt=""
     /></a>
   </div>
-  <app-footer-nav [navList]="navList" />
+  <app-footer-nav [navList]="nav()" />
   <app-footer-social />
   <div
     class="grid items-center justify-center md:justify-between sm:grid-cols-2 border-t border-gray"
   >
     <div class="text-xs text-white">
       <ul class="flex gap-4 lg:gap-20 py-5">
-        @for (item of pagesList.data; track item; let i = $index) {
+        @for (item of pages()?.data; track item) {
           <li>
             <a
               class="opacity-50 whitespace-nowrap"

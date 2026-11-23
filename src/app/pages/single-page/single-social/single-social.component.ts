@@ -7,7 +7,7 @@ import { ViberShareDirective } from '../../../directives/viber-share.directive';
   selector: 'app-single-social',
   templateUrl: './single-social.component.html',
   styleUrls: ['./single-social.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ShareButtonDirective, ViberShareDirective],
 })
 export class SingleSocialComponent implements OnInit {

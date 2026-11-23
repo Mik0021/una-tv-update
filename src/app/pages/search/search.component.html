@@ -1,35 +1,49 @@
 <section class="bg-dark mb-14 mt-[76px] sm:mt-[89px] lg:mt-[124px]">
-  @if (articles.length > 0) {
-    <div class="container px-3 sm:px-0">
-      <div class="block mb-6 lg:mb-14 flex justify-between">
-        <h2
-          class="font-semibold inline-block text-white py-1 items-center -mb-px text-2xl md:text-3xl lg:text-4xl capitalize"
-        >
-          {{ searchTerm }}
-        </h2>
-      </div>
-      <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
-        @for (
-          article of articles | paginate: { itemsPerPage: 24, currentPage: p };
-          track article
-        ) {
-          <app-card-small-content-down [articleData]="article" />
-        }
-      </div>
-      <div class="grid place-items-center mt-28">
-        <pagination-controls
-          class="pagination"
-          (pageChange)="getPage($event)"
-          previousLabel=""
-          nextLabel=""
-        />
-      </div>
-    </div>
-  } @else {
+  @if (failed()) {
     <div class="grid place-items-center">
       <h1 class="font-bold text-white text-3xl">
         Za traženi termin nema rezultata.
       </h1>
     </div>
+  } @else if (data(); as results) {
+    @if (results.data.length > 0) {
+      <div class="container px-3 sm:px-0">
+        <div class="block mb-6 lg:mb-14 flex justify-between">
+          <h2
+            class="font-semibold inline-block text-white py-1 items-center -mb-px text-2xl md:text-3xl lg:text-4xl capitalize"
+          >
+            {{ q() }}
+          </h2>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5">
+          @for (
+            article of results.data
+              | paginate
+                : {
+                    itemsPerPage: 24,
+                    currentPage: p(),
+                    totalItems: results.paginator.total,
+                  };
+            track article
+          ) {
+            <app-card-small-content-down [articleData]="article" />
+          }
+        </div>
+        <div class="grid place-items-center mt-28">
+          <pagination-controls
+            class="pagination"
+            (pageChange)="getPage($event)"
+            previousLabel=""
+            nextLabel=""
+          />
+        </div>
+      </div>
+    } @else {
+      <div class="grid place-items-center">
+        <h1 class="font-bold text-white text-3xl">
+          Za traženi termin nema rezultata.
+        </h1>
+      </div>
+    }
   }
 </section>

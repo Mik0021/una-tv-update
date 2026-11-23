@@ -1,13 +1,13 @@
 import {
   AfterViewInit,
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  PLATFORM_ID,
-  DOCUMENT,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  DOCUMENT,
+  ElementRef,
+  effect,
   inject,
+  signal,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -16,7 +16,6 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { Meta, Title } from '@angular/platform-browser';
 import { ReCaptchaV3Service } from 'ng-recaptcha-2';
 import { finalize, switchMap } from 'rxjs';
 import { QuizUpload } from 'src/app/interfaces/quiz-upload.model';
@@ -24,6 +23,7 @@ import { QuizService } from 'src/app/services/quiz.service';
 import { AgeValidator } from './age.validator';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { NavService } from 'src/app/services/nav.service';
+import { SeoService } from 'src/app/services/seo.service';
 import { Router, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 
@@ -31,27 +31,30 @@ import { NgClass } from '@angular/common';
   selector: 'app-quiz-apply',
   templateUrl: './quiz-apply.component.html',
   styleUrls: ['./quiz-apply.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, NgClass, RouterLink],
 })
-export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
+export class QuizApplyComponent implements AfterViewInit {
   private formBuilder = inject(FormBuilder);
   private recaptchaV3Service = inject(ReCaptchaV3Service);
   private _document = inject<Document>(DOCUMENT);
-  private platformId = inject<Object>(PLATFORM_ID);
-  private metaService = inject(Meta);
-  private titleService = inject(Title);
   private quizService = inject(QuizService);
   private el = inject(ElementRef);
-  private navService = inject(NavService);
   private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
+  private seo = inject(SeoService);
 
-  videoTypeError = false;
-  videoSizeError = false;
-  videoFileName = '';
-  maxAge = '';
-  progress = 0;
-  uploadSuccess = false;
+  protected readonly videoTypeError = signal(false);
+  protected readonly videoSizeError = signal(false);
+  protected readonly videoFileName = signal('');
+  /** Latest allowed date of birth (18 years ago), for the date input. */
+  protected readonly maxAge = (() => {
+    const date = new Date();
+    date.setFullYear(date.getFullYear() - 18);
+    return date.toISOString().split('T')[0];
+  })();
+  protected readonly progress = signal(0);
+  protected readonly uploadSuccess = signal(false);
   quizForm = this.formBuilder.group({
     name: ['', [Validators.required, Validators.maxLength(100)]],
     dob: ['', [Validators.required, AgeValidator]],
@@ -111,14 +114,15 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.quizForm.controls.agreed_with_the_processing_of_personal_data;
   }
 
-  ngOnInit(): void {
-    this.addTags();
-    let today = new Date();
-    today.setTime(today.setFullYear(today.getFullYear() - 18));
-    this.maxAge = today.toISOString().split('T')[0];
-    // this.quizForm.valueChanges.subscribe((res) => {
-    //   console.log(res);
-    // });
+  constructor() {
+    this.setSeo();
+    // Leave the page once the menu says the quiz is closed.
+    const quizEnabled = inject(NavService).quizEnabled;
+    effect(() => {
+      if (quizEnabled() === false) {
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   ngAfterViewInit(): void {
@@ -142,13 +146,6 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       },
     });
-    this.navService.quizEnabled$.subscribe({
-      next: (res) => {
-        if (res === false) {
-          this.router.navigate(['/']);
-        }
-      },
-    });
   }
 
   onVideoUpload(videoUpload: HTMLInputElement) {
@@ -159,34 +156,38 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onFileSelected(event: Event) {
     let video: FileList | null = null;
-    this.videoSizeError = false;
-    this.videoTypeError = false;
-    this.videoFileName = '';
+    this.videoSizeError.set(false);
+    this.videoTypeError.set(false);
+    this.videoFileName.set('');
     video = (event.target as HTMLInputElement).files;
     // console.log(video);
     if (video !== null) {
       if (video.length > 0) {
         // console.log(video[0]);
         if (video[0].type !== 'video/mp4') {
-          this.videoTypeError = true;
+          this.videoTypeError.set(true);
         } else {
-          this.videoTypeError = false;
+          this.videoTypeError.set(false);
         }
         if (video[0].size > 500000000) {
-          this.videoSizeError = true;
+          this.videoSizeError.set(true);
         } else {
-          this.videoSizeError = false;
+          this.videoSizeError.set(false);
         }
-        if (!this.videoSizeError && !this.videoTypeError) {
+        if (!this.videoSizeError() && !this.videoTypeError()) {
           this.video.patchValue(video[0]);
-          this.videoFileName = video[0].name;
+          this.videoFileName.set(video[0].name);
         }
       }
     }
   }
 
   submit() {
-    if (this.quizForm.valid && !this.videoSizeError && !this.videoTypeError) {
+    if (
+      this.quizForm.valid &&
+      !this.videoSizeError() &&
+      !this.videoTypeError()
+    ) {
       this.quizForm.disable();
       // console.log(this.quizForm.value);
 
@@ -237,28 +238,32 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
               Validators.required,
               Validators.maxLength(1024),
             ]);
+            // Form state isn't a signal: refresh the OnPush view explicitly.
+            this.cdr.markForCheck();
           }),
         )
         .subscribe({
           next: (event: HttpEvent<any>) => {
             if (event.type === HttpEventType.UploadProgress) {
               // console.log(event);
-              this.progress = Math.round((event.loaded / event.total!) * 100);
+              this.progress.set(
+                Math.round((event.loaded / event.total!) * 100),
+              );
             }
             if (event.type === HttpEventType.Response) {
               // console.log(event);
               this.quizForm.reset();
-              this.progress = 0;
-              this.uploadSuccess = true;
-              this.videoSizeError = false;
-              this.videoTypeError = false;
-              this.videoFileName = '';
+              this.progress.set(0);
+              this.uploadSuccess.set(true);
+              this.videoSizeError.set(false);
+              this.videoTypeError.set(false);
+              this.videoFileName.set('');
               if (event.status === 201) {
               }
             }
           },
           error: (err) => {
-            this.progress = 0;
+            this.progress.set(0);
             // console.log(err);
           },
         });
@@ -284,81 +289,17 @@ export class QuizApplyComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  addTags() {
-    this.titleService.setTitle('UNA televizija kviz');
-
-    this.metaService.updateTag({
-      name: 'description',
-      content:
-        'Una televizija svojim gledaocima pruža uzbudljiv kviz i mnošto zabave i izazova. Učesnike očekuje i vredna novčana nagrada, a potrebno je da se pored znanja pokaže i intuicija i veštine.',
+  private setSeo() {
+    const description =
+      'Una televizija svojim gledaocima pruža uzbudljiv kviz i mnošto zabave i izazova. Učesnike očekuje i vredna novčana nagrada, a potrebno je da se pored znanja pokaže i intuicija i veštine.';
+    this.seo.set({
+      title: 'UNA televizija kviz',
+      description,
+      keywords: 'UNA, kviz, jedno pitanje, una televizija',
+      image: 'https://unatv.una.rs/assets/images/una-jedno-pitanje-share.webp',
+      imageWidth: '1655',
+      imageHeight: '931',
+      twitterImage: `${this._document.location.origin}/assets/images/una-jedno-pitanje-share.webp`,
     });
-    this.metaService.updateTag({
-      name: 'keywords',
-      content: 'UNA, kviz, jedno pitanje, una televizija',
-    });
-
-    this.metaService.updateTag({
-      property: 'og:title',
-      content: 'UNA televizija kviz',
-    });
-    this.metaService.updateTag({
-      property: 'og:description',
-      content:
-        'Una televizija svojim gledaocima pruža uzbudljiv kviz i mnošto zabave i izazova. Učesnike očekuje i vredna novčana nagrada, a potrebno je da se pored znanja pokaže i intuicija i veštine.',
-    });
-    this.metaService.updateTag({
-      property: 'og:image',
-      content: `https://unatv.una.rs/assets/images/una-jedno-pitanje-share.webp`,
-    });
-    this.metaService.updateTag({
-      property: 'og:image:width',
-      content: '1655',
-    });
-    this.metaService.updateTag({
-      property: 'og:image:height',
-      content: '931',
-    });
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: `${this._document.location.href}`,
-    });
-    this.metaService.updateTag({
-      property: 'og:type',
-      content: 'website',
-    });
-
-    this.metaService.updateTag({
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    });
-    this.metaService.updateTag({
-      name: 'twitter:site',
-      content: '@',
-    });
-    this.metaService.updateTag({
-      name: 'twitter:creator',
-      content: `${this._document.location.host}`,
-    });
-    this.metaService.updateTag({
-      name: 'twitter:domain',
-      content: `${this._document.location.host}`,
-    });
-    this.metaService.updateTag({
-      name: 'twitter:title',
-      content: 'UNA televizija kviz',
-    });
-    this.metaService.updateTag({
-      name: 'twitter:description',
-      content:
-        'Una televizija svojim gledaocima pruža uzbudljiv kviz i mnošto zabave i izazova. Učesnike očekuje i vredna novčana nagrada, a potrebno je da se pored znanja pokaže i intuicija i veštine.',
-    });
-    this.metaService.updateTag({
-      name: 'twitter:image',
-      content: `${this._document.location.origin}/assets/images/una-jedno-pitanje-share.webp`,
-    });
-  }
-
-  ngOnDestroy(): void {
-    // throw new Error('Method not implemented.');
   }
 }
