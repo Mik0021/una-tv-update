@@ -7,7 +7,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { environment } from 'src/environments/environment';
 
-import { AppServerModule } from './src/main.server';
+import bootstrap from './src/main.server';
 
 /**
  * Hosts allowed to be server-rendered (Angular 19.2+ SSRF protection). Requests
@@ -55,7 +55,7 @@ export function app(): express.Express {
 
     commonEngine
       .render({
-        bootstrap: AppServerModule,
+        bootstrap,
         documentFilePath: indexHtml,
         url: `${protocol}://${headers.host}${originalUrl}`,
         publicPath: distFolder,
@@ -88,4 +88,4 @@ if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
   run();
 }
 
-export * from './src/main.server';
+export default bootstrap;

@@ -1,4 +1,4 @@
-/***************************************************************************************************
+/**
  * Initialize the server environment - for example, adding DOM built-in types to the global scope.
  *
  * NOTE:
@@ -8,12 +8,19 @@
 import '@angular/platform-server/init';
 
 import { enableProdMode } from '@angular/core';
-
+import {
+  BootstrapContext,
+  bootstrapApplication,
+} from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { config } from './app/app.config.server';
 import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
 }
 
-export { AppServerModule } from './app/app.server.module';
+const bootstrap = (context: BootstrapContext) =>
+  bootstrapApplication(AppComponent, config, context);
 
+export default bootstrap;

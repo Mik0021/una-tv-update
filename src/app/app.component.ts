@@ -2,13 +2,18 @@
 import { Component, HostListener, Inject, OnInit, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { GtagService } from './services/gtag.service';
+import { NgClass } from '@angular/common';
+import { HeaderComponent } from './header/header.component';
+import { RouterOutlet } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
+import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [NgClass, HeaderComponent, RouterOutlet, FooterComponent, ScrollToTopComponent]
 })
 export class AppComponent implements OnInit {
   windowScrolled: boolean = false;
